@@ -122,23 +122,6 @@ public class Humain extends Turtle
 	{
 		gererLesBiensALaMort();
 		
-		//en cas de mort, on prend un agent au hasard à 3 case max, et on lui donne le cogniton Croire
-		Humain h = oneOf(HumaininRadius(3));
-		if(h != null)
-		{
-			Esprit e = h.getEsprit();
-			//s'il possède déjà le cogniton, on incrément le seuil
-			if(e.containsCogniton("Meme", "Croire")) 
-			{
-				//((MEM_Croire) e.getCognitonByName("Meme", "Croire")).incrementSeuilFoi();
-			}
-			//sinon on génére le cogniton
-			else 
-			{
-				//e.ajouterCogniton(new MEM_Croire(e));
-			}
-		}
-		
 		System.out.println("------------------------------------------------");
 		System.out.println("Un agent est mort au cours du projet : " + this.getEsprit().getPlanEnCours());
 		System.out.println("Vie : " + this.getVie());
