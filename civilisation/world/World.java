@@ -94,8 +94,8 @@ public class World extends TurtleEnvironment
 		
 		if (Configuration.environnementACharger != null){
 			System.out.println("Dimensionnement de l'environnement");
-			x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger))[0]);
-	       	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger))[0]);
+			x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
+	       	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
 
 		}
 		else{
@@ -127,7 +127,7 @@ public class World extends TurtleEnvironment
 		if (Configuration.environnementACharger != null){
 		   System.out.println("Chargement de l'environnement");
 	       HashMap<Integer,Terrain> typeTerrains = new HashMap<Integer,Terrain>();
-	       ArrayList<String[]> listeTerrains = Initialiseur.getListeChamp("Terrain", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger));
+	       ArrayList<String[]> listeTerrains = Initialiseur.getListeChamp("Terrain", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 	       for (int i = 0; i < listeTerrains.size(); i++){
 			   //System.out.println("hash "+i+" "+listeTerrains.get(i)[0]+" "+Configuration.getTerrainByName(listeTerrains.get(i)[0]));
 
@@ -135,7 +135,7 @@ public class World extends TurtleEnvironment
 			   //System.out.println(typeTerrains.get(i) + typeTerrains.get(i).getCouleur().toString());
 	       }
 	       
-	       ArrayList<String[]> terrains = Initialiseur.getListeChamp("Rang", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger));
+	       ArrayList<String[]> terrains = Initialiseur.getListeChamp("Rang", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 	       for (int i = 0; i < x; i++){
 	    	   for (int j = 0; j < y; j++){
 	    		   this.grid[i][j].setColor(typeTerrains.get(Integer.parseInt(terrains.get(y-j-1)[i])).getCouleur());
@@ -143,7 +143,7 @@ public class World extends TurtleEnvironment
 	       }
 	       
 	       /*Installation des premires civilisations*/
-	       ArrayList<String[]> listeCivs = Initialiseur.getListeChamp("Civilisation", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger));
+	       ArrayList<String[]> listeCivs = Initialiseur.getListeChamp("Civilisation", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 	       for (int i = 0; i < listeCivs.size(); i++){
 	    	   
 	    	   int u = Integer.parseInt(listeCivs.get(i)[1]);

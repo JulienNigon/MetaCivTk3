@@ -38,6 +38,25 @@ public class Initialiseur {
 
 		String nom;
 		
+		System.out.println("Attributes loading...");
+		File[] filesAttributes = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/attributes").listFiles();
+		ArrayList<String> attributesNames = new ArrayList<String>();
+		ArrayList<Integer> attributesStartingValues = new ArrayList<Integer>();
+		for (File file : filesAttributes) {
+			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
+				System.out.println("Load attribute : " + file.getName());
+			    if (file.isFile()) {
+			    	String name = getChamp("Name" , file)[0];
+			    	attributesNames.add(name);
+			    	Integer startingValue = Integer.parseInt(getChamp("Starting value" , file)[0]);
+			    	attributesStartingValues.add(startingValue);
+			    }
+			}
+		}	
+		Configuration.attributesNames = attributesNames;
+		Configuration.attributesStartingValues = attributesStartingValues;
+		
+		
 		System.out.println("Chargement des pheromones");
 		File[] filesPhero = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/itemPheromones").listFiles();
 		ArrayList<ItemPheromone> phero = new ArrayList<ItemPheromone>();
@@ -285,7 +304,7 @@ public class Initialiseur {
 	    		File carte = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+s);
 	    		if (carte.isFile()){
 	    			System.out.println("Chargement de la carte : "+s);
-	    			Configuration.environnementACharger = s;
+	    			Configuration.environnementACharger = s.split("\\.")[0];
 	    		}
 	       	}
 		}

@@ -23,8 +23,10 @@ import civilisation.annotations.*;
 
 public class Configuration {
 
-	/*ATTENTION : Toute variable dans configuration doit être un objet (Double, Integer, etc)*/
 	
+	/*Attributes*/
+	public static ArrayList<String> attributesNames;
+	public static ArrayList<Integer> attributesStartingValues;
 	
 	/*All starting cognitons*/
 	public static ArrayList<NCogniton> cognitonsDeBase;

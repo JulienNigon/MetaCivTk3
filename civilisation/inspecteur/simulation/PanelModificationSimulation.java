@@ -250,11 +250,10 @@ public class PanelModificationSimulation extends JPanel{
 		/*Creation de la toolBar pour l'arbre d'actions*/	
 		ImageIcon icone = new ImageIcon(this.getClass().getResource("../icones/lightning--plus.png"));
 		ajouterAction = new JButton(icone);
-		icone = new ImageIcon(this.getClass().getResource("../icones/lightning--plus.png"));
-		ajouterSousAction = new JButton(icone);
-		
+		ajouterAction.setToolTipText("Add a new action at the start of the plan");
+		ajouterAction.addActionListener(new ActionsToolBarArbreActions(panelArbreActions , 0));
+
 		toolBarArbreActions = new JToolBar();
-		toolBarArbreActions.add(ajouterSousAction);
 		toolBarArbreActions.add(ajouterAction);
 		
 		
@@ -424,13 +423,14 @@ public class PanelModificationSimulation extends JPanel{
 	
 	public void changerArbreActions(NPlan plan){
 		System.out.println("change to "+plan.getNom());
-		panelEast.remove(panelArbreActions);
+		panelArbreActions.changePlan(plan);
+		/*panelEast.remove(panelArbreActions);
 		panelArbreActions = new PanelArbreActions(plan);
-		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
+		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), plan.getNom());
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		panelArbreActions.setBorder(bordure);
 		panelEast.add(panelArbreActions, BorderLayout.CENTER);
-		this.validate();
+		this.validate();*/
 	}
 
 	public PanelStructureCognitive getPanelStructureCognitive() {

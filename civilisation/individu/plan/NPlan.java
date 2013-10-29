@@ -102,6 +102,13 @@ public class NPlan {
 		}		
 	}
 	
+	public void addFirstAction(Action action) {
+		actions.add(0,action);
+		if (actions.size() > 1){
+			action.setNextAction(actions.get(1));
+		}
+	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -156,6 +163,8 @@ public class NPlan {
 			System.out.println(actions.get(i).toString());
 		}
 	}
+
+
 
 
 }

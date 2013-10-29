@@ -31,16 +31,21 @@ public class PanelArbreActions extends JJPanel{
 	Action actionActive; /*Pour mémoriser l'action en cours de modification, le cas écheant*/
 
 	public PanelArbreActions(NPlan plan){
+		
+		this.setLayout(new BorderLayout());
+		this.setMinimumSize(new Dimension(300,500));
+
 		if (plan != null){
-			this.setLayout(new BorderLayout());
 
 			this.plan = plan;
-			this.setMinimumSize(new Dimension(300,500));
+			System.out.println("Plan obersvé : " + this.plan.getNom());
 			
 			setupArbreActions();
 
 			
 			this.add(toolBar , BorderLayout.NORTH);
+		} else {
+			System.out.println("Plan de l'arbre est null");
 		}
 	}
 	
@@ -52,6 +57,15 @@ public class PanelArbreActions extends JJPanel{
 		arbreActions.addMouseListener(new MouseArbreActionsListener(this));
 		arbreActions.setBackground(this.getBackground());
 		this.add(arbreActions , BorderLayout.CENTER);
+	}
+	
+	public void changePlan(NPlan plan) {
+		if (arbreActions != null) {
+			this.remove(arbreActions);
+		}
+		System.out.println("Nouveau plan : " + plan.getNom());
+		this.plan = plan;
+		setupArbreActions();
 	}
 	
 	public void afficherPopup(MouseEvent e, Action a){
@@ -110,6 +124,11 @@ public class PanelArbreActions extends JJPanel{
 		}
 		else if (option == Option_BeforeAfter.INTERNAL){
 			plan.addSubAction(a, actionActive);
+		}
+		else if (option == Option_BeforeAfter.FIRST){
+			if (plan == null) System.out.println("NULL");
+			System.out.println("plan : " + plan.getNom());
+			plan.addFirstAction(a);
 		}
 		this.remove(arbreActions);
 		setupArbreActions();

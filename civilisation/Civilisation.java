@@ -24,7 +24,6 @@ public class Civilisation {
 	int indexCiv;
 	int agentsInitiaux;
 	static ArrayList<Civilisation> listeCiv = new ArrayList<Civilisation>();
-	ArrayList<Color> inaccessibles;
 	
 	public Civilisation ()
 	{
@@ -34,10 +33,6 @@ public class Civilisation {
 		listeCiv.add(this);
 		System.out.println(World.getInstance().gridVariables.size());
 		System.out.println("OK : " +  World.getInstance().gridVariables.containsKey("civ"+indexCiv) + " " + "civ"+indexCiv);
-
-		inaccessibles = new ArrayList<Color>();
-		inaccessibles.add(new Color(10,10,140));
-		inaccessibles.add(new Color(10,10,240));
 	}
 
 
@@ -73,13 +68,6 @@ public class Civilisation {
 		return nombreCiv;
 	}
 	
-
-	
-	public ArrayList<Color> getInaccesibles(){
-		 return inaccessibles;
-		 }
-
-
 	public String getNom() {
 		return nom;
 	}
@@ -114,13 +102,8 @@ public class Civilisation {
 		this.agentsInitiaux = agentsInitiaux;
 	}
 
-
-
 	public void postWorldSetup() {
 		World.getInstance().addFlavor("civ"+indexCiv);		
 	}
-	
-	
-	
 	
 }

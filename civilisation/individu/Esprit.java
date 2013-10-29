@@ -197,113 +197,31 @@ public class Esprit {
 			if (!containsCogniton("Trait", Configuration.traitsDisponibles[i]) && Configuration.tauxApparitionTraits[i]*Configuration.facteurApparitionDeNouveauxTraits > (Math.random()*100))
 			{
 				this.addCognitonByName(Configuration.traitsDisponibles[i]);
-
 			}
 		}
 	}
 	
 	/**
-	 * Fonction appell≈Ωe ÀÜ chaque activation d'un Humain.
-	 * D≈Ωtermine le projet ÀÜ effectuer.
+	 * Main function for the mind.
+	 * Define the next plan to execute.
 	 */
 	public void penser()
 	{
 
-		//clearPercepts();
-		//percevoir();
-		//fadeInfluencesExterieures();
-		
-		//int reflexeActivable = reflexes();
-		
-		//if (h.isHere(h.getCommunaute()) && !h.getCommunaute().possedeHutte(h))  //Pour les besoins du test, on fait construire les huttes aux agents dÔøΩs que possible
-		//{
-		//	h.construireHutte();
-		//}
-		
-		//if (reflexeActivable >= 0)
-		//{
-		//	projets.get(reflexeActivable).Activer();
-		//}
-		//else
-		//{
-			//timer --;
-			//System.out.println("Agent pense…");
-			if ((planEnCours == null && actionEnCours == null)|| timer == 0)
+		if ((planEnCours == null && actionEnCours == null)|| timer == 0)
+		{
+			//System.out.println("Poids total :" + poidsTotalPlan);
+			int alea = (int) (Math.random()*(poidsTotalPlan + 1));
+			int i = 0;
+			while (alea > plans.get(i).getPoids() /*|| plans.get(i).getType() == 1*/)
 			{
-				//System.out.println("Poids total :" + poidsTotalPlan);
-				int alea = (int) (Math.random()*(poidsTotalPlan + 1));
-				int i = 0;
-				while (alea > plans.get(i).getPoids() /*|| plans.get(i).getType() == 1*/)
-				{
-					if (plans.get(i).getPoids() > 0) {alea -= plans.get(i).getPoids();	} /*les poids negatifs ne sont pas pris en compte*/		
-					i++;
-				}
-				planEnCours = plans.get(i);
-				//System.out.println("Agent choisi le plan : " + planEnCours.toString());
-
-				//timer = proj.getTempsMax();
-				//System.out.println("Nouveau projet : " + proj);
+				if (plans.get(i).getPoids() > 0) {alea -= plans.get(i).getPoids();	} /*les poids negatifs ne sont pas pris en compte*/		
+				i++;
 			}
-			planEnCours.activer(actionEnCours);
-			
-
-		//}
-
-	
-	}
-	
-	private void fadeInfluencesExterieures() {
-		for (int i = 0; i < memes.size(); i++)
-		{
-			memes.get(i).fade(this);
+			planEnCours = plans.get(i);
+			//System.out.println("Agent choisi le plan : " + planEnCours.toString());
 		}
-		
-	}
-
-	/**
-	 * Met en place les percepts du moment actuel
-	 */
-	private void percevoir()
-	{
-	/*	if (h.getVie() <= 50)
-		{
-			percepts.add(new PERCEPT_Faim(this));
-		}
-		if (h.getVie() <= 100 && h.getVie() >= 50)
-		{
-			percepts.add(new PERCEPT_FaimLegere(this));
-		}
-		if (h.getCommunaute().position.equals(h.position))
-		{
-			percepts.add(new PERCEPT_EstChezSoi(this));
-		}*/
-	}
-	
-	private int reflexes()
-	{
-		int index = - 1;
-		int priorite = -1;
-		for (int i = 0; i < projets.size(); i++)
-		{
-			if (projets.get(i).getType() == 1)
-			{
-				if (((Reflexe) projets.get(i)).isTriggered() && ((Reflexe) projets.get(i)).getPriorite() > priorite)
-				{
-					index = i;
-				}
-			}
-		}
-		return index;
-	}
-	
-	/**
-	 * Vide les percepts (il y a de l'optimisation ÔøΩ faire ici)
-	 */
-	private void clearPercepts()
-	{
-		while (!percepts.isEmpty()){
-			percepts.get(0).supprimer(this);
-		}
+		planEnCours.activer(actionEnCours);
 	}
 	
 	/**

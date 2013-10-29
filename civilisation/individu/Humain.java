@@ -22,6 +22,7 @@ import java.awt.Color;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import utils.Utils;
 
@@ -74,7 +75,7 @@ public class Humain extends Turtle
 	Humain mere;
 	Humain conjoint;
 	ArrayList<Humain> enfants;
-	public int foi=0;
+	HashMap<String,Integer> attributes;
 
 	Boolean isSelected = false;
 	
@@ -191,13 +192,13 @@ public class Humain extends Turtle
 		{
 			femme = true;
 		}
-		//inventaire.add(new Objet_Lance());
-
-		/*for (int i = 0; i < this.getEsprit().projets.size(); i++)
-		{
-			System.out.println(this.getEsprit().projets.get(i).getNom() + " : " +this.getEsprit().projets.get(i).getPoids());
+		System.out.println("avant hashmap " + Configuration.attributesNames.size());
+		HashMap<String,Integer> attributes = new HashMap<String,Integer>();
+		for (int i = 0; i < Configuration.attributesNames.size(); i++){
+			attributes.put(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
 		}
-		System.out.println("Poids total :" + this.getEsprit().poidsTotal);*/
+		System.out.println("après hashmap");
+
 
 	}
 
@@ -994,10 +995,10 @@ public class Humain extends Turtle
 	 * @return true si l'agent peut se deplacer sur le Patch cible
 	 */
 	
-	public boolean PasObstacle(Patch cible)
+	/*public boolean PasObstacle(Patch cible)
 	{
 		return !inclus(cible.color,this.civ.getInaccesibles()) ;
-	}
+	}*/
 	
 	
 	private double distanceBetween(Patch a, Patch b)
@@ -1311,19 +1312,19 @@ public class Humain extends Turtle
 		Patch test3 = this.getPatchAt(current.x - this.xcor()- 1, current.y - this.ycor());
 		Patch test4 = this.getPatchAt(current.x - this.xcor() ,current.y - this.ycor() - 1);
 		boolean test = true;
-		if(visites[test1.x][test1.y] == 0 && this.inclus(test1.color, this.civ.getInaccesibles()))
+		if(visites[test1.x][test1.y] == 0 /*&& this.inclus(test1.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
-		if(visites[test2.x][test2.y] == 0 && this.inclus(test2.color, this.civ.getInaccesibles()))
+		if(visites[test2.x][test2.y] == 0 /*&& this.inclus(test2.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
-		if(visites[test3.x][test3.y] == 0 && this.inclus(test3.color, this.civ.getInaccesibles()))
+		if(visites[test3.x][test3.y] == 0 /*&& this.inclus(test3.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
-		if(visites[test4.x][test4.y] == 0 && this.inclus(test4.color, this.civ.getInaccesibles()))
+		if(visites[test4.x][test4.y] == 0 /*&& this.inclus(test4.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
@@ -1715,20 +1716,6 @@ public class Humain extends Turtle
 		 setInfluence(this.influence + influence);
 	 }
 
-
-public int getPoidsPrier(int seuil)
-{
-	 float difference = seuil - foi;
-	 if(foi > 0) Utils.debug(2, "[FOI]"+ (int) Math.round(difference));
-	 return (int) Math.round(difference);
-}
-
-public void prier()
-{
-//	Utils.debug(2, foi + "/"+  ((MEM_Croire) esprit.getCognitonByName("Meme", "Croire")).getSeuilFoi());
-	foi += gainFoiActionPrier;
-//	Utils.debug(2, "apres: "+ foi  + "/"+ ((MEM_Croire) esprit.getCognitonByName("Meme", "Croire")).getSeuilFoi());
-}
 }
 
 

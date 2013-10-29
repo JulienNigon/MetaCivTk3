@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.io.PrintWriter;
 import javax.swing.JButton;
 
 import civilisation.Configuration;
@@ -81,6 +81,20 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 				e1.printStackTrace();
 			}
 
+			System.out.println("--Ý Enregistrement des attributs");
+			File attributes = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/attributes");
+			attributes.mkdir();
+			for (int i = 0; i < Configuration.attributesNames.size();i++){
+				try {
+					out = new PrintWriter(new FileWriter(attributes.getPath()+"/"+Configuration.attributesNames.get(i)+Configuration.getExtension()));
+					out.println("Name : " + Configuration.attributesNames.get(i));
+					out.println("Starting value : " + Configuration.attributesStartingValues.get(i));	
+					out.close();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} 
+			}
 					
 			System.out.println("--Ý Enregistrement des cognitons");
 			File cognitons = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/cognitons");

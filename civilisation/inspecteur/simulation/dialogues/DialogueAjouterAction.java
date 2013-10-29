@@ -53,7 +53,7 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 		
 		listeActions.addActionListener(this);
 		changeInfos(); /*Mise ˆ jour du texte informatif*/
-		this.setTitle("Ajouter une action");
+		this.setTitle("Add new action");
 		
 		
 	    Object[] array = {listeActions , infos};
@@ -117,7 +117,7 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 	}
 	
 	public enum Option_BeforeAfter {
-		BEFORE , AFTER, INTERNAL,  /*Pour les sous-actions*/
+		BEFORE , AFTER, INTERNAL  /*For sub-actions*/, FIRST 
 	}
 
 	
