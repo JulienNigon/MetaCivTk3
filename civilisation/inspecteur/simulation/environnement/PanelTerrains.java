@@ -1,25 +1,15 @@
 package civilisation.inspecteur.simulation.environnement;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeCellRenderer;
-
 import civilisation.Configuration;
-import civilisation.individu.plan.NPlan;
 import civilisation.inspecteur.animations.JJPanel;
-import civilisation.inspecteur.simulation.ActionsMenuGPlan;
-import civilisation.inspecteur.simulation.NodeArbreActions;
 import civilisation.world.Terrain;
 
 public class PanelTerrains extends JJPanel{

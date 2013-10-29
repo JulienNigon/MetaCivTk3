@@ -75,6 +75,7 @@ public class Communaute extends Turtle
 	
 	
 	
+	@Override
 	public void setup()
 	{
 		int posX = this.xcor();

@@ -10,6 +10,7 @@ public class LienCogniton {
 		this.c = c;
 	}
 	
+	@Override
 	public String toString(){
 		return "Lien : " + c.getNom() + " " + poids;
 	}

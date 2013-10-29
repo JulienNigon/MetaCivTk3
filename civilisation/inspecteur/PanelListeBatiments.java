@@ -1,27 +1,9 @@
 package civilisation.inspecteur;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.awt.Rectangle;
-
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JToolBar;
-import javax.swing.JTree;
-import javax.swing.tree.*;
-
-import civilisation.individu.Humain;
-import civilisation.world.World;
 import civilisation.Communaute;
 import edu.turtlekit2.kernel.agents.Turtle;
 
@@ -62,8 +44,9 @@ public class PanelListeBatiments extends JPanel{
 		}
 		for (int i=0; i < ((Communaute) t).getBatiments().size();i++)
 		{
-			donnees[i][0] = ((Communaute) t).getBatiments().get(i).toString();
-			donnees[i][1] = ((Communaute) t).getBatiments().get(i).getInventaire().getSize();
+			//TODO
+			/*donnees[i][0] = ((Communaute) t).getBatiments().get(i).toString();
+			donnees[i][1] = ((Communaute) t).getBatiments().get(i).getInventaire().getSize();*/
 		}
 
 		this.updateUI();

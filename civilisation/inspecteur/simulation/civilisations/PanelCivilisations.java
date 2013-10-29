@@ -9,12 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import civilisation.Civilisation;
-import civilisation.individu.cognitons.NCogniton;
-import civilisation.inspecteur.animations.JJPanel;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
-import civilisation.inspecteur.simulation.objets.ActionPanelObjet;
-import civilisation.inspecteur.simulation.objets.PanelListeObjets;
-import civilisation.inventaire.Objet;
 
 public class PanelCivilisations extends JPanel{
 

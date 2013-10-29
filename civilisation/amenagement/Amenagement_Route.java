@@ -3,8 +3,6 @@ package civilisation.amenagement;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import civilisation.Communaute;
-import civilisation.individu.Humain;
 import edu.turtlekit2.kernel.environment.Patch;
 
 public class Amenagement_Route extends AmenagementPublic {
@@ -16,6 +14,7 @@ public class Amenagement_Route extends AmenagementPublic {
 		super(p);
 	}
 	
+	@Override
 	public void dessiner(Graphics g,int x,int y,int cellS)
 	{
 		g.setColor(Color.GRAY);
@@ -28,11 +27,13 @@ public class Amenagement_Route extends AmenagementPublic {
 
 	}
 	
+	@Override
 	public String getNom()
 	{
 		return "Route";
 	}
 	
+	@Override
 	public String[] cognitonsLies()
 	{
 		return cognitonsLies;

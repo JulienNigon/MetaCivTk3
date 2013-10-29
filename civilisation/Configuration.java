@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import civilisation.individu.Humain;
 import civilisation.individu.cognitons.CloudCogniton;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.plan.NPlan;

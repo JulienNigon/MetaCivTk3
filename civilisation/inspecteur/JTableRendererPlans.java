@@ -7,15 +7,13 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.plan.NPlanPondere;
-import civilisation.individu.plan.Plan;
-import civilisation.individu.plan.Reflexe;
 
-import civilisation.inventaire.ObjetInventaire;
+import civilisation.inventaire.Objet;
 
 public class JTableRendererPlans extends DefaultTableCellRenderer {
 
+	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		super.getTableCellRendererComponent(table, value,
@@ -29,7 +27,7 @@ public class JTableRendererPlans extends DefaultTableCellRenderer {
 		    //setToolTipText("Poids:" + p.getPoids());
 			if (column == 0)
 			{
-			    this.setValue((String) (p.getPlan().getNom()));
+			    this.setValue((p.getPlan().getNom()));
 				fond = new Color(240,255,255);
 
 

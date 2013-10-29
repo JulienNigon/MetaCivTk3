@@ -12,6 +12,7 @@ public class LienPlan {
 		this.p = p;
 	}
 	
+	@Override
 	public String toString(){
 		return "Lien : " + p.getNom()+ " " + poids;
 	}

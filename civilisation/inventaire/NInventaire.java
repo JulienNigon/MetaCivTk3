@@ -1,9 +1,6 @@
 package civilisation.inventaire;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import civilisation.individu.cognitons.NCogniton;
 
 public class NInventaire {
 

@@ -1,27 +1,15 @@
 package civilisation.inspecteur.simulation;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JTable;
 import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import civilisation.individu.Humain;
 import civilisation.individu.plan.NPlan;
-import civilisation.individu.plan.action.Action;
-import civilisation.inspecteur.ActionInspecteurListener;
-import civilisation.inspecteur.PanelGenealogie;
-import civilisation.inspecteur.PanelInventaire;
-import civilisation.inspecteur.PanelListeCognitons;
-import civilisation.inspecteur.PanelListePlans;
-import civilisation.inspecteur.PanelPatch;
-import civilisation.inspecteur.animations.JJPanel;
 import civilisation.inspecteur.simulation.civilisations.ActionsToolBarListeCivilisations;
 import civilisation.inspecteur.simulation.civilisations.PanelCivilisations;
 import civilisation.inspecteur.simulation.civilisations.PanelListeCivilisations;
@@ -32,7 +20,6 @@ import civilisation.inspecteur.simulation.environnement.PanelTerrains;
 import civilisation.inspecteur.simulation.objets.ActionsToolBarListeObjets;
 import civilisation.inspecteur.simulation.objets.PanelListeObjets;
 import civilisation.inspecteur.simulation.objets.PanelObjets;
-import civilisation.world.World;
 
 public class PanelModificationSimulation extends JPanel{
 
@@ -103,7 +90,7 @@ public class PanelModificationSimulation extends JPanel{
 		this.setLayout(new BorderLayout());
 		
 		/*Create main toolBar*/
-		toolBar = new JToolBar(JToolBar.VERTICAL);
+		toolBar = new JToolBar(SwingConstants.VERTICAL);
 		
 		ImageIcon iconeSauvegarder = new ImageIcon(this.getClass().getResource("../icones/disk-black.png"));	
 		boutonSauvegarder = new JButton(iconeSauvegarder);

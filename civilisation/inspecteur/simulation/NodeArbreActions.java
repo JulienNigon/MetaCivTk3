@@ -32,6 +32,7 @@ public class NodeArbreActions extends DefaultMutableTreeNode{
 		this.action = action;
 	}
 
+	@Override
 	public boolean isRoot() {
 		return root;
 	}

@@ -1,23 +1,11 @@
 package civilisation.inspecteur.animations;
 
 import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 public class JJComponent extends JComponent{
 
@@ -130,18 +118,22 @@ public class JJComponent extends JComponent{
 		return w;
 	}
 
+	@Override
 	public int getHeight(){
 		return (int) h;
 	}
 	
+	@Override
 	public int getWidth(){
 		return (int) w;
 	}
 	
+	@Override
 	public int getX(){
 		return (int) xx;
 	}
 	
+	@Override
 	public int getY(){
 		return (int) yy;
 	}

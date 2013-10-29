@@ -19,10 +19,8 @@ import javax.swing.JToolBar;
 import civilisation.Configuration;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.CloudCogniton;
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.plan.NPlan;
-import civilisation.individu.plan.Plan;
 import civilisation.inspecteur.animations.JJAnimationOpacite;
 import civilisation.inspecteur.animations.JJAnimationRotation;
 import civilisation.inspecteur.animations.JJAnimationTranslation;
@@ -115,6 +113,7 @@ public class PanelStructureCognitive extends JJPanel{
         }
 	}
 	
+	@Override
 	public void animate(){
 		super.animate();
 		compteur++;
@@ -284,7 +283,8 @@ public class PanelStructureCognitive extends JJPanel{
 		gLiensConditionnels.clear();
 	}
 	
-    public void paintComponent(Graphics g) {
+    @Override
+	public void paintComponent(Graphics g) {
     	Graphics2D g2d = (Graphics2D) g;
     	super.paintComponent(g);
 

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import civilisation.Configuration;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.plan.action.Action;
 
 public class NPlan {
@@ -117,6 +116,7 @@ public class NPlan {
 		this.nom = nom;
 	}
 	
+	@Override
 	public String toString(){
 		return nom;
 	}

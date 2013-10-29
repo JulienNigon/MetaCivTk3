@@ -4,7 +4,6 @@ package civilisation.inspecteur.simulation;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JList;
 import javax.swing.SwingUtilities;
 
 public class MouseArbreActionsListener implements MouseListener{

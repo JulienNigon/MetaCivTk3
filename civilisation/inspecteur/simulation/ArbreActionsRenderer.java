@@ -2,17 +2,14 @@ package civilisation.inspecteur.simulation;
 
 import java.awt.Component;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
-
-import civilisation.individu.plan.action.Action;
 
 public class ArbreActionsRenderer  extends DefaultTreeCellRenderer{
 
 
-	    public Component getTreeCellRendererComponent(JTree tree,
+	    @Override
+		public Component getTreeCellRendererComponent(JTree tree,
 	        Object value, boolean selected, boolean expanded,
 	        boolean leaf, int row, boolean hasFocus){
 

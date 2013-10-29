@@ -5,12 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
-import civilisation.inspecteur.simulation.dialogues.DialogueChoisirCouleurTerrain;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerCogniton;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerPlan;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerTerrain;
 import civilisation.inspecteur.simulation.dialogues.DialoguePlacerCivilisation;
-import civilisation.world.Terrain;
 
 public class ActionsMenuGCarte implements ActionListener{
 

@@ -49,6 +49,7 @@ public class WorldViewer extends Viewer
 		instance = this;
 	}
 	
+	@Override
 	public void setup()
 	{
 		super.setup();
@@ -65,6 +66,7 @@ public class WorldViewer extends Viewer
 	/**
 	 * Redifination de l'affichage des patchs
 	 */
+	@Override
 	public void paintPatch(Graphics g, Patch p,int x,int y,int cellS){
 			g.setColor(p.color);
 			g.fillRect(x,y,cellS,cellS);
@@ -114,6 +116,7 @@ public class WorldViewer extends Viewer
 			}
 	}
 	
+	@Override
 	public void paintTurtle(Graphics g,Turtle t,int x,int y,int cellSize)
     {
 
@@ -125,7 +128,7 @@ public class WorldViewer extends Viewer
 			g.fillRect(x-2,y-2,cellSize+4,cellSize+4);
 		}
 		
-		if (t.isPlayingRole("Humain") && ( planVisible == null || planVisible.equals(((Humain) t).getEsprit().getProj().getNom()) ))
+		if (t.isPlayingRole("Humain"))
 		{	
 			//Le carré de couleur
 			g.setColor(t.getColor());

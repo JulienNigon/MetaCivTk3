@@ -3,8 +3,6 @@ package civilisation.inspecteur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
 /** 
  * Gère l'interaction avec la fenêtre des options
  * @author DTEAM

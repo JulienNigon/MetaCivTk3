@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import civilisation.Configuration;
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.cognitons.SondeACognitons;
 
 import edu.turtlekit2.kernel.agents.Observer;
@@ -24,6 +23,7 @@ public class WorldCtrl extends Observer
 	public static ArrayList<SondeACognitons> sondes = new ArrayList<SondeACognitons>();
 	
 	
+	@Override
 	public void setup()
 	{
 		super.setup();
@@ -68,6 +68,7 @@ public class WorldCtrl extends Observer
 	
 	
 	
+	@Override
 	public void watch()
 	{
 
@@ -89,36 +90,36 @@ public class WorldCtrl extends Observer
 			{
 				for (int y = 0; y < world.getHeight(); y++)
 				{
-					if (world.grid[x][y].getColor() == world.ColorPlaines)
+					if (world.grid[x][y].getColor() == World.ColorPlaines)
 					{
 						world.grid[x][y].incrementPatchVariable("gibier", 0.1);
 						world.grid[x][y].incrementPatchVariable("baies", 0.1);
 					}
-					if (world.grid[x][y].getColor() == world.ColorForets)
+					if (world.grid[x][y].getColor() == World.ColorForets)
 					{
 						world.grid[x][y].incrementPatchVariable("gibier", 0.2);
 						world.grid[x][y].incrementPatchVariable("baies", 0.2);
 					}
-					if (world.grid[x][y].getColor() == world.ColorLittoral)
+					if (world.grid[x][y].getColor() == World.ColorLittoral)
 					{
 						world.grid[x][y].incrementPatchVariable("gibier", 0.1);
 						world.grid[x][y].incrementPatchVariable("baies", 0.05);
 					}
-					if (world.grid[x][y].getColor() == world.ColorCollines)
+					if (world.grid[x][y].getColor() == World.ColorCollines)
 					{
 						world.grid[x][y].incrementPatchVariable("gibier", 0.08);
 						world.grid[x][y].incrementPatchVariable("baies", 0.05);
 					}
-					if (world.grid[x][y].getColor() == world.ColorMontagnes)
+					if (world.grid[x][y].getColor() == World.ColorMontagnes)
 					{
 						world.grid[x][y].incrementPatchVariable("gibier", 0.08);
 					}
-					if (world.grid[x][y].getColor() == world.ColorDeserts)
+					if (world.grid[x][y].getColor() == World.ColorDeserts)
 					{
 					world.grid[x][y].incrementPatchVariable("gibier", 0.02);
 					}
 					
-					if(world.grid[x][y].smell("passage") > Configuration.EffacementRoute || countCouleurVoisine(world.grid[x][y] , world.getColorForets()) >= 1 )
+					if(world.grid[x][y].smell("passage") > Configuration.EffacementRoute || countCouleurVoisine(world.grid[x][y] , World.getColorForets()) >= 1 )
 						{
 					world.grid[x][y].setPatchVariable("passage",world.grid[x][y].smell("passage")-Configuration.EffacementRoute);
 						}
@@ -131,9 +132,9 @@ public class WorldCtrl extends Observer
 						//effacer route
 					}
 					
-					if(world.grid[x][y].getColor() == world.getColorPlaines() && world.grid[x][y].smell("passage") < Configuration.seuilEmergenceForet )
+					if(world.grid[x][y].getColor() == World.getColorPlaines() && world.grid[x][y].smell("passage") < Configuration.seuilEmergenceForet )
 					{
-						world.grid[x][y].setColor(world.getColorForets());
+						world.grid[x][y].setColor(World.getColorForets());
 						
 					}
 				}

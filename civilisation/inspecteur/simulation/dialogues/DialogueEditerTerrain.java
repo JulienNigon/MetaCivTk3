@@ -1,29 +1,19 @@
 package civilisation.inspecteur.simulation.dialogues;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JColorChooser;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.SpringLayout;
-
-import civilisation.individu.cognitons.TypeDeCogniton;
-import civilisation.inspecteur.simulation.GCogniton;
-import civilisation.inspecteur.simulation.GPlan;
 import civilisation.world.Terrain;
 
 public class DialogueEditerTerrain extends JDialog implements ActionListener, PropertyChangeListener{
@@ -79,7 +69,7 @@ public class DialogueEditerTerrain extends JDialog implements ActionListener, Pr
 			if (optionPane.getValue().equals("Valider")){
 				terrain.setNom(nom.getText());
 				terrain.setPassabilite((Integer)passabilite.getValue());
-				System.out.println((Integer)passabilite.getValue());
+				System.out.println(passabilite.getValue());
 				terrain.setInfranchissable(infranchissable.isSelected());
 			}		
 	        setVisible(false);

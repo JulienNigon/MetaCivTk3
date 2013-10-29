@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
@@ -40,6 +39,7 @@ public class GCogniton extends GItemCognitif{
 	}
 
 	
+	@Override
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);
@@ -56,7 +56,7 @@ public class GCogniton extends GItemCognitif{
     	g2d.fill(new Rectangle2D.Double(margeEcriture,2,fm.stringWidth(cogniton.getNom()),2*fm.getHeight()-4));
     	
     	g2d.setColor(Color.BLACK);
-    	g2d.drawString(cogniton.getNom(), (float) margeEcriture, (float) (fm.getHeight()*1.3));
+    	g2d.drawString(cogniton.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
     	
     	/*paint the "hues" of the cogniton*/
     	int huesAlreadyPaint = 0;

@@ -1,26 +1,17 @@
 package civilisation.inspecteur.simulation.environnement;
 
-import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import civilisation.Configuration;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerCogniton;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerLiensConditionnels;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerLiensInfluence;
 import civilisation.inspecteur.simulation.dialogues.DialogueEnregistrerEnvironnement;
 import civilisation.inspecteur.simulation.dialogues.DialogueSelectionnerEnvironnementActif;
-import civilisation.world.Terrain;
 
 public class ActionsToolBarEnvironnement implements ActionListener{
 

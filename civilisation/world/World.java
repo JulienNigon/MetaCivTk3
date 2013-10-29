@@ -19,26 +19,13 @@
 package civilisation.world; 
 
 import java.awt.Color;
-import java.awt.Frame;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-
-import javax.vecmath.Point3i;
-
 import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.Initialiseur;
 import civilisation.TurtleGenerator;
-import civilisation.inspecteur.simulation.dialogues.DialogueChoisirCouleurTerrain;
-
-import edu.turtlekit2.kernel.agents.Observer;
-import edu.turtlekit2.kernel.agents.Turtle;
 import edu.turtlekit2.kernel.environment.Patch;
 import edu.turtlekit2.kernel.environment.PatchVariable;
 import edu.turtlekit2.kernel.environment.TurtleEnvironment;
@@ -90,6 +77,7 @@ public class World extends TurtleEnvironment
 	
 	/* DŽtourne l'utilisation normale de fillGrid pour rŽgler ˆ notre manire la taille de l'environnement
 	 * Efficace pour l'instant */
+	@Override
 	public void fillGrid(){
 		
 		if (Configuration.environnementACharger != null){
@@ -302,7 +290,7 @@ public class World extends TurtleEnvironment
 	public void genererDesert(int x, int longueur , int largeur , double latitude)  //latitude : ï¿½90 (+ --> Nord  / - --> Sud)
 	{
 		int nouveauX = x;
-		int nouveauY = (int) ((int)(this.getHeight()/2)*(1+latitude/90));
+		int nouveauY = (int) ((this.getHeight()/2)*(1+latitude/90));
 		int toreX = 0;
 		
 		for (int i = 0; i < longueur; i++)

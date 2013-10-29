@@ -13,6 +13,7 @@ public class JJAnimationTranslationEntreDeuxObjets extends JJAnimation{
 		pasInitial = pas;
 	}
 	
+	@Override
 	public boolean animer(){
 
 		compo.setXx(a.getCentreX() + (((pasInitial-pas)/(double)pasInitial)*(b.getCentreX() - a.getCentreX())) - (compo.getW()/2.));

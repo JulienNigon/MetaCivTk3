@@ -8,8 +8,6 @@ import javax.swing.ImageIcon;
 
 import civilisation.Configuration;
 import civilisation.individu.Humain;
-import civilisation.inspecteur.simulation.NodeArbreActions;
-import civilisation.inventaire.Objet;
 
 public abstract class Action {
 
@@ -123,6 +121,7 @@ public abstract class Action {
 		this.nextAction = nextAction;
 	}
 	
+	@Override
 	public String toString(){
 		return this.getClass().getSimpleName();
 	}

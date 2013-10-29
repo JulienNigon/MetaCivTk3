@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import civilisation.Configuration;
 import civilisation.individu.Esprit;
 import civilisation.individu.plan.NPlan;
-import civilisation.individu.plan.Plan;
 
 public class NCogniton{
 
@@ -47,6 +46,7 @@ public class NCogniton{
 		}
 	}
 	
+	@Override
 	public String toString(){
 		System.out.println(" Nom cogniton qui toString : " +nom);
 		return (" Nom : " + nom
@@ -101,7 +101,7 @@ public class NCogniton{
 				{
 					e.addPlan(plansAutorises.get(i));
 				}
-				e.recalculerPoids();
+				e.redefinirPoids();
 			}
 			else
 			{

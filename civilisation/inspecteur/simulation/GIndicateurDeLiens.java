@@ -1,12 +1,8 @@
 package civilisation.inspecteur.simulation;
 
-import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.geom.Rectangle2D;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -36,6 +32,7 @@ public class GIndicateurDeLiens extends JJComponent{
 		this.setBounds((int)xx,(int)yy,(int)w,(int)h);
 	}
 
+	@Override
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);

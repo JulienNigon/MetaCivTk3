@@ -1,25 +1,17 @@
 package civilisation.inspecteur.simulation;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 
-import civilisation.Configuration;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inspecteur.animations.JJPanel;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerAction;
 import civilisation.inspecteur.simulation.dialogues.DialogueAjouterAction.Option_BeforeAfter;
 
 public class PanelArbreActions extends JJPanel{
@@ -104,7 +96,7 @@ public class PanelArbreActions extends JJPanel{
 			popup.add(ajouterActionInterne);
 		}
 		
-		popup.show(this, (int)this.getX() + e.getX(), (int)this.getY() + e.getY());
+		popup.show(this, this.getX() + e.getX(), this.getY() + e.getY());
 	}
 
 	public JTree getArbreActions() {

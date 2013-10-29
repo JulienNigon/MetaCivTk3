@@ -3,11 +3,9 @@ package civilisation.inspecteur.simulation.environnement;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -54,7 +52,8 @@ public class GCarte extends JJComponent{
     	dessinerBufferImage();
 	}
 
-    public void paintComponent(Graphics g) {
+    @Override
+	public void paintComponent(Graphics g) {
         Graphics2D g2d = genererContexte(g);
     	super.paintComponents(g);
         g2d.drawImage(bufferedImage,0,0,null);

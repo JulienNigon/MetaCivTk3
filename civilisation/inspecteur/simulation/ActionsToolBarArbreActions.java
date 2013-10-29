@@ -4,15 +4,8 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import civilisation.Civilisation;
-import civilisation.Configuration;
 import civilisation.inspecteur.simulation.dialogues.DialogueAjouterAction;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerCogniton;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerLiensConditionnels;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerLiensInfluence;
 import civilisation.inspecteur.simulation.dialogues.DialogueAjouterAction.Option_BeforeAfter;
-import civilisation.inventaire.Objet;
-import civilisation.world.Terrain;
 
 public class ActionsToolBarArbreActions implements ActionListener{
 

@@ -4,7 +4,6 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerCogniton;
 import civilisation.inspecteur.simulation.dialogues.DialogueEditerPlan;
 
 public class ActionsMenuGPlan implements ActionListener{

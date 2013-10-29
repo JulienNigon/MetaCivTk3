@@ -1,7 +1,5 @@
 package civilisation.inspecteur.simulation;
 
-import java.awt.Graphics;
-
 import javax.swing.tree.*;
 
 import civilisation.individu.plan.NPlan;

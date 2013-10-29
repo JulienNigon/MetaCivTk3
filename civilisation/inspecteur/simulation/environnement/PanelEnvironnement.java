@@ -1,10 +1,6 @@
 package civilisation.inspecteur.simulation.environnement;
 
 import java.awt.Color;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -12,12 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 import civilisation.Configuration;
 import civilisation.inspecteur.animations.*;
-import civilisation.inspecteur.simulation.GCogniton;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
 import civilisation.world.Terrain;
 

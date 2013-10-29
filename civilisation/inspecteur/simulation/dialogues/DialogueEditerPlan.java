@@ -1,23 +1,15 @@
 package civilisation.inspecteur.simulation.dialogues;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-
-import civilisation.individu.cognitons.TypeDeCogniton;
-import civilisation.inspecteur.simulation.GCogniton;
 import civilisation.inspecteur.simulation.GPlan;
 
 public class DialogueEditerPlan extends JDialog implements ActionListener, PropertyChangeListener{

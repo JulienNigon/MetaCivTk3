@@ -2,18 +2,15 @@ package civilisation.inspecteur.tableauDeBord;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 
 import civilisation.Configuration;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inspecteur.animations.*;
 import civilisation.world.World;
-import edu.turtlekit2.kernel.agents.Turtle;
 
 public class PanelRatioCognitons extends JJPanel{
 

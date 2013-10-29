@@ -13,9 +13,6 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.io.PrintWriter;
-import javax.swing.JButton;
-
 import civilisation.Configuration;
 
 /** 

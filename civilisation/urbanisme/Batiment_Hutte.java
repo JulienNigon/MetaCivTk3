@@ -12,6 +12,7 @@ public class Batiment_Hutte extends Batiment{
 		termine = true;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "Hutte";

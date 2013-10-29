@@ -172,27 +172,7 @@ public class PanelInspecteur extends JPanel{
 		donnees[6][0] = "Femme?";
 		donnees[6][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getFemme();
 		donnees[7][0] = "Projet";
-		if (((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getProj() != null)
-		{
-			donnees[7][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getProj().getNom();
-		}
-		else
-		{
-			donnees[7][1] = "aucun";
-		}
-		donnees[8][0] = "Timer de projet";
-		if (((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getProj() != null)
-		{
-			donnees[8][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getTimer();
-		}
-		else
-		{
-			donnees[8][1] = "0";
-		}
-		donnees[9][0] = "Poids total Cognitons";
-		donnees[9][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getPoidsTotal();
-		donnees[10][0] = "Influence";
-		donnees[10][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getInfluence();
+
 		
 		patch.actualiser(World.getInstance().getTurtleWithID(agentID));  //On met a jour le panel du patch
 		inventaire.actualiser(World.getInstance().getTurtleWithID(agentID)); //On met ˆ jour l'affichage de l'inventaire

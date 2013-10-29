@@ -17,6 +17,7 @@ public class Amenagement_Champ extends Amenagement{
 		super(p,h);
 	}
 	
+	@Override
 	public void dessiner(Graphics g,int x,int y,int cellS)
 	{
 		g.setColor(Color.yellow);
@@ -30,11 +31,13 @@ public class Amenagement_Champ extends Amenagement{
 		}
 	}
 	
+	@Override
 	public String getNom()
 	{
 		return "Champ";
 	}
 	
+	@Override
 	public String[] cognitonsLies()
 	{
 		return cognitonsLies;

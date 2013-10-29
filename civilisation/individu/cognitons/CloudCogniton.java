@@ -10,6 +10,7 @@ public class CloudCogniton extends NCogniton{
 	 * @version 1.0 - 2/2013
 	*/
 	
+	@Override
 	public void creerCognitonLambda(){
 		nom = "newCloudCogniton_" + Configuration.cloudCognitons.size(); /*TODO : faire un nom unique*/
 		description = "A new cloud cogniton";

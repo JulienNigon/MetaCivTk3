@@ -9,9 +9,6 @@ import civilisation.individu.plan.action.Action;
 import civilisation.inspecteur.simulation.dialogues.DialogueAjouterAction;
 import civilisation.inspecteur.simulation.dialogues.DialogueAjouterAction.Option_BeforeAfter;
 import civilisation.inspecteur.simulation.dialogues.DialogueEditerAction;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerCogniton;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerLiensConditionnels;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerLiensInfluence;
 
 public class ActionsMenuActions implements ActionListener{
 

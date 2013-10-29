@@ -1,33 +1,20 @@
 package civilisation.inspecteur.simulation.dialogues;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.io.IOException;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.SpringLayout;
-
 import civilisation.Configuration;
-import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.action.Action;
-import civilisation.inspecteur.simulation.GCogniton;
 import civilisation.inspecteur.simulation.PanelArbreActions;
-import civilisation.inspecteur.simulation.environnement.PanelEnvironnement;
 
 public class DialogueAjouterAction extends JDialog implements ActionListener, PropertyChangeListener{
 	

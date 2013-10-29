@@ -7,11 +7,11 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.cognitons.NCogniton;
 
 public class JTableRendererCognitons extends DefaultTableCellRenderer {
 
+	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		super.getTableCellRendererComponent(table, value,
@@ -21,8 +21,8 @@ public class JTableRendererCognitons extends DefaultTableCellRenderer {
 			
 			if (cogni != null)
 			{
-			    setToolTipText((String) (cogni.getDescription()));
-			    this.setValue((String) (cogni.getNom()));
+			    setToolTipText((cogni.getDescription()));
+			    this.setValue((cogni.getNom()));
 			   // Color fond = cogni.getColor();
 			//    this.setBackground(fond);
 			}

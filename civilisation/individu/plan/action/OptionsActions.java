@@ -22,6 +22,7 @@ public class OptionsActions {
 		this.name = name;
 	}
     
+	@Override
 	public String toString(){
 		return name + " : " + parametres.size();
 	}

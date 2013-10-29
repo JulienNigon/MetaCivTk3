@@ -12,7 +12,6 @@ import civilisation.individu.cognitons.*;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inventaire.Objet;
-import civilisation.inventaire.ObjetInventaire;
 import civilisation.world.Terrain;
 
 
@@ -78,7 +77,7 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Creation du terrain : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Terrain t = new Terrain(nom);
 		    	terrains.add(t);
 		    	
@@ -86,7 +85,7 @@ public class Initialiseur {
 		    	t.setCouleur(Color.getHSBColor((float)Double.parseDouble(HSB[0]), (float)Double.parseDouble(HSB[1]), (float)Double.parseDouble(HSB[2])));
 		    	
 	       		System.out.println("enregistrer" + t.getNom());
-		       	ArrayList<String[]> pheromonesLiees = this.getListeChamp("Pheromone", file);
+		       	ArrayList<String[]> pheromonesLiees = Initialiseur.getListeChamp("Pheromone", file);
 		       	for (int i = 0; i < pheromonesLiees.size(); i++){
 		       		System.out.println("enregistrer");
 		       		t.addPheromoneLiee(Configuration.getPheromoneByName(pheromonesLiees.get(i)[0]), Double.parseDouble(pheromonesLiees.get(i)[1]), Double.parseDouble(pheromonesLiees.get(i)[2]));
@@ -134,7 +133,7 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listeCognitons.put(nom , new NCogniton());
 		    	NCogniton cogni = listeCognitons.get(nom);
 		    	cogni.setNom(nom);
@@ -160,7 +159,7 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listCloudCognitons.put(nom , new CloudCogniton());
 		    	CloudCogniton cogni = listCloudCognitons.get(nom);
 		    	cogni.setNom(nom);
@@ -188,7 +187,7 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Objet o = new Objet();
 		    	o.setNom(nom);
 		    	o.setDescription(getChamp("Description" , file)[0]);
@@ -206,10 +205,10 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Creation du plan : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listePlans.put(nom , new NPlan());
 		    	listePlans.get(nom).setNom(nom);
-		       	ArrayList<String[]> actions = this.getListeChamp("Action", file);
+		       	ArrayList<String[]> actions = Initialiseur.getListeChamp("Action", file);
 		       	this.setupPlans(listePlans.get(nom), file, 0, 0, null);
 		       /*	for (int i = 0; i < actions.size(); i++){
 		       		listePlans.get(nom).addAction(actions.get(i));
@@ -232,10 +231,10 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Creation des liens de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	
 		    	/*Les liens inter-cognitons (liens d'apprentissage)*/
-		       	ArrayList<String[]> liste = this.getListeChamp("Chaine", file);
+		       	ArrayList<String[]> liste = Initialiseur.getListeChamp("Chaine", file);
 		       	ArrayList<LienCogniton> liens = new ArrayList<LienCogniton>();		      
 		       	for (int i = 0 ; i < liste.size(); i++){
 		       		liens.add(new LienCogniton(listeCognitons.get(liste.get(i)[0]), Integer.parseInt(liste.get(i)[1])));
@@ -251,7 +250,7 @@ public class Initialiseur {
 	       		listeCognitons.get(nom).setLiensPlans(liensP);
 		       	
 		    	/*Les liens cognitons-plans debloques (liens conditionnels)*/
-		       	liste = this.getListeChamp("Permet", file);
+		       	liste = Initialiseur.getListeChamp("Permet", file);
 		       	ArrayList<NPlan> plans = new ArrayList<NPlan>();		      
 		       	for (int i = 0 ; i < liste.size(); i++){
 			       	//System.out.println("Le nom qu'on trouve : " + liste.get(i)[0]);
@@ -286,7 +285,7 @@ public class Initialiseur {
 		    if (file.isFile()) {
 		    	Civilisation civ = new Civilisation();
 		    	civ.setNom(getChamp("Nom" , file)[0]);
-		    	civ.setAgentsInitiaux(Integer.parseInt(this.getChamp("Agents" , file)[0]));
+		    	civ.setAgentsInitiaux(Integer.parseInt(Initialiseur.getChamp("Agents" , file)[0]));
 		    	String[] HSB = getChamp("Couleur" , file);
 		    	civ.setCouleur(Color.getHSBColor((float)Double.parseDouble(HSB[0]), (float)Double.parseDouble(HSB[1]), (float)Double.parseDouble(HSB[2])));
 		    	Configuration.civilisations.add(civ);

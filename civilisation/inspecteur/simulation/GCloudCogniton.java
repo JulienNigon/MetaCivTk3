@@ -19,7 +19,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import civilisation.individu.cognitons.CloudCogniton;
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
@@ -67,6 +66,7 @@ public class GCloudCogniton extends GCogniton{
 	}
 
 	
+	@Override
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);
@@ -82,7 +82,7 @@ public class GCloudCogniton extends GCogniton{
         g.drawImage(bImg, 0, 0, null);       
         
     	g2d.setColor(Color.BLACK);
-    	g2d.drawString(cogniton.getNom(), (float) margeEcriture, (float) (fm.getHeight()*1.3));
+    	g2d.drawString(cogniton.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
     	
     	/*paint the "hues" of the cogniton*/
     	int huesAlreadyPaint = 0;
@@ -105,6 +105,7 @@ public class GCloudCogniton extends GCogniton{
     }
 
 
+	@Override
 	public void selectionner() {
 		ArrayList<JJComponent> liste = new ArrayList<JJComponent>();
 		liste.add(this);
@@ -118,10 +119,12 @@ public class GCloudCogniton extends GCogniton{
 		return (getYy() + (h - (hueCircleSize / 2)))/2.;
 	}*/
 
+	@Override
 	public NCogniton getCogniton() {
 		return cogniton;
 	}
 
+	@Override
 	public void afficherPopup(MouseEvent e){
 		((PanelStructureCognitive) this.getParent()).afficherPopupCogniton(e , this);
 	}

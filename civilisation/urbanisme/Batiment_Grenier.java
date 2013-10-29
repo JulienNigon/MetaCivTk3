@@ -12,6 +12,7 @@ public class Batiment_Grenier extends Batiment{
 		
 	}
 
+	@Override
 	public String toString()
 	{
 		return "Grenier";

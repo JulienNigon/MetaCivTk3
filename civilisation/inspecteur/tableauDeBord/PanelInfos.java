@@ -1,7 +1,6 @@
 package civilisation.inspecteur.tableauDeBord;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -11,18 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JToolBar;
 import javax.swing.border.TitledBorder;
 
-import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJPanel;
-import civilisation.inspecteur.animations.JJStatDiagramme;
-import civilisation.inspecteur.simulation.ActionPanelCognitonsGraphiques;
-import civilisation.inspecteur.simulation.PanelArbreActions;
-import civilisation.inspecteur.simulation.PanelModificationSimulation;
-import civilisation.inspecteur.simulation.PanelStructureCognitive;
-import civilisation.inspecteur.simulation.environnement.PanelEnvironnement;
-import civilisation.inspecteur.simulation.environnement.PanelTerrains;
-import civilisation.inspecteur.simulation.objets.PanelListeObjets;
-import civilisation.inspecteur.simulation.objets.PanelObjets;
-import civilisation.world.World;
 
 public class PanelInfos extends JJPanel{
 	
