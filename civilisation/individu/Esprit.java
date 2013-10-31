@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import civilisation.Configuration;
 import civilisation.individu.cognitons.NCogniton;
@@ -24,11 +25,13 @@ import civilisation.individu.plan.action.Action;
 public class Esprit {
 	
 	/* Les diff≈Ωrentes listes contenants les croyances de l'agent */
-
 	ArrayList<NCogniton> cognitons;
 	
 	/* La liste des projets envisageable par l'agent*/
 	ArrayList<NPlanPondere> plans;
+	
+	/* Hashmap to keep informations about actions*/
+	HashMap<Action , Object> actionsData;
 
 	/*Autres attributs:*/
 	Boolean engagement;
@@ -47,16 +50,15 @@ public class Esprit {
 	
 	public Esprit(Humain h)
 	{
-
 		cognitons = new ArrayList<NCogniton>();
 		plans = new ArrayList<NPlanPondere>();
-
+		actionsData = new HashMap<Action , Object>();
+			
 		engagement = false;
 		this.h = h;
 		timer = 0;
 		progression = 0;
 		poidsTotalPlan = 0;
-		
 		
 		/*Si l'agent a des parents (ie : il n'a pas ≈Ωt≈Ω g≈Ωn≈Ωr≈Ω au d≈Ωbut), on calcul ce qu'il obtient de ses parents*/
 		if (h.getMere() != null)
@@ -74,17 +76,11 @@ public class Esprit {
 	 */
 	private void initialisationStandard()
 	{
-
-
 		cognitons.addAll(Configuration.cognitonsDeBase); /*Les cognitons de bases, definis a l'initialisation.*/
-		for (int i = 0; i < cognitons.size(); i++){
+		for (int i = 0; i < cognitons.size(); i++) {
 			cognitons.get(i).mettreEnPlace(this);
 		}
-
 	}
-	
-
-
 	
 	/**
 	 * Main function for the mind.
@@ -92,7 +88,13 @@ public class Esprit {
 	 */
 	public void penser()
 	{
+		/*Apply the Auto-plan*/
+		if (Configuration.autoPlan != null) {
+			Action next = Configuration.autoPlan.getActions().get(0);
+			while ((next = next.effectuer(h)) != null);
+		}
 
+		/* Select the new plan if there are no plan to do */
 		if ((planEnCours == null && actionEnCours == null)|| timer == 0)
 		{
 			//System.out.println("Poids total :" + poidsTotalPlan);
@@ -142,9 +144,7 @@ public class Esprit {
 	public void setTimer(int tempsMax) {
 timer = tempsMax;		
 	}
-	
-	//-------------------------------Nouvelles fonctions version Singleton-------------------------------
-	
+		
 	public int getProgression() {
 		return progression;
 	}
@@ -225,8 +225,35 @@ timer = tempsMax;
 		{
 			cognitons.get(i).appliquerPoids(this);
 		}
-		
 	}
+	
+	/**
+	 * Save data used by an action in the mind of the agent
+	 * @param act : action associated with data
+	 * @param data : data to be saved
+	 * 
+	 */
+	public void setActionData (Action act , Object data) {
+		actionsData.put(act, data);
+	}
+	
+	/**
+	 * Return the data associated with an action
+	 * @param act : the action associated with data
+	 * @return the data of the action
+	 */
+	public Object getActionData (Action act) {
+		return actionsData.get(act);
+	}
+	
+	/**
+	 * Remove data of an action
+	 * @param act : the action which data must be cleaned
+	 */
+	public void cleanActionData (Action act) {
+		actionsData.remove(act);
+	}
+
 
 	public void progresser() {
 		progression++;	

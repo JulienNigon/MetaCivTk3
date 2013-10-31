@@ -38,7 +38,9 @@ public class Configuration {
 	
 	/*All plans*/
 	public static ArrayList<NPlan> plans;
-	
+	public static NPlan birthPlan;
+	public static NPlan autoPlan;
+
 	/*Tous les objets*/
 	public static ArrayList<Objet> objets;
 	

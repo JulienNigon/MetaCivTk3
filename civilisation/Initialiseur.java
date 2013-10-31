@@ -209,14 +209,25 @@ public class Initialiseur {
 		    	listePlans.put(nom , new NPlan());
 		    	listePlans.get(nom).setNom(nom);
 		       	ArrayList<String[]> actions = Initialiseur.getListeChamp("Action", file);
-		       	this.setupPlans(listePlans.get(nom), file, 0, 0, null);
+		       	setupPlans(listePlans.get(nom), file, 0, 0, null);
+		       	listePlans.get(nom).setIsBirthPlan(Boolean.parseBoolean(Initialiseur.getChamp("Birth", file)[0]));
+		       	listePlans.get(nom).setIsAutoPlan(Boolean.parseBoolean(Initialiseur.getChamp("Auto", file)[0]));
+
 		       /*	for (int i = 0; i < actions.size(); i++){
 		       		listePlans.get(nom).addAction(actions.get(i));
 		       		if (i > 0){
 		       			listePlans.get(nom).getActions().get(i-1).setNextAction(listePlans.get(nom).getActions().get(i));
 		       		}
 		       	}*/
-		    	tousLesPlans.add(listePlans.get(nom));
+		    	
+		    	if (listePlans.get(nom).getIsAutoPlan()) {
+		    		Configuration.autoPlan = listePlans.get(nom);
+		    	}
+		    	else if (listePlans.get(nom).getIsBirthPlan()) {
+		    		Configuration.birthPlan = listePlans.get(nom);
+		    	}
+			    tousLesPlans.add(listePlans.get(nom));
+		    	
 
 		       	System.out.println(" PLAN : " + listePlans.get(nom).getActions());
 

@@ -84,13 +84,21 @@ public abstract class Action {
 				//System.out.println("Chargement d'une action avec parametres");
 				String param[] = options[i].split("\\(")[1].split("\\)")[0].split(";");
 				for(int j = 0; j < param.length; j++){
+					
+					/* To manage a new kind of parameter, you must :
+					 * 	1 : adapt this function
+					 * 	2 : adapt the "DialogueEditerAction", to show and to treat the new parameter
+					 * 	3 : adapt the save function in "OptionsActions"
+					 */
+					
 					if (param[j].split(" ")[0].equals("Objet")){
-						//System.out.println("On cherche le parametre nommŽ : " + param[j].split(" ")[1]);
 						option.addParametre(Configuration.getObjetByName(param[j].split(" ")[1]));
-						//System.out.println("TROUVE!");
 					}
 					if (param[j].split(" ")[0].equals("Pheromone")){
 						option.addParametre(Configuration.getPheromoneByName(param[j].split(" ")[1]));
+					}
+					if (param[j].split(" ")[0].equals("Integer")){
+						option.addParametre(Integer.parseInt(param[j].split(" ")[1]));
 					}
 				}
 			}
@@ -212,6 +220,23 @@ public abstract class Action {
 			}
 			if (listeActions.get(i).getListeActions() != null){
 				listeActions.get(i).addSubAction( action , ref);
+			}
+		}		
+	}
+	
+	public void removeAction(Action action) {
+		for (int i = 0 ; i < listeActions.size(); i++){
+			if (listeActions.get(i).equals(action)){
+				listeActions.remove(i);
+				if (i>0 && i<listeActions.size()){
+					listeActions.get(i-1).setNextAction(listeActions.get(i));
+				} else if (i>0) {
+					listeActions.get(i-1).setNextAction(null);
+				}
+				break;
+			}
+			if (listeActions.get(i).getListeActions() != null){
+				listeActions.get(i).removeAction(action);
 			}
 		}		
 	}

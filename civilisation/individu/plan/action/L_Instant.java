@@ -4,13 +4,14 @@ import javax.swing.ImageIcon;
 
 import civilisation.individu.Humain;
 
-public class L_Random extends Action{
+public class L_Instant extends Action{
 	
 	@Override
 	public Action effectuer(Humain h) {	
-		int rand = (int)( Math.random()*listeActions.size());
-		System.out.println(rand);
-		listeActions.get(rand).effectuer(h);
+		
+		Action next = listeActions.get(0);
+		while ((next = next.effectuer(h)) != null);
+
 		return nextAction;
 	}
 
@@ -26,7 +27,7 @@ public class L_Random extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Action de contrôle logique qui sélectionne aléatoirement une de ses sous-actions pour l'executer.<html>";
+		return super.getInfo() + " All actions includes in this logical controller will be played in one tick.<html>";
 	}
 	
 }

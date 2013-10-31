@@ -48,6 +48,10 @@ public class ActionsMenuActions implements ActionListener{
 			DialogueAjouterAction d;
 			d = new DialogueAjouterAction((Frame) pa.getTopLevelAncestor() , true , pa , Option_BeforeAfter.INTERNAL);
 			d.setVisible(true);
-		}	}
+		}
+		else if (index == 4){
+			pa.remove(selectedAction);
+		}	
+		}
 
 }

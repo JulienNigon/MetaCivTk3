@@ -46,6 +46,12 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 						box.addItem(Configuration.objets.get(j).getNom());
 					}
 				}
+				else if (schema.get(i)[0].equals("**Integer**")){
+					for (int j = Integer.parseInt(schema.get(i)[2]); j < Integer.parseInt(schema.get(i)[3]); j++){
+						box.addItem(j);
+					}
+					box.setSelectedIndex(Integer.parseInt(schema.get(i)[4]));
+				}
 				else{
 					for (int j = 0; j < schema.get(i).length; j++){
 						box.addItem(schema.get(i)[j]);
@@ -97,9 +103,15 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 				for (int i = 0; i < boxs.size(); i++){
 					OptionsActions opt = null;
 					
+
+					
 					if (schema.get(i)[0].equals("**Objet**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre(Configuration.getObjetByName((String)boxs.get(i).getSelectedItem()));
+					}
+					else if (schema.get(i)[0].equals("**Integer**")){
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
+						opt.addParametre((Integer)boxs.get(i).getSelectedItem());
 					}
 					else if (schema.get(i)[0] != null){ /*Pas utile*/
 						System.out.println(schema.get(i)[0]);

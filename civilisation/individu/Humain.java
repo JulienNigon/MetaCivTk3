@@ -219,22 +219,9 @@ public class Humain extends Turtle
 		{
 			naissance();
 		}
-		
-	
-		
+				
 		// Positionne le marqueur de sa civilisation
 		this.emit("civ"+civ.getIndexCiv(), 0.01);
-		
-		//ESSAYE DE DISCUTER
-	//	discuter(oneOfHumanHere());
-		
-		//FOI
-	//	foi--;
-	//	if(foi < 0) foi = 0;
-		
-	//	MEM_Croire croire = (MEM_Croire) esprit.getCognitonByName("Meme", "Croire");
-		//si le mem existe, on met à jour le poids du PLAN_Prier
-	//	if(croire != null) croire.setPoidsCroire(getPoidsPrier(croire.getSeuilFoi()));
 	}
 	
 

@@ -46,7 +46,13 @@ public class GPlan extends GItemCognitif{
     	g2d.setColor(Color.GRAY);
     	g2d.fill(new Rectangle2D.Double(margeEcriture,2,fm.stringWidth(plan.getNom()),2*fm.getHeight()-4));
     	
-    	g2d.setColor(Color.BLACK);
+    	if (plan.getIsAutoPlan()) {
+        	g2d.setColor(Color.BLUE);
+    	} else if (plan.getIsBirthPlan()) {
+        	g2d.setColor(Color.RED);
+    	} else {
+        	g2d.setColor(Color.BLACK);
+    	}
     	g2d.drawString(plan.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
 
     	//System.out.println("dessin du composant");

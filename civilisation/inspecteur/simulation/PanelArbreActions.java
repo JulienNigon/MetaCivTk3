@@ -96,6 +96,11 @@ public class PanelArbreActions extends JJPanel{
 			popup.add(ajouterActionInterne);
 		}
 		
+		JMenuItem removeAction = new JMenuItem("Remove action");
+		removeAction.addActionListener(new ActionsMenuActions(this,4,a));
+		removeAction.setIcon(new ImageIcon(this.getClass().getResource("../icones/cross.png")));
+		popup.add(removeAction);
+		
 		popup.show(this, this.getX() + e.getX(), this.getY() + e.getY());
 	}
 
@@ -133,6 +138,12 @@ public class PanelArbreActions extends JJPanel{
 
 	public void setActionActive(Action actionActive) {
 		this.actionActive = actionActive;
+	}
+
+	public void remove(Action selectedAction) {
+		plan.removeAction(selectedAction);
+		this.remove(arbreActions);
+		setupArbreActions();
 	}
 	
 	

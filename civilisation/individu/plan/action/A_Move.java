@@ -10,7 +10,6 @@ public class A_Move extends Action{
 	
 	@Override
 	public Action effectuer(Humain h) {
-		System.out.println(angle);
 		h.setHeading(angle);
 		h.fd(1);
 		

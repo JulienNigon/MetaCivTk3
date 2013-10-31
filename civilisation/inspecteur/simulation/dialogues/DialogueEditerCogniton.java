@@ -44,7 +44,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		nom.setText(gCogniton.getCogniton().getNom());
 		
 		/*Starting cogniton?*/
-		recuAuDemarrage = new JCheckBox();
+		recuAuDemarrage = new JCheckBox("Starting cogniton");
 		recuAuDemarrage.setToolTipText("Donner ce cogniton aux nouveaux agents?");
 		if (gCogniton.getCogniton().isRecuAuDemarrage()){
 			recuAuDemarrage.setSelected(true);

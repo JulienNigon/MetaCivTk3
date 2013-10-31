@@ -7,6 +7,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -17,7 +18,8 @@ public class DialogueEditerPlan extends JDialog implements ActionListener, Prope
 	JTextField nom;
 	GPlan gPlan;
     JOptionPane optionPane;
-    
+    JCheckBox isAuto, isBirth;
+
 	public DialogueEditerPlan(Frame f , boolean modal, GPlan gPlan){
 		super(f,modal);
 		this.gPlan = gPlan;
@@ -27,15 +29,24 @@ public class DialogueEditerPlan extends JDialog implements ActionListener, Prope
 		nom = new JTextField(20);
 		nom.setText(gPlan.getPlan().getNom());
 
-		this.setTitle("Editer un cogniton");
+		isAuto = new JCheckBox("Auto-Plan");
+		isAuto.setSelected(gPlan.getPlan().getIsAutoPlan());
+		isAuto.setToolTipText("Every agents will run this plan every tick if this box is checked. You could use this features to create automatic cognitons transmissions," +
+				" or change attributes (need for food...)");
+		
+		isBirth = new JCheckBox("Birth-Plan");
+		isBirth.setSelected(gPlan.getPlan().getIsBirthPlan());
+		isBirth.setToolTipText("Every agents will run this plan at birth.");
+		
+		this.setTitle("Edite plan");
 		
 		
 		/*Proviens du tutorial Java Sun*/
-	    Object[] array = {nom};
+	    Object[] array = {nom , isAuto , isBirth};
 	       
 	    //Create an array specifying the number of dialog buttons
 	    //and their text.
-	    Object[] options = {"Valider" , "Annuler"};
+	    Object[] options = {"Ok" , "Cancel"};
 	 
 	    //Create the JOptionPane
 	    optionPane = new JOptionPane(array,
@@ -58,8 +69,10 @@ public class DialogueEditerPlan extends JDialog implements ActionListener, Prope
 	public void propertyChange(PropertyChangeEvent e) {
 		System.out.println(optionPane.getValue());
 		if (isVisible()){
-			if (optionPane.getValue().equals("Valider")){
+			if (optionPane.getValue().equals("Ok")){
 				gPlan.getPlan().setNom(nom.getText());
+				gPlan.getPlan().setIsAutoPlan(isAuto.isSelected());
+				gPlan.getPlan().setIsBirthPlan(isBirth.isSelected());
 			}		
 	        setVisible(false);
 		}
