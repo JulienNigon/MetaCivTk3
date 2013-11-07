@@ -32,7 +32,10 @@ public class ActionOptionsListener implements ActionListener{
 		{
 			p.modifierAffichageFrontieres();
 		}
-		
+		else if (index == 2) 
+		{
+			p.showPheroMap();
+		}
 	}
 
 

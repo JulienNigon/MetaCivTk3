@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import civilisation.individu.Humain;
 import civilisation.inventaire.Objet;
 
-public class L_Repeat extends Action{
+public class L_Repeat extends LAction{
 	
 	Integer n;
 	

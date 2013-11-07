@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 import civilisation.individu.Humain;
 
-public class L_Instant extends Action{
+public class L_Instant extends LAction{
 	
 	@Override
 	public Action effectuer(Humain h) {	

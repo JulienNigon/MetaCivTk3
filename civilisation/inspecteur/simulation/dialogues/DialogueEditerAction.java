@@ -52,6 +52,11 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					}
 					box.setSelectedIndex(Integer.parseInt(schema.get(i)[4]));
 				}
+				else if (schema.get(i)[0].equals("**Attribute**")){
+					for (int j = 0; j < Configuration.attributesNames.size() ; j++){
+						box.addItem(Configuration.attributesNames.get(j));
+					}
+				}
 				else{
 					for (int j = 0; j < schema.get(i).length; j++){
 						box.addItem(schema.get(i)[j]);
@@ -100,11 +105,10 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 		if (isVisible()){
 			if (optionPane.getValue().equals("Valider")){
 				a.clearOptions(); //Suppression des anciennes options
-				for (int i = 0; i < boxs.size(); i++){
+				
+				for (int i = 0; i < boxs.size(); i++){	
 					OptionsActions opt = null;
-					
 
-					
 					if (schema.get(i)[0].equals("**Objet**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre(Configuration.getObjetByName((String)boxs.get(i).getSelectedItem()));
@@ -113,6 +117,10 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre((Integer)boxs.get(i).getSelectedItem());
 					}
+					else if (schema.get(i)[0].equals("**Attribute**")){
+						opt = new OptionsActions(schema.get(i)[1]);
+						opt.addParametre(boxs.get(i).getSelectedItem());
+					}
 					else if (schema.get(i)[0] != null){ /*Pas utile*/
 						System.out.println(schema.get(i)[0]);
 						opt = new OptionsActions((String)boxs.get(i).getSelectedItem());
@@ -120,6 +128,7 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					System.out.println(opt);
 					a.parametrerOption(opt);
 				}
+
 			}		
 	        setVisible(false);
 		}

@@ -8,10 +8,13 @@ import java.awt.event.MouseEvent;
 
 
 import civilisation.Civilisation;
+import civilisation.Configuration;
+import civilisation.ItemPheromone;
 import civilisation.amenagement.Amenagement;
 import civilisation.inspecteur.FenetreInspecteur;
 import civilisation.inspecteur.FenetreInspecteurCommunaute;
 import civilisation.individu.Humain;
+import civilisation.individu.plan.NPlan;
 import civilisation.marks.ExplosionCombat;
 
 
@@ -35,8 +38,9 @@ public class WorldViewer extends Viewer
 	FenetreInspecteur inspecteur;
 	FenetreInspecteurCommunaute inspecteurCommunaute;
 	Boolean GraphismesAmeliores;
-	String planVisible;
+	NPlan planVisible;
 	Boolean frontieresVisibles = true;
+	ItemPheromone pheroToMap;
 
 	
 
@@ -68,8 +72,16 @@ public class WorldViewer extends Viewer
 	 */
 	@Override
 	public void paintPatch(Graphics g, Patch p,int x,int y,int cellS){
+		
+		if (pheroToMap == null) {
 			g.setColor(p.color);
+			} else {
+				double v = p.smell(pheroToMap.getNom());
+				if (v > 255) v = 255;
+				g.setColor(new Color (255 - (int)v, 255 - (int)v, 255));
+			}
 			g.fillRect(x,y,cellS,cellS);
+
 			if (this.frontieresVisibles)
 			{
 				int controleur = getControleurPatch(p);
@@ -128,7 +140,7 @@ public class WorldViewer extends Viewer
 			g.fillRect(x-2,y-2,cellSize+4,cellSize+4);
 		}
 		
-		if (t.isPlayingRole("Humain"))
+		if (t.isPlayingRole("Humain") && (planVisible == null || planVisible == ((Humain) t).getEsprit().getPlanEnCours().getPlan() ))
 		{	
 			//Le carré de couleur
 			g.setColor(t.getColor());
@@ -177,20 +189,17 @@ public class WorldViewer extends Viewer
 		
 	}
 	
-	public void setPlanVisible(String s)
+	public void setPlanVisible(NPlan p)
 	{
-		if (s.equals("--Aucun--"))
-		{
-			planVisible = null;
-		}
-		else
-		{
-			planVisible = s;
-		}
+		planVisible = p;
 	}
 
 	public void setFrontieresVisibles(Boolean frontieresVisibles) {
 		this.frontieresVisibles = frontieresVisibles;
+	}
+
+	public void setPheroToMap(ItemPheromone itemPheromone) {
+		pheroToMap = itemPheromone;
 	}
 
 	

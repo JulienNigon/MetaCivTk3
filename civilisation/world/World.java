@@ -109,6 +109,11 @@ public class World extends TurtleEnvironment
 			Configuration.civilisations.get(i).postWorldSetup();
 		}
 		
+		/*Init pheromons*/
+		for (int i = 0 ; i < Configuration.itemsPheromones.size() ; i++ ) {
+			this.addFlavor(Configuration.itemsPheromones.get(i).getNom());
+		}
+		
 		
 		System.out.println(Configuration.environnementACharger);
 
@@ -126,7 +131,11 @@ public class World extends TurtleEnvironment
 	       ArrayList<String[]> terrains = Initialiseur.getListeChamp("Rang", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 	       for (int i = 0; i < x; i++){
 	    	   for (int j = 0; j < y; j++){
-	    		   this.grid[i][j].setColor(typeTerrains.get(Integer.parseInt(terrains.get(y-j-1)[i])).getCouleur());
+	    		   Terrain t = typeTerrains.get(Integer.parseInt(terrains.get(y-j-1)[i]));
+	    		   this.grid[i][j].setColor(t.getCouleur());
+	    		   for (int k = 0 ; k < t.getPheromones().size() ; k++) {
+		    		   this.grid[i][j].incrementPatchVariable(t.getPheromones().get(k).getNom() , t.getPheroInitiales().get(k));
+	    		   }
 	    	   }
 	       }
 	       

@@ -43,36 +43,6 @@ public class PanelEnvironnement extends JJPanel{
 		gCarte = new GCarte(this, espacementHorizontalCarte, espacementVerticalCarte, this);
 		gCarte.setLocation(40,40);
 		this.add(gCarte);
-		
-	/*	JJStatDiagramme diag = new JJStatDiagramme(this, 400, 400, 250, 25);
-		diag.addItem(Color.BLUE, Configuration.cognitons.get(1).getNom(), 10.);
-		diag.addItem(Color.BLACK, "Agents sans ce cogniton", 15.);
-		
-		JFrame f = new JFrame();
-		JJPanel jp = new JJPanel();
-		jp.add(diag);
-
-		//gCarte.addAnimation(new JJAnimationRotation(-1,gCarte,0.01,false));
-		
-		f.setContentPane(jp);
-		f.setVisible(true);*/
-		/*
-		GCogniton test = new GCogniton(this, 10., 10., 50., 50., Configuration.cognitons.get(1));
-		this.add(test);
-		
-		JButton bout = new JButton("test");
-		bout.setBounds(50, 50, 200, 200);
-		bout.addMouseMotionListener(new TesteurDraggableASupprimer(bout));
-		this.add(bout);
-		
-		JFrame jf = new JFrame();
-		JJPanel pt = new JJPanel();
-		pt.add(bout);
-		pt.add(test);
-		pt.add(gCarte);
-		jf.setContentPane(pt);
-		jf.setVisible(true);*/
-		
 
 	}
 	

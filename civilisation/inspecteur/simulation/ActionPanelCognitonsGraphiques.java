@@ -118,6 +118,7 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			File phero = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/itemPheromones");
 			phero.mkdir();
 			for (int i = 0; i < Configuration.itemsPheromones.size();i++){
+				System.out.println("Configuration.itemsPheromones");
 				Configuration.itemsPheromones.get(i).enregistrer(phero);
 			}
 			
@@ -191,6 +192,10 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 		else if (index == 5) 
 		{
 			p.afficherCivilisations();
+		}
+		else if (index == 6) 
+		{
+			p.afficherAttributes();
 		}
 	}
 	

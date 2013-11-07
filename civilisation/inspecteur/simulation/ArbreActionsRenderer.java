@@ -1,5 +1,6 @@
 package civilisation.inspecteur.simulation;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JTree;
@@ -25,6 +26,12 @@ public class ArbreActionsRenderer  extends DefaultTreeCellRenderer{
 	        }
 		    this.setBackground(tree.getBackground());
 		    this.setBackgroundNonSelectionColor(tree.getBackground());
+
+		    if (((NodeArbreActions) value).getAction().isLogical()) {
+			    this.setBackground(Color.gray);
+			    this.setBackgroundNonSelectionColor(Color.gray);
+		    }
+		    
 
 
             //System.out.println("BIP");

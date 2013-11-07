@@ -60,6 +60,13 @@ public class OptionsActions {
 						s += ";";
 					}
 				}
+				if (parametres.get(i).getClass().equals(String.class)){
+					s += "Attribute ";
+					s += parametres.get(i);
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
 			}
 			s+=")";
 			return name + s;

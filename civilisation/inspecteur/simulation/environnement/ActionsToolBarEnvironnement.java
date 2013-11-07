@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import civilisation.inspecteur.simulation.dialogues.DialogEditPheromon;
 import civilisation.inspecteur.simulation.dialogues.DialogueEnregistrerEnvironnement;
 import civilisation.inspecteur.simulation.dialogues.DialogueSelectionnerEnvironnementActif;
 
@@ -69,11 +70,11 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 			p.setTypeDessin(1);
 		}
 		else if (index == 6){
-			System.out.println("--Zoomer--");
+			System.out.println("--Zoom--");
 			p.zoom(1);
 		}
 		else if (index == 7){
-			System.out.println("--Dezoomer--");
+			System.out.println("--Dezoom--");
 			if (p.getTaillePseudoPatch() > 1){	
 				p.zoom(-1);
 			}
@@ -84,6 +85,11 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 		else if (index == 8){
 			System.out.println("--DŽfinir l'environnement de la simulation--");
 			DialogueSelectionnerEnvironnementActif d = new DialogueSelectionnerEnvironnementActif((Frame) p.getTopLevelAncestor() , true , p);
+			d.setVisible(true);		
+		}
+		else if (index == 9){
+			System.out.println("--Manage pheromons--");
+			DialogEditPheromon d = new DialogEditPheromon((Frame) p.getTopLevelAncestor() , true);
 			d.setVisible(true);		
 		}
 	}

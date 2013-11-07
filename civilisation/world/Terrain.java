@@ -74,6 +74,10 @@ public class Terrain {
 		pheroCroissance.add(croissance);
 	}
 	
+	public void clearPheromones() {
+		pheromones.clear();
+	}
+	
 	public void enregistrer(File cible) {
 		PrintWriter out;
 		try {
@@ -95,6 +99,39 @@ public class Terrain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+	}
+	
+	public int getPheromoneIndexByName(String s){
+		for (int i = 0 ; i < pheromones.size(); i++){
+			if (pheromones.get(i).getNom().equals(s)){
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public ArrayList<ItemPheromone> getPheromones() {
+		return pheromones;
+	}
+
+	public void setPheromones(ArrayList<ItemPheromone> pheromones) {
+		this.pheromones = pheromones;
+	}
+
+	public ArrayList<Double> getPheroInitiales() {
+		return pheroInitiales;
+	}
+
+	public void setPheroInitiales(ArrayList<Double> pheroInitiales) {
+		this.pheroInitiales = pheroInitiales;
+	}
+
+	public ArrayList<Double> getPheroCroissance() {
+		return pheroCroissance;
+	}
+
+	public void setPheroCroissance(ArrayList<Double> pheroCroissance) {
+		this.pheroCroissance = pheroCroissance;
 	}
 
 	

@@ -158,7 +158,7 @@ public class Humain extends Turtle
 			femme = true;
 		}
 		System.out.println("avant hashmap " + Configuration.attributesNames.size());
-		HashMap<String,Integer> attributes = new HashMap<String,Integer>();
+		attributes = new HashMap<String,Integer>();
 		for (int i = 0; i < Configuration.attributesNames.size(); i++){
 			attributes.put(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
 		}
@@ -1397,6 +1397,16 @@ public class Humain extends Turtle
 	 public int getInfluence() {
 		 return influence;
 	 }
+
+	public HashMap<String, Integer> getAttr() {
+		return attributes;
+	}
+
+	public void setAttr(HashMap<String, Integer> attributes) {
+		this.attributes = attributes;
+	}
+	 
+	 
 
 }
 

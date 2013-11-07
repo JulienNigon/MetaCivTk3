@@ -100,6 +100,9 @@ public abstract class Action {
 					if (param[j].split(" ")[0].equals("Integer")){
 						option.addParametre(Integer.parseInt(param[j].split(" ")[1]));
 					}
+					if (param[j].split(" ")[0].equals("Attribute")){
+						option.addParametre(param[j].split(" ")[1]);
+					}
 				}
 			}
 			parametrerOption(option);
@@ -171,6 +174,10 @@ public abstract class Action {
 
 	public String getSimpleName(){
 		return this.getClass().getSimpleName();
+	}
+	
+	public boolean isLogical() {
+		return false;
 	}
 	
 	public void addActionAfter(Action action, Action ref) {

@@ -10,6 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
+
+import civilisation.Configuration;
 import civilisation.world.WorldViewer;
 
 /** 
@@ -25,24 +27,16 @@ public class PanelOptions extends JPanel{
 	Box boite;
 	JComboBox planAffiche;
 	JComboBox frontiereAffichee;
+	JComboBox pheroMap;
 	ArrayList<String> listePlan;
 	
 	public PanelOptions()
 	{
 		listePlan =new ArrayList<String>();
-		listePlan.add("--Aucun--");
+		listePlan.add("--NONE--");
 		
-		String s;
-		File[] files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/plan").listFiles();
-		
-		for (File file : files) {
-		    if (file.isFile()) {
-		        s = file.getName();
-		        if (s.split("_")[0].equals("REFLEXE") || s.split("_")[0].equals("PLAN") || s.split("_")[0].equals("PLANGR"))
-		        {
-		        	listePlan.add((s.split("_")[1]).split("\\.")[0]);
-		        }
-		    }
+		for (int i = 0; i < Configuration.plans.size(); i++) {
+			listePlan.add(Configuration.plans.get(i).getNom());  
 		}
 
 		
@@ -53,18 +47,28 @@ public class PanelOptions extends JPanel{
         planAffiche = new JComboBox(listePlan.toArray());
         planAffiche.addActionListener(new ActionOptionsListener(this, 0));
         JLabel labelAffichage = new JLabel("Affichage des plans : ");
+        
         frontiereAffichee = new JComboBox();
         frontiereAffichee.addItem("Frontires visibles");
         frontiereAffichee.addItem("Frontires masquŽes");
         frontiereAffichee.addActionListener(new ActionOptionsListener(this, 1));
-
-        labelAffichage.setAlignmentX(Component.LEFT_ALIGNMENT);
-        planAffiche.setAlignmentX(Component.LEFT_ALIGNMENT);
-        frontiereAffichee.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        /* Allow to select a phero-map*/
+        JLabel labelPheroMap = new JLabel("Phero map : ");
+        pheroMap = new JComboBox();
+        
+        pheroMap.addItem("--NONE--");
+		for (int i = 0; i < Configuration.itemsPheromones.size(); i++) {
+			pheroMap.addItem(Configuration.itemsPheromones.get(i).getNom());  
+		}
+        pheroMap.addActionListener(new ActionOptionsListener(this, 2));
 
         boite.add(labelAffichage);
 		boite.add(planAffiche);
 		boite.add(frontiereAffichee);
+		boite.add(labelPheroMap);
+		boite.add(pheroMap);
+		
 		this.add(boite);
 		
 		this.setVisible(true);
@@ -73,7 +77,11 @@ public class PanelOptions extends JPanel{
 	
 	public void modifierAffichagePlans()
 	{
-		WorldViewer.getInstance().setPlanVisible((String) planAffiche.getSelectedItem());
+		if (planAffiche.getSelectedIndex() > 0) {
+			WorldViewer.getInstance().setPlanVisible(Configuration.plans.get(planAffiche.getSelectedIndex() - 1));
+		} else {
+			WorldViewer.getInstance().setPlanVisible(null);
+		}
 	}
 	
 	public void modifierAffichageFrontieres()
@@ -87,6 +95,15 @@ public class PanelOptions extends JPanel{
 			WorldViewer.getInstance().setFrontieresVisibles(false);
 		}
 
+	}
+	
+	public void showPheroMap()
+	{
+		if (pheroMap.getSelectedIndex() > 0) {
+			WorldViewer.getInstance().setPheroToMap(Configuration.itemsPheromones.get(pheroMap.getSelectedIndex() - 1));
+		} else {
+			WorldViewer.getInstance().setPheroToMap(null);
+		}
 	}
 	
 
