@@ -1,13 +1,16 @@
 package civilisation.individu;
 
 import java.awt.Component;
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import civilisation.Configuration;
+import civilisation.Group;
 import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.PCogniton;
 
 
 import civilisation.individu.plan.NPlan;
@@ -25,22 +28,23 @@ import civilisation.individu.plan.action.Action;
 public class Esprit {
 	
 	/* Les diff≈Ωrentes listes contenants les croyances de l'agent */
-	ArrayList<NCogniton> cognitons;
+	ArrayList<PCogniton> cognitons;
 	
 	/* La liste des projets envisageable par l'agent*/
 	ArrayList<NPlanPondere> plans;
 	
 	/* Hashmap to keep informations about actions*/
 	HashMap<Action , Object> actionsData;
+	
+	/* HashMap to store the groups of the agent and his role in this group*/
+	HashMap<Group , String> groups;
 
 	/*Autres attributs:*/
-	Boolean engagement;
 	Humain h;
 	NPlanPondere planEnCours;
 	Action actionEnCours;
 	
 	int poidsTotal;
-	int timer;
 	int progression;
 	int poidsTotalPlan;
 	
@@ -50,13 +54,12 @@ public class Esprit {
 	
 	public Esprit(Humain h)
 	{
-		cognitons = new ArrayList<NCogniton>();
+		cognitons = new ArrayList<PCogniton>();
 		plans = new ArrayList<NPlanPondere>();
 		actionsData = new HashMap<Action , Object>();
+		groups = new HashMap<Group , String>();
 			
-		engagement = false;
 		this.h = h;
-		timer = 0;
 		progression = 0;
 		poidsTotalPlan = 0;
 		
@@ -76,7 +79,9 @@ public class Esprit {
 	 */
 	private void initialisationStandard()
 	{
-		cognitons.addAll(Configuration.cognitonsDeBase); /*Les cognitons de bases, definis a l'initialisation.*/
+		for (NCogniton cogni : Configuration.cognitonsDeBase) {
+			cognitons.add(new PCogniton(cogni));
+		}
 		for (int i = 0; i < cognitons.size(); i++) {
 			cognitons.get(i).mettreEnPlace(this);
 		}
@@ -95,7 +100,7 @@ public class Esprit {
 		}
 
 		/* Select the new plan if there are no plan to do */
-		if ((planEnCours == null && actionEnCours == null)|| timer == 0)
+		if ((planEnCours == null && actionEnCours == null))
 		{
 			//System.out.println("Poids total :" + poidsTotalPlan);
 			int alea = (int) (Math.random()*(poidsTotalPlan + 1));
@@ -124,11 +129,7 @@ public class Esprit {
 	public Humain getHumain() {
 		return h;
 	}
-
-	public Boolean getEngagement() {
-		return engagement;
-	}
-
+	
 	public Humain getH() {
 		return h;
 	}
@@ -136,20 +137,12 @@ public class Esprit {
 	public int getPoidsTotal() {
 		return poidsTotal;
 	}
-
-	public int getTimer() {
-		return timer;
-	}
-
-	public void setTimer(int tempsMax) {
-timer = tempsMax;		
-	}
 		
 	public int getProgression() {
 		return progression;
 	}
 
-	public ArrayList<NCogniton> getCognitons() {
+	public ArrayList<PCogniton> getCognitons() {
 		return cognitons;
 	}
 
@@ -208,9 +201,7 @@ timer = tempsMax;
 	 */
 	public void addPoidsTotal(int p)
 	{
-
 		poidsTotalPlan += p;
-
 	}
 
 	public void redefinirPoids() {
@@ -224,6 +215,10 @@ timer = tempsMax;
 		for (int i = 0; i < cognitons.size(); i++)
 		{
 			cognitons.get(i).appliquerPoids(this);
+		}
+		
+		for (Group g : groups.keySet()) {
+			g.applyCulturons(groups.get(g), this);
 		}
 	}
 	
@@ -275,7 +270,10 @@ timer = tempsMax;
 		this.planEnCours = planEnCours;
 	}
 
-	
+	public void addCogniton(NCogniton cogni){
+		cognitons.add(new PCogniton(cogni));
+		cogni.mettreEnPlace(this);
+	}
 	
 	
 	

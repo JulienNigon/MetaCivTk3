@@ -61,7 +61,7 @@ public class NCogniton{
 
 	public void mettreEnPlace(Esprit e){
 		modifierPlans(true , e);
-		if (plansAutorises.isEmpty()){
+		if (plansAutorises.isEmpty()){ 
 			appliquerPoids(e);
 		}
 		else{

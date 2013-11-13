@@ -19,7 +19,7 @@ import civilisation.world.Terrain;
 public class Initialiseur {
 
 	HashMap<String, NCogniton> listeCognitons;
-	HashMap<String, CloudCogniton> listCloudCognitons;
+	HashMap<String, Culturon> listCloudCognitons;
 	HashMap<String, NPlan> listePlans;
 	HashMap<Color, Terrain> couleurs_terrains; //Gérer le cas ou la même couleur est utilisée pour deux terrains
 	final int passabiliteParDefaut = 30;
@@ -27,12 +27,12 @@ public class Initialiseur {
 	public Initialiseur(){
 		
 		listeCognitons = new HashMap<String, NCogniton>();
-		listCloudCognitons = new HashMap<String, CloudCogniton>();
+		listCloudCognitons = new HashMap<String, Culturon>();
 		listePlans = new HashMap<String, NPlan>();
 		couleurs_terrains = new HashMap<Color, Terrain>();
 		ArrayList<NCogniton> cognitonsDeBase = new ArrayList<NCogniton>();
 		ArrayList<NCogniton> tousLesCognitons = new ArrayList<NCogniton>();
-		ArrayList<CloudCogniton> allCloudCogniton = new ArrayList<CloudCogniton>();
+		ArrayList<Culturon> allCloudCogniton = new ArrayList<Culturon>();
 		ArrayList<NPlan> tousLesPlans = new ArrayList<NPlan>();
 
 		String nom;
@@ -160,8 +160,8 @@ public class Initialiseur {
 			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
-		    	listCloudCognitons.put(nom , new CloudCogniton());
-		    	CloudCogniton cogni = listCloudCognitons.get(nom);
+		    	listCloudCognitons.put(nom , new Culturon());
+		    	Culturon cogni = listCloudCognitons.get(nom);
 		    	cogni.setNom(nom);
 		    	cogni.setDescription(getChamp("Description" , file)[0]);
 		    	cogni.setType(TypeDeCogniton.toType( getChamp("Type" , file)[0]));

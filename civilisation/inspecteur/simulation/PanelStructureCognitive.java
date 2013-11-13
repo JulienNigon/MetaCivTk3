@@ -18,7 +18,7 @@ import javax.swing.JToolBar;
 
 import civilisation.Configuration;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.CloudCogniton;
+import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.inspecteur.animations.JJAnimationOpacite;
@@ -68,8 +68,8 @@ public class PanelStructureCognitive extends JJPanel{
 		plans = Configuration.plans;
 		
 		for (int i = 0; i < allCognitons.size(); i++){		
-			if (allCognitons.get(i) instanceof CloudCogniton) {
-				showCloudCogniton((CloudCogniton) allCognitons.get(i),20,40+espacement*i);
+			if (allCognitons.get(i) instanceof Culturon) {
+				showCloudCogniton((Culturon) allCognitons.get(i),20,40+espacement*i);
 			} else {
 				afficherCogniton(allCognitons.get(i),20,40+espacement*i);
 			}
@@ -189,7 +189,7 @@ public class PanelStructureCognitive extends JJPanel{
 		this.setComponentZOrder(gPlan.get(gPlan.size()-1), 0);
 	}
 
-	public void showCloudCogniton(CloudCogniton c , double posX , double posY){
+	public void showCloudCogniton(Culturon c , double posX , double posY){
 		gCognitons.add(new GCloudCogniton(this,posX,posY,60,25, c));
 		//gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationTranslation(-1, gCognitons.get(gCognitons.size()-1), 0.05, 0.05, false));
 		this.add(gCognitons.get(gCognitons.size()-1));
@@ -307,7 +307,7 @@ public class PanelStructureCognitive extends JJPanel{
 	public void createCloudCogniton() {
 		System.out.println("Create new cloud cogniton");
 
-		CloudCogniton newCloudCogniton = new CloudCogniton();
+		Culturon newCloudCogniton = new Culturon();
 		Configuration.addCloudCogniton(newCloudCogniton);
 		newCloudCogniton.creerCognitonLambda();
 		afficherCogniton(newCloudCogniton, 100,100);		

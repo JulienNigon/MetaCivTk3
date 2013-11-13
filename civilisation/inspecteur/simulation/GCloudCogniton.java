@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
-import civilisation.individu.cognitons.CloudCogniton;
+import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
@@ -26,14 +26,14 @@ import civilisation.inspecteur.animations.JJPanel;
 
 public class GCloudCogniton extends GCogniton{
 
-	CloudCogniton cogniton;
+	Culturon cogniton;
 	static float margeEcriture = 2;
 	public final static int hueCircleSize = 12;
 	static final int xSize = 125;
 	static final int ySize = 50;
 	BufferedImage bImg;
 	
-	public GCloudCogniton(JJPanel parent , double xx, double yy, double w, double h, CloudCogniton cogniton) {
+	public GCloudCogniton(JJPanel parent , double xx, double yy, double w, double h, Culturon cogniton) {
 		super(parent, xx, yy, w, h);
 		this.cogniton = cogniton;
 		this.setToolTipText(cogniton.toString());

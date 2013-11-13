@@ -2,7 +2,7 @@ package civilisation.individu.cognitons;
 
 import civilisation.Configuration;
 
-public class CloudCogniton extends NCogniton{
+public class Culturon extends NCogniton{
 
 	/** 
 	 * Cloud cogniton are special cogniton associated to civilization instead of humans

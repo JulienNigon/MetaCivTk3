@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.PCogniton;
 
 public class JTableRendererCognitons extends DefaultTableCellRenderer {
 
@@ -17,12 +18,12 @@ public class JTableRendererCognitons extends DefaultTableCellRenderer {
 		super.getTableCellRendererComponent(table, value,
 				isSelected, hasFocus, row, column);
 
-			NCogniton cogni = (NCogniton) value;
+			PCogniton cogni = (PCogniton) value;
 			
 			if (cogni != null)
 			{
-			    setToolTipText((cogni.getDescription()));
-			    this.setValue((cogni.getNom()));
+			    setToolTipText((cogni.getCogniton().getDescription()));
+			    this.setValue((cogni.getCogniton().getNom()));
 			   // Color fond = cogni.getColor();
 			//    this.setBackground(fond);
 			}

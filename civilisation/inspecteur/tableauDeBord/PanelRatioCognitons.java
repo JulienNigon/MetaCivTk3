@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import civilisation.Configuration;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.PCogniton;
 import civilisation.inspecteur.animations.*;
 import civilisation.world.World;
 
@@ -44,17 +45,17 @@ public class PanelRatioCognitons extends JJPanel{
 		for (int i = 0; i < tortues.length; i++){
 			if (tortues[i].getClass() == Humain.class){
 				Humain h = (Humain) tortues[i];
-				ArrayList<NCogniton> listeCognitons= h.getEsprit().getCognitons();
+				ArrayList<PCogniton> listeCognitons= h.getEsprit().getCognitons();
 				for (int j = 0; j < listeCognitons.size(); j++){
 					Integer v;
-					if (decompteCognitons.get(listeCognitons.get(j).getNom()) == null){
+					if (decompteCognitons.get(listeCognitons.get(j).getCogniton().getNom()) == null){
 						v = 0;
 					}
 					else{
-						v = decompteCognitons.get(listeCognitons.get(j).getNom());
+						v = decompteCognitons.get(listeCognitons.get(j).getCogniton().getNom());
 					}
-					decompteCognitons.put(listeCognitons.get(j).getNom(), v + 1);
-					System.out.println(listeCognitons.get(j).getNom() +" "+decompteCognitons.get(listeCognitons.get(j).getNom()));
+					decompteCognitons.put(listeCognitons.get(j).getCogniton().getNom(), v + 1);
+					System.out.println(listeCognitons.get(j).getCogniton().getNom() +" "+decompteCognitons.get(listeCognitons.get(j).getCogniton().getNom()));
 
 				}
 			}
