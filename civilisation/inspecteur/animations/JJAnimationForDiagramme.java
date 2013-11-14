@@ -29,6 +29,7 @@ public class JJAnimationForDiagramme extends JJAnimation{
 		super(pas,compo,vieLimite);
 	}
 	
+	@Override
 	public boolean animer(){
 
 		for (int i = 0; i < diag.getListeValeurs().size(); i++){

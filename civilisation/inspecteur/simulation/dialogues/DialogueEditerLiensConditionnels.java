@@ -1,7 +1,5 @@
 package civilisation.inspecteur.simulation.dialogues;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,17 +7,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-
 import civilisation.Configuration;
-import civilisation.individu.cognitons.LienPlan;
-import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.inspecteur.simulation.GCogniton;
 import civilisation.inspecteur.simulation.PanelStructureCognitive;

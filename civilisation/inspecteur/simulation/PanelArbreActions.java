@@ -1,25 +1,17 @@
 package civilisation.inspecteur.simulation;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 
-import civilisation.Configuration;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inspecteur.animations.JJPanel;
-import civilisation.inspecteur.simulation.dialogues.DialogueEditerAction;
 import civilisation.inspecteur.simulation.dialogues.DialogueAjouterAction.Option_BeforeAfter;
 
 public class PanelArbreActions extends JJPanel{
@@ -31,16 +23,21 @@ public class PanelArbreActions extends JJPanel{
 	Action actionActive; /*Pour mémoriser l'action en cours de modification, le cas écheant*/
 
 	public PanelArbreActions(NPlan plan){
+		
+		this.setLayout(new BorderLayout());
+		this.setMinimumSize(new Dimension(300,500));
+
 		if (plan != null){
-			this.setLayout(new BorderLayout());
 
 			this.plan = plan;
-			this.setMinimumSize(new Dimension(300,500));
+			System.out.println("Plan obersvé : " + this.plan.getNom());
 			
 			setupArbreActions();
 
 			
 			this.add(toolBar , BorderLayout.NORTH);
+		} else {
+			System.out.println("Plan de l'arbre est null");
 		}
 	}
 	
@@ -52,6 +49,15 @@ public class PanelArbreActions extends JJPanel{
 		arbreActions.addMouseListener(new MouseArbreActionsListener(this));
 		arbreActions.setBackground(this.getBackground());
 		this.add(arbreActions , BorderLayout.CENTER);
+	}
+	
+	public void changePlan(NPlan plan) {
+		if (arbreActions != null) {
+			this.remove(arbreActions);
+		}
+		System.out.println("Nouveau plan : " + plan.getNom());
+		this.plan = plan;
+		setupArbreActions();
 	}
 	
 	public void afficherPopup(MouseEvent e, Action a){
@@ -90,7 +96,12 @@ public class PanelArbreActions extends JJPanel{
 			popup.add(ajouterActionInterne);
 		}
 		
-		popup.show(this, (int)this.getX() + e.getX(), (int)this.getY() + e.getY());
+		JMenuItem removeAction = new JMenuItem("Remove action");
+		removeAction.addActionListener(new ActionsMenuActions(this,4,a));
+		removeAction.setIcon(new ImageIcon(this.getClass().getResource("../icones/cross.png")));
+		popup.add(removeAction);
+		
+		popup.show(this, this.getX() + e.getX(), this.getY() + e.getY());
 	}
 
 	public JTree getArbreActions() {
@@ -111,6 +122,11 @@ public class PanelArbreActions extends JJPanel{
 		else if (option == Option_BeforeAfter.INTERNAL){
 			plan.addSubAction(a, actionActive);
 		}
+		else if (option == Option_BeforeAfter.FIRST){
+			if (plan == null) System.out.println("NULL");
+			System.out.println("plan : " + plan.getNom());
+			plan.addFirstAction(a);
+		}
 		this.remove(arbreActions);
 		setupArbreActions();
 		plan.seDecrire();
@@ -122,6 +138,12 @@ public class PanelArbreActions extends JJPanel{
 
 	public void setActionActive(Action actionActive) {
 		this.actionActive = actionActive;
+	}
+
+	public void remove(Action selectedAction) {
+		plan.removeAction(selectedAction);
+		this.remove(arbreActions);
+		setupArbreActions();
 	}
 	
 	

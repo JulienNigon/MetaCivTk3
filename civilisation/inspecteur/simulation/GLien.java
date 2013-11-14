@@ -12,7 +12,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
@@ -35,6 +34,7 @@ public class GLien extends JJComponent{
 	}
 
 	
+	@Override
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);

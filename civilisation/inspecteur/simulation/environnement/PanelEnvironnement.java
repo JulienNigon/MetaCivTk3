@@ -1,10 +1,6 @@
 package civilisation.inspecteur.simulation.environnement;
 
 import java.awt.Color;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -12,12 +8,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 import civilisation.Configuration;
 import civilisation.inspecteur.animations.*;
-import civilisation.inspecteur.simulation.GCogniton;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
 import civilisation.world.Terrain;
 
@@ -51,36 +43,6 @@ public class PanelEnvironnement extends JJPanel{
 		gCarte = new GCarte(this, espacementHorizontalCarte, espacementVerticalCarte, this);
 		gCarte.setLocation(40,40);
 		this.add(gCarte);
-		
-	/*	JJStatDiagramme diag = new JJStatDiagramme(this, 400, 400, 250, 25);
-		diag.addItem(Color.BLUE, Configuration.cognitons.get(1).getNom(), 10.);
-		diag.addItem(Color.BLACK, "Agents sans ce cogniton", 15.);
-		
-		JFrame f = new JFrame();
-		JJPanel jp = new JJPanel();
-		jp.add(diag);
-
-		//gCarte.addAnimation(new JJAnimationRotation(-1,gCarte,0.01,false));
-		
-		f.setContentPane(jp);
-		f.setVisible(true);*/
-		/*
-		GCogniton test = new GCogniton(this, 10., 10., 50., 50., Configuration.cognitons.get(1));
-		this.add(test);
-		
-		JButton bout = new JButton("test");
-		bout.setBounds(50, 50, 200, 200);
-		bout.addMouseMotionListener(new TesteurDraggableASupprimer(bout));
-		this.add(bout);
-		
-		JFrame jf = new JFrame();
-		JJPanel pt = new JJPanel();
-		pt.add(bout);
-		pt.add(test);
-		pt.add(gCarte);
-		jf.setContentPane(pt);
-		jf.setVisible(true);*/
-		
 
 	}
 	

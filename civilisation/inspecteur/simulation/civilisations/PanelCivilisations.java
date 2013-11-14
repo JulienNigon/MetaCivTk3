@@ -4,15 +4,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import civilisation.Civilisation;
-import civilisation.inspecteur.animations.JJPanel;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
-import civilisation.inspecteur.simulation.objets.ActionPanelObjet;
-import civilisation.inspecteur.simulation.objets.PanelListeObjets;
-import civilisation.inventaire.Objet;
 
 public class PanelCivilisations extends JPanel{
 
@@ -20,6 +17,8 @@ public class PanelCivilisations extends JPanel{
 	JTextField nameField;
 	JComboBox comboIcon;
 	PanelListeCivilisations panelListeCivilisations;
+    JSlider startingAgents;
+
 	
 	public PanelCivilisations (PanelModificationSimulation panelParent , PanelListeCivilisations panelListeCivilisations){
 		super();
@@ -35,6 +34,14 @@ public class PanelCivilisations extends JPanel{
 		nameField.addActionListener(new ActionPanelCivilisation(this));
 		this.add(nameField);
 		
+		/* number of starting agents selection*/
+		startingAgents = new JSlider(0,500,0);
+		startingAgents.setMajorTickSpacing(50);
+		startingAgents.setMinorTickSpacing(10);
+		startingAgents.setPaintTicks(true);
+		startingAgents.setPaintLabels(true);
+		this.add(startingAgents);
+		
 	}
 
 	public void performChange() {
@@ -42,6 +49,7 @@ public class PanelCivilisations extends JPanel{
 			if ( panelListeCivilisations.getListeCivilisations().getSelectedValue() != null) {
 				Civilisation c = ((Civilisation) panelListeCivilisations.getListeCivilisations().getSelectedValue());
 				c.setNom(nameField.getText());
+				c.setAgentsInitiaux(startingAgents.getValue());
 			}
 		}
 		
@@ -52,6 +60,8 @@ public class PanelCivilisations extends JPanel{
 	 */
 	public void update(){		
 		nameField.setText(((Civilisation) panelListeCivilisations.getListeCivilisations().getSelectedValue()).getNom()  );
+		startingAgents.setValue((((Civilisation) panelListeCivilisations.getListeCivilisations().getSelectedValue()).getAgentsInitiaux()))  ;
+
 	}
 
 	public PanelListeCivilisations getPanelListeCivilisations() {

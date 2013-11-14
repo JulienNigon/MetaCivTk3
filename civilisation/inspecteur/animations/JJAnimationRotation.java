@@ -1,7 +1,5 @@
 package civilisation.inspecteur.animations;
 
-import java.awt.geom.AffineTransform;
-
 public class JJAnimationRotation extends JJAnimation{
 
 	double angle;
@@ -11,6 +9,7 @@ public class JJAnimationRotation extends JJAnimation{
 		this.angle = angle;
 	}
 	
+	@Override
 	public boolean animer(){
 
 		compo.setTheta(compo.getTheta() + angle);

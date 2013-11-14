@@ -22,6 +22,7 @@ public class OptionsActions {
 		this.name = name;
 	}
     
+	@Override
 	public String toString(){
 		return name + " : " + parametres.size();
 	}
@@ -43,7 +44,6 @@ public class OptionsActions {
 			return name;
 		}
 		else{
-			//BOARF(Objet Baie)
 			String s = "(";
 			for (int i = 0; i < parametres.size(); i++){
 				if (parametres.get(i).getClass().equals(Objet.class)){
@@ -51,6 +51,20 @@ public class OptionsActions {
 					s += ((Objet) parametres.get(i)).getNom();
 					if (i < parametres.size() - 1){
 						s += ";"; /*Separateur pour parametres multiples*/
+					}
+				}
+				if (parametres.get(i).getClass().equals(Integer.class)){
+					s += "Integer ";
+					s += parametres.get(i).toString();
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
+				if (parametres.get(i).getClass().equals(String.class)){
+					s += "Attribute ";
+					s += parametres.get(i);
+					if (i < parametres.size() - 1){
+						s += ";";
 					}
 				}
 			}

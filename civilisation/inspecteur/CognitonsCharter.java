@@ -1,7 +1,5 @@
 package civilisation.inspecteur;
 
-import java.util.ArrayList;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
@@ -12,8 +10,6 @@ import civilisation.world.WorldCtrl;
 
 import edu.turtlekit2.Tk2Launcher;
 import edu.turtlekit2.kernel.agents.Viewer;
-import edu.turtlekit2.tools.chart.ChartWindow;
-import edu.turtlekit2.tools.chart.LineCharter;
 import edu.turtlekit2.ui.SimulationBoard;
 import edu.turtlekit2.ui.utils.GUIMessage;
 
@@ -25,6 +21,7 @@ public class CognitonsCharter extends Viewer{
 	JComboBox cognitonPlot;
 	int index;
 	
+	@Override
 	public void setup()
 	{
         boite = new Box(BoxLayout.PAGE_AXIS);
@@ -43,6 +40,7 @@ public class CognitonsCharter extends Viewer{
 
 	}
 	
+	@Override
 	public void watch()
 	{
 		if (step == 0)
@@ -61,7 +59,7 @@ public class CognitonsCharter extends Viewer{
 			double[] val = new double[nCiv];
 			for (int i = 0; i < nCiv; i++)
 			{
-				val[i] = (double) WorldCtrl.sondes.get(index).getN().get(step)[i];
+				val[i] = WorldCtrl.sondes.get(index).getN().get(step)[i];
 			}
 			chart.update("Nombre d'agents portant le cogniton "+(String) cognitonPlot.getSelectedItem(), step, val);
 
@@ -98,7 +96,7 @@ public class CognitonsCharter extends Viewer{
 			{
 				for (int j = 0; j < nCiv; j++)
 				{
-					val[j] = (double) WorldCtrl.sondes.get(index).getN().get(i)[j];
+					val[j] = WorldCtrl.sondes.get(index).getN().get(i)[j];
 				}
 				chart.update("Nombre d'agents portant le cogniton "+(String) cognitonPlot.getSelectedItem(), i, val);			}
 			}

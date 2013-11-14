@@ -10,6 +10,7 @@ public class JJAnimationTranslation extends JJAnimation{
 		this.dy = dy;
 	}
 	
+	@Override
 	public boolean animer(){
 
 		compo.setXx(compo.getXx() + dx);

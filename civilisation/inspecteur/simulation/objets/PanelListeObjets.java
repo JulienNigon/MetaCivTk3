@@ -10,12 +10,6 @@ import javax.swing.border.TitledBorder;
 
 import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJPanel;
-import civilisation.inspecteur.simulation.PanelArbreActions;
-import civilisation.inspecteur.simulation.PanelStructureCognitive;
-import civilisation.inspecteur.simulation.civilisations.PanelCivilisations;
-import civilisation.inspecteur.simulation.civilisations.PanelListeCivilisations;
-import civilisation.inspecteur.simulation.environnement.PanelEnvironnement;
-import civilisation.inspecteur.simulation.environnement.PanelTerrains;
 import civilisation.inventaire.Objet;
 
 public class PanelListeObjets extends JJPanel{

@@ -1,27 +1,16 @@
 package civilisation.inspecteur.simulation;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JTable;
 import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import civilisation.individu.Humain;
 import civilisation.individu.plan.NPlan;
-import civilisation.individu.plan.action.Action;
-import civilisation.inspecteur.ActionInspecteurListener;
-import civilisation.inspecteur.PanelGenealogie;
-import civilisation.inspecteur.PanelInventaire;
-import civilisation.inspecteur.PanelListeCognitons;
-import civilisation.inspecteur.PanelListePlans;
-import civilisation.inspecteur.PanelPatch;
-import civilisation.inspecteur.animations.JJPanel;
+import civilisation.inspecteur.simulation.attributes.PanelAttributes;
 import civilisation.inspecteur.simulation.civilisations.ActionsToolBarListeCivilisations;
 import civilisation.inspecteur.simulation.civilisations.PanelCivilisations;
 import civilisation.inspecteur.simulation.civilisations.PanelListeCivilisations;
@@ -32,7 +21,6 @@ import civilisation.inspecteur.simulation.environnement.PanelTerrains;
 import civilisation.inspecteur.simulation.objets.ActionsToolBarListeObjets;
 import civilisation.inspecteur.simulation.objets.PanelListeObjets;
 import civilisation.inspecteur.simulation.objets.PanelObjets;
-import civilisation.world.World;
 
 public class PanelModificationSimulation extends JPanel{
 
@@ -44,6 +32,7 @@ public class PanelModificationSimulation extends JPanel{
 	JButton boutonEnvironnement;
 	JButton boutonObjets;
 	JButton boutonCivilisations;
+	JButton boutonAttribute;
 
 	PanelStructureCognitive panelStructureCognitive;
 	PanelEnvironnement panelEnvironnement;
@@ -53,6 +42,7 @@ public class PanelModificationSimulation extends JPanel{
 	PanelListeObjets panelListeObjets;
 	PanelCivilisations panelCivilisations;
 	PanelListeCivilisations panelListeCivilisations;
+	PanelAttributes panelAttributes;
 	
 	JPanel panelCentral;
 	JPanel panelEast;
@@ -76,6 +66,7 @@ public class PanelModificationSimulation extends JPanel{
 	JButton zoomer;
 	JButton dezoomer;
 	JButton choisirEnvironnementActif;
+	JButton pheromone;
 
 	JToolBar toolBarCivilisations;
 	
@@ -103,7 +94,7 @@ public class PanelModificationSimulation extends JPanel{
 		this.setLayout(new BorderLayout());
 		
 		/*Create main toolBar*/
-		toolBar = new JToolBar(JToolBar.VERTICAL);
+		toolBar = new JToolBar(SwingConstants.VERTICAL);
 		
 		ImageIcon iconeSauvegarder = new ImageIcon(this.getClass().getResource("../icones/disk-black.png"));	
 		boutonSauvegarder = new JButton(iconeSauvegarder);
@@ -121,27 +112,33 @@ public class PanelModificationSimulation extends JPanel{
 
 		ImageIcon iconeStructureCognitive = new ImageIcon(this.getClass().getResource("../icones/brain.png"));	
 		boutonStructureCognitive = new JButton(iconeStructureCognitive);
-		boutonStructureCognitive.setToolTipText("Editer la structure cognitive");
+		boutonStructureCognitive.setToolTipText("Edit cognitive scheme");
 		boutonStructureCognitive.addActionListener(new ActionPanelCognitonsGraphiques(this, 2));
 		toolBar.add(boutonStructureCognitive);
 
 		ImageIcon iconeEnvironnement = new ImageIcon(this.getClass().getResource("../icones/globe.png"));	
 		boutonEnvironnement = new JButton(iconeEnvironnement);
-		boutonEnvironnement.setToolTipText("Editer l'environnement de la simulation");
+		boutonEnvironnement.setToolTipText("Edit environment");
 		boutonEnvironnement.addActionListener(new ActionPanelCognitonsGraphiques(this, 3));
 		toolBar.add(boutonEnvironnement);
 		
 		ImageIcon iconeObjets = new ImageIcon(this.getClass().getResource("../icones/briefcase.png"));	
 		boutonObjets = new JButton(iconeObjets);
-		boutonObjets.setToolTipText("Editer les objets d'inventaire");
+		boutonObjets.setToolTipText("Edit item");
 		boutonObjets.addActionListener(new ActionPanelCognitonsGraphiques(this, 4));
 		toolBar.add(boutonObjets);
 		
 		ImageIcon iconeCivilisations = new ImageIcon(this.getClass().getResource("../icones/bank.png"));	
 		boutonCivilisations = new JButton(iconeCivilisations);
-		boutonCivilisations.setToolTipText("Editer les civilisations");
+		boutonCivilisations.setToolTipText("Edit civilizations");
 		boutonCivilisations.addActionListener(new ActionPanelCognitonsGraphiques(this, 5));
 		toolBar.add(boutonCivilisations);
+		
+		ImageIcon iconeAttributes = new ImageIcon(this.getClass().getResource("../icones/blue-document-attribute.png"));	
+		boutonAttribute = new JButton(iconeAttributes);
+		boutonAttribute.setToolTipText("Edit attributes");
+		boutonAttribute.addActionListener(new ActionPanelCognitonsGraphiques(this, 6));
+		toolBar.add(boutonAttribute);
 		
 		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
 		bordure.setTitleJustification(TitledBorder.LEFT);
@@ -156,7 +153,8 @@ public class PanelModificationSimulation extends JPanel{
 		panelCivilisations = new PanelCivilisations(this , panelListeCivilisations);
 		panelListeCivilisations = new PanelListeCivilisations(panelCivilisations);
 		panelCivilisations.setPanelListeCivilisations(panelListeCivilisations);
-		
+		panelAttributes = new PanelAttributes(this);
+
 		panelArbreActions.setBorder(bordure);
 		bordure.setTitle("Structure cognitive");
 		panelStructureCognitive.setBorder(bordure);
@@ -246,15 +244,20 @@ public class PanelModificationSimulation extends JPanel{
 		choisirEnvironnementActif.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,8));
 		choisirEnvironnementActif.setToolTipText("Choisir l'environnment ˆ utiliser pour la simulation");
 		toolBarEnvironnement.add(choisirEnvironnementActif);
+
+		ImageIcon iconePheromone = new ImageIcon(this.getClass().getResource("../icones/ui-color-picker-switch.png"));
+		pheromone = new JButton(iconePheromone);
+		pheromone.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,9));
+		pheromone.setToolTipText("Manage pheromon");
+		toolBarEnvironnement.add(pheromone);
 		
 		/*Creation de la toolBar pour l'arbre d'actions*/	
 		ImageIcon icone = new ImageIcon(this.getClass().getResource("../icones/lightning--plus.png"));
 		ajouterAction = new JButton(icone);
-		icone = new ImageIcon(this.getClass().getResource("../icones/lightning--plus.png"));
-		ajouterSousAction = new JButton(icone);
-		
+		ajouterAction.setToolTipText("Add a new action at the start of the plan");
+		ajouterAction.addActionListener(new ActionsToolBarArbreActions(panelArbreActions , 0));
+
 		toolBarArbreActions = new JToolBar();
-		toolBarArbreActions.add(ajouterSousAction);
 		toolBarArbreActions.add(ajouterAction);
 		
 		
@@ -282,7 +285,7 @@ public class PanelModificationSimulation extends JPanel{
 		/*Creation de la toolBar pour la liste des civilisations*/	
 		toolBarListeCivilisations = new JToolBar();
 		
-		icone = new ImageIcon(this.getClass().getResource("../icones/ui-color-picker-switch.png"));
+		icone = new ImageIcon(this.getClass().getResource("../icones/bank.png"));
 		createCivilization = new JButton(icone);
 		createCivilization.addActionListener(new ActionsToolBarListeCivilisations(panelListeCivilisations,0));
 		createCivilization.setToolTipText("Create new civilization");
@@ -415,22 +418,44 @@ public class PanelModificationSimulation extends JPanel{
 		this.add(panelEast, BorderLayout.EAST);	
 	}
 	
+	public void afficherAttributes() {
+		
+		setPanelButtonAvailable();
+		this.boutonAttribute.setEnabled(false);
+
+		if (panelCentral != null){
+			this.remove(panelCentral);
+		}
+		panelCentral = new JPanel();
+		panelCentral.setLayout(new BorderLayout());
+		
+		panelCentral.add(panelAttributes, BorderLayout.CENTER);
+
+		if (panelEast != null){
+			this.remove(panelEast);
+		}
+
+		this.add(panelCentral, BorderLayout.CENTER);
+	}
+	
 	private void setPanelButtonAvailable(){
 		this.boutonStructureCognitive.setEnabled(true);
 		this.boutonObjets.setEnabled(true);
 		this.boutonEnvironnement.setEnabled(true);
 		this.boutonCivilisations.setEnabled(true);
+		this.boutonAttribute.setEnabled(true);
 	}
 	
 	public void changerArbreActions(NPlan plan){
 		System.out.println("change to "+plan.getNom());
-		panelEast.remove(panelArbreActions);
+		panelArbreActions.changePlan(plan);
+		/*panelEast.remove(panelArbreActions);
 		panelArbreActions = new PanelArbreActions(plan);
-		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
+		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), plan.getNom());
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		panelArbreActions.setBorder(bordure);
 		panelEast.add(panelArbreActions, BorderLayout.CENTER);
-		this.validate();
+		this.validate();*/
 	}
 
 	public PanelStructureCognitive getPanelStructureCognitive() {

@@ -10,6 +10,7 @@ public class JJAnimationOpacite extends JJAnimation{
 		this.dOpacite = dOpacite;
 	}
 	
+	@Override
 	public boolean animer(){
 
 		compo.setOpacite(compo.getOpacite()+dOpacite);

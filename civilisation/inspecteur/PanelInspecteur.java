@@ -31,6 +31,7 @@ import javax.swing.tree.*;
 
 
 
+import civilisation.Configuration;
 import civilisation.individu.Humain;
 import civilisation.world.World;
 
@@ -155,44 +156,32 @@ public class PanelInspecteur extends JPanel{
 	
 	public void actualiser()
 	{
-		((Humain) World.getInstance().getTurtleWithID(agentID)).setIsSelected(true);
+		Humain h = (Humain) World.getInstance().getTurtleWithID(agentID);
+		h.setIsSelected(true);
+		
 		
 		donnees[0][0] = "ID";
 		donnees[0][1] = agentID;
 		donnees[1][0] = "X";
-		donnees[1][1] = World.getInstance().getTurtleWithID(agentID).x;
+		donnees[1][1] = h.x;
 		donnees[2][0] = "Y";
-		donnees[2][1] = World.getInstance().getTurtleWithID(agentID).y;
+		donnees[2][1] = h.y;
 		donnees[3][0] = "Vie";
-		donnees[3][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getVie();
+		donnees[3][1] = h.getVie();
 		donnees[4][0] = "n¡ Civilisation";
-		donnees[4][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getCiv().getIndexCiv();
+		donnees[4][1] = h.getCiv().getIndexCiv();
 		donnees[5][0] = "Couleur Civ";
-		donnees[5][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getCiv().getCouleur();
+		donnees[5][1] = h.getCiv().getCouleur();
 		donnees[6][0] = "Femme?";
-		donnees[6][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getFemme();
+		donnees[6][1] = h.getFemme();
 		donnees[7][0] = "Projet";
-		if (((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getProj() != null)
-		{
-			donnees[7][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getProj().getNom();
+		donnees[7][1] = h.getEsprit().getPlanEnCours().getPlan().getNom();
+		int var = 8;
+		
+		for (int i = var ; i < Configuration.attributesNames.size() + var ; i++) {
+			donnees[i][0] = Configuration.attributesNames.get(i - var);
+			donnees[i][1] = h.getAttr().get(Configuration.attributesNames.get(i - var));
 		}
-		else
-		{
-			donnees[7][1] = "aucun";
-		}
-		donnees[8][0] = "Timer de projet";
-		if (((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getProj() != null)
-		{
-			donnees[8][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getTimer();
-		}
-		else
-		{
-			donnees[8][1] = "0";
-		}
-		donnees[9][0] = "Poids total Cognitons";
-		donnees[9][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getEsprit().getPoidsTotal();
-		donnees[10][0] = "Influence";
-		donnees[10][1] = ((Humain) World.getInstance().getTurtleWithID(agentID)).getInfluence();
 		
 		patch.actualiser(World.getInstance().getTurtleWithID(agentID));  //On met a jour le panel du patch
 		inventaire.actualiser(World.getInstance().getTurtleWithID(agentID)); //On met ˆ jour l'affichage de l'inventaire

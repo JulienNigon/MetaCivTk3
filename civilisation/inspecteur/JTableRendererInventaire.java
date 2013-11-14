@@ -8,29 +8,27 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import civilisation.individu.cognitons.Cogniton;
-import civilisation.individu.plan.Plan;
-import civilisation.inventaire.ObjetInventaire;
+import civilisation.inventaire.Objet;
 
 public class JTableRendererInventaire extends DefaultTableCellRenderer {
 
+	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		super.getTableCellRendererComponent(table, value,
 				isSelected, hasFocus, row, column);
 
 			ImageIcon icone;
-			ObjetInventaire o = (ObjetInventaire) value;
+			Objet o = (Objet) value;
 			
 			if (o != null)
 			{
-				setToolTipText((String) (o.toString()));
-				this.setValue((String) (o.toString()));
+				setToolTipText((o.toString()));
+				this.setValue((o.toString()));
 
-				if (o.getPathToIcon() != null)
+				if (o.getIcone() != null)
 			    {
-		    		icone = new ImageIcon(this.getClass().getResource(o.getPathToIcon()));
-		    		setIcon(icone);
+		    		setIcon(o.getIcone());
 				}
 				else
 				{

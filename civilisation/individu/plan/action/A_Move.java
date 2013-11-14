@@ -10,13 +10,13 @@ public class A_Move extends Action{
 	
 	@Override
 	public Action effectuer(Humain h) {
-		System.out.println(angle);
 		h.setHeading(angle);
 		h.fd(1);
 		
 		return nextAction;
 	}
 
+	@Override
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
 		
@@ -40,6 +40,7 @@ public class A_Move extends Action{
 	 * Retourne la structure des paramètres.
 	 * Permet de déterminer la présentation de la fenêtre de réglages.
 	 */
+	@Override
 	public ArrayList<String[]> getSchemaParametres(){
 		
 		if (schemaParametres == null){

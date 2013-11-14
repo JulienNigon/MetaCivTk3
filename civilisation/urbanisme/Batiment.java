@@ -2,7 +2,7 @@ package civilisation.urbanisme;
 
 import civilisation.Communaute;
 import civilisation.individu.Humain;
-import civilisation.inventaire.Inventaire;
+import civilisation.inventaire.NInventaire;
 
 
 
@@ -19,12 +19,12 @@ public class Batiment {
 	Boolean termine;
 	int bois_requis;
 	int pierre_requis;
-	Inventaire inventaire;
+	NInventaire inventaire;
 	
 	public Batiment(Humain possesseur , Communaute c)
 	{
 		this.possesseur = possesseur;
-		inventaire = new Inventaire();
+		inventaire = new NInventaire();
 		termine = false;
 		this.c = c;
 		if (possesseur != null)
@@ -88,7 +88,7 @@ public class Batiment {
 		termine = b;
 	}
 	
-	public Inventaire getInventaire()
+	public NInventaire getInventaire()
 	{
 		return inventaire;
 	}

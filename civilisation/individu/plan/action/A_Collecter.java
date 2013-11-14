@@ -13,6 +13,7 @@ public class A_Collecter extends Action{
 		return nextAction;
 	}
 
+	@Override
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
 		

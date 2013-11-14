@@ -67,6 +67,7 @@ public class NPlanPondere {
 		poids += p;
 	}
 	
+	@Override
 	public String toString(){
 		return "[Plan : " + plan.getNom() + " , Poids : " + poids + "]";
 	}

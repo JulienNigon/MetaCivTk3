@@ -5,15 +5,11 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.JPopupMenu;
 import javax.swing.border.TitledBorder;
 
 import civilisation.Civilisation;
 import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJPanel;
-import civilisation.inspecteur.simulation.objets.ListeObjetsRenderer;
-import civilisation.inspecteur.simulation.objets.MouseListeObjets;
-import civilisation.inspecteur.simulation.objets.PanelObjets;
 
 public class PanelListeCivilisations extends JJPanel{
 

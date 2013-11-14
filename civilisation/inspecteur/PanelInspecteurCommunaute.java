@@ -1,31 +1,12 @@
 package civilisation.inspecteur;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JToolBar;
-import javax.swing.JTree;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.tree.*;
-
-
-
 import civilisation.Communaute;
-import civilisation.individu.Humain;
 import civilisation.world.World;
 
 /** 

@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import civilisation.individu.Humain;
-import civilisation.individu.cognitons.CloudCogniton;
+import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
@@ -23,8 +22,10 @@ import civilisation.annotations.*;
 
 public class Configuration {
 
-	/*ATTENTION : Toute variable dans configuration doit être un objet (Double, Integer, etc)*/
 	
+	/*Attributes*/
+	public static ArrayList<String> attributesNames;
+	public static ArrayList<Integer> attributesStartingValues;
 	
 	/*All starting cognitons*/
 	public static ArrayList<NCogniton> cognitonsDeBase;
@@ -33,11 +34,13 @@ public class Configuration {
 	public static ArrayList<NCogniton> cognitons;
 	
 	/*All cloud cognitons*/
-	public static ArrayList<CloudCogniton> cloudCognitons;
+	public static ArrayList<Culturon> cloudCognitons;
 	
 	/*All plans*/
 	public static ArrayList<NPlan> plans;
-	
+	public static NPlan birthPlan;
+	public static NPlan autoPlan;
+
 	/*Tous les objets*/
 	public static ArrayList<Objet> objets;
 	
@@ -174,7 +177,7 @@ public class Configuration {
 		cognitons.add(nouveauCogniton);
 	}
 	
-	public static void addCloudCogniton(CloudCogniton newCloudCogniton) {
+	public static void addCloudCogniton(Culturon newCloudCogniton) {
 		cloudCognitons.add(newCloudCogniton);
 	}
 	

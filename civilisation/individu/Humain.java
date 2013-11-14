@@ -22,6 +22,7 @@ import java.awt.Color;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import utils.Utils;
 
@@ -30,15 +31,8 @@ import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.amenagement.Amenagement;
 import civilisation.amenagement.Amenagement_Route;
-import civilisation.individu.cognitons.Cogniton;
-import civilisation.individu.plan.GroupPlan;
-import civilisation.individu.plan.Plan;
-import civilisation.inventaire.Inventaire;
-import civilisation.inventaire.ObjetInventaire;
-import civilisation.inventaire.Objet_Arc;
-import civilisation.inventaire.Objet_Arme;
-import civilisation.inventaire.Objet_Armure;
-import civilisation.inventaire.Objet_Lance;
+import civilisation.inventaire.NInventaire;
+import civilisation.inventaire.Objet;
 import civilisation.marks.ExplosionCombat;
 import civilisation.pathfinder.Noeud;
 import civilisation.urbanisme.Batiment;
@@ -64,7 +58,7 @@ public class Humain extends Turtle
 	Communaute communaute;
 	ArrayList<Batiment> batiments;
 	ArrayList<Amenagement> amenagements;
-	Inventaire inventaire;
+	NInventaire inventaire;
 	int vie;
 	int gestation; // Si l'agent porte un enfant : -1 indique non, sinon indique le temps restant avant enfantement
 	int influence;
@@ -74,7 +68,7 @@ public class Humain extends Turtle
 	Humain mere;
 	Humain conjoint;
 	ArrayList<Humain> enfants;
-	public int foi=0;
+	HashMap<String,Integer> attributes;
 
 	Boolean isSelected = false;
 	
@@ -114,30 +108,12 @@ public class Humain extends Turtle
 		this.mere = mere;
 		initialisation(civ, communaute);
 		chemin = new ArrayList<Patch>();
-		heritage();
 		tempsPatch = 2;
 	}
 	
+	@Override
 	public void die()
 	{
-		gererLesBiensALaMort();
-		
-		//en cas de mort, on prend un agent au hasard à 3 case max, et on lui donne le cogniton Croire
-		Humain h = oneOf(HumaininRadius(3));
-		if(h != null)
-		{
-			Esprit e = h.getEsprit();
-			//s'il possède déjà le cogniton, on incrément le seuil
-			if(e.containsCogniton("Meme", "Croire")) 
-			{
-				//((MEM_Croire) e.getCognitonByName("Meme", "Croire")).incrementSeuilFoi();
-			}
-			//sinon on génére le cogniton
-			else 
-			{
-				//e.ajouterCogniton(new MEM_Croire(e));
-			}
-		}
 		
 		System.out.println("------------------------------------------------");
 		System.out.println("Un agent est mort au cours du projet : " + this.getEsprit().getPlanEnCours());
@@ -148,39 +124,12 @@ public class Humain extends Turtle
 		//Utils.afficherTrace();
 		System.out.println("-------------------******-----------------------");
 		
-		this.getEsprit().clearAllCognitons();
+		//this.getEsprit().clearAllCognitons();   /*TODO*/
 		super.die();
 
 	}
 	
-	public void gererLesBiensALaMort(){
-		Humain heritier = null; 
-		if (!enfants.isEmpty()) heritier = enfants.get(0);
-		
-		while(batiments.isEmpty() == false){
-			communaute.retirerBatiment(batiments.get(0));
-			if (heritier != null){
-				int taille = batiments.get(0).getInventaire().getAll().size();
-				ArrayList<ObjetInventaire> liste = batiments.get(0).getInventaire().getAll();
-				for (int i = 0; i < taille ; i++){
-					heritier.getInventaire().add(liste.get(0));
-					i--; taille--;
-				}
-			}
-			batiments.get(0).detruire(); // Actuellement le batiment est detruit, et les biens transferes
-			
-		}
-		while(amenagements.isEmpty() == false){
-			amenagements.get(0).getPosition().getMark(amenagements.get(0).getNom());
-			amenagements.remove(0);
-		}
-	}
-	
-	public void heritage(){
-		setInfluence((int) ((pere.getInfluence() + mere.getInfluence()) / 2.)) ;
-	}
-	
-	
+
 	/**
 	 * Initialise l'agent de maniÔøΩre stantard
 	 */
@@ -192,7 +141,7 @@ public class Humain extends Turtle
 		timer = -1;
 		gestation = -1;
 		influence = 2;
-		inventaire = new Inventaire(this);
+		inventaire = new NInventaire();
 		esprit = new Esprit(this);
 		
 		this.communaute = communaute;
@@ -208,13 +157,13 @@ public class Humain extends Turtle
 		{
 			femme = true;
 		}
-		//inventaire.add(new Objet_Lance());
-
-		/*for (int i = 0; i < this.getEsprit().projets.size(); i++)
-		{
-			System.out.println(this.getEsprit().projets.get(i).getNom() + " : " +this.getEsprit().projets.get(i).getPoids());
+		System.out.println("avant hashmap " + Configuration.attributesNames.size());
+		attributes = new HashMap<String,Integer>();
+		for (int i = 0; i < Configuration.attributesNames.size(); i++){
+			attributes.put(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
 		}
-		System.out.println("Poids total :" + this.getEsprit().poidsTotal);*/
+		System.out.println("après hashmap");
+
 
 	}
 
@@ -270,22 +219,9 @@ public class Humain extends Turtle
 		{
 			naissance();
 		}
-		
-	
-		
+				
 		// Positionne le marqueur de sa civilisation
 		this.emit("civ"+civ.getIndexCiv(), 0.01);
-		
-		//ESSAYE DE DISCUTER
-	//	discuter(oneOfHumanHere());
-		
-		//FOI
-	//	foi--;
-	//	if(foi < 0) foi = 0;
-		
-	//	MEM_Croire croire = (MEM_Croire) esprit.getCognitonByName("Meme", "Croire");
-		//si le mem existe, on met à jour le poids du PLAN_Prier
-	//	if(croire != null) croire.setPoidsCroire(getPoidsPrier(croire.getSeuilFoi()));
 	}
 	
 
@@ -316,28 +252,13 @@ public class Humain extends Turtle
 
 
 
+	@Override
 	public void setup()
 	{
 		super.setup();
 		setColor(civ.getCouleur());
 		playRole("Humain");
 	} 
-
-	
-	
-	
-	
-	/**
-	 * L'agent mange un aliment de son inventaire
-	 */
-	public void manger()
-	{
-		if (inventaire.getFirstAliment() != null)
-		{
-			vie += inventaire.getFirstAliment().getValeurNutritive();
-			inventaire.remove(inventaire.getFirstAliment().toString(), 0);
-		}
-	}
 
 	/**
 	 * L'agent se d≈Ωplace sans but particulier 
@@ -346,24 +267,6 @@ public class Humain extends Turtle
 	{
 		move(1);
 	}
-	
-	/**
-	 * L'agent retourne vers sa communaut≈Ω. Une fois arriv≈Ω, il d≈Ωpose ≈Ωventuellement ce qu'il a r≈Ωcolt≈Ω dans la nature
-	 */
-	public void rentrerDeposerRecolte()
-	{
-		if (isHere(communaute))
-		{
-			inventaire.deposerRecolte(batiments.get(0)); //Dans un premier temps, on va supposer qu'un humain n'a qu'une maison√â
-			/*L'agent est rentr≈Ω : son projet est termin≈Ω*/
-			esprit.finProjet();
-		}
-		else
-		{
-			rentrer();
-		}
-	}
-
 
 /**
  * L'agent rentre chez lui
@@ -411,7 +314,7 @@ public class Humain extends Turtle
 				if(this.smell("passage") > Configuration.passagesPourCreerRoute && !this.isMarkPresent("Route"))
 				{
 					Amenagement_Route troncon = new Amenagement_Route(this.position);
-					this.addAmenagement(troncon);
+					//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
 					this.dropMark("Route", troncon);
 				}
 		}
@@ -435,44 +338,6 @@ public class Humain extends Turtle
 	
 	/*------------------------------------------------------------------------------*/
 	
-	/**
-	 * Ajoute un amenagement ÀÜ l'agent
-	 * @param l'amenagement ÀÜ ajouter
-	 */
-	public void addAmenagement(Amenagement a)
-	{
-		amenagements.add(a);
-		if( a.cognitonsLies() != null)
-		{
-			for (int i = 0; i < a.cognitonsLies().length; i++)
-			{
-				this.getEsprit().addCognitonByName(a.cognitonsLies()[i]);
-			}
-		}
-	}
-	
-	/**
-	 * A TESTER!!
-	 * Retire un amenagement ÀÜ l'agent
-	 * @param l'amenagement ÀÜ retirer
-	 */
-	public void removeAmenagement(Amenagement a)   
-	{
-		for (int i = 0; i < amenagements.size(); i++)
-		{
-			if (amenagements.get(i).equals(a))
-			{
-				amenagements.remove(i);
-			}
-		}
-		if( a.cognitonsLies() != null)
-		{
-			for (int j = 0; j < a.cognitonsLies().length; j++)
-			{
-				this.getEsprit().removeCognitonByFullname(a.cognitonsLies()[j]);
-			}
-		}
-	}
 	
 	/**
 	 * Fait attendre un enfant ÀÜ l'agent
@@ -497,6 +362,7 @@ public class Humain extends Turtle
 		fd(i);
 	}
 	
+	@Override
 	public void fd(int i)
 	{
 			Color couleur = this.getPatchColor();
@@ -549,22 +415,6 @@ public class Humain extends Turtle
 				this.tempsPatch = 2;
 			}
 			
-	}
-	
-	/**
-	 * 
-	 */
-	public boolean Possede(String objet)
-	{
-		ArrayList<ObjetInventaire> liste = this.inventaire.getAll();
-		for(int i = 0; i<liste.size();i++)
-		{
-			if(liste.get(i).is(objet))
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	/**
@@ -898,6 +748,7 @@ public class Humain extends Turtle
 	 * @param inRadius the highest distance from the agent which should be considered
 	 * @return the patch which has the highest value for <code>patchVariable</code>
 	 */
+	@Override
 	public Patch getPatchWithMaxOf(String patchVariable,int inRadius){
     	double max = -Double.MAX_VALUE;
     	ArrayList<Patch> p = new ArrayList<Patch>();
@@ -967,54 +818,16 @@ public class Humain extends Turtle
 		return i < liste.size();
 	}
 	
-	
-	public void Attaquer(Humain cible,Objet_Arme arme)
-	{
-		int degats = 0;
-		if(arme == null)
-		{
-			 degats = 5 - cible.getDefense();
-		}
-		else
-		{
-			 degats = arme.getPuissance() - cible.getDefense();
-		}
-		cible.setVie(cible.getVie() - degats);
-
-		cible.dropMark("ExplosionCombat", new ExplosionCombat());
-		
-		if (cible.getVie() <= 0)
-		{
-			cible.die();
-		}
-	}
-	
-	public int getDefense()
-	{
-		int defense = 0;
-		ArrayList<ObjetInventaire> allObjets = inventaire.getAll();
-		for(int i = 0;i < allObjets.size();i++)
-		{
-			if(allObjets.get(i).is("armure"))
-			{
-				Objet_Armure armure = (Objet_Armure) allObjets.get(i);
-				defense += armure.getDefense();
-			}
-		}
-		return defense;
-	}
-
-	
 	/**
 	 * 
 	 * @param cible
 	 * @return true si l'agent peut se deplacer sur le Patch cible
 	 */
 	
-	public boolean PasObstacle(Patch cible)
+	/*public boolean PasObstacle(Patch cible)
 	{
 		return !inclus(cible.color,this.civ.getInaccesibles()) ;
-	}
+	}*/
 	
 	
 	private double distanceBetween(Patch a, Patch b)
@@ -1328,19 +1141,19 @@ public class Humain extends Turtle
 		Patch test3 = this.getPatchAt(current.x - this.xcor()- 1, current.y - this.ycor());
 		Patch test4 = this.getPatchAt(current.x - this.xcor() ,current.y - this.ycor() - 1);
 		boolean test = true;
-		if(visites[test1.x][test1.y] == 0 && this.inclus(test1.color, this.civ.getInaccesibles()))
+		if(visites[test1.x][test1.y] == 0 /*&& this.inclus(test1.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
-		if(visites[test2.x][test2.y] == 0 && this.inclus(test2.color, this.civ.getInaccesibles()))
+		if(visites[test2.x][test2.y] == 0 /*&& this.inclus(test2.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
-		if(visites[test3.x][test3.y] == 0 && this.inclus(test3.color, this.civ.getInaccesibles()))
+		if(visites[test3.x][test3.y] == 0 /*&& this.inclus(test3.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
-		if(visites[test4.x][test4.y] == 0 && this.inclus(test4.color, this.civ.getInaccesibles()))
+		if(visites[test4.x][test4.y] == 0 /*&& this.inclus(test4.color, this.civ.getInaccesibles())*/)
 		{
 			test = false;
 		}
@@ -1446,39 +1259,6 @@ public class Humain extends Turtle
 		return tortues.get((int)Math.random()*(tortues.size()-1));
 	}	
 	
-	public boolean emettreInfluence(GroupPlan plan)
-	{
-		Turtle humains[];
-		int total = 0;
-		for(int x = -1; x <= 1; x++){
-			for (int y = -1; y <= 1; y++){
-				humains = this.turtlesAt(x, y);
-				total += humains.length;
-			}
-		}
-		if (total >= Configuration.tailleMinimaleGroupe)
-		{
-			for(int x = -1; x <= 1; x++){
-				for (int y = -1; y <= 1; y++){
-					humains = this.turtlesAt(x, y);
-					for(int a = 0; a < humains.length; a++){
-						if (humains[a].isPlayingRole("Humain")){
-							((Humain) humains[a]).recevoirInfluence(plan, this);
-						}
-					}
-				}
-			}
-			return true;
-		}
-		return false;
-
-	}
-	
-	public void recevoirInfluence(GroupPlan plan, Humain leader)
-	{
-		esprit.recevoirInfluence(plan, leader);
-	}
-	
 	/**
 	 * Deplace les biens de l'agent dans une nouvelle communaute.
 	 * Le transfert est simplifie au maximum, car simuler le detail de cette migration dans la simulation ne nous semble pas pertinent.
@@ -1522,7 +1302,7 @@ public class Humain extends Turtle
 		return femme;
 	}
 
-	public Inventaire getInventaire(){
+	public NInventaire getInventaire(){
 		return inventaire;
 	}
 
@@ -1608,96 +1388,6 @@ public class Humain extends Turtle
 	public Humain getConjoint() {
 		return conjoint;
 	}
-
-	public boolean avoirUnePioche()
-	{
-		ArrayList<ObjetInventaire> allObjets = this.getInventaire().getAll();
-		for(int i=0; i < allObjets.size(); i++)
-		{
-			if(allObjets.get(i).is("pioche")) return true;
-		}
-		
-		return false;				
-	}
-	
-	/**
-	 * L'agent tente de transmettre un même ou une skill au hasard
-	 * @param interlocuteur : agent avec qui on parle
-	 */
-	public void discuter(Humain interlocuteur)
-	{
-		if(interlocuteur != null)
-		{
-			int chanceDeDiscuter = 50;
-			 
-			if(estTimide()) chanceDeDiscuter -= poidsActionDiscuter_EtreTimide;
-			else if(estExtraverti()) chanceDeDiscuter += poidsActionDiscuter_EtreExtraverti;
-			 
-			if(interlocuteur.estTimide()) chanceDeDiscuter -= poidsActionDiscuter_EtreTimide;
-			else if(interlocuteur.estExtraverti()) chanceDeDiscuter += poidsActionDiscuter_EtreExtraverti;
-			
-			if(estDeLaMemeCivilisation(interlocuteur)) chanceDeDiscuter += poidsActionDiscuter_EtreDansLaMemeCiv;
-			else chanceDeDiscuter -= poidsActionDiscuter_EtreDansLaMemeCiv;
-			 
-			//DISCUSSION
-			if(Math.random() * 100 < chanceDeDiscuter)
-			{	 
-				Esprit e = this.getEsprit();
-				Cogniton cognitonATransmettre=null;			
-
-				if (Math.random() < 1) // Parle de mêmes
-				{
-					cognitonATransmettre = e.getMemes().get(Utils.rand(0, e.getMemes().size() -1));
-				}
-				else // Parle de skill
-				{
-					cognitonATransmettre = e.getSkills().get(Utils.rand(0, e.getSkills().size() -1));
-				}
-
-				//Utils.debug("[DISCUSSION]Une discussion à eu lieu. Cogniton à Tranmettre: "+ cognitonATransmettre.getNom());
-				if(!interlocuteur.getEsprit().containsCogniton(cognitonATransmettre) && cognitonATransmettre != null)
-				{
-					//Utils.debug(2, "[DISCUSSION]DOESN'T ALREADY EXIST ! "+ cognitonATransmettre.getNom());
-					double chance = Math.random() * 100;
-					if(chance < cognitonATransmettre.getTauxTransfert())
-					{
-						Utils.debug(2, "[DISCUSSION]SUCCESS TRANSMISSION ! "+ cognitonATransmettre.getNom());
-						interlocuteur.getEsprit().addCognitonByName(cognitonATransmettre.getClass().getName());
-					}
-					else Utils.debug(2, "[DISCUSSION]ECHEC de discussion: "+ chance +" / 100 < "+ cognitonATransmettre.getTauxTransfert());
-				}
-				//else Utils.debug("[DISCUSSION]ECHEC de discussion: cognitonATransmettre déjà connu");
-			}
-			//else Utils.debug("[DISCUSSION]ECHEC de discussion: mauvais tirage");
-		}
-		//else Utils.debug("[DISCUSSION]ECHEC de discussion: pas d'interlocuteur");
-	 }
-	 
-	 public boolean estTimide()
-	 {
-		 ArrayList<Cogniton> listeTraits = this.getEsprit().getTraits();
-		 int i = 0;
-		 while(i < listeTraits.size())
-		 {
-			 if(listeTraits.get(i).getNom() == "Timide") return true;
-			 i++;
-		 }
-		
-		 return false;
-	 }
-	 
-	 public boolean estExtraverti()
-	 {
-		 ArrayList<Cogniton> listeTraits = this.getEsprit().getTraits();
-		 int i = 0;
-		 while(i < listeTraits.size())
-		 {
-			 if(listeTraits.get(i).getNom() == "Extraverti") return true;
-			 i++;
-		 }
-		
-		 return false;
-	 }
 	 
 	 public boolean estDeLaMemeCivilisation(Humain h)
 	 {
@@ -1708,44 +1398,16 @@ public class Humain extends Turtle
 		 return influence;
 	 }
 
-	 /**
-	  * Modifie l'influence de l'agent et adapte ses cognitons en fonction
-	  * @param influence : la nouvelle valeur d'influence
-	  */
-	 public void setInfluence(int influence) {
-		 int oldInfluence = this.influence;
-		 this.influence = influence;	 
-		 //On verifie pour chaque meme d'influence si on doit l'ajouter ou le retirer
-		 int tailleTab = Configuration.memesInfluence.length;
-		 for (int i = 0; i < tailleTab; i++) {
-			 if (oldInfluence >= Configuration.seuilApparitionMemeInfluence[i] && influence < Configuration.seuilApparitionMemeInfluence[i]){
-				 esprit.removeCognitonByFullname(Configuration.memesInfluence[i]);
-			 }
-			 else if (oldInfluence < Configuration.seuilApparitionMemeInfluence[i] && influence >= Configuration.seuilApparitionMemeInfluence[i]){
-				 esprit.addCognitonByName(Configuration.memesInfluence[i]);
-			 }
-		 } 
-	 }
+	public HashMap<String, Integer> getAttr() {
+		return attributes;
+	}
+
+	public void setAttr(HashMap<String, Integer> attributes) {
+		this.attributes = attributes;
+	}
 	 
 	 
-	 public void addInfluence(int influence){
-		 setInfluence(this.influence + influence);
-	 }
 
-
-public int getPoidsPrier(int seuil)
-{
-	 float difference = seuil - foi;
-	 if(foi > 0) Utils.debug(2, "[FOI]"+ (int) Math.round(difference));
-	 return (int) Math.round(difference);
-}
-
-public void prier()
-{
-//	Utils.debug(2, foi + "/"+  ((MEM_Croire) esprit.getCognitonByName("Meme", "Croire")).getSeuilFoi());
-	foi += gainFoiActionPrier;
-//	Utils.debug(2, "apres: "+ foi  + "/"+ ((MEM_Croire) esprit.getCognitonByName("Meme", "Croire")).getSeuilFoi());
-}
 }
 
 

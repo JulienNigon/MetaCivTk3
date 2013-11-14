@@ -4,9 +4,7 @@ import javax.swing.ImageIcon;
 
 import civilisation.individu.Humain;
 
-public class L_Random extends Action{
-
-	double angle;
+public class L_Random extends LAction{
 	
 	@Override
 	public Action effectuer(Humain h) {	
@@ -16,14 +14,17 @@ public class L_Random extends Action{
 		return nextAction;
 	}
 
+	@Override
 	public ImageIcon getIcon(){
 		return new ImageIcon(this.getClass().getResource("../../../inspecteur/icones/processor.png"));
 	}
 	
+	@Override
 	public int getNumberActionSlot(){
 		return -1;
 	}
 	
+	@Override
 	public String getInfo() {
 		return super.getInfo() + " Action de contrôle logique qui sélectionne aléatoirement une de ses sous-actions pour l'executer.<html>";
 	}

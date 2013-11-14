@@ -1,38 +1,22 @@
 package civilisation.inspecteur.simulation.dialogues;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Frame;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-
 import civilisation.Configuration;
-import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.action.Action;
 import civilisation.individu.plan.action.OptionsActions;
-import civilisation.inspecteur.simulation.GCogniton;
 import civilisation.inspecteur.simulation.PanelArbreActions;
-import civilisation.inspecteur.simulation.environnement.PanelEnvironnement;
 
 public class DialogueEditerAction extends JDialog implements ActionListener, PropertyChangeListener{
 	
@@ -60,6 +44,17 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 				if (schema.get(i)[0].equals("**Objet**")){
 					for (int j = 0; j < Configuration.objets.size(); j++){
 						box.addItem(Configuration.objets.get(j).getNom());
+					}
+				}
+				else if (schema.get(i)[0].equals("**Integer**")){
+					for (int j = Integer.parseInt(schema.get(i)[2]); j < Integer.parseInt(schema.get(i)[3]); j++){
+						box.addItem(j);
+					}
+					box.setSelectedIndex(Integer.parseInt(schema.get(i)[4]));
+				}
+				else if (schema.get(i)[0].equals("**Attribute**")){
+					for (int j = 0; j < Configuration.attributesNames.size() ; j++){
+						box.addItem(Configuration.attributesNames.get(j));
 					}
 				}
 				else{
@@ -110,12 +105,21 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 		if (isVisible()){
 			if (optionPane.getValue().equals("Valider")){
 				a.clearOptions(); //Suppression des anciennes options
-				for (int i = 0; i < boxs.size(); i++){
+				
+				for (int i = 0; i < boxs.size(); i++){	
 					OptionsActions opt = null;
-					
+
 					if (schema.get(i)[0].equals("**Objet**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre(Configuration.getObjetByName((String)boxs.get(i).getSelectedItem()));
+					}
+					else if (schema.get(i)[0].equals("**Integer**")){
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
+						opt.addParametre((Integer)boxs.get(i).getSelectedItem());
+					}
+					else if (schema.get(i)[0].equals("**Attribute**")){
+						opt = new OptionsActions(schema.get(i)[1]);
+						opt.addParametre(boxs.get(i).getSelectedItem());
 					}
 					else if (schema.get(i)[0] != null){ /*Pas utile*/
 						System.out.println(schema.get(i)[0]);
@@ -124,6 +128,7 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					System.out.println(opt);
 					a.parametrerOption(opt);
 				}
+
 			}		
 	        setVisible(false);
 		}

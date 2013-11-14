@@ -2,38 +2,15 @@ package civilisation.inspecteur;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JToolBar;
-import javax.swing.JTree;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.tree.*;
-
-
 import civilisation.individu.Humain;
-import civilisation.world.World;
-import civilisation.Communaute;
-import edu.turtlekit2.kernel.agents.Turtle;
 
 
 /** 
@@ -69,7 +46,8 @@ public class PanelGenealogie extends JPanel{
 		
 	}
 	
-    public void paintComponent(Graphics g) {
+    @Override
+	public void paintComponent(Graphics g) {
     	
         Graphics2D g2d = (Graphics2D) g;
         if (t != null)
@@ -169,7 +147,7 @@ public class PanelGenealogie extends JPanel{
         g2d.setPaint(new Color(187,210,225));
         g2d.fill(new Rectangle2D.Double(x+2, y+2, 16, 16));
 
-		g2d.drawImage(ico, (int)x+2, (int)y+2, null);
+		g2d.drawImage(ico, x+2, y+2, null);
 
     }
     

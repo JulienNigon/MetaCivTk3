@@ -2,8 +2,6 @@ package civilisation.amenagement;
 
 import java.awt.Graphics;
 
-import civilisation.Communaute;
-import civilisation.individu.Humain;
 import edu.turtlekit2.kernel.environment.Patch;
 
 public class AmenagementPublic extends Amenagement {
@@ -17,11 +15,13 @@ public class AmenagementPublic extends Amenagement {
 		super(p,null);
 	}
 	
+	@Override
 	public void dessiner(Graphics g,int x,int y,int cellS)
 	{
 		
 	}
 	
+	@Override
 	public String getNom()
 	{
 		return "---Amenagement Public---";

@@ -13,9 +13,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.plan.NPlan;
-import civilisation.individu.plan.Plan;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
@@ -34,6 +32,7 @@ public class GPlan extends GItemCognitif{
 	}
 
 	
+	@Override
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);
@@ -47,8 +46,14 @@ public class GPlan extends GItemCognitif{
     	g2d.setColor(Color.GRAY);
     	g2d.fill(new Rectangle2D.Double(margeEcriture,2,fm.stringWidth(plan.getNom()),2*fm.getHeight()-4));
     	
-    	g2d.setColor(Color.BLACK);
-    	g2d.drawString(plan.getNom(), (float)margeEcriture, (float) (fm.getHeight()*1.3));
+    	if (plan.getIsAutoPlan()) {
+        	g2d.setColor(Color.BLUE);
+    	} else if (plan.getIsBirthPlan()) {
+        	g2d.setColor(Color.RED);
+    	} else {
+        	g2d.setColor(Color.BLACK);
+    	}
+    	g2d.drawString(plan.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
 
     	//System.out.println("dessin du composant");
     	//validate();

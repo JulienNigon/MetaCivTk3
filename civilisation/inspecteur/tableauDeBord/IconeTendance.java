@@ -35,6 +35,7 @@ public class IconeTendance extends JJComponent{
 		this.setBounds((int)xx,(int)yy,(int)w,(int)h);
 	}
 
+	@Override
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);

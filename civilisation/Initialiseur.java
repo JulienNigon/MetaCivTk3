@@ -12,7 +12,6 @@ import civilisation.individu.cognitons.*;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inventaire.Objet;
-import civilisation.inventaire.ObjetInventaire;
 import civilisation.world.Terrain;
 
 
@@ -20,7 +19,7 @@ import civilisation.world.Terrain;
 public class Initialiseur {
 
 	HashMap<String, NCogniton> listeCognitons;
-	HashMap<String, CloudCogniton> listCloudCognitons;
+	HashMap<String, Culturon> listCloudCognitons;
 	HashMap<String, NPlan> listePlans;
 	HashMap<Color, Terrain> couleurs_terrains; //Gérer le cas ou la même couleur est utilisée pour deux terrains
 	final int passabiliteParDefaut = 30;
@@ -28,15 +27,34 @@ public class Initialiseur {
 	public Initialiseur(){
 		
 		listeCognitons = new HashMap<String, NCogniton>();
-		listCloudCognitons = new HashMap<String, CloudCogniton>();
+		listCloudCognitons = new HashMap<String, Culturon>();
 		listePlans = new HashMap<String, NPlan>();
 		couleurs_terrains = new HashMap<Color, Terrain>();
 		ArrayList<NCogniton> cognitonsDeBase = new ArrayList<NCogniton>();
 		ArrayList<NCogniton> tousLesCognitons = new ArrayList<NCogniton>();
-		ArrayList<CloudCogniton> allCloudCogniton = new ArrayList<CloudCogniton>();
+		ArrayList<Culturon> allCloudCogniton = new ArrayList<Culturon>();
 		ArrayList<NPlan> tousLesPlans = new ArrayList<NPlan>();
 
 		String nom;
+		
+		System.out.println("Attributes loading...");
+		File[] filesAttributes = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/attributes").listFiles();
+		ArrayList<String> attributesNames = new ArrayList<String>();
+		ArrayList<Integer> attributesStartingValues = new ArrayList<Integer>();
+		for (File file : filesAttributes) {
+			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
+				System.out.println("Load attribute : " + file.getName());
+			    if (file.isFile()) {
+			    	String name = getChamp("Name" , file)[0];
+			    	attributesNames.add(name);
+			    	Integer startingValue = Integer.parseInt(getChamp("Starting value" , file)[0]);
+			    	attributesStartingValues.add(startingValue);
+			    }
+			}
+		}	
+		Configuration.attributesNames = attributesNames;
+		Configuration.attributesStartingValues = attributesStartingValues;
+		
 		
 		System.out.println("Chargement des pheromones");
 		File[] filesPhero = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/itemPheromones").listFiles();
@@ -59,7 +77,7 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Creation du terrain : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Terrain t = new Terrain(nom);
 		    	terrains.add(t);
 		    	
@@ -67,7 +85,7 @@ public class Initialiseur {
 		    	t.setCouleur(Color.getHSBColor((float)Double.parseDouble(HSB[0]), (float)Double.parseDouble(HSB[1]), (float)Double.parseDouble(HSB[2])));
 		    	
 	       		System.out.println("enregistrer" + t.getNom());
-		       	ArrayList<String[]> pheromonesLiees = this.getListeChamp("Pheromone", file);
+		       	ArrayList<String[]> pheromonesLiees = Initialiseur.getListeChamp("Pheromone", file);
 		       	for (int i = 0; i < pheromonesLiees.size(); i++){
 		       		System.out.println("enregistrer");
 		       		t.addPheromoneLiee(Configuration.getPheromoneByName(pheromonesLiees.get(i)[0]), Double.parseDouble(pheromonesLiees.get(i)[1]), Double.parseDouble(pheromonesLiees.get(i)[2]));
@@ -115,7 +133,7 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listeCognitons.put(nom , new NCogniton());
 		    	NCogniton cogni = listeCognitons.get(nom);
 		    	cogni.setNom(nom);
@@ -141,9 +159,9 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
-		    	listCloudCognitons.put(nom , new CloudCogniton());
-		    	CloudCogniton cogni = listCloudCognitons.get(nom);
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
+		    	listCloudCognitons.put(nom , new Culturon());
+		    	Culturon cogni = listCloudCognitons.get(nom);
 		    	cogni.setNom(nom);
 		    	cogni.setDescription(getChamp("Description" , file)[0]);
 		    	cogni.setType(TypeDeCogniton.toType( getChamp("Type" , file)[0]));
@@ -169,7 +187,7 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Objet o = new Objet();
 		    	o.setNom(nom);
 		    	o.setDescription(getChamp("Description" , file)[0]);
@@ -187,18 +205,29 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Creation du plan : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listePlans.put(nom , new NPlan());
 		    	listePlans.get(nom).setNom(nom);
-		       	ArrayList<String[]> actions = this.getListeChamp("Action", file);
-		       	this.setupPlans(listePlans.get(nom), file, 0, 0, null);
+		       	ArrayList<String[]> actions = Initialiseur.getListeChamp("Action", file);
+		       	setupPlans(listePlans.get(nom), file, 0, 0, null);
+		       	listePlans.get(nom).setIsBirthPlan(Boolean.parseBoolean(Initialiseur.getChamp("Birth", file)[0]));
+		       	listePlans.get(nom).setIsAutoPlan(Boolean.parseBoolean(Initialiseur.getChamp("Auto", file)[0]));
+
 		       /*	for (int i = 0; i < actions.size(); i++){
 		       		listePlans.get(nom).addAction(actions.get(i));
 		       		if (i > 0){
 		       			listePlans.get(nom).getActions().get(i-1).setNextAction(listePlans.get(nom).getActions().get(i));
 		       		}
 		       	}*/
-		    	tousLesPlans.add(listePlans.get(nom));
+		    	
+		    	if (listePlans.get(nom).getIsAutoPlan()) {
+		    		Configuration.autoPlan = listePlans.get(nom);
+		    	}
+		    	else if (listePlans.get(nom).getIsBirthPlan()) {
+		    		Configuration.birthPlan = listePlans.get(nom);
+		    	}
+			    tousLesPlans.add(listePlans.get(nom));
+		    	
 
 		       	System.out.println(" PLAN : " + listePlans.get(nom).getActions());
 
@@ -213,10 +242,10 @@ public class Initialiseur {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 			System.out.println("Creation des liens de : " + file.getName());
 		    if (file.isFile()) {
-		    	nom = this.getChamp("Nom" , file)[0];
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	
 		    	/*Les liens inter-cognitons (liens d'apprentissage)*/
-		       	ArrayList<String[]> liste = this.getListeChamp("Chaine", file);
+		       	ArrayList<String[]> liste = Initialiseur.getListeChamp("Chaine", file);
 		       	ArrayList<LienCogniton> liens = new ArrayList<LienCogniton>();		      
 		       	for (int i = 0 ; i < liste.size(); i++){
 		       		liens.add(new LienCogniton(listeCognitons.get(liste.get(i)[0]), Integer.parseInt(liste.get(i)[1])));
@@ -232,7 +261,7 @@ public class Initialiseur {
 	       		listeCognitons.get(nom).setLiensPlans(liensP);
 		       	
 		    	/*Les liens cognitons-plans debloques (liens conditionnels)*/
-		       	liste = this.getListeChamp("Permet", file);
+		       	liste = Initialiseur.getListeChamp("Permet", file);
 		       	ArrayList<NPlan> plans = new ArrayList<NPlan>();		      
 		       	for (int i = 0 ; i < liste.size(); i++){
 			       	//System.out.println("Le nom qu'on trouve : " + liste.get(i)[0]);
@@ -267,7 +296,7 @@ public class Initialiseur {
 		    if (file.isFile()) {
 		    	Civilisation civ = new Civilisation();
 		    	civ.setNom(getChamp("Nom" , file)[0]);
-		    	civ.setAgentsInitiaux(Integer.parseInt(this.getChamp("Agents" , file)[0]));
+		    	civ.setAgentsInitiaux(Integer.parseInt(Initialiseur.getChamp("Agents" , file)[0]));
 		    	String[] HSB = getChamp("Couleur" , file);
 		    	civ.setCouleur(Color.getHSBColor((float)Double.parseDouble(HSB[0]), (float)Double.parseDouble(HSB[1]), (float)Double.parseDouble(HSB[2])));
 		    	Configuration.civilisations.add(civ);
@@ -285,7 +314,7 @@ public class Initialiseur {
 	    		File carte = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+s);
 	    		if (carte.isFile()){
 	    			System.out.println("Chargement de la carte : "+s);
-	    			Configuration.environnementACharger = s;
+	    			Configuration.environnementACharger = s.split("\\.")[0];
 	    		}
 	       	}
 		}

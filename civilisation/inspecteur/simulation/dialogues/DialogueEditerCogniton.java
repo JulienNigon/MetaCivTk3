@@ -1,27 +1,18 @@
 package civilisation.inspecteur.simulation.dialogues;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SpringLayout;
-
 import civilisation.Configuration;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
@@ -53,7 +44,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		nom.setText(gCogniton.getCogniton().getNom());
 		
 		/*Starting cogniton?*/
-		recuAuDemarrage = new JCheckBox();
+		recuAuDemarrage = new JCheckBox("Starting cogniton");
 		recuAuDemarrage.setToolTipText("Donner ce cogniton aux nouveaux agents?");
 		if (gCogniton.getCogniton().isRecuAuDemarrage()){
 			recuAuDemarrage.setSelected(true);
@@ -119,7 +110,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 					gCogniton.getCogniton().setRecuAuDemarrage(recuAuDemarrage.isSelected());
 				}
 				for (int i = 0; i < NCogniton.nHues; i++){
-					gCogniton.getCogniton().getHues()[i] = (Integer) hues[i].getValue();
+					gCogniton.getCogniton().getHues()[i] = hues[i].getValue();
 				}
 			}		
 	        setVisible(false);

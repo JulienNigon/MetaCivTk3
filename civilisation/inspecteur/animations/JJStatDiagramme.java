@@ -1,23 +1,10 @@
 package civilisation.inspecteur.animations;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 public class JJStatDiagramme extends JJComponent{
 
@@ -62,6 +49,7 @@ public class JJStatDiagramme extends JJComponent{
 		valeurTotalePosition = valeurTotale;
 	}
 
+	@Override
 	public void paintComponent(Graphics g) 
     {    
 		super.paintComponent(g);
@@ -76,7 +64,7 @@ public class JJStatDiagramme extends JJComponent{
 
     	for (int i = 0; i < listeCouleurs.size(); i++){
         	g2d.setColor(listeCouleurs.get(i));
-        	g2d.fill(new Rectangle2D.Double((int)decalageX,0,(int) ((valeursPositions.get(i)/valeurTotalePosition)*getW()),(int) getH()));
+        	g2d.fill(new Rectangle2D.Double(decalageX,0,(int) ((valeursPositions.get(i)/valeurTotalePosition)*getW()),(int) getH()));
         	decalageX += (valeursPositions.get(i)/valeurTotalePosition)*getW();
     	}
     	g2d.setColor(Color.BLACK);

@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import civilisation.Configuration;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.plan.action.Action;
 
 public class NPlan {
 
 	String nom;
 	ArrayList<Action> actions;
+	Boolean isBirthPlan = false;
+	Boolean isAutoPlan = false;
 
 	public NPlan(){
 		actions = new ArrayList<Action>();
@@ -37,8 +38,6 @@ public class NPlan {
 			h.getEsprit().setActionEnCours(action.effectuer(h));
 		}
 	}
-
-	
 	
 	public ArrayList<Action> getActions() {
 		return actions;
@@ -102,6 +101,13 @@ public class NPlan {
 		}		
 	}
 	
+	public void addFirstAction(Action action) {
+		actions.add(0,action);
+		if (actions.size() > 1){
+			action.setNextAction(actions.get(1));
+		}
+	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -110,16 +116,36 @@ public class NPlan {
 		this.nom = nom;
 	}
 	
+	@Override
 	public String toString(){
 		return nom;
 	}
 	
+	public Boolean getIsBirthPlan() {
+		return isBirthPlan;
+	}
+
+	public void setIsBirthPlan(Boolean isBirthPlan) {
+		this.isBirthPlan = isBirthPlan;
+	}
+
+	public Boolean getIsAutoPlan() {
+		return isAutoPlan;
+	}
+
+	public void setIsAutoPlan(Boolean isAutoPlan) {
+		this.isAutoPlan = isAutoPlan;
+	}
+
 	public void enregistrer(File cible) {
 		PrintWriter out;
 		System.out.println("Sauvegarde du plan : " + nom);
 		try {
 			out = new PrintWriter(new FileWriter(cible.getPath()+"/"+getNom()+Configuration.getExtension()));
 			out.println("Nom : " + getNom());
+			out.println("Birth : " + isBirthPlan);
+			out.println("Auto : " + isAutoPlan);
+
 			if (actions.isEmpty() !=  true){
 				ecrireAction(out,0,actions.get(0));
 			}
@@ -156,6 +182,26 @@ public class NPlan {
 			System.out.println(actions.get(i).toString());
 		}
 	}
+
+	public void removeAction(Action action) {
+		for (int i = 0 ; i < actions.size(); i++){
+			if (actions.get(i).equals(action)){
+				actions.remove(i);
+				if (i>0 && i<actions.size()){
+					actions.get(i-1).setNextAction(actions.get(i));
+				} else if (i>0) {
+					actions.get(i-1).setNextAction(null);
+				}
+				break;
+			}
+			if (actions.get(i).getListeActions() != null){
+				actions.get(i).removeAction(action);
+			}
+		}		
+	}
+
+	
+
 
 
 }

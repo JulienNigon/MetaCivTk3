@@ -1,7 +1,5 @@
 package civilisation.inspecteur.simulation.objets;
 
-import java.awt.BorderLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -9,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import civilisation.inspecteur.animations.JJPanel;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
 import civilisation.inventaire.Objet;
 
