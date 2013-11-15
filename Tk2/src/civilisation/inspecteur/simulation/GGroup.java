@@ -22,7 +22,7 @@ public class GGroup extends GItemCognitif{
 	@Override
 	public void paintComponent(Graphics g) 
 	{    
-	    Graphics2D g2d = genererContexte(g);
+	/*    Graphics2D g2d = genererContexte(g);
 
 
 		FontMetrics fm = g2d.getFontMetrics();
@@ -37,7 +37,7 @@ public class GGroup extends GItemCognitif{
 		
 		g2d.setColor(Color.BLACK);
 		g2d.drawString(cogniton.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
-
+*/
 	}
 	
 	
