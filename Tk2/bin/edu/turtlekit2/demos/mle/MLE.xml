@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<simulation name="Multi-Level Emergence">
+	<environment height="150" width="150" torusMode="true"/>
+	<pheromone diffusion="1" Evaporation="0.1" name="PRE0"/>
+	<pheromone diffusion="1" evaporation="0.01" name="PRE1"/>
+	<pheromone diffusion="1" evaporation="0.001" name="PRE2"/>
+	<pheromone diffusion="1" evaporation="0.01" name="ATT1"/>
+	<pheromone diffusion="1" evaporation="0.001" name="ATT2"/>
+	<pheromone diffusion="1" evaporation="0.04" name="REP1"/>
+	<pheromone diffusion="1" evaporation="0.004" name="REP2"/>
+	<pheromone diffusion="0.8" evaporation="0.05" name="MYREP1"/>
+	<turtle class="edu.turtlekit2.demos.mle.MleAgent" number="1000"/>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.demos.mle.Phero3DViewer" pheromone="pheromone"/>
+</simulation>

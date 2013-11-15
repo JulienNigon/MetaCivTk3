@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+	<!-- The termites simulation. -->
+<simulation name="Termites">
+	<environment width="150" height="110" torusMode="true"/>
+	<turtle class="edu.turtlekit2.demos.termites.Termite" number="400"/>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.demos.termites.PatchInitializer" density="0.4" />
+</simulation>

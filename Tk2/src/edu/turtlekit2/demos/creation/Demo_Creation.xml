@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+	<!-- A simple creation simulation -->
+<simulation name="Creation Demo">
+	<environment width="100" height="100" />
+	<turtle class="edu.turtlekit2.demos.creation.Creator" number="2"/>
+	<observer class="edu.turtlekit2.demos.creation.SpecialViewer"/>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.tools.chart.LineCharter" role="walker" />
+</simulation>

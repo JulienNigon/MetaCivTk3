@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--  A simple game of life. TurtleKit v1.-->
+<simulation name="Game of Life demo">
+	<environment width="100" height="100" torusMode="true"/>
+	<pheromone name="lifeValue" evaporation="0" diffusion = "0"/>
+	<pheromone name="lifeValue2" evaporation="0" diffusion = "0"/>
+	<observer class="edu.turtlekit2.demos.gameoflife.LifeViewer"/>
+	<observer class="edu.turtlekit2.demos.gameoflife.LifeViewer2"/>
+	<observer class="edu.turtlekit2.demos.gameoflife.LifeViewer3"/>
+	<observer class="edu.turtlekit2.demos.gameoflife.GridPlayer" percentage="0.5" doubleGame="true"/>
+</simulation>

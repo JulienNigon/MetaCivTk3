@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- A simple gravity simulation. -->
+<simulation name="Gravity Demo">
+	<environment width="300" height="300" torusMode="true"/>
+	 <turtle class="edu.turtlekit2.demos.gravity.BlackHole" number="4"/>
+	 <turtle class="edu.turtlekit2.demos.gravity.Star" number="700">
+	 	<parameters rayon="15" total="704"/>
+	 </turtle>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.demos.creation.SpecialViewer"/>
+	<observer class="edu.turtlekit2.tools.viewer3D.Viewer3D" noground="true"/>
+</simulation>

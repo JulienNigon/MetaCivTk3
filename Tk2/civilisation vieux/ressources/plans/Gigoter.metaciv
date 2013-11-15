@@ -1,0 +1,5 @@
+Nom : Gigoter
+
+Action : L_Random
+	Action : A_Move,EAST
+	Action : A_Move,WEST

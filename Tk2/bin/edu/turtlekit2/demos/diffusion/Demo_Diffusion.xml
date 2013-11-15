@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		A simple diffusion demo. 2 patchs of pheromones are emitted in the
+		environement, diffuse and evaporate.
+	-->
+<simulation name="Diffusion demo">
+	<environment width="100" height="100" torusMode="true"/>
+	<pheromone name="pheromone" evaporation="0" diffusion="0.33" />
+	<pheromone name="pheromone2" evaporation="0.02" diffusion="0.1" />
+	<observer class="edu.turtlekit2.demos.diffusion.PheroViewer"/>
+	<observer class="edu.turtlekit2.demos.diffusion.PheroViewer2"/>
+	<observer class="edu.turtlekit2.tools.pheromone3D.Phero3DViewer" pheromone="pheromone" />
+	<observer class="edu.turtlekit2.tools.pheromone3D.Phero3DViewer" pheromone="pheromone2" />
+	<observer class="edu.turtlekit2.demos.diffusion.GridInitializer" value="100000000" value2="5E10" />
+</simulation>

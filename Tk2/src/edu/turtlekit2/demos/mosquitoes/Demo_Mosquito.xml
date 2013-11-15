@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- A simple simulation with mosquitoes attracted by lights -->
+<simulation name="Mosquito Demo">
+	<environment width="200" height="200" torusMode="true"/>
+	<turtle class="edu.turtlekit2.demos.mosquitoes.Mosquito" number="1800">
+	    			 <Parameters sunX="45" sunY="130"/>
+	</turtle>
+	<turtle class="edu.turtlekit2.demos.mosquitoes.Mosquito" number="600">
+	    			 <parameters sunX="120" sunY="10"/>
+	</turtle>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+</simulation>

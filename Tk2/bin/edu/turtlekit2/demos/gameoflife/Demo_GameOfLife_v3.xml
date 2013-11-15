@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--  A simple game of life. TurtleKit v2.-->
+<simulation name="Game of Life demo">
+	<environment class="edu.turtlekit2.demos.gameoflife.GolEnvironment" width="200" height="200" torusMode="true"/>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<scheduling>
+		<methodActivator role="world" method="executeGameOfLife"/>
+		<methodActivator role="viewer" method="display"/>
+	</scheduling>
+</simulation>

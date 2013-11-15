@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- A simple prey/predator simulation. -->
+<simulation Name="Prey and Predator Demo">
+	<environment width="100" height="100" torusMode="true"/>
+	<pheromone name="resource" evaporation="0" diffusion = "0"/>
+	<turtle class="edu.turtlekit2.demos.hunt.Predator" number="500">
+	    			 <parameters vision="12"/>
+	</turtle>
+	 <turtle class="edu.turtlekit2.demos.hunt.Prey" number="1000"/>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.tools.chart.LineCharter" role="prey,predator"/>
+</simulation>
