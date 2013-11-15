@@ -1,0 +1,4 @@
+Nom : AutoPlan
+Birth : false
+Auto : true
+Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -1)

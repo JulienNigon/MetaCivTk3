@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Agents need space. TurtleKit v1-->
+<simulation name="Gas Demo">
+	<environment width="150" height="300" torusMode="false" />
+	<turtle class="edu.turtlekit2.demos.gas.Gas" number="6800">
+		<parameters wall="30"/>
+	</turtle>	
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.demos.gas.GasObserver" holesize="4" wall="30"/>
+	<observer class="edu.turtlekit2.tools.chart.LineCharter" variable="turtle-x,turle-y"/>
+</simulation>

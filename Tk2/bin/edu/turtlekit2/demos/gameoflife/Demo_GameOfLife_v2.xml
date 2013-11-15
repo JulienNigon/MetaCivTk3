@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--  A simple game of life. TurtleKit v2.-->
+<simulation name="Game of Life demo">
+	<observer class="edu.turtlekit2.demos.gameoflife.GridColorPlayer"/>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.tools.fillers.GridColorFiller" density="0.5" color="255,0,0"/>
+</simulation>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- A simple epidemic simulation -->
+<simulation name="Epidemic Demo">
+	<environment width="100" height="100" torusMode="true"/>
+	<turtle class="edu.turtlekit2.demos.virus.Virus" Nbturtles="200">
+     	<parameters infection="green"/>
+	 </turtle>
+	 <turtle class="edu.turtlekit2.demos.virus.Virus" Nbturtles="10">
+      	<parameters infection="red"/>
+	 </turtle>
+	 <turtle class="edu.turtlekit2.demos.virus.Virus2" Nbturtles="200">
+     	<parameters infection="green"/>
+	 </turtle>
+	 <turtle class="edu.turtlekit2.demos.virus.Virus2" Nbturtles="10">
+     	<parameters infection="red"/>
+	 </turtle>
+	<observer class="edu.turtlekit2.kernel.agents.Viewer"/>
+	<observer class="edu.turtlekit2.tools.chart.LineCharter" role="infected"/>
+</simulation>

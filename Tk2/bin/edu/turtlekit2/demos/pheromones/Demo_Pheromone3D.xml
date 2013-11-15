@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- A simulation that illustrates the use of pheromones in TurtleKit 2. -->
+<simulation Name="Pheromone 3D Demo">
+	<environment width="200" height="200" torusMode="true"/>
+	<pheromone name="random0" evaporation="0.01" diffusion="0.4" number="2"/>
+	<pheromone name="random1" evaporation="0.01" diffusion="0.4" number="2"/>
+	<turtle class="edu.turtlekit2.demos.pheromones.EmitMovingTurtle" number="300">
+	 	<parameters FlavorToEmit1="random0" Quantity1="300" FlavorToEmit2="random1" 
+	     			 Quantity2="300" Frequency2="6"/>
+	</turtle>
+	<observer class="edu.turtlekit2.tools.viewer2D.Viewer2D"/>
+	<observer class="edu.turtlekit2.tools.pheromone3D.Phero3DViewer" pheromone="random0"/>
+	<observer class="edu.turtlekit2.tools.chart.LineCharter" pheromone="random0,random1"/>
+</simulation>

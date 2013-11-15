@@ -1,0 +1,6 @@
+Nom : Truc
+Description : Les connaissances de base d'un agent
+Type : PERCEPT
+Initial : 0
+Influence : Gigoter,1
+Influence : Chasser,-2
