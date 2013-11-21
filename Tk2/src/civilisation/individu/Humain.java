@@ -487,11 +487,7 @@ public class Humain extends Turtle
 		else return tortues.get((int)Math.random()*(tortues.size()-1));
 	}
 	
-	public Humain oneOf(ArrayList<Humain> humains)
-	{
-		if(humains == null || humains.size() == 0) return null;
-		else return humains.get((int)Math.random()*(humains.size()-1));
-	}
+
 	
 	/**
 	 * @param Turtle[]

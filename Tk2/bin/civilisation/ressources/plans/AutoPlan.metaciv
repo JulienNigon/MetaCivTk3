@@ -1,4 +1,5 @@
 Nom : AutoPlan
 Birth : false
-Auto : true
+Self : true
+Action : A_ChangeAttribute,Changed attribute(Attribute Soif),n(Integer -2)
 Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -1)

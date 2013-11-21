@@ -21,7 +21,7 @@ public class Initialiseur {
 	HashMap<String, NCogniton> listeCognitons;
 	HashMap<String, Culturon> listCloudCognitons;
 	HashMap<String, NPlan> listePlans;
-	HashMap<Color, Terrain> couleurs_terrains; //Grer le cas ou la mme couleur est utilise pour deux terrains
+	HashMap<Color, Terrain> couleurs_terrains; //Gï¿½rer le cas ou la mï¿½me couleur est utilisï¿½e pour deux terrains
 	final int passabiliteParDefaut = 30;
 
 	public Initialiseur(){
@@ -113,7 +113,7 @@ public class Initialiseur {
 		}	
 		
 		if (terrains.size() == 0){
-			/*Si il n'y a aucun terrain disponible, un terrain pas dfaut est cr*/
+			/*Si il n'y a aucun terrain disponible, un terrain pas dï¿½faut est crï¿½ï¿½*/
 			Terrain tDefault = new Terrain("Default");
 			terrains.add(tDefault);
 			tDefault.setCouleur(Color.GREEN);
@@ -211,7 +211,7 @@ public class Initialiseur {
 		       	ArrayList<String[]> actions = Initialiseur.getListeChamp("Action", file);
 		       	setupPlans(listePlans.get(nom), file, 0, 0, null);
 		       	listePlans.get(nom).setIsBirthPlan(Boolean.parseBoolean(Initialiseur.getChamp("Birth", file)[0]));
-		       	listePlans.get(nom).setIsSelfPlan(Boolean.parseBoolean(Initialiseur.getChamp("Auto", file)[0]));
+		       	listePlans.get(nom).setIsSelfPlan(Boolean.parseBoolean(Initialiseur.getChamp("Self", file)[0]));
 
 		       /*	for (int i = 0; i < actions.size(); i++){
 		       		listePlans.get(nom).addAction(actions.get(i));
@@ -276,7 +276,7 @@ public class Initialiseur {
 		}	
 		}
 		
-		/*On transmet les informations ˆ la classe de configuration*/
+		/*On transmet les informations ï¿½ la classe de configuration*/
 		Configuration.cognitonsDeBase = cognitonsDeBase;
 		Configuration.cognitons = tousLesCognitons;
 		Configuration.cloudCognitons = allCloudCogniton;
@@ -304,8 +304,8 @@ public class Initialiseur {
 			}
 		}	
 		
-		/*Lecture des paramtres*/
-		System.out.println("Lecture des paramtres de la simulation");
+		/*Lecture des paramï¿½tres*/
+		System.out.println("Lecture des paramï¿½tres de la simulation");
 		File params = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/parametres"+Configuration.getExtension());
 		if (params.exists()){
 	       	String s = getChamp("Carte", params)[0];
@@ -347,7 +347,7 @@ public class Initialiseur {
        	
 	}
 	
-	/*Retourne la valeur du premier champ pass en paramtre rencontr*/
+	/*Retourne la valeur du premier champ passï¿½ en paramï¿½tre rencontrï¿½*/
 	static public String[] getChamp(String champ ,  File f){
 		
 		 Scanner scanner;

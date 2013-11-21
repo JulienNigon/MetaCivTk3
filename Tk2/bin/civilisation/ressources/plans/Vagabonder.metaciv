@@ -1,6 +1,6 @@
 Nom : Vagabonder
 Birth : false
-Auto : false
+Self : false
 Action : L_Random
 	Action : L_Repeat,n(Integer 3)
 		Action : A_Move,NORTH
