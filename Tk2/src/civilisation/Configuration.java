@@ -13,7 +13,7 @@ import civilisation.world.Terrain;
 import civilisation.annotations.*;
 
 /** 
- * La classe Configuration rassemble toutes les informations que l'on peut souhaiter vouloir changer rapidement pour modifier la simulation
+ * Contain all major data for running the simulation
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
@@ -26,6 +26,7 @@ public class Configuration {
 	/*Attributes*/
 	public static ArrayList<String> attributesNames;
 	public static ArrayList<Integer> attributesStartingValues;
+	public static HashMap<String,ArrayList<Object[]>> attributesTrigerringValues;
 	
 	/*All starting cognitons*/
 	public static ArrayList<NCogniton> cognitonsDeBase;
@@ -234,6 +235,15 @@ public class Configuration {
 		return null;
 	}
 	
+	public static NCogniton getCognitonByName(String s){
+		for (int i = 0 ; i < actions.size(); i++){
+			if (cognitons.get(i).getNom().equals(s)){
+				return(cognitons.get(i));
+			}
+		}
+		return null;
+	}
+	
 	public static Civilisation getCivilisationByName(String s){
 		for (int i = 0 ; i < civilisations.size(); i++){
 			if (civilisations.get(i).getNom().equals(s)){
@@ -241,6 +251,15 @@ public class Configuration {
 			}
 		}
 		return null;
+	}
+	
+	public static int getAttributeIndexByName(String s){
+		for (int i = 0 ; i < attributesNames.size(); i++){
+			if (attributesNames.get(i).equals(s)){
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	public static String getExtension() {

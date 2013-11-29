@@ -22,6 +22,8 @@ import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import civilisation.AddOn;
 import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.Initialiseur;
@@ -102,7 +104,7 @@ public class World extends TurtleEnvironment
 	public void setup()
 	{	
 
-		System.out.println("---World Setup---");
+
 		
 		/*Reglages sur les civilisations*/
 		for (int i = 0; i < Configuration.civilisations.size(); i++){
@@ -151,6 +153,11 @@ public class World extends TurtleEnvironment
 	    	   c.moveTo(u, -v);
 
 	       }
+	       
+	       /*
+    	   AddOn a = new AddOn();
+    	   TurtleGenerator.getInstance().createTurtle(a);
+	        */
 	       
 	       
 		}

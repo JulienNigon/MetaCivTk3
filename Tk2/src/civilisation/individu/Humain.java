@@ -31,6 +31,7 @@ import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.amenagement.Amenagement;
 import civilisation.amenagement.Amenagement_Route;
+import civilisation.individu.cognitons.NCogniton;
 import civilisation.inventaire.NInventaire;
 import civilisation.inventaire.Objet;
 import civilisation.marks.ExplosionCombat;
@@ -157,13 +158,10 @@ public class Humain extends Turtle
 		{
 			femme = true;
 		}
-		System.out.println("avant hashmap " + Configuration.attributesNames.size());
 		attributes = new HashMap<String,Integer>();
 		for (int i = 0; i < Configuration.attributesNames.size(); i++){
 			attributes.put(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
 		}
-		System.out.println("après hashmap");
-
 
 	}
 
@@ -180,15 +178,7 @@ public class Humain extends Turtle
 			return "penser";
 		}
 		catch(Exception e) {
-		/*	System.out.println(World.getInstance().gridVariables.toString());
-			System.out.println("OK : " +  World.getInstance().gridVariables.containsKey("civ"+getCiv().getIndexCiv()) + " " + "civ"+getCiv().getIndexCiv());
-			System.out.println(x + " " + y);
-			System.out.println(World.getInstance().gridVariables.get("civ"+getCiv().getIndexCiv()).gridValues.length);
-		 */
-
 			e.printStackTrace();
-
-			
 		}
 		return "penser";
 	}
@@ -198,27 +188,7 @@ public class Humain extends Turtle
 	 */
 	public void gestion()
 	{
-		// L'agent perd de la vie (= faim)
-		vie--;
-		if (vie <= 0)
-		{
-			System.out.println("L'agent " + this.getName() + " est mort de faim");
-			die();
-		}
-		else 
-		{
-			esprit.penser();	
-		}
-		
-		// Si l'agent est pregnant√â
-		if (gestation > 1)
-		{
-			gestation --;
-		}
-		else if (gestation == 1)
-		{
-			naissance();
-		}
+		esprit.penser();	
 				
 		// Positionne le marqueur de sa civilisation
 		this.emit("civ"+civ.getIndexCiv(), 0.01);
@@ -399,7 +369,7 @@ public class Humain extends Turtle
 			if(this.tempsPatch == TempsAPasser)
 			{
 				Color coul = this.nextPatch().getColor();
-				//On va modifier pour que ça colle avec les nouveaux terrains
+				//TODO : On va modifier pour que ça colle avec les nouveaux terrains
 				if(!Configuration.couleurs_terrains.get(coul).getInfranchissable())
 				{
 					super.fd(1);
@@ -1401,8 +1371,81 @@ public class Humain extends Turtle
 	public void setAttr(HashMap<String, Integer> attributes) {
 		this.attributes = attributes;
 	}
-	 
-	 
+	
+	public void putAttr(String s , Integer d) {
+		ArrayList<Object[]> triggers = Configuration.attributesTrigerringValues.get(s);
+		for (int i = 0 ; i < triggers.size(); i++) {
+			//System.out.println("TRIGGER : " + ((NCogniton)triggers.get(i)[0]).getNom() + " " + triggers.get(i)[1] + " " + triggers.get(i)[2]);
+			Integer v = (Integer) triggers.get(i)[1];
+			//System.out.println(v +" "+ d + " " + attributes.get(s));
+			
+			//new value > old value
+			if (v >= attributes.get(s) && v <= d && d > attributes.get(s)) {
+				Integer cmp = (Integer) triggers.get(i)[2];
+				NCogniton c = (NCogniton) triggers.get(i)[0];
+				//System.out.println("Difference franchie montante: " + c.getNom());
+
+				 switch (cmp) {
+		            case 2: if (d > v) esprit.addCogniton(c);
+		                    break;
+		                    
+		            case 1: if (d >= v) esprit.addCogniton(c);
+		                    break;
+		                    
+		            case 0: if (d == v) esprit.addCogniton(c);
+    						else esprit.removeCogniton(c);
+		            		break;
+		            		
+		            case -1: if (d <= v) ;
+    						else esprit.removeCogniton(c);
+		            		break;
+		            		
+		            case -2: if (d < v);
+    						else esprit.removeCogniton(c);
+		            		break;
+	
+		            default:
+		            		break;
+				 }	
+			}
+			
+			//old value > new value
+			else if (v <= attributes.get(s) && v >= d && d < attributes.get(s)) {
+				Integer cmp = (Integer) triggers.get(i)[2];
+				NCogniton c = (NCogniton) triggers.get(i)[0];
+				//System.out.println("Difference franchie descente: " + c.getNom());
+
+				 switch (cmp) {
+		            case 2: if (d > v);
+		            		else esprit.removeCogniton(c);
+		                    break;
+		                    
+		            case 1: if (d >= v);
+            				else esprit.removeCogniton(c);
+		                    break;
+		                    
+		            case 0: if (d == v) esprit.addCogniton(c);
+    						else esprit.removeCogniton(c);
+		            		break;
+		            		
+		            case -1: if (d <= v) esprit.addCogniton(c);
+		            		break;
+		            		
+		            case -2: if (d < v) esprit.addCogniton(c);
+		            		break;
+	
+		            default:
+		            		break;
+				 }	
+			}
+		
+		
+			
+			
+	}
+		attributes.put(s, d);
+
+	} 
 
 }
 

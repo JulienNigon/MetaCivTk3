@@ -37,6 +37,7 @@ public class Initialiseur {
 
 		String nom;
 		
+		
 		System.out.println("Attributes loading...");
 		File[] filesAttributes = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/attributes").listFiles();
 		ArrayList<String> attributesNames = new ArrayList<String>();
@@ -126,7 +127,7 @@ public class Initialiseur {
 		Configuration.terrains = terrains;
 		Configuration.couleurs_terrains = couleurs_terrains;		
 		
-		
+   		Configuration.attributesTrigerringValues = new HashMap<String , ArrayList<Object[]>>();
 		System.out.println("Chargement des cognitons");
 		File[] files = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/cognitons").listFiles();
 		for (File file : files) {
@@ -148,6 +149,27 @@ public class Initialiseur {
 		    			cogni.getHues()[i] = Integer.parseInt(getChamp("Hue" + i , file)[0]);
 		    		}
 		    	}
+		    	//Load triggering attributes
+		       	ArrayList<String[]> triggers = Initialiseur.getListeChamp("Trigger", file);
+		       	for(int i = 0 ; i < triggers.size(); i++) {
+		       		Object[] trig = new Object[3];
+		       		trig[0] = cogni;
+		       		trig[1] = Integer.parseInt(triggers.get(i)[1]);
+		       		trig[2] = Integer.parseInt(triggers.get(i)[2]);
+		       		System.out.println(trig[0] + " " + trig[1] + " " + trig[2]);
+		       		if(Configuration.attributesTrigerringValues.get(triggers.get(i)[0]) == null) { Configuration.attributesTrigerringValues.put(triggers.get(i)[0] , new ArrayList<Object[]>()); }
+		       		Configuration.attributesTrigerringValues.get(triggers.get(i)[0]).add(trig);
+		       		
+		       		//Now we add trigger to cognitons to keep the model easy to understand
+		       		trig = new Object[3];
+		       		trig[0] = triggers.get(i)[0];
+		       		trig[1] = Integer.parseInt(triggers.get(i)[1]);
+		       		trig[2] = Integer.parseInt(triggers.get(i)[2]);
+		       		cogni.getTriggeringAttributes().add(trig);
+		       		
+	       		
+		       	}
+		    	
 		    	tousLesCognitons.add(cogni);
 		    }
 			}

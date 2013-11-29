@@ -129,7 +129,6 @@ public class Communaute extends Turtle
 		{
 			Humain h = new Humain(civ,this);
 			createTurtle(h);
-			System.out.println("turtle crée : " + h.getCiv().getIndexCiv() + h.getCiv().getNom());
 		}
 		return "neRienFaire";
 	}

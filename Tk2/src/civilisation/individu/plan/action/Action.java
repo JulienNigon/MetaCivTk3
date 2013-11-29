@@ -77,6 +77,11 @@ public abstract class Action {
 
 	public void parametrer(String[] options){
 		
+		for (int i = 0 ; i < options.length; i++) {
+			System.out.println("OPT : " + options[i]);
+			
+		}
+		
 		for (int i = 1; i < options.length; i++){ /*Le premier terme est le nom de l'action, on l'ignore donc*/
 			//System.out.println("Chargement d'une action");
 			OptionsActions option = new OptionsActions(options[i].split("\\(")[0]);
@@ -100,8 +105,14 @@ public abstract class Action {
 					if (param[j].split(" ")[0].equals("Integer")){
 						option.addParametre(Integer.parseInt(param[j].split(" ")[1]));
 					}
+					if (param[j].split(" ")[0].equals("Double")){
+						option.addParametre(Double.parseDouble(param[j].split(" ")[1]));
+					}
 					if (param[j].split(" ")[0].equals("Attribute")){
 						option.addParametre(param[j].split(" ")[1]);
+					}
+					if (param[j].split(" ")[0].equals("Cogniton")){
+						option.addParametre(Configuration.getCognitonByName(param[j].split(" ")[1]));
 					}
 				}
 			}

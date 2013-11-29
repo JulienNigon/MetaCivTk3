@@ -105,6 +105,7 @@ public class DialogueEditerTerrain extends JDialog implements ActionListener, Pr
 				terrain.clearPheromones();		
 				for (int i = 0 ; i < Configuration.itemsPheromones.size() ; i++) {
 					if ((Double)startPh.get(i).getValue() != 0 || (Double)growthPh.get(i).getValue() != 0) {
+						System.out.println("ter" + Configuration.itemsPheromones.get(i).getNom()+" "+ (Double)startPh.get(i).getValue()+" "+ (Double)growthPh.get(i).getValue());
 						terrain.addPheromoneLiee(Configuration.itemsPheromones.get(i), (Double)startPh.get(i).getValue(), (Double)growthPh.get(i).getValue());
 					}
 				}

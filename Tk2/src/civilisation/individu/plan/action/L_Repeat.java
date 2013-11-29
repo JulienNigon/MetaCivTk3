@@ -13,7 +13,6 @@ public class L_Repeat extends LAction{
 	
 	@Override
 	public Action effectuer(Humain h) {
-		System.out.println("INIT");
 		if (h.getEsprit().getActionData(this) == null) {
 			h.getEsprit().setActionData(this, 0);
 		} 
@@ -22,12 +21,9 @@ public class L_Repeat extends LAction{
 			Integer iterations = (Integer) h.getEsprit().getActionData(this);
 			if (iterations < n) {
 				h.getEsprit().setActionData(this, (iterations + 1));
-				System.out.println(iterations);
 				listeActions.get(0).effectuer(h);
 			} else {
-				System.out.println("CLEAN");
 				h.getEsprit().cleanActionData(this);
-				System.out.println(nextAction);
 				return nextAction;
 			}
 		}

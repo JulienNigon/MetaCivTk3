@@ -76,6 +76,8 @@ public class Terrain {
 	
 	public void clearPheromones() {
 		pheromones.clear();
+		pheroInitiales.clear();
+		pheroCroissance.clear();
 	}
 	
 	public void enregistrer(File cible) {

@@ -12,7 +12,7 @@ public class A_ChangeAttribute extends Action{
 
 	@Override
 	public Action effectuer(Humain h) {
-		h.getAttr().put(attributeName, h.getAttr().get(attributeName) + variation );
+		h.putAttr(attributeName, h.getAttr().get(attributeName) + variation );
 		return nextAction;
 	}
 

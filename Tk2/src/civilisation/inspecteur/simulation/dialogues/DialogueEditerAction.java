@@ -46,11 +46,22 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 						box.addItem(Configuration.objets.get(j).getNom());
 					}
 				}
+				if (schema.get(i)[0].equals("**Pheromone**")){
+					for (int j = 0; j < Configuration.itemsPheromones.size(); j++){
+						box.addItem(Configuration.itemsPheromones.get(j).getNom());
+					}
+				}
 				else if (schema.get(i)[0].equals("**Integer**")){
 					for (int j = Integer.parseInt(schema.get(i)[2]); j < Integer.parseInt(schema.get(i)[3]); j++){
 						box.addItem(j);
 					}
 					box.setSelectedIndex(Integer.parseInt(schema.get(i)[4]));
+				}
+				else if (schema.get(i)[0].equals("**Double**")){
+					for (double j = Double.parseDouble(schema.get(i)[2]); j < Double.parseDouble(schema.get(i)[3]); j+=Double.parseDouble(schema.get(i)[4])){
+						box.addItem(j);
+					}
+					box.setSelectedIndex(Integer.parseInt(schema.get(i)[5]));
 				}
 				else if (schema.get(i)[0].equals("**Attribute**")){
 					for (int j = 0; j < Configuration.attributesNames.size() ; j++){
@@ -113,9 +124,17 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre(Configuration.getObjetByName((String)boxs.get(i).getSelectedItem()));
 					}
+					else if (schema.get(i)[0].equals("**Pheromone**")){
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
+						opt.addParametre(Configuration.getPheromoneByName((String)boxs.get(i).getSelectedItem()));
+					}
 					else if (schema.get(i)[0].equals("**Integer**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre((Integer)boxs.get(i).getSelectedItem());
+					}
+					else if (schema.get(i)[0].equals("**Double**")){
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
+						opt.addParametre((Double)boxs.get(i).getSelectedItem());
 					}
 					else if (schema.get(i)[0].equals("**Attribute**")){
 						opt = new OptionsActions(schema.get(i)[1]);

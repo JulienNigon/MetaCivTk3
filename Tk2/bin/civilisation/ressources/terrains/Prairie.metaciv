@@ -5,4 +5,4 @@ Infranchissable : false
 Pheromone : Baies,120.0,0.0
 Pheromone : Bois,100.0,0.0
 Pheromone : Gibier,80.0,0.0
-Pheromone : Metal,10.0,0.0
+Pheromone : Metal,10.0,200.0

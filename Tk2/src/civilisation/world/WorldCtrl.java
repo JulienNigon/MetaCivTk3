@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 
+import civilisation.AddOn;
 import civilisation.Configuration;
 import civilisation.individu.cognitons.SondeACognitons;
 
@@ -71,9 +72,12 @@ public class WorldCtrl extends Observer
 	@Override
 	public void watch()
 	{
-
-		tick++;
 		
+		tick++;
+		if (tick == 10) new AddOn()/*.launch()*/;
+		if (tick == 10) System.out.println("10!");
+		System.out.println(tick);
+
 		/* Gestion des sondes ˆ cognitons */
 		for (int i = 0; i < sondes.size(); i++)
 		{
@@ -84,39 +88,15 @@ public class WorldCtrl extends Observer
 		}
 		
 		/* Gestion des ressources*/
-		if (tick %75 == 0)
+		if (tick %100 == 0)
 		{
 			for (int x = 0; x < world.getWidth(); x++)
 			{
 				for (int y = 0; y < world.getHeight(); y++)
 				{
-					if (world.grid[x][y].getColor() == World.ColorPlaines)
-					{
-						world.grid[x][y].incrementPatchVariable("gibier", 0.1);
-						world.grid[x][y].incrementPatchVariable("baies", 0.1);
-					}
-					if (world.grid[x][y].getColor() == World.ColorForets)
-					{
-						world.grid[x][y].incrementPatchVariable("gibier", 0.2);
-						world.grid[x][y].incrementPatchVariable("baies", 0.2);
-					}
-					if (world.grid[x][y].getColor() == World.ColorLittoral)
-					{
-						world.grid[x][y].incrementPatchVariable("gibier", 0.1);
-						world.grid[x][y].incrementPatchVariable("baies", 0.05);
-					}
-					if (world.grid[x][y].getColor() == World.ColorCollines)
-					{
-						world.grid[x][y].incrementPatchVariable("gibier", 0.08);
-						world.grid[x][y].incrementPatchVariable("baies", 0.05);
-					}
-					if (world.grid[x][y].getColor() == World.ColorMontagnes)
-					{
-						world.grid[x][y].incrementPatchVariable("gibier", 0.08);
-					}
-					if (world.grid[x][y].getColor() == World.ColorDeserts)
-					{
-					world.grid[x][y].incrementPatchVariable("gibier", 0.02);
+					Terrain t = Configuration.couleurs_terrains.get(world.grid[x][y].getColor());
+					for (int i = 0 ; i < t.getPheroCroissance().size() ; i++) {
+						world.grid[x][y].incrementPatchVariable(t.getPheromones().get(i).getNom(), t.getPheroCroissance().get(i));
 					}
 					
 					if(world.grid[x][y].smell("passage") > Configuration.EffacementRoute || countCouleurVoisine(world.grid[x][y] , World.getColorForets()) >= 1 )

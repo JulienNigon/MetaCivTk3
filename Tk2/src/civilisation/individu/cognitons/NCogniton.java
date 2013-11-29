@@ -20,6 +20,7 @@ public class NCogniton{
 	ArrayList<LienCogniton> liens; /*Lien avec les cognitons debloques par ce cogniton*/
 	ArrayList<LienPlan> liensPlans; /*Lien avec les plans qu'influence ce cogniton*/
 	ArrayList<NPlan> plansAutorises;
+	ArrayList<Object[]> triggeringAttributes;
 	
 	public final static int nHues = 7;
 	Integer[] hues = new Integer[nHues];
@@ -40,7 +41,8 @@ public class NCogniton{
 		liens = new ArrayList<LienCogniton>();
 		liensPlans = new ArrayList<LienPlan>();
 		plansAutorises = new ArrayList<NPlan>();
-		
+		triggeringAttributes = new ArrayList<Object[]>();
+
 		for (int i = 0 ; i < hues.length; i++){
 			hues[i] = 0;
 		}
@@ -201,7 +203,7 @@ public class NCogniton{
 			
 			for (int i = 0; i < this.plansAutorises.size() ;i++){
 				out.println("Permet : "+plansAutorises.get(i).getNom());
-			}
+			} 
 			
 			for (int i = 0; i < this.liens.size() ;i++){
 				out.println("Chaine : "+ this.liens.get(i).getC().getNom() + "," + this.liens.get(i).getPoids());
@@ -213,18 +215,27 @@ public class NCogniton{
 			
 	    	for (int i = 0; i < nHues; i++) {
 				out.println("Hue" + i + " : " + hues[i]);
-
+	    	}
+	    	
+	    	for (int i = 0; i < triggeringAttributes.size(); i++) {
+				out.println("Trigger : " + triggeringAttributes.get(i)[0] + "," + triggeringAttributes.get(i)[1] + "," + triggeringAttributes.get(i)[2]);
 	    	}
 			
 			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-
-
-		 
+		}  
 	}
+
+	public ArrayList<Object[]> getTriggeringAttributes() {
+		return triggeringAttributes;
+	}
+
+	public void setTriggeringAttributes(ArrayList<Object[]> triggeringAttributes) {
+		this.triggeringAttributes = triggeringAttributes;
+	}
+	
 	
 	
 	

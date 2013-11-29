@@ -9,12 +9,12 @@ import civilisation.individu.Esprit;
  * PCogniton is the combination of a Cogniton and a hashmap to store data about the cogniton
  */
 
-public class PCogniton {
+public class CCogniton {
 
 	public NCogniton cogniton;
 	public HashMap<String , Object> hashmap = new HashMap<String,Object>();
 	
-	public PCogniton (NCogniton cogniton) {
+	public CCogniton (NCogniton cogniton) {
 		this.cogniton = cogniton;
 	}
 

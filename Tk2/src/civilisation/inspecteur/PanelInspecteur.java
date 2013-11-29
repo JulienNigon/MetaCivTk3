@@ -176,7 +176,9 @@ public class PanelInspecteur extends JPanel{
 		donnees[6][1] = h.getFemme();
 		donnees[7][0] = "Projet";
 		donnees[7][1] = h.getEsprit().getPlanEnCours().getPlan().getNom();
-		int var = 8;
+		donnees[8][0] = "Total plan weight";
+		donnees[8][1] = h.getEsprit().getPoidsTotalPlan();
+		int var = 9;
 		
 		for (int i = var ; i < Configuration.attributesNames.size() + var ; i++) {
 			donnees[i][0] = Configuration.attributesNames.get(i - var);

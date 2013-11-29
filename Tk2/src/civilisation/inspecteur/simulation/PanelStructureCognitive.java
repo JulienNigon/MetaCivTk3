@@ -35,9 +35,11 @@ public class PanelStructureCognitive extends JJPanel{
 	ArrayList<GPlan> gPlan;
 	ArrayList<GLien> gLiens;
 	ArrayList<GLien> gLiensConditionnels;
+	ArrayList<GLien> gLinksTrigger;
 
 	ArrayList<NCogniton> allCognitons;
 	ArrayList<NPlan> plans;
+	ArrayList<GTrigger> gTriggers;
 	
 	double espacement = 40;
 	double espaceCognitonsPlans = 350;
@@ -62,6 +64,9 @@ public class PanelStructureCognitive extends JJPanel{
 		gPlan = new ArrayList<GPlan>();
 		gLiens = new ArrayList<GLien>();
 		gLiensConditionnels = new ArrayList<GLien>();
+		gLinksTrigger = new ArrayList<GLien>();
+
+		gTriggers = new ArrayList<GTrigger>();
 
 		allCognitons = Configuration.cognitons;
 		allCognitons.addAll(Configuration.cloudCognitons);
@@ -82,6 +87,7 @@ public class PanelStructureCognitive extends JJPanel{
 		
 		creerLiensInfluence();
 		creerLiensConditionnels();
+		createTriggerLink();
 		
 
 		}
@@ -165,6 +171,10 @@ public class PanelStructureCognitive extends JJPanel{
 		editerConditions.addActionListener(new ActionsMenuGCogniton(c,2));
 		editerConditions.setIcon(new ImageIcon(this.getClass().getResource("../icones/lock--arrow.png")));
 		popupGCognitons.add(editerConditions);
+		JMenuItem editTriggeringAttributes = new JMenuItem("Edit triggering attributes");
+		editTriggeringAttributes.addActionListener(new ActionsMenuGCogniton(c,3));
+		editTriggeringAttributes.setIcon(new ImageIcon(this.getClass().getResource("../icones/lock--arrow.png")));
+		popupGCognitons.add(editTriggeringAttributes);
 		JMenuItem editerChaine = new JMenuItem("Editer les liens inter-cognitons");
 		editerChaine.setIcon(new ImageIcon(this.getClass().getResource("../icones/arrow-in-out.png")));
 		popupGCognitons.add(editerChaine);
@@ -180,6 +190,7 @@ public class PanelStructureCognitive extends JJPanel{
 		//gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationTranslation(-1, gCognitons.get(gCognitons.size()-1), 0.05, 0.05, false));
 		this.add(gCognitons.get(gCognitons.size()-1));
 		this.setComponentZOrder(gCognitons.get(gCognitons.size()-1), gCognitons.size()-1);
+		this.showTrigger(gCognitons.get(gCognitons.size()-1));
 	}
 	
 	public void afficherPlan(NPlan p , double posX , double posY){
@@ -194,6 +205,38 @@ public class PanelStructureCognitive extends JJPanel{
 		//gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationTranslation(-1, gCognitons.get(gCognitons.size()-1), 0.05, 0.05, false));
 		this.add(gCognitons.get(gCognitons.size()-1));
 		this.setComponentZOrder(gCognitons.get(gCognitons.size()-1), gCognitons.size()-1);
+	}
+	
+	public void showTrigger(GCogniton c) {
+		System.out.println("show trigger " + c.getCogniton().toString() + "   ");
+		for (int i = 0 ; i < gTriggers.size(); i++) {
+			
+			GTrigger gt = gTriggers.get(i);
+			System.out.println("remtrig:" + i +gt.getgCogniton().getCogniton().toString());
+
+			if (gt.getgCogniton() == c) {
+				System.out.println("remove");
+				this.remove(gt);
+				gTriggers.remove(i);
+			}			
+			
+		}
+		
+		// If the GTrigger doesn't exist, create it
+		for (int i = 0; i < c.getCogniton().getTriggeringAttributes().size();i++){
+			System.out.println("i : " + i);
+			Object[] trigInfo = c.getCogniton().getTriggeringAttributes().get(i);
+			GTrigger newGt = new GTrigger(this,400,400);
+			newGt.setAttributesIndex(Configuration.getAttributeIndexByName((String)trigInfo[0]));
+			newGt.setValue((Integer)trigInfo[1]);
+			System.out.println("cmp : " + (Integer)trigInfo[2]);
+			newGt.setComparator((Integer)trigInfo[2]);
+			newGt.setgCogniton(c);
+			gTriggers.add(newGt);
+			this.add(newGt);
+
+		}
+		
 	}
 
 	public void creerCogniton() {
@@ -269,6 +312,31 @@ public class PanelStructureCognitive extends JJPanel{
 		}
 	}
 	
+	public void createTriggerLink(){
+		for (int i = 0; i < gTriggers.size(); i++){
+				this.gLinksTrigger.add(new GLien(this,gTriggers.get(i),
+						gTriggers.get(i).getgCogniton(),
+						-1 , Color.ORANGE));
+				//System.out.println(gCognitons.get(i).getCogniton().getNom() +" i");
+		}
+		
+		for (int i = 0; i < gCognitons.size(); i++){
+			this.setComponentZOrder(gCognitons.get(i), this.getComponentCount()-1);
+		}
+		
+		for (int i = 0; i < gPlan.size(); i++){
+			this.setComponentZOrder(gPlan.get(i), this.getComponentCount()-1);
+		}
+	}
+	
+	
+	public void clearTriggerLink(){
+		for (int i = 0 ; i < gLinksTrigger.size(); i++){
+			this.remove(gLinksTrigger.get(i));
+		}
+		gLinksTrigger.clear();
+	}
+	
 	public void supprimerLiensInfluence(){
 		for (int i = 0 ; i < gLiens.size(); i++){
 			this.remove(gLiens.get(i));
@@ -298,6 +366,12 @@ public class PanelStructureCognitive extends JJPanel{
     		g2d.setColor(Color.RED);
             g2d.setStroke(new BasicStroke(2));
     		g2d.drawLine((int)gLiensConditionnels.get(i).getA().getCentreX()-2, (int)gLiensConditionnels.get(i).getA().getCentreY()-2,(int) gLiensConditionnels.get(i).getB().getCentreX()-2, (int)gLiensConditionnels.get(i).getB().getCentreY()-2);
+    	}
+    	
+    	for (int i = 0; i < this.gLinksTrigger.size(); i++){
+    		g2d.setColor(Color.ORANGE);
+            g2d.setStroke(new BasicStroke(3));
+    		g2d.drawLine((int)gLinksTrigger.get(i).getA().getCentreX()-2, (int)gLinksTrigger.get(i).getA().getCentreY()-2,(int) gLinksTrigger.get(i).getB().getCentreX()-2, (int)gLinksTrigger.get(i).getB().getCentreY()-2);
     	}
     	
 	}

@@ -78,6 +78,7 @@ public class WorldViewer extends Viewer
 			} else {
 				double v = p.smell(pheroToMap.getNom());
 				if (v > 255) v = 255;
+				else if (v < 0) v = 0;
 				g.setColor(new Color (255 - (int)v, 255 - (int)v, 255));
 			}
 			g.fillRect(x,y,cellS,cellS);

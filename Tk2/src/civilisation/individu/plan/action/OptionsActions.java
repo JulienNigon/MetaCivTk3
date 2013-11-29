@@ -2,6 +2,8 @@ package civilisation.individu.plan.action;
 
 import java.util.ArrayList;
 
+import civilisation.ItemPheromone;
+import civilisation.individu.cognitons.NCogniton;
 import civilisation.inventaire.Objet;
 
 
@@ -47,10 +49,10 @@ public class OptionsActions {
 			String s = "(";
 			for (int i = 0; i < parametres.size(); i++){
 				if (parametres.get(i).getClass().equals(Objet.class)){
-					s += "Objet ";
+					s += "Objet "; /*Note the space before the name*/
 					s += ((Objet) parametres.get(i)).getNom();
 					if (i < parametres.size() - 1){
-						s += ";"; /*Separateur pour parametres multiples*/
+						s += ";"; /*Separate multiple parameters*/
 					}
 				}
 				if (parametres.get(i).getClass().equals(Integer.class)){
@@ -60,9 +62,30 @@ public class OptionsActions {
 						s += ";";
 					}
 				}
+				if (parametres.get(i).getClass().equals(Double.class)){
+					s += "Double ";
+					s += parametres.get(i).toString();
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
 				if (parametres.get(i).getClass().equals(String.class)){
 					s += "Attribute ";
 					s += parametres.get(i);
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
+				if (parametres.get(i).getClass().equals(ItemPheromone.class)){
+					s += "Pheromone ";
+					s += ((ItemPheromone) parametres.get(i)).getNom();
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
+				if (parametres.get(i).getClass().equals(NCogniton.class)){
+					s += "Cogniton ";
+					s += ((NCogniton) parametres.get(i)).getNom();
 					if (i < parametres.size() - 1){
 						s += ";";
 					}

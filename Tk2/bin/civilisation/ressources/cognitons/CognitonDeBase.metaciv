@@ -3,7 +3,10 @@ Description : Un nouveau cogniton
 Type : MEME
 Initial : 1
 Permet : Vagabonder
+Permet : AllerEst
+Permet : MangerUnBonCoup
 Influence : Vagabonder,4
+Influence : AllerEst,4
 Hue0 : 0
 Hue1 : 0
 Hue2 : 0

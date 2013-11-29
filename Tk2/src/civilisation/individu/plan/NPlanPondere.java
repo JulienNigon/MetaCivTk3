@@ -1,7 +1,9 @@
 package civilisation.individu.plan;
 
+import civilisation.Group;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
+import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.plan.action.Action;
 
 public class NPlanPondere {
@@ -10,8 +12,14 @@ public class NPlanPondere {
 	NPlan plan;
 	Humain h;
 	Esprit e;
-
 	
+	
+	// Work in progress....
+	// The group of the conditional culturon associated (could be null)
+	Group group;
+
+	//The conditional CCogniton associated (could be null)
+	CCogniton cCogniton;
 	
 	
 	public NPlanPondere(int poids, NPlan plan, Humain h, Esprit e) {
@@ -40,7 +48,20 @@ public class NPlanPondere {
 	public void setPlan(NPlan plan) {
 		this.plan = plan;
 	}
+	public Group getGroup() {
+		return group;
+	}
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+	public CCogniton getcCogniton() {
+		return cCogniton;
+	}
+	public void setcCogniton(CCogniton cCogniton) {
+		this.cCogniton = cCogniton;
+	}
 
+	
 	/**
 	 * Modifie le poids du projet d'un poids p,
 	 * Demande à l'esprit concerné de modifier le poids total en conséquence
