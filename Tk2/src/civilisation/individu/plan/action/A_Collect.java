@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import civilisation.ItemPheromone;
 import civilisation.individu.Humain;
 
-public class A_Collecter extends Action{
+public class A_Collect extends Action{
 
 	ItemPheromone pheroToCollect;
 	Double nPheroToCollect;
@@ -47,6 +47,12 @@ public class A_Collecter extends Action{
 		return schemaParametres;	
 	}
 	
+	
+	@Override
+	public String getInfo() {
+		return super.getInfo() + " Add or remove some pheromones from the cirrent patch.<html>";
+	}
+
 
 	
 }

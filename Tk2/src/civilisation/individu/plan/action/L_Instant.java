@@ -8,10 +8,17 @@ public class L_Instant extends LAction{
 	
 	@Override
 	public Action effectuer(Humain h) {	
+	//TODO a refaire avec le mécanisme de pile
 		
+		
+		/*
 		Action next = listeActions.get(0);
-		while ((next = next.effectuer(h)) != null);
-
+		while ((next = next.effectuer(h)) != null) {
+			if (next != null) {
+				h.getEsprit()
+			}
+		}
+*/
 		return nextAction;
 	}
 

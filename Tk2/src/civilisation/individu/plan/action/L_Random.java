@@ -10,8 +10,9 @@ public class L_Random extends LAction{
 	public Action effectuer(Humain h) {	
 		int rand = (int)( Math.random()*listeActions.size());
 		System.out.println(rand);
-		listeActions.get(rand).effectuer(h);
-		return nextAction;
+		h.getEsprit().getActions().push(nextAction);
+		Action a = listeActions.get(rand).effectuer(h);	
+		return a;
 	}
 
 	@Override
@@ -26,7 +27,7 @@ public class L_Random extends LAction{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Action de contrôle logique qui sélectionne aléatoirement une de ses sous-actions pour l'executer.<html>";
+		return super.getInfo() + " Select randomly one sub-action.<html>";
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 import civilisation.Configuration;
 import civilisation.Group;
@@ -43,6 +44,7 @@ public class Esprit {
 	Humain h;
 	NPlanPondere planEnCours;
 	Action actionEnCours;
+	Stack<Action> actions = new Stack<Action>();
 	
 	int poidsTotal;
 	int progression;
@@ -93,10 +95,22 @@ public class Esprit {
 	 */
 	public void penser()
 	{
-		/*Apply the Auto-plan*/
+		
+		
+		/*Apply the Self-plan*/
 		if (Configuration.autoPlan != null) {
-			Action next = Configuration.autoPlan.getActions().get(0);
-			while ((next = next.effectuer(h)) != null);
+			System.out.println("auto");
+			actions.push(null); //end of self-plan marker
+
+			Configuration.autoPlan.activer(h, Configuration.autoPlan.getActions().get(0));
+
+			
+			Action a = null;
+			System.out.println("pouf");
+
+			while (( a = actions.pop()) != null) {
+				Configuration.autoPlan.activer(h, a);
+			}
 		}
 
 		/* Select the new plan if there are no plan to do */
@@ -111,7 +125,10 @@ public class Esprit {
 				i++;
 			}
 			planEnCours = plans.get(i);
+			actions.push(null); //end of plan marker
 			//System.out.println("Agent choisi le plan : " + planEnCours.toString());
+		} else {
+			this.actionEnCours = actions.pop();
 		}
 		planEnCours.activer(actionEnCours);
 	}
@@ -296,6 +313,15 @@ public class Esprit {
 	public void setPoidsTotalPlan(int poidsTotalPlan) {
 		this.poidsTotalPlan = poidsTotalPlan;
 	}
+
+	public Stack<Action> getActions() {
+		return actions;
+	}
+
+	public void setActions(Stack<Action> actions) {
+		this.actions = actions;
+	}
+	
 	
 	
 	

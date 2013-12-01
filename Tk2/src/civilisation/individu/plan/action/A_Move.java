@@ -51,4 +51,10 @@ public class A_Move extends Action{
 		return schemaParametres;	
 	}
 	
+	
+	@Override
+	public String getInfo() {
+		return super.getInfo() + " The agent move in one direction.<html>";
+	}
+
 }

@@ -74,10 +74,7 @@ public class WorldCtrl extends Observer
 	{
 		
 		tick++;
-		if (tick == 10) new AddOn()/*.launch()*/;
-		if (tick == 10) System.out.println("10!");
-		System.out.println(tick);
-
+	
 		/* Gestion des sondes ˆ cognitons */
 		for (int i = 0; i < sondes.size(); i++)
 		{

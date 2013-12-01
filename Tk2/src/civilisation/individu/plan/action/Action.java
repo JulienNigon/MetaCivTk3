@@ -114,6 +114,9 @@ public abstract class Action {
 					if (param[j].split(" ")[0].equals("Cogniton")){
 						option.addParametre(Configuration.getCognitonByName(param[j].split(" ")[1]));
 					}
+					if (param[j].split(" ")[0].equals("Comparator")){
+						option.addParametre(Comparator.toComparator(param[j].split(" ")[1]));
+					}
 				}
 			}
 			parametrerOption(option);

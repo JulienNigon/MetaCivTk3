@@ -90,6 +90,13 @@ public class OptionsActions {
 						s += ";";
 					}
 				}
+				if (parametres.get(i).getClass().equals(Comparator.class)){
+					s += "Comparator ";
+					s += ((Comparator) parametres.get(i)).toSymbol();
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
 			}
 			s+=")";
 			return name + s;

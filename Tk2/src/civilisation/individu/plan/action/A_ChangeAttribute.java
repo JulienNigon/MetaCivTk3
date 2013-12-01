@@ -46,6 +46,13 @@ public class A_ChangeAttribute extends Action{
 		}
 		return schemaParametres;	
 	}
+	
+	
+	@Override
+	public String getInfo() {
+		return super.getInfo() + " Change the current value of an attribute.<html>";
+	}
+
 
 	
 }

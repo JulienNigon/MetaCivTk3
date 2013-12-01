@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import civilisation.Configuration;
 import civilisation.individu.plan.action.Action;
+import civilisation.individu.plan.action.Comparator;
 import civilisation.individu.plan.action.OptionsActions;
 import civilisation.inspecteur.simulation.PanelArbreActions;
 
@@ -66,6 +67,11 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 				else if (schema.get(i)[0].equals("**Attribute**")){
 					for (int j = 0; j < Configuration.attributesNames.size() ; j++){
 						box.addItem(Configuration.attributesNames.get(j));
+					}
+				}
+				else if (schema.get(i)[0].equals("**Comparator**")){
+					for (int j = 0; j < Comparator.values().length ; j++){
+						box.addItem(Comparator.values()[i].toSymbol());
 					}
 				}
 				else{
@@ -139,6 +145,10 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					else if (schema.get(i)[0].equals("**Attribute**")){
 						opt = new OptionsActions(schema.get(i)[1]);
 						opt.addParametre(boxs.get(i).getSelectedItem());
+					}
+					else if (schema.get(i)[0].equals("**Comparator**")){
+						opt = new OptionsActions(schema.get(i)[1]);
+						opt.addParametre(Comparator.toComparator((String)boxs.get(i).getSelectedItem()));
 					}
 					else if (schema.get(i)[0] != null){ /*Pas utile*/
 						System.out.println(schema.get(i)[0]);
