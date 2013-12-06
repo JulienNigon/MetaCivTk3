@@ -1448,7 +1448,8 @@ public class Humain extends Turtle
 	}
 		attributes.put(s, d);
 
-	} 
+	}
+
 
 }
 

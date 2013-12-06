@@ -99,16 +99,14 @@ public class Esprit {
 		
 		/*Apply the Self-plan*/
 		if (Configuration.autoPlan != null) {
-			System.out.println("auto");
 			actions.push(null); //end of self-plan marker
 
 			Configuration.autoPlan.activer(h, Configuration.autoPlan.getActions().get(0));
-
 			
 			Action a = null;
-			System.out.println("pouf");
 
 			while (( a = actions.pop()) != null) {
+				System.out.println("a depop : " + a + "depop" + actions);
 				Configuration.autoPlan.activer(h, a);
 			}
 		}
@@ -128,9 +126,11 @@ public class Esprit {
 			actions.push(null); //end of plan marker
 			//System.out.println("Agent choisi le plan : " + planEnCours.toString());
 		} else {
-			this.actionEnCours = actions.pop();
+			System.out.println(actions);
 		}
 		planEnCours.activer(actionEnCours);
+		this.actionEnCours = actions.pop();
+
 	}
 	
 	/**
@@ -322,7 +322,16 @@ public class Esprit {
 		this.actions = actions;
 	}
 	
-	
+	public boolean ownCogniton(NCogniton cogniton) {
+		
+		for (int i = 0 ; i < this.cognitons.size(); i++) {
+			if (cognitons.get(i).getCogniton() == cogniton) {
+				return true;
+			}
+		}
+		return false;
+	} 
+
 	
 	
 	

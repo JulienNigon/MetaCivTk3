@@ -38,7 +38,7 @@ public class A_ChangeAttribute extends Action{
 		if (schemaParametres == null){
 			schemaParametres = new ArrayList<String[]>();
 			String[] attrName = {"**Attribute**" , "Changed attribute"};
-			String[] n = {"**Integer**" , "n", "-20" , "20" , "0"};
+			String[] n = {"**Integer**" , "n", "-100" , "100" , "100"};
 
 			schemaParametres.add(attrName);
 			schemaParametres.add(n);

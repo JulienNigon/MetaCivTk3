@@ -3,6 +3,8 @@ Description : Un nouveau cogniton
 Type : MEME
 Initial : 1
 Permet : SearchFood
+Permet : HaveAChild
+Permet : Die!
 Influence : SearchFood,4
 Hue0 : 0
 Hue1 : 0
