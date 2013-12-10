@@ -2,6 +2,5 @@ Nom : Desert profond
 Couleur : 0.16666667,0.4,1.0
 Passabilite : 85
 Infranchissable : false
-Pheromone : Bois,2.0,0.0
-Pheromone : Gibier,10.0,0.0
-Pheromone : Metal,0.0,0.1
+Pheromone : Gibier,2.0,0.0
+Pheromone : Metal,10.0,0.0

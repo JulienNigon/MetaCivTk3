@@ -139,6 +139,7 @@ public class Initialiseur {
 		    	NCogniton cogni = listeCognitons.get(nom);
 		    	cogni.setNom(nom);
 		    	cogni.setDescription(getChamp("Description" , file)[0]);
+		    	cogni.setStartChance(Integer.parseInt(getChamp("StartChance" , file)[0]));
 		    	cogni.setType(TypeDeCogniton.toType( getChamp("Type" , file)[0]));
 		    	if (getChamp("Initial" , file)[0].equals("1")){
 		    		cognitonsDeBase.add(cogni);

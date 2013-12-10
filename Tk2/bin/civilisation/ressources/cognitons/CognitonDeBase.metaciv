@@ -1,11 +1,10 @@
 Nom : CognitonDeBase
 Description : Un nouveau cogniton
-Type : MEME
+Type : BELIEF
+StartChance : 100
 Initial : 1
-Permet : SearchFood
-Permet : HaveAChild
-Permet : Die!
-Influence : SearchFood,4
+Permet : Vagabonder
+Influence : Vagabonder,4
 Hue0 : 0
 Hue1 : 0
 Hue2 : 0

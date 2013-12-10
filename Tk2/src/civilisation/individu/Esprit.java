@@ -82,6 +82,7 @@ public class Esprit {
 	private void initialisationStandard()
 	{
 		for (NCogniton cogni : Configuration.cognitonsDeBase) {
+			if (Math.random() * 100.0 < (double)cogni.getStartChance())
 			cognitons.add(new CCogniton(cogni));
 		}
 		for (int i = 0; i < cognitons.size(); i++) {

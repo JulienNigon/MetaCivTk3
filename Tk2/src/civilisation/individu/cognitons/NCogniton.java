@@ -17,10 +17,12 @@ public class NCogniton{
 	String nom;
 	String description;
 	boolean recuAuDemarrage = false;
+	int startChance = 0;
 	ArrayList<LienCogniton> liens; /*Lien avec les cognitons debloques par ce cogniton*/
 	ArrayList<LienPlan> liensPlans; /*Lien avec les plans qu'influence ce cogniton*/
 	ArrayList<NPlan> plansAutorises;
 	ArrayList<Object[]> triggeringAttributes;
+	
 	
 	public final static int nHues = 7;
 	Integer[] hues = new Integer[nHues];
@@ -187,6 +189,14 @@ public class NCogniton{
 		this.hues = spiralColors;
 	}
 	
+	public int getStartChance() {
+		return startChance;
+	}
+
+	public void setStartChance(int startChance) {
+		this.startChance = startChance;
+	}
+
 	public void enregistrer(File cible) {
 		PrintWriter out;
 		try {
@@ -194,6 +204,7 @@ public class NCogniton{
 			out.println("Nom : " + getNom());
 			out.println("Description : " + getDescription());
 			out.println("Type : " + getType());
+			out.println("StartChance : " + this.startChance);
 			if (recuAuDemarrage){
 				out.println("Initial : 1");
 			}

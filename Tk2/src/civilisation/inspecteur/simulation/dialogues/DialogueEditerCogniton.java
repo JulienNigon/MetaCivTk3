@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -12,7 +13,11 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+
 import civilisation.Configuration;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
@@ -26,6 +31,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
     JOptionPane optionPane;
     JCheckBox recuAuDemarrage;
     JSlider[] hues;
+    JSpinner startChance;
 
 
     
@@ -45,13 +51,25 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		
 		/*Starting cogniton?*/
 		recuAuDemarrage = new JCheckBox("Starting cogniton");
+		recuAuDemarrage.addActionListener(this);
 		recuAuDemarrage.setToolTipText("Donner ce cogniton aux nouveaux agents?");
 		if (gCogniton.getCogniton().isRecuAuDemarrage()){
 			recuAuDemarrage.setSelected(true);
 		}
 		
+		/*Start chances*/
+		SpinnerModel spinModel = new SpinnerNumberModel(gCogniton.getCogniton().getStartChance(), //initial value
+                0, //min
+                100, //max
+                1);
+		startChance = new JSpinner(spinModel);
+		if (recuAuDemarrage.isSelected()) 
+		{startChance.setEnabled(true);}
+		else
+		{startChance.setEnabled(false);}
+		
+		
 		/* hues selection*/
-
 		hues = new JSlider[NCogniton.nHues];
 		for (int i = 0; i < NCogniton.nHues; i++){
 			int temp = gCogniton.getCogniton().getHues()[i];
@@ -70,7 +88,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		
 		
 		/*Proviens du tutorial Java Sun*/
-	    Object[] array = {nom, type , recuAuDemarrage , hues};
+	    Object[] array = {nom, type , recuAuDemarrage, startChance , hues};
 	       
 	    //Create an array specifying the number of dialog buttons
 	    //and their text.
@@ -100,12 +118,16 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 			if (optionPane.getValue().equals("Valider")){
 				gCogniton.getCogniton().setNom(nom.getText());
 				gCogniton.getCogniton().setType((TypeDeCogniton) type.getSelectedItem());
+				if (recuAuDemarrage.isSelected()) gCogniton.getCogniton().setStartChance(((Integer)startChance.getValue()));
+
 				if (recuAuDemarrage.isSelected() != gCogniton.getCogniton().isRecuAuDemarrage()){
 					if (recuAuDemarrage.isSelected()){
 						Configuration.addCognitonDeBase(gCogniton.getCogniton());
+						gCogniton.getCogniton().setStartChance(((Integer)startChance.getValue()));
 					}
 					else{
 						Configuration.removeCognitonDeBase(gCogniton.getCogniton());
+						gCogniton.getCogniton().setStartChance(0);
 					}
 					gCogniton.getCogniton().setRecuAuDemarrage(recuAuDemarrage.isSelected());
 				}
@@ -120,8 +142,16 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
+		System.out.println("actionPerformed");
+		
+		if (recuAuDemarrage.isSelected()) {
+			startChance.setEnabled(true);
+		}
+		else
+		{
+			startChance.setEnabled(false);
+		}
 	}
 	
 	
