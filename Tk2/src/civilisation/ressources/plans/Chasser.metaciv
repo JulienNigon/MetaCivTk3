@@ -1,0 +1,10 @@
+Nom : Chasser
+Birth : false
+Self : false
+Action : L_Repeat,n(Integer 4)
+	Action : A_SmellAndMove,PheroToFollow(Pheromone Gibier)
+	Action : L_ComparePhero,pheroToCompare(Pheromone Gibier),comparator(Comparator >=),n(Double 0.0)
+		Action : L_Repeat,n(Integer 1)
+			Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer 12)
+			Action : A_Collect,PheroToCollect(Pheromone Gibier),n(Double -10.0)
+		Action : A_DoNothing

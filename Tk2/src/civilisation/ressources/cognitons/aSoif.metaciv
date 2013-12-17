@@ -1,0 +1,13 @@
+Nom : aSoif
+Description : Un nouveau cogniton
+Type : BELIEF
+StartChance : 0
+Initial : 0
+Hue0 : 0
+Hue1 : 0
+Hue2 : 0
+Hue3 : 0
+Hue4 : 0
+Hue5 : 0
+Hue6 : 0
+Trigger : Soif,35,-1

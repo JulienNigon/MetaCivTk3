@@ -43,4 +43,8 @@ public class CCogniton {
 		cogniton.appliquerPoids(e);
 	}
 	
+	public String toString () {
+		
+		return "C:"+ cogniton.toString();
+	}
 }

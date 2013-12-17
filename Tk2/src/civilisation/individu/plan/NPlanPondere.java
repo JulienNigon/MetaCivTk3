@@ -68,8 +68,11 @@ public class NPlanPondere {
 	 */
 	public void changerPoids(int p)
 	{
-
-		if (poids > 0 && p < 0 && (-1)*p > poids)
+		//TODO : Just a fast solution, MUST be improved for performance issues
+		e.computeTotalWeight();
+		
+		//This code must be rewrite to optimize
+	/*	if (poids > 0 && p < 0 && (-1)*p > poids)
 		{
 			e.addPoidsTotal(-1*poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie négative
 		}
@@ -81,10 +84,17 @@ public class NPlanPondere {
 		{
 			e.addPoidsTotal(p+poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie négative
 		}
+		else if (poids < 0 && (-1)*p <= poids ) {
+			
+		}
+		else if (poids > 0 && p < 0 && p > (-1)*poids)
+		{
+			e.addPoidsTotal(p+poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie négative
+		}
 		else
 		{
 			e.addPoidsTotal(p);
-		}
+		}*/
 		poids += p;
 	}
 	

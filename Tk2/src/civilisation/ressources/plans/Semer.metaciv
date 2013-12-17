@@ -1,0 +1,5 @@
+Nom : Semer
+Birth : false
+Self : false
+Action : A_AvanceAleatoirement
+Action : A_Collect,PheroToCollect(Pheromone Cereales),n(Double 4.799999999999981)

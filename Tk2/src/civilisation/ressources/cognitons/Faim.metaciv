@@ -1,0 +1,18 @@
+Nom : Faim
+Description : Un nouveau cogniton
+Type : PERCEPT
+StartChance : 0
+Initial : 0
+Influence : CueillirDesBaies,4
+Influence : Vagabonder,-1
+Influence : EleverUnEnfant,-1
+Influence : Chasser,6
+Influence : Recolter,2
+Hue0 : 0
+Hue1 : 0
+Hue2 : 0
+Hue3 : 0
+Hue4 : 0
+Hue5 : 0
+Hue6 : 0
+Trigger : Vie,40,-1

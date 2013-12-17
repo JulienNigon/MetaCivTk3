@@ -1,9 +1,15 @@
 Nom : CognitonDeBase
 Description : Un nouveau cogniton
 Type : MEME
+StartChance : 100
 Initial : 1
+Permet : CueillirDesBaies
 Permet : Vagabonder
-Influence : Vagabonder,4
+Permet : EleverUnEnfant
+Permet : Chasser
+Influence : CueillirDesBaies,1
+Influence : Vagabonder,3
+Influence : Chasser,1
 Hue0 : 0
 Hue1 : 0
 Hue2 : 0

@@ -1,0 +1,10 @@
+Nom : CueillirDesBaies
+Birth : false
+Self : false
+Action : L_Repeat,n(Integer 5)
+	Action : A_SmellAndMove,PheroToFollow(Pheromone Baies)
+	Action : L_ComparePhero,pheroToCompare(Pheromone Baies),comparator(Comparator >=),n(Double 0.0)
+		Action : L_Repeat,n(Integer 1)
+			Action : A_Collect,PheroToCollect(Pheromone Baies),n(Double -10.0)
+			Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer 5)
+		Action : A_DoNothing

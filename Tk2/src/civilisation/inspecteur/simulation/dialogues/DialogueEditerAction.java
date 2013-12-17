@@ -71,7 +71,7 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 				}
 				else if (schema.get(i)[0].equals("**Comparator**")){
 					for (int j = 0; j < Comparator.values().length ; j++){
-						box.addItem(Comparator.values()[i].toSymbol());
+						box.addItem(Comparator.values()[j].toSymbol());
 					}
 				}
 				else{

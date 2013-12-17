@@ -29,16 +29,16 @@ public class NPlan {
 	 * @param h : L'agent effectuant l'action
 	 */
 	public void activer(Humain h , Action action){
-	    System.out.println("this lance : " + this.getNom());
+	    //System.out.println("this lance : " + this.getNom());
 
 		if (action == null){
-		    System.out.println("plan lance : " + nom);
+		  //  System.out.println("plan lance : " + nom);
 			Action a = actions.get(0).effectuer(h);
 			if (a != null) h.getEsprit().getActions().push(a);
 			h.getEsprit().setActionEnCours(a);
 		}
 		else {
-			System.out.println("else" + nom);
+			//System.out.println("else" + nom);
 			Action a = action.effectuer(h);
 			if (a != null) h.getEsprit().getActions().push(a);
 		}

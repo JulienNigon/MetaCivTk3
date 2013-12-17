@@ -1,0 +1,18 @@
+Nom : Agriculture
+Description : Un nouveau cogniton
+Type : SKILL
+StartChance : 50
+Initial : 1
+Permet : Recolter
+Permet : Semer
+Influence : Semer,5
+Influence : Recolter,3
+Influence : Chasser,-1
+Influence : CueillirDesBaies,-1
+Hue0 : 0
+Hue1 : 0
+Hue2 : 0
+Hue3 : 0
+Hue4 : 0
+Hue5 : 0
+Hue6 : 0
