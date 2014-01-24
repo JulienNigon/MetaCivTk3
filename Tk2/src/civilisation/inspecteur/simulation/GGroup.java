@@ -22,7 +22,7 @@ public class GGroup extends GItemCognitif{
 	@Override
 	public void paintComponent(Graphics g) 
 	{    
-	/*    Graphics2D g2d = genererContexte(g);
+	/*  Graphics2D g2d = genererContexte(g);
 
 
 		FontMetrics fm = g2d.getFontMetrics();

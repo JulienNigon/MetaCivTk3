@@ -21,7 +21,7 @@ public class Initialiseur {
 	HashMap<String, NCogniton> listeCognitons;
 	HashMap<String, Culturon> listCloudCognitons;
 	HashMap<String, NPlan> listePlans;
-	HashMap<Color, Terrain> couleurs_terrains; //G�rer le cas ou la m�me couleur est utilis�e pour deux terrains
+	HashMap<Color, Terrain> couleurs_terrains; //TODO : G�rer le cas ou la m�me couleur est utilis�e pour deux terrains
 	final int passabiliteParDefaut = 30;
 
 	public Initialiseur(){
@@ -221,6 +221,52 @@ public class Initialiseur {
 			}
 		}	
 		
+       	/*Preparation d'un jeu d'actions, pour pouvoir facilement les manipuler dans le reste du programme*/
+       	
+		System.out.println("Mise en place des actions");
+       	Class action;
+       	Configuration.actions = new ArrayList<Action>();
+		File[] sourcesActions = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/plan/action").listFiles();
+		for (File file : sourcesActions) {
+		    if (file.isFile() && file.getName().endsWith(".class") && file.getName().charAt(1) == '_') {
+		    	try {
+					action = Class.forName("civilisation.individu.plan.action."+file.getName().split("\\.")[0]);
+					System.out.println("Chargement de l'action : " + action.getName());
+					Configuration.actions.add((Action) action.newInstance());
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+		    }
+		}
+		
+		/*On transmet les informations � la classe de configuration*/
+		Configuration.cognitonsDeBase = cognitonsDeBase;
+		Configuration.cognitons = tousLesCognitons;
+		Configuration.cloudCognitons = allCloudCogniton;
+		
+		System.out.println("Load groups");
+		Configuration.groups = new ArrayList<GroupModel>();
+		files = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/groups").listFiles();
+		for (File file : files) {
+			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
+			System.out.println("\tLoad group : " + file.getName());
+		    if (file.isFile()) {
+		    	nom = Initialiseur.getChamp("Name" , file)[0];
+		    	GroupModel g = new GroupModel(nom);
+		    	ArrayList<String[]> culturons = Initialiseur.getListeChamp("Culturon", file);
+		    	for (int i = 0 ; i < culturons.size() ; i++) {
+		    		g.addCulturonToRole(culturons.get(i)[0], new CCogniton(Configuration.getCognitonByName(culturons.get(i)[1])));
+		    	}
+
+		    	Configuration.groups.add(g);
+		    }
+			}
+		}	
+		
 		
 		System.out.println("Creation des plans");
 		File[] filesPlans = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/plans").listFiles();
@@ -299,10 +345,7 @@ public class Initialiseur {
 		}	
 		}
 		
-		/*On transmet les informations � la classe de configuration*/
-		Configuration.cognitonsDeBase = cognitonsDeBase;
-		Configuration.cognitons = tousLesCognitons;
-		Configuration.cloudCognitons = allCloudCogniton;
+
 		Configuration.plans = tousLesPlans;
 
 		//System.out.println("Verification");	
@@ -344,28 +387,10 @@ public class Initialiseur {
 
 		
        	
-       	/*Preparation d'un jeu d'actions, pour pouvoir facilement les manipuler dans le reste du programme*/
-       	
-		System.out.println("Mise en place des actions");
-       	Class action;
-       	Configuration.actions = new ArrayList<Action>();
-		File[] sourcesActions = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/plan/action").listFiles();
-		for (File file : sourcesActions) {
-		    if (file.isFile() && file.getName().endsWith(".class") && file.getName().charAt(1) == '_') {
-		    	try {
-					action = Class.forName("civilisation.individu.plan.action."+file.getName().split("\\.")[0]);
-					System.out.println("Chargement de l'action : " + action.getName());
-					Configuration.actions.add((Action) action.newInstance());
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
-		    }
-		}
+
        
+		
+
 		
        	
 	}
@@ -415,7 +440,6 @@ public class Initialiseur {
 	
 	private void setupPlans(NPlan p , File f, int iteration, int ligne , Action a){
 		
-		 System.out.println("Setup " + p.getNom() + " " + iteration);
 		 int ligneActuelle = 0;
 	     Action nouvelleAction = null;
 	     Action ancienneAction = null;
@@ -444,7 +468,6 @@ public class Initialiseur {
 			     
 			     if (ligneActuelle+1 > ligne){
 				     if(str.split(" : ")[0].equals(champ) && nTab == iteration){
-					     System.out.println("Trouve");
 					     ancienneAction = nouvelleAction;
 					     nouvelleAction = Action.actionFactory(str.split(" : ")[1].split(","));
 					     if (ancienneAction != null){

@@ -6,8 +6,7 @@ import civilisation.individu.plan.action.Action;
 
 public class NodeArbreActions extends DefaultMutableTreeNode{
 
-	float xPrelim;
-	float modifier;
+
 	boolean root;
 	Action action;
 
@@ -18,7 +17,7 @@ public class NodeArbreActions extends DefaultMutableTreeNode{
 		this.action = a;
 	}
 
-	public NodeArbreActions(String s) /*Pour construire la racine*/
+	public NodeArbreActions(String s)
 	{
 		super(s);
 		root = false;

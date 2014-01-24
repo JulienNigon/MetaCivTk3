@@ -18,11 +18,11 @@
 	<observer class="civilisation.inspecteur.viewer.ViewerPerformances" />
 	<observer class="civilisation.inspecteur.viewer.ViewerModificationSimulation" />
 	<observer class="civilisation.inspecteur.viewer.ViewerTableauDeBord" />
+	<observer class="edu.turtlekit2.tools.chart.LineCharter" role="Humain"/>
 	
 	
 	<!--  
 	<turtle class="civilisation.Communaute" number="6"></turtle>
-	<observer class="edu.turtlekit2.tools.chart.LineCharter" role="Humain"/>
 	<observer class="civilisation.inspecteur.CognitonsCharter"/>
 	-->
 </simulation>

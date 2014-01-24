@@ -13,7 +13,9 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 import civilisation.Configuration;
+import civilisation.GroupAndRole;
 import civilisation.individu.plan.action.Action;
 import civilisation.individu.plan.action.Comparator;
 import civilisation.individu.plan.action.OptionsActions;
@@ -67,6 +69,20 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 				else if (schema.get(i)[0].equals("**Attribute**")){
 					for (int j = 0; j < Configuration.attributesNames.size() ; j++){
 						box.addItem(Configuration.attributesNames.get(j));
+					}
+				}
+				else if (schema.get(i)[0].equals("**Group**")){
+					for (int j = 0; j < Configuration.groups.size(); j++){
+						box.addItem(Configuration.groups.get(j).getName());
+					}
+				}
+				else if (schema.get(i)[0].equals("**GroupAndRole**")){
+					for (int j = 0; j < Configuration.groups.size(); j++){
+						System.out.println(Configuration.groups.size() + " j : " + j + "keyset size : " + Configuration.groups.get(j).getCulturons().keySet().size());
+						Object[] keys = (Object[]) Configuration.groups.get(j).getCulturons().keySet().toArray();
+						for (int k = 0 ; k < Configuration.groups.get(j).getCulturons().size() ; k++) {
+							box.addItem(Configuration.groups.get(j).getName()+":"+(String)keys[k]);	
+						}
 					}
 				}
 				else if (schema.get(i)[0].equals("**Comparator**")){
@@ -133,6 +149,14 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					else if (schema.get(i)[0].equals("**Pheromone**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre(Configuration.getPheromoneByName((String)boxs.get(i).getSelectedItem()));
+					}
+					else if (schema.get(i)[0].equals("**Group**")){
+						opt = new OptionsActions(schema.get(i)[1]);
+						opt.addParametre(Configuration.getGroupModelByName((String)boxs.get(i).getSelectedItem()));
+					}
+					else if (schema.get(i)[0].equals("**GroupAndRole**")){
+						opt = new OptionsActions(schema.get(i)[1]);
+						opt.addParametre(new GroupAndRole((String)boxs.get(i).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Integer**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/

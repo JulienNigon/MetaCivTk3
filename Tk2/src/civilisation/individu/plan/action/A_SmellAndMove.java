@@ -11,9 +11,6 @@ public class A_SmellAndMove extends Action{
 
 	@Override
 	public Action effectuer(Humain h) {
-		System.out.println(phero.getNom());
-		System.out.println(h.getHeadingToMaxOf(phero.getNom(), 1, false));
-
 		h.face(h.getPatchWithMaxOf(phero.getNom(), 1));
 		h.fd(1);
 		return nextAction;
@@ -39,7 +36,6 @@ public class A_SmellAndMove extends Action{
 			String[] pheroName = {"**Pheromone**" , "PheroToFollow"};
 
 			schemaParametres.add(pheroName);
-
 		}
 		return schemaParametres;	
 	}

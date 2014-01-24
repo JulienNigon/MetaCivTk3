@@ -6,7 +6,7 @@ Initial : 1
 Permet : Recolter
 Permet : Semer
 Influence : Semer,5
-Influence : Recolter,3
+Influence : Recolter,6
 Influence : Chasser,-1
 Influence : CueillirDesBaies,-1
 Hue0 : 0

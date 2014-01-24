@@ -112,13 +112,10 @@ public class Esprit {
 			}
 		}
 
-		/* Select the new plan if there are no plan to do */
+		/* Select the new plan if there are no action to do */
 		if ((/*planEnCours == null && */actionEnCours == null))
 		{
 			computeTotalWeight(); //TODO : remove and re-write dynamic evolution of total weight
-			//System.out.println("Poids total :" + poidsTotalPlan);
-			//System.out.println(plans);
-			//System.out.println(cognitons);
 			int alea = (int) (Math.random()*(poidsTotalPlan + 1));
 			int i = 0;
 			while (alea > plans.get(i).getPoids() /*|| plans.get(i).getType() == 1*/)
@@ -128,9 +125,6 @@ public class Esprit {
 			}
 			planEnCours = plans.get(i);
 			actions.push(null); //end of plan marker
-			//System.out.println("Agent choisi le plan : " + planEnCours.toString());
-		} else {
-			//System.out.println(actions);
 		}
 		planEnCours.activer(actionEnCours);
 		this.actionEnCours = actions.pop();

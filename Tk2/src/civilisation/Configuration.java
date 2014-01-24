@@ -42,6 +42,9 @@ public class Configuration {
 	public static NPlan birthPlan;
 	public static NPlan autoPlan;
 
+	/*Group model*/
+	public static ArrayList<GroupModel> groups;
+	
 	/*Tous les objets*/
 	public static ArrayList<Objet> objets;
 	
@@ -62,6 +65,9 @@ public class Configuration {
 	
 	/*Environnement ˆ charger*/
 	public static String environnementACharger;
+	
+	/*Path to icon*/
+	public static String pathToIcon = "/bin/civilisation/inspecteur/icones";
 	
 	/*Modificateurs de l'esprit*/
 	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1, toolTip = "Une valeur elevee augmente les chances que les memes soient transferes aux enfants.")
@@ -128,7 +134,7 @@ public class Configuration {
 	@ParametrisationInteger(min=5, max=500, pas = 5, toolTip = "Nombre de passage d'un agent necessaires pour qu'un chemin soit trace.")
 	public static Integer passagesPourCreerRoute = 30;
 	@ParametrisationInteger(min=1, max=150, pas = 1)
-	public static Integer EffacementRoute = 5;
+	public static Integer EffacementRoute = 25;
 
 	
 	
@@ -236,7 +242,8 @@ public class Configuration {
 	}
 	
 	public static NCogniton getCognitonByName(String s){
-		for (int i = 0 ; i < actions.size(); i++){
+		for (int i = 0 ; i < cognitons.size(); i++){
+			System.out.println("requete " + s);
 			if (cognitons.get(i).getNom().equals(s)){
 				return(cognitons.get(i));
 			}
@@ -248,6 +255,15 @@ public class Configuration {
 		for (int i = 0 ; i < civilisations.size(); i++){
 			if (civilisations.get(i).getNom().equals(s)){
 				return(civilisations.get(i));
+			}
+		}
+		return null;
+	}
+	
+	public static GroupModel getGroupModelByName(String s){
+		for (int i = 0 ; i < groups.size(); i++){
+			if (groups.get(i).getName().equals(s)){
+				return(groups.get(i));
 			}
 		}
 		return null;

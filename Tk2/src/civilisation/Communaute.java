@@ -59,6 +59,7 @@ public class Communaute extends Turtle
 		batiments.get(0).setTermine(true);
 		index = nombreCommunaute;
 		nombreCommunaute++;
+		this.playRole("communaute");
 	}
 
 	public Communaute(Civilisation civ)
@@ -69,8 +70,7 @@ public class Communaute extends Turtle
 		index = nombreCommunaute;
 		nombreCommunaute++;
 		this.civ = civ;
-
-
+		
 	}
 	
 	

@@ -142,6 +142,13 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			for (int i = 0; i < Configuration.civilisations.size();i++){
 				Configuration.civilisations.get(i).enregistrer(civilisations);
 			}
+			
+			System.out.println("--Ý Save groups");
+			File groups = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/groups");
+			groups.mkdir();
+			for (int i = 0; i < Configuration.groups.size();i++){
+				Configuration.groups.get(i).enregistrer(groups);
+			}
 
 			/*On remet les environnements en place*/
 			environnements = new File(System.getProperty("user.dir")+"/bin/civilisation/environnements");
@@ -196,6 +203,10 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 		else if (index == 6) 
 		{
 			p.afficherAttributes();
+		}
+		else if (index == 7) 
+		{
+			p.showGroupManager();
 		}
 	}
 	

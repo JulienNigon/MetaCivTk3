@@ -1,8 +1,6 @@
 Nom : EleverUnEnfant
 Birth : false
 Self : false
-Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -1)
-Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -1)
-Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -1)
+
 Action : A_Birth
-Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -50)
+Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -75)

@@ -3,54 +3,43 @@ package civilisation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import madkit.kernel.Agent;
 import civilisation.individu.Esprit;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.CCogniton;
+import edu.turtlekit2.kernel.agents.Turtle;
+import edu.turtlekit2.kernel.environment.Patch;
 
-public class Group {
+public class Group extends Turtle
+{
 
-	//Group have an HashMap, which associate Role (String) to an arraylist of PCogniton.
-	//Each PCogniton contain a Culturon instead of a standard Cogniton.
-	HashMap<String,ArrayList<CCogniton>> culturons = new HashMap<String,ArrayList<CCogniton>>();
 	Group parent;
+	GroupModel groupModel;
+	Patch position;
 	
 	public Group() {
 	}
 	
-	public Group(Group parent){
+	public Group(Group parent , GroupModel groupModel, Patch position){
 		this.parent = parent;
-	}
-	
-	public void setRole(String role){
-		culturons.put(role , null);
-	}
-	
-	public void setRole(ArrayList<CCogniton> newCulturons , String role){
-		culturons.put(role , newCulturons);
-	}
-
-	public HashMap<String,ArrayList<CCogniton>> getCulturons() {
-		return culturons;
-	}
-
-	public void setCulturons(HashMap<String,ArrayList<CCogniton>> culturons) {
-		this.culturons = culturons;
+		this.groupModel = groupModel;
+		this.position = position;
 	}
 	
 	public void applyCulturons(String role , Esprit e){
-		ArrayList<CCogniton> c = culturons.get(role);
+		ArrayList<CCogniton> c = groupModel.getCulturons().get(role);
 		for (int i = 0 ; i < c.size() ; i++){
 			c.get(i).appliquerPoids(e);
 		}
-		parent.applyCulturons(role, e);
+		if (parent != null) parent.applyCulturons(role, e);
 	}
 	
 	public void setupCulturons(String role , Esprit e){
-		ArrayList<CCogniton> c = culturons.get(role);
+		ArrayList<CCogniton> c = groupModel.getCulturons().get(role);
 		for (int i = 0 ; i < c.size() ; i++){
 			c.get(i).mettreEnPlace(e);
 		}
-		parent.setupCulturons(role, e);
+		if (parent != null) parent.setupCulturons(role, e);
 	}
 	
 }

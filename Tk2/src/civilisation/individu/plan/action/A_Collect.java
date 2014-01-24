@@ -50,7 +50,7 @@ public class A_Collect extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Add or remove some pheromones from the cirrent patch.<html>";
+		return super.getInfo() + " Add or remove some pheromones from the current patch.<html>";
 	}
 
 

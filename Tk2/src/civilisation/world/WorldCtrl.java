@@ -29,42 +29,6 @@ public class WorldCtrl extends Observer
 	{
 		super.setup();
 		World.getInstance().setup();
-		
-		/* N'a plus lieu d'être avec MetaCiv
-		// Initialisation des SondesACognitons 
-		File[] files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/beliefs").listFiles();
-		for (File file : files) {
-		    if (file.isFile()) {
-		        sondes.add(new SondeACognitons("civilisation.individu.cognitons.beliefs."+file.getName().split("\\.class")[0]));
-		    }
-		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/memes").listFiles();
-		for (File file : files) {
-		    if (file.isFile()) {
-		        sondes.add(new SondeACognitons("civilisation.individu.cognitons.memes."+file.getName().split("\\.class")[0]));
-		    }
-		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/percepts").listFiles();
-		for (File file : files) {
-		    if (file.isFile()) {
-		        sondes.add(new SondeACognitons("civilisation.individu.cognitons.percepts."+file.getName().split("\\.class")[0]));
-		    }
-		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/skills").listFiles();
-		for (File file : files) {
-		    if (file.isFile()) {
-		        sondes.add(new SondeACognitons("civilisation.individu.cognitons.skills."+file.getName().split("\\.class")[0]));
-		    }
-		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/traits").listFiles();
-		for (File file : files) {
-		    if (file.isFile()) {
-		        sondes.add(new SondeACognitons("civilisation.individu.cognitons.traits."+file.getName().split("\\.class")[0]));
-		    }
-		}
-		System.out.println("Fin de la mise en place des sondes à cognitons.");
-		System.out.println("Nombre de sondes : " + sondes.size());
-*/
 	}
 	
 	
@@ -74,6 +38,8 @@ public class WorldCtrl extends Observer
 	{
 		
 		tick++;
+		
+		
 	
 		/* Gestion des sondes à cognitons */
 		for (int i = 0; i < sondes.size(); i++)

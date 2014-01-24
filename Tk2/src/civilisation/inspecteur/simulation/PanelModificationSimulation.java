@@ -1,6 +1,7 @@
 package civilisation.inspecteur.simulation;
 
 import java.awt.BorderLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +19,8 @@ import civilisation.inspecteur.simulation.environnement.ActionsToolBarEnvironnem
 import civilisation.inspecteur.simulation.environnement.ActionsToolBarTerrains;
 import civilisation.inspecteur.simulation.environnement.PanelEnvironnement;
 import civilisation.inspecteur.simulation.environnement.PanelTerrains;
+import civilisation.inspecteur.simulation.groupManager.PanelGroupManager;
+import civilisation.inspecteur.simulation.groupManager.PanelGroupTree;
 import civilisation.inspecteur.simulation.objets.ActionsToolBarListeObjets;
 import civilisation.inspecteur.simulation.objets.PanelListeObjets;
 import civilisation.inspecteur.simulation.objets.PanelObjets;
@@ -33,6 +36,7 @@ public class PanelModificationSimulation extends JPanel{
 	JButton boutonObjets;
 	JButton boutonCivilisations;
 	JButton boutonAttribute;
+	JButton boutonGroupManager;
 
 	PanelStructureCognitive panelStructureCognitive;
 	PanelEnvironnement panelEnvironnement;
@@ -43,6 +47,8 @@ public class PanelModificationSimulation extends JPanel{
 	PanelCivilisations panelCivilisations;
 	PanelListeCivilisations panelListeCivilisations;
 	PanelAttributes panelAttributes;
+	PanelGroupTree panelGroupTree;
+	PanelGroupManager panelGroupManager;
 	
 	JPanel panelCentral;
 	JPanel panelEast;
@@ -67,6 +73,10 @@ public class PanelModificationSimulation extends JPanel{
 	JButton dezoomer;
 	JButton choisirEnvironnementActif;
 	JButton pheromone;
+	
+	JToolBar toolBarGroupManager;
+	
+	JToolBar toolBarGroupTree;
 
 	JToolBar toolBarCivilisations;
 	
@@ -139,6 +149,12 @@ public class PanelModificationSimulation extends JPanel{
 		boutonAttribute.setToolTipText("Edit attributes");
 		boutonAttribute.addActionListener(new ActionPanelCognitonsGraphiques(this, 6));
 		toolBar.add(boutonAttribute);
+		
+		ImageIcon iconeGroupManager = new ImageIcon(this.getClass().getResource("../icones/blue-document-attribute.png"));	
+		boutonGroupManager = new JButton(iconeGroupManager);
+		boutonGroupManager.setToolTipText("Manage group");
+		boutonGroupManager.addActionListener(new ActionPanelCognitonsGraphiques(this, 7));
+		toolBar.add(boutonGroupManager);
 		
 		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
 		bordure.setTitleJustification(TitledBorder.LEFT);
@@ -444,6 +460,7 @@ public class PanelModificationSimulation extends JPanel{
 		this.boutonEnvironnement.setEnabled(true);
 		this.boutonCivilisations.setEnabled(true);
 		this.boutonAttribute.setEnabled(true);
+		this.boutonGroupManager.setEnabled(true);
 	}
 	
 	public void changerArbreActions(NPlan plan){
@@ -479,6 +496,34 @@ public class PanelModificationSimulation extends JPanel{
 
 	public PanelListeObjets getPanelListeObjets() {
 		return panelListeObjets;
+	}
+
+	public void showGroupManager() {
+		//TODO
+		setPanelButtonAvailable();
+		this.boutonGroupManager.setEnabled(false);
+
+		if (panelCentral != null){
+			this.remove(panelCentral);
+		}
+		panelCentral = new JPanel();
+		panelCentral.setLayout(new BorderLayout());
+		
+		panelCentral.add(panelGroupManager, BorderLayout.CENTER);
+		panelCentral.add(toolBarGroupManager, BorderLayout.NORTH);
+
+		
+		if (panelEast != null){
+			this.remove(panelEast);
+		}
+		panelEast = new JPanel();
+		panelEast.setLayout(new BorderLayout());
+		
+		panelEast.add(panelGroupTree, BorderLayout.CENTER);
+		panelEast.add(toolBarGroupTree, BorderLayout.NORTH);
+		
+		this.add(panelCentral, BorderLayout.CENTER);
+		this.add(panelEast, BorderLayout.EAST);			
 	}
 	
 

@@ -35,7 +35,7 @@ final public class Patch {
     TurtleEnvironment world;
     public double diffusion;
     public double[] variableValue;
-    Hashtable<String, Object> marks=null;
+    Hashtable<String, Object> marks =null;
     public transient Patch neighbors[];
     public Collection<Turtle> turtlesHere = new HashSet<Turtle>();
     public Color color;
@@ -152,7 +152,7 @@ final public class Patch {
     
     final public String toString() {
 
-        return ("salut; ");
+        return ("x : " + x + " y : " + y);
     }
     
 }
