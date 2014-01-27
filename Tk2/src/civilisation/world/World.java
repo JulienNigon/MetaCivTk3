@@ -236,7 +236,14 @@ public class World extends TurtleEnvironment
 	
 	
 	
+	
+	
+	
+	
+	/*NOT USED ANYMORE*/
 	/*---------------Fonctions de génération du monde---------------------------*/
+	
+	
 	
 	/**Creer un continent (terrains de type plaine).
 	 */
@@ -456,18 +463,6 @@ public class World extends TurtleEnvironment
 		
 		return true;
 	}
-	
-	/**
-	 * Met en place les attributs des patchs.
-	 * On utilise les phéromones pour cela.
-	 */
-	private void initialiserRessources()
-	{
-
-	  
-	}
-	
-	
 	
 	/**Verifie qu'un point se situe dans les limites de la carte.
 	 * Retourne vrai si le point est inclu, faux sinon.

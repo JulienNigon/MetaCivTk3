@@ -31,8 +31,6 @@ public class Civilisation {
 		indexCiv = nombreCiv; //Les civilisations sont indexées à partir de 0
 		nombreCiv ++;
 		listeCiv.add(this);
-		System.out.println(World.getInstance().gridVariables.size());
-		System.out.println("OK : " +  World.getInstance().gridVariables.containsKey("civ"+indexCiv) + " " + "civ"+indexCiv);
 	}
 
 

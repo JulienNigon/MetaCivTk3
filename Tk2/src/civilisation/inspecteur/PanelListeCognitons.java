@@ -21,6 +21,9 @@ public class PanelListeCognitons extends JPanel{
 	Object[][] donnees = new Object[1000][1];
 	JTableRendererCognitons renderer;
 
+	JTable weights;
+	Object[][] dataWeight = new Object[1000][1];
+
 	public PanelListeCognitons()
 	{
 		this.setLayout(new BorderLayout());
@@ -31,8 +34,10 @@ public class PanelListeCognitons extends JPanel{
         renderer = new JTableRendererCognitons();
         tableau.setDefaultRenderer(Object.class, renderer);
 
+        weights = new JTable(dataWeight, entetes);
         
 		this.add(tableau, BorderLayout.CENTER);
+		this.add(weights, BorderLayout.EAST);
 
 		
 		this.setVisible(true);
@@ -50,6 +55,16 @@ public class PanelListeCognitons extends JPanel{
 		for (int i = 0; i < ((Humain) t).getEsprit().getCognitons().size();i++)
 		{
 			donnees[i][0] = ((Humain) t).getEsprit().getCognitons().get(i);
+		}
+		
+		for (int i=0; i < dataWeight.length;i++)
+		{
+			dataWeight[i][0] = null;
+			dataWeight[i][0] = null;
+		}
+		for (int i = 0; i < ((Humain) t).getEsprit().getCognitons().size();i++)
+		{
+			dataWeight[i][0] = ((Humain) t).getEsprit().getCognitons().get(i).getWeigth();
 		}
 
 		this.updateUI();

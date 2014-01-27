@@ -39,17 +39,6 @@ public class WorldCtrl extends Observer
 		
 		tick++;
 		
-		
-	
-		/* Gestion des sondes ˆ cognitons */
-		for (int i = 0; i < sondes.size(); i++)
-		{
-			//System.out.println("Sonde debut : " + i);
-			sondes.get(i).activer();
-			//System.out.println("Sonde fin : " + i);
-
-		}
-		
 		/* Gestion des ressources*/
 		if (tick %100 == 0)
 		{

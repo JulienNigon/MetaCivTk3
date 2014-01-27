@@ -49,7 +49,12 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 						box.addItem(Configuration.objets.get(j).getNom());
 					}
 				}
-				if (schema.get(i)[0].equals("**Pheromone**")){
+				else if (schema.get(i)[0].equals("**Cogniton**")){
+					for (int j = 0; j < Configuration.cognitons.size(); j++){
+						box.addItem(Configuration.cognitons.get(j).getNom());
+					}
+				}
+				else if (schema.get(i)[0].equals("**Pheromone**")){
 					for (int j = 0; j < Configuration.itemsPheromones.size(); j++){
 						box.addItem(Configuration.itemsPheromones.get(j).getNom());
 					}
@@ -149,6 +154,10 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					else if (schema.get(i)[0].equals("**Pheromone**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxime terme est toujours le nom du paramtre pour les paramtres complexes*/
 						opt.addParametre(Configuration.getPheromoneByName((String)boxs.get(i).getSelectedItem()));
+					}
+					else if (schema.get(i)[0].equals("**Cogniton**")){
+						opt = new OptionsActions(schema.get(i)[1]);
+						opt.addParametre(Configuration.getCognitonByName((String)boxs.get(i).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Group**")){
 						opt = new OptionsActions(schema.get(i)[1]);

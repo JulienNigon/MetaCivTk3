@@ -7,24 +7,22 @@ import java.awt.event.MouseEvent;
 
 
 
+
 import civilisation.Civilisation;
 import civilisation.Configuration;
 import civilisation.ItemPheromone;
 import civilisation.amenagement.Amenagement;
 import civilisation.inspecteur.FenetreInspecteur;
 import civilisation.inspecteur.FenetreInspecteurCommunaute;
+import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
 import civilisation.individu.plan.NPlan;
-import civilisation.marks.ExplosionCombat;
-
-
 import edu.turtlekit2.kernel.agents.Turtle;
 import edu.turtlekit2.kernel.agents.Viewer;
 import edu.turtlekit2.kernel.environment.Patch;
 
 /** 
- * Gestion de la représentation du monde et de l'interaction avec lui (via click de souris)
- * A terme, permettra (eventuellement) de sélectionner des agents
+ * Viewer of the environment
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
@@ -68,7 +66,7 @@ public class WorldViewer extends Viewer
 
 	
 	/**
-	 * Redifination de l'affichage des patchs
+	 * Patch drawing.
 	 */
 	@Override
 	public void paintPatch(Graphics g, Patch p,int x,int y,int cellS){
@@ -122,36 +120,37 @@ public class WorldViewer extends Viewer
 				mark.dessiner(g, x, y, cellS);
 				p.dropMark("Route", mark); // On repose la mark, car elle est retirée à l'appel du get…
 			}
-			if (p.isMarkPresent("ExplosionCombat")) //Dessin d'un petit graphisme d'attaque
-			{
-				ExplosionCombat mark = (ExplosionCombat) p.getMark("ExplosionCombat");
-				mark.dessiner(g, x, y, cellS);
-			}
 	}
 	
 	@Override
 	public void paintTurtle(Graphics g,Turtle t,int x,int y,int cellSize)
     {
 
+		
+		
+		if(t.isPlayingRole("Humain")){
+			
+			Esprit e = ((Humain) t).getEsprit();
+			
+			// Les dessins sous le carré de couleur
+			if(((Humain) t).getIsSelected()){
+				g.setColor(Color.white);
+				g.fillRect(x-2,y-2,cellSize+4,cellSize+4);
+			}
+			
+			if ((planVisible == null || planVisible == e.getPlanEnCours().getPlan() ))
+			{	
+				//Le carré de couleur
+				g.setColor(t.getColor());
+				g.fillRect(x+1,y+1,cellSize-1,cellSize-1);
+			}
+			else
+			{
+				//Le carré de couleur
+				g.setColor(t.getColor());
+				g.fillRect(x+3,y+3,cellSize-3,cellSize-3);
+			}
 
-		
-		// Les dessins sous le carré de couleur
-		if(t.isPlayingRole("Humain") && ((Humain) t).getIsSelected()){
-			g.setColor(Color.white);
-			g.fillRect(x-2,y-2,cellSize+4,cellSize+4);
-		}
-		
-		if (t.isPlayingRole("Humain") && (planVisible == null || planVisible == ((Humain) t).getEsprit().getPlanEnCours().getPlan() ))
-		{	
-			//Le carré de couleur
-			g.setColor(t.getColor());
-			g.fillRect(x+1,y+1,cellSize-1,cellSize-1);
-		}
-		else
-		{
-			//Le carré de couleur
-			g.setColor(t.getColor());
-			g.fillRect(x+3,y+3,cellSize-3,cellSize-3);
 		}
 
 
@@ -167,10 +166,10 @@ public class WorldViewer extends Viewer
 			g.drawLine(x, y+cellSize-1, x+cellSize-1, y+cellSize-1);
 			g.drawLine(x, y, x, y+cellSize-1);
 			g.drawLine(x, y, x+cellSize-1, y);
-		}
-    	
-		
+		}	
 	}
+	
+	
 	
 	public int getControleurPatch(Patch p)
 	{

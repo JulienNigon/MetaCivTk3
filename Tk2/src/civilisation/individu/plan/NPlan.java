@@ -57,6 +57,11 @@ public class NPlan {
 			actions.add(action);
 	}
 	
+	/**
+	 * Add an action after a specified action
+	 * @param action : action to add
+	 * @param ref : "action" is added after "ref"
+	 */
 	public void addActionAfter(Action action , Action ref) {
 		for (int i = 0 ; i < actions.size(); i++){
 			if (actions.get(i).equals(ref)){
@@ -74,6 +79,11 @@ public class NPlan {
 		}
 	}
 	
+	/**
+	 * Add an action before a specified action
+	 * @param action : action to add
+	 * @param ref : "action" is added before "ref"
+	 */
 	public void addActionBefore(Action action , Action ref) {
 		for (int i = 0 ; i < actions.size(); i++){
 			if (actions.get(i).equals(ref)){
@@ -91,6 +101,11 @@ public class NPlan {
 		}
 	}
 	
+	/**
+	 * Add an action included in another action
+	 * @param action : action to add
+	 * @param ref : "action" is added inside "ref"
+	 */
 	public void addSubAction(Action action, Action ref) {
 		for (int i = 0 ; i < actions.size(); i++){
 			if (actions.get(i).equals(ref)){
@@ -107,6 +122,10 @@ public class NPlan {
 		}		
 	}
 	
+	/**
+	 * Add an action at the begining of the plan
+	 * @param action : action to add
+	 */
 	public void addFirstAction(Action action) {
 		actions.add(0,action);
 		if (actions.size() > 1){

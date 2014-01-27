@@ -52,7 +52,6 @@ public class NCogniton{
 	
 	@Override
 	public String toString(){
-		System.out.println(" Nom cogniton qui toString : " +nom);
 		return (" Nom : " + nom
 				+ "\n Description : " + description
 				+ " \n Type : " + typeDeCogniton
@@ -63,10 +62,10 @@ public class NCogniton{
 				);
 	}
 
-	public void mettreEnPlace(Esprit e){
+	public void mettreEnPlace(Esprit e , double weigth){
 		modifierPlans(true , e);
 		if (plansAutorises.isEmpty()){ 
-			appliquerPoids(e);
+			appliquerPoids(e , weigth);
 		}
 		else{
 			e.redefinirPoids();
@@ -76,11 +75,11 @@ public class NCogniton{
 	
 	
 	
-	public void appliquerPoids(Esprit e)
+	public void appliquerPoids(Esprit e , double weigth)
 	{
 		for (int i = 0 ; i < liensPlans.size() ; i++)
 		{
-			e.modifierPoids(liensPlans.get(i).getP(), liensPlans.get(i).getPoids());
+			e.modifierPoids(liensPlans.get(i).getP(), (int)Math.round(liensPlans.get(i).getPoids()*weigth));
 		}
 	}
 	

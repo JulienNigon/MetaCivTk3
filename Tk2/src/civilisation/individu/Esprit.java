@@ -28,7 +28,7 @@ import civilisation.individu.plan.action.Action;
 
 public class Esprit {
 	
-	/* Les diff≈Ωrentes listes contenants les croyances de l'agent */
+	/* Les différentes listes contenants les croyances de l'agent */
 	ArrayList<CCogniton> cognitons;
 	
 	/* La liste des projets envisageable par l'agent*/
@@ -65,7 +65,6 @@ public class Esprit {
 		progression = 0;
 		poidsTotalPlan = 0;
 		
-		/*Si l'agent a des parents (ie : il n'a pas ≈Ωt≈Ω g≈Ωn≈Ωr≈Ω au d≈Ωbut), on calcul ce qu'il obtient de ses parents*/
 		if (h.getMere() != null)
 		{
 			//TODO
@@ -290,7 +289,7 @@ public class Esprit {
 
 	public void addCogniton(NCogniton cogni){
 		cognitons.add(new CCogniton(cogni));
-		cogni.mettreEnPlace(this);
+		cogni.mettreEnPlace(this , 1.0); //1.0 is the standard weigth for new cogniton
 	}
 
 	public void removeCogniton(NCogniton c) {
@@ -337,6 +336,34 @@ public class Esprit {
 				poidsTotalPlan += plans.get(i).getPoids();
 			}
 		}
+	}
+	
+	/**
+	 * Return the cogniton of type t
+	 * @param t
+	 * @return a cogniton of type t (or null if there is any cogniton of this type)
+	 */
+	public CCogniton getCognitonOfType(NCogniton t) {
+		CCogniton c = null;
+		for (int i = 0 ; i < cognitons.size() ; i++) {
+			if (cognitons.get(i).getCogniton().equals(t)) {
+				c = cognitons.get(i);
+			}
+		}
+		return c;
+	}
+	
+	/**
+	 * Change the weight of a cogniton of type t
+	 * @param t : the type of cogniton to change
+	 */
+	public void changeWeightOfCognitonOfType(NCogniton t , Double d) {
+		for (int i = 0 ; i < cognitons.size() ; i++) {
+			if (cognitons.get(i).getCogniton().equals(t)) {
+				cognitons.get(i).setWeigth(cognitons.get(i).getWeigth() + d);
+			}
+		}
+		this.redefinirPoids();
 	}
 	
 	

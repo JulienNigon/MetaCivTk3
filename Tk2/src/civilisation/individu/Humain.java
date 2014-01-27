@@ -19,6 +19,7 @@
 package civilisation.individu;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -33,7 +34,6 @@ import civilisation.amenagement.Amenagement_Route;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inventaire.NInventaire;
 import civilisation.inventaire.Objet;
-import civilisation.marks.ExplosionCombat;
 import civilisation.pathfinder.Noeud;
 import civilisation.urbanisme.Batiment;
 import civilisation.urbanisme.Batiment_Hutte;
@@ -1457,15 +1457,9 @@ public class Humain extends Turtle
 			            		break;
 					 }	
 				}
-		}
-
-		
-		
-			
-			
+		}		
 	}
 		attributes.put(s, d);
-
 	}
 
 

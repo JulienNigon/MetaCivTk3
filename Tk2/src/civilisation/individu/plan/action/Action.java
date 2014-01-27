@@ -76,6 +76,10 @@ public abstract class Action {
 		return null;
 	}
 
+	/**
+	 * Use an array of string and convert it into options for the action.
+	 * @param options : array of string
+	 */
 	public void parametrer(String[] options){
 
 		for (int i = 1; i < options.length; i++){ /*Le premier terme est le nom de l'action, on l'ignore donc*/

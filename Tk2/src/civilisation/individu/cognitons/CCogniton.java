@@ -6,13 +6,15 @@ import civilisation.individu.Esprit;
 
 
 /**
- * PCogniton is the combination of a Cogniton and a hashmap to store data about the cogniton
+ * CCogniton is the combination of a Cogniton and a hashmap to store data about the cogniton
+ * Only CCogniton are instantiated after initialization. No more NCogniton.
  */
 
 public class CCogniton {
 
 	public NCogniton cogniton;
 	public HashMap<String , Object> hashmap = new HashMap<String,Object>();
+	public double weigth = 1.0;
 	
 	public CCogniton (NCogniton cogniton) {
 		this.cogniton = cogniton;
@@ -36,15 +38,25 @@ public class CCogniton {
 	
 	// Some functions from NCogniton for convenience
 	public void mettreEnPlace(Esprit e){
-		cogniton.mettreEnPlace(e);
+		cogniton.mettreEnPlace(e , weigth);
 	}
 	
 	public void appliquerPoids(Esprit e){
-		cogniton.appliquerPoids(e);
+		cogniton.appliquerPoids(e , weigth);
 	}
 	
 	public String toString () {
-		
 		return "C:"+ cogniton.toString();
 	}
+
+	public double getWeigth() {
+		return weigth;
+	}
+
+	public void setWeigth(double weigth) {
+		this.weigth = weigth;
+	}
+	
+	
+	
 }
