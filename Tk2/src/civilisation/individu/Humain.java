@@ -62,7 +62,6 @@ public class Humain extends Turtle
 	int gestation;
 	int influence;
 	Boolean femme;
-	public String couleurDePeau;
 	Humain pere;
 	Humain mere;
 	Humain conjoint;
@@ -71,19 +70,14 @@ public class Humain extends Turtle
 
 	Boolean isSelected = false;
 	
-	Esprit esprit; //Contient les "pens≈Ωes" de l'agent
+	Esprit esprit; //The "mind" of the agent.
 	
-	/*variables pour la gestion des actions*/
 	String projet; //M≈Ωmorise le projet que souhaite accomplir l'agent
 	Boolean commit; //Indique si ce projet engage l'agent (il ne l'abandonne pas aprÔøΩs avoir effectu≈Ω un r≈Ωflexe par exemple)
 	int timer; //Si le projet de l'agent a une dur≈Ωe maximum dans le temps : -1 indique que non
 	
 	ArrayList<Patch> chemin;
 	int tempsPatch;
-    public static int poidsActionDiscuter_EtreDansLaMemeCiv = 25;
-    public static int poidsActionDiscuter_EtreTimide = 25;
-    public static int poidsActionDiscuter_EtreExtraverti = 25;
-    public static int gainFoiActionPrier = 4;
 
 	public Humain(Civilisation civ , Communaute communaute)
 	{
@@ -197,26 +191,14 @@ public class Humain extends Turtle
 	 */
 	private void naissance() {
 		Humain h = new Humain(civ, communaute, conjoint, this);
-		
-		//héritage par this
-		if(Math.random() < 0.5)
-		{
-			h.couleurDePeau = couleurDePeau;
-		}
-		//héritage du conjoint
-		else
-		{
-			h.couleurDePeau = conjoint.couleurDePeau;
-		}		
+
+		//TODO
 		
 		createTurtle(h);
 		gestation = -1;
 		enfants.add(h);
 		conjoint.getEnfants().add(h);
 	}
-
-
-
 
 	@Override
 	public void setup()
@@ -225,14 +207,6 @@ public class Humain extends Turtle
 		setColor(civ.getCouleur());
 		playRole("Humain");
 	} 
-
-	/**
-	 * L'agent se d≈Ωplace sans but particulier 
-	 */
-	public void explorer()
-	{
-		move(1);
-	}
 
 /**
  * L'agent rentre chez lui
@@ -306,17 +280,6 @@ public class Humain extends Turtle
 	
 	/*------------------------------------------------------------------------------*/
 	
-	
-	/**
-	 * Fait attendre un enfant ÀÜ l'agent
-	 */
-	public void attendreEnfant(Humain conjoint) {
-		if (gestation == -1)
-		{
-			this.conjoint = conjoint;
-			gestation = Configuration.tempsDeGestation;
-		}	
-	}
 	
 	/**
 	 * L'agent avance ou tourne si un obstacle se pr≈Ωsente
@@ -637,7 +600,6 @@ public class Humain extends Turtle
 	
 	
 	/**
-	 * 
 	 * @param role
 	 * @return une tortue presente sur le patch ayant un role donn√Ø¬ø¬Ω
 	 */
@@ -693,12 +655,10 @@ public class Humain extends Turtle
 		}
 		if(!choix.isEmpty())
 		{
-
 			return this.oneOf(choix);
 		}
 		else
 		{		
-
 			return null;
 		}
 		
@@ -1154,17 +1114,6 @@ public class Humain extends Turtle
 	public ArrayList<Patch> AllerVers(Patch cible)
 	{
 		return AStar(cible);	
-	}
-	
-
-
-	
-
-	
-	public void Epouser(Humain fille)
-	{
-		this.conjoint = fille;
-		fille.attendreEnfant(this);
 	}
 	
 

@@ -208,14 +208,11 @@ public class PanelStructureCognitive extends JJPanel{
 	}
 	
 	public void showTrigger(GCogniton c) {
-		System.out.println("show trigger " + c.getCogniton().toString() + "   ");
 		for (int i = 0 ; i < gTriggers.size(); i++) {
 			
 			GTrigger gt = gTriggers.get(i);
-			System.out.println("remtrig:" + i +gt.getgCogniton().getCogniton().toString());
 
 			if (gt.getgCogniton() == c) {
-				System.out.println("remove");
 				this.remove(gt);
 				gTriggers.remove(i);
 			}			
@@ -224,12 +221,10 @@ public class PanelStructureCognitive extends JJPanel{
 		
 		// If the GTrigger doesn't exist, create it
 		for (int i = 0; i < c.getCogniton().getTriggeringAttributes().size();i++){
-			System.out.println("i : " + i);
 			Object[] trigInfo = c.getCogniton().getTriggeringAttributes().get(i);
 			GTrigger newGt = new GTrigger(this,400,400);
 			newGt.setAttributesIndex(Configuration.getAttributeIndexByName((String)trigInfo[0]));
 			newGt.setValue((Integer)trigInfo[1]);
-			System.out.println("cmp : " + (Integer)trigInfo[2]);
 			newGt.setComparator((Integer)trigInfo[2]);
 			newGt.setgCogniton(c);
 			gTriggers.add(newGt);
@@ -240,8 +235,6 @@ public class PanelStructureCognitive extends JJPanel{
 	}
 
 	public void creerCogniton() {
-		System.out.println("Creation d'un nouveau cogniton");
-
 		NCogniton nouveauCogniton = new NCogniton();
 		Configuration.addCogniton(nouveauCogniton);
 		nouveauCogniton.creerCognitonLambda();
@@ -250,8 +243,6 @@ public class PanelStructureCognitive extends JJPanel{
 	}
 	
 	public void creerPlan() {
-		System.out.println("Creation d'un nouveau plan");
-
 		NPlan nouveauPlan = new NPlan();
 		nouveauPlan.setNom("Nouveau plan");
 		Configuration.addPlan(nouveauPlan);
@@ -261,15 +252,11 @@ public class PanelStructureCognitive extends JJPanel{
 	public void creerLiensInfluence(){
 		for (int i = 0; i < gCognitons.size(); i++){
 			for (int j = 0; j < gCognitons.get(i).getCogniton().getLiensPlans().size(); j++){
-				System.out.println("j: " + j);
 				int k = 0;
 				while(!gCognitons.get(i).getCogniton().getLiensPlans().get(j).getP().equals(gPlan.get(k).getPlan())){
 					k++;
-					System.out.println("k: " + k + " :: "+ gPlan.get(k)+ " :: "+ gCognitons.get(i).getCogniton().getLiensPlans().get(j).getP());
-
 				}
 				gLiens.add(new GLien(this,gCognitons.get(i),gPlan.get(k),gCognitons.get(i).getCogniton().getLiensPlans().get(j).getPoids() , Color.BLACK));
-				System.out.println(gCognitons.get(i).getCogniton().getNom() +" i");
 				//this.add(gLiens.get(gLiens.size()-1));
 			}
 
@@ -284,21 +271,15 @@ public class PanelStructureCognitive extends JJPanel{
 	}
 	
 	public void creerLiensConditionnels(){
-		System.out.println("cration des liens conditionnels");
 		for (int i = 0; i < gCognitons.size(); i++){
 			for (int j = 0; j < gCognitons.get(i).getCogniton().getPlansAutorises().size(); j++){
-				System.out.println("j2: " + j + gCognitons.get(i).getCogniton().getPlansAutorises().toString());
 				int k = 0;
 				while(!gCognitons.get(i).getCogniton().getPlansAutorises().get(j).equals(gPlan.get(k).getPlan())){
 					k++;
-					System.out.println("k2: " + k + " :: "+ gPlan.get(k));
 				}
-				System.out.println("k2 final: " + k + " :: "+ gPlan.get(k).getPlan().toString());
-
 				gLiensConditionnels.add(new GLien(this,gCognitons.get(i),
 						gPlan.get(k),
 						-1 , Color.RED));
-				System.out.println(gCognitons.get(i).getCogniton().getNom() +" i");
 				//this.add(gLiens.get(gLiens.size()-1));
 			}
 
@@ -379,7 +360,6 @@ public class PanelStructureCognitive extends JJPanel{
 
 
 	public void createCloudCogniton() {
-		System.out.println("Create new cloud cogniton");
 
 		Culturon newCloudCogniton = new Culturon();
 		Configuration.addCloudCogniton(newCloudCogniton);

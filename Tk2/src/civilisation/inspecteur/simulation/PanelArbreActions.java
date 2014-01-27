@@ -31,7 +31,6 @@ public class PanelArbreActions extends JJPanel{
 
 			this.plan = plan;
 			System.out.println("Plan obersvé : " + this.plan.getNom());
-			
 			setupArbreActions();
 
 			
@@ -49,6 +48,8 @@ public class PanelArbreActions extends JJPanel{
 		arbreActions.addMouseListener(new MouseArbreActionsListener(this));
 		arbreActions.setBackground(this.getBackground());
 		this.add(arbreActions , BorderLayout.CENTER);
+		javax.swing.ToolTipManager.sharedInstance().registerComponent(arbreActions);
+
 	}
 	
 	public void changePlan(NPlan plan) {

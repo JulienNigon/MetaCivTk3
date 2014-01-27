@@ -65,18 +65,12 @@ public class Esprit {
 		progression = 0;
 		poidsTotalPlan = 0;
 		
-		if (h.getMere() != null)
-		{
-			//TODO
-		}
-		else
-		{
-			initialisationStandard();
-		}
+		initialisationStandard();
+		
 	}
 	
 	/**
-	 * Initialise les cognitons
+	 * Initialize cognitons
 	 */
 	private void initialisationStandard()
 	{

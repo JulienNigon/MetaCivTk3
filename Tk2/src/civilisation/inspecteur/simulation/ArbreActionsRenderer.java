@@ -18,8 +18,33 @@ public class ArbreActionsRenderer  extends DefaultTreeCellRenderer{
 	        selected, expanded, leaf, row, hasFocus);
 
 	        if (((NodeArbreActions) value).isRoot()){
-			    this.setText((((NodeArbreActions) value).getAction().toString() + (((NodeArbreActions) value).getAction().getOptions().toString())));
+			    this.setText(((NodeArbreActions) value).getAction().toString());
 			    this.setIcon(((NodeArbreActions) value).getAction().getIcon());
+			   
+			    String formatedString = ((NodeArbreActions) value).getAction().toFormatedString();
+			    String toolTip =
+			    		"<html>"
+					    + "<b>"
+					 	+ ((NodeArbreActions) value).getAction().toString()
+					    + "</b>"
+					    + "<br>"
+			    		;
+			    
+			    for (int i = 1 ; i < formatedString.split(",").length ; i++) {
+			    	toolTip += formatedString.split(",")[i];
+			    	toolTip += "<br>";
+			    }
+			    
+			    toolTip += "<br>";
+			    
+			    toolTip += "<FONT COLOR=\"#990099\">";
+			    
+			    toolTip += ((NodeArbreActions) value).getAction().getInfo().split(" : ")[1].split("</html>")[0];
+			    toolTip += "</FONT>";
+			    
+			    toolTip += "</html>";
+			    
+			    this.setToolTipText(toolTip);
 
 
 
@@ -31,6 +56,7 @@ public class ArbreActionsRenderer  extends DefaultTreeCellRenderer{
 			    this.setBackground(Color.gray);
 			    this.setBackgroundNonSelectionColor(Color.gray);
 		    }
+		    
 		    
 
 
