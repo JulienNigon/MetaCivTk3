@@ -126,11 +126,11 @@ public class Initialiseur {
 		Configuration.couleurs_terrains = couleurs_terrains;		
 		
    		Configuration.attributesTrigerringValues = new HashMap<String , ArrayList<Object[]>>();
-		System.out.println("Chargement des cognitons");
+		System.out.println("Loading cognitons...");
 		File[] files = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/cognitons").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Chargement de : " + file.getName());
+			System.out.println("\tLoad cogniton : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listeCognitons.put(nom , new NCogniton());
@@ -178,7 +178,7 @@ public class Initialiseur {
 		files = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/cloudCognitons").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Chargement de : " + file.getName());
+			System.out.println("Load culturon : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listCloudCognitons.put(nom , new Culturon());
@@ -229,7 +229,7 @@ public class Initialiseur {
 		    if (file.isFile() && file.getName().endsWith(".class") && file.getName().charAt(1) == '_') {
 		    	try {
 					action = Class.forName("civilisation.individu.plan.action."+file.getName().split("\\.")[0]);
-					System.out.println("Load action : " + action.getName());
+					System.out.println("\tLoad action : " + action.getName());
 					Configuration.actions.add((Action) action.newInstance());
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
@@ -379,16 +379,7 @@ public class Initialiseur {
 	    			Configuration.environnementACharger = s.split("\\.")[0];
 	    		}
 	       	}
-		}
-
-		
-       	
-
-       
-		
-
-		
-       	
+		}    	
 	}
 	
 	/*Retourne la valeur du premier champ pass� en param�tre rencontr�*/

@@ -36,6 +36,10 @@ public class ActionOptionsListener implements ActionListener{
 		{
 			p.showPheroMap();
 		}
+		else if (index == 3) 
+		{
+			p.showGroupAndRole();
+		}
 	}
 
 

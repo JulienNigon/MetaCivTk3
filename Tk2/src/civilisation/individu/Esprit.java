@@ -10,10 +10,9 @@ import java.util.Stack;
 
 import civilisation.Configuration;
 import civilisation.Group;
+import civilisation.GroupAndRole;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.CCogniton;
-
-
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.NPlanPondere;
 import civilisation.individu.plan.action.Action;
@@ -313,6 +312,14 @@ public class Esprit {
 		this.actions = actions;
 	}
 	
+	public HashMap<Group, String> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(HashMap<Group, String> groups) {
+		this.groups = groups;
+	}
+
 	public boolean ownCogniton(NCogniton cogniton) {
 		
 		for (int i = 0 ; i < this.cognitons.size(); i++) {
@@ -358,6 +365,22 @@ public class Esprit {
 			}
 		}
 		this.redefinirPoids();
+	}
+
+	public boolean hasGroupAndRole(GroupAndRole groupAndRoleToMap) {
+		Object[] tab = groups.keySet().toArray();
+
+		for (int i = 0 ; i < groups.size(); i++) {
+			System.out.println(groupAndRoleToMap.getGroupModel().getName() + " " + ((Group)tab[i]).getGroupModel().getName());
+			System.out.println(groupAndRoleToMap.getRole() + " " + groups.get(tab[i]));
+			
+			if (((Group)tab[i]).getGroupModel().getName().equals(groupAndRoleToMap.getGroupModel().getName()) && groups.get(tab[i]).equals(groupAndRoleToMap.getRole())) {
+				System.out.println("has g&r");
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	

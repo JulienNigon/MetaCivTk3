@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import civilisation.Configuration;
+import civilisation.GroupAndRole;
+import civilisation.individu.Humain;
+import civilisation.world.World;
 import civilisation.world.WorldViewer;
 
 /** 
@@ -28,6 +31,7 @@ public class PanelOptions extends JPanel{
 	JComboBox planAffiche;
 	JComboBox frontiereAffichee;
 	JComboBox pheroMap;
+	JComboBox groupesAndRoles;
 	ArrayList<String> listePlan;
 	
 	public PanelOptions()
@@ -57,18 +61,31 @@ public class PanelOptions extends JPanel{
         JLabel labelPheroMap = new JLabel("Phero map : ");
         pheroMap = new JComboBox();
         
+        
         pheroMap.addItem("--NONE--");
 		for (int i = 0; i < Configuration.itemsPheromones.size(); i++) {
 			pheroMap.addItem(Configuration.itemsPheromones.get(i).getNom());  
 		}
         pheroMap.addActionListener(new ActionOptionsListener(this, 2));
+        
+        groupesAndRoles = new JComboBox();
+        groupesAndRoles.addItem("--NONE--");
+		for (int j = 0; j < Configuration.groups.size(); j++){
+			Object[] keys = (Object[]) Configuration.groups.get(j).getCulturons().keySet().toArray();
+			for (int k = 0 ; k < Configuration.groups.get(j).getCulturons().size() ; k++) {
+				groupesAndRoles.addItem(Configuration.groups.get(j).getName()+":"+(String)keys[k]);	
+			}
+		}
+		groupesAndRoles.addActionListener(new ActionOptionsListener(this, 3));
 
         boite.add(labelAffichage);
 		boite.add(planAffiche);
 		boite.add(frontiereAffichee);
 		boite.add(labelPheroMap);
 		boite.add(pheroMap);
-		
+		boite.add(new JLabel("Show specific group and role :"));
+		boite.add(groupesAndRoles);
+
 		this.add(boite);
 		
 		this.setVisible(true);
@@ -86,7 +103,7 @@ public class PanelOptions extends JPanel{
 	
 	public void modifierAffichageFrontieres()
 	{
-		if (frontiereAffichee.getSelectedItem().equals("Frontires visibles"))
+		if (frontiereAffichee.getSelectedItem().equals("Show limes :"))
 		{
 			WorldViewer.getInstance().setFrontieresVisibles(true);
 		}
@@ -105,6 +122,34 @@ public class PanelOptions extends JPanel{
 			WorldViewer.getInstance().setPheroToMap(null);
 		}
 	}
+
+
+	public void showGroupAndRole() {
+		
+		for (int i = 0 ; i < Configuration.maxAgents ; i++) {
+			
+			if ((World.getInstance().getTurtleWithID(i) != null && World.getInstance().getTurtleWithID(i).getClass() == Humain.class))
+			{
+				System.out.println(i);
+				if ( ((Humain)World.getInstance().getTurtleWithID(i)).getEsprit().hasGroupAndRole(new GroupAndRole((String)groupesAndRoles.getSelectedItem()) ))
+				{
+					System.out.println(true);
+					((Humain) World.getInstance().getTurtleWithID(i)).isShowGroup = true;
+				} else {
+					((Humain) World.getInstance().getTurtleWithID(i)).isShowGroup = false;			
+				}
+			}		
+		}
+		
+		
+		/*if (groupesAndRoles.getSelectedIndex() > 0) {
+			WorldViewer.getInstance().setGroupAndRoleToMap(new GroupAndRole((String)groupesAndRoles.getSelectedItem()));
+		} else {
+			WorldViewer.getInstance().setGroupAndRoleToMap(null);
+		}	*/	
+	}
+
+
 	
 
 

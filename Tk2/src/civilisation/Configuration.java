@@ -176,6 +176,8 @@ public class Configuration {
 	
 	@ParametrisationInteger(min=1, max=100)
 	public static Integer TauxDressageCheval = 25;
+	
+	public static Integer maxAgents = 50000;
 
 	@ParametrisationDouble(min=-500., max=200., pas = 5., toolTip = "Valeur de passage necessaire a l'apparition d'une foret (generalement negative)")
 	public static Double seuilEmergenceForet = -40.;

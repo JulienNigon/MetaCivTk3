@@ -8,8 +8,10 @@ import java.awt.event.MouseEvent;
 
 
 
+
 import civilisation.Civilisation;
 import civilisation.Configuration;
+import civilisation.GroupAndRole;
 import civilisation.ItemPheromone;
 import civilisation.amenagement.Amenagement;
 import civilisation.inspecteur.FenetreInspecteur;
@@ -39,6 +41,7 @@ public class WorldViewer extends Viewer
 	NPlan planVisible;
 	Boolean frontieresVisibles = true;
 	ItemPheromone pheroToMap;
+	GroupAndRole groupAndRoleToMap;
 
 	
 
@@ -143,6 +146,21 @@ public class WorldViewer extends Viewer
 				//Le carré de couleur
 				g.setColor(t.getColor());
 				g.fillRect(x+1,y+1,cellSize-1,cellSize-1);
+				
+				if (e.getHumain().isShowGroup)
+				{	
+					System.out.println("draw group");
+					g.setColor(Color.DARK_GRAY);
+					g.drawLine(x+cellSize-1, y, x+cellSize-1, y+cellSize-1);
+					g.drawLine(x, y+cellSize-1, x+cellSize-1, y+cellSize-1);
+					g.drawLine(x, y, x, y+cellSize-1);
+					g.drawLine(x, y, x+cellSize-1, y);
+					
+					g.drawLine(x+cellSize-2, y, x+cellSize-2, y+cellSize-1);
+					g.drawLine(x, y+cellSize-2, x+cellSize-1, y+cellSize-2);
+					g.drawLine(x+1, y, x+1, y+cellSize-1);
+					g.drawLine(x, y+1, x+cellSize-1, y+1);
+				}
 			}
 			else
 			{
@@ -202,5 +220,14 @@ public class WorldViewer extends Viewer
 		pheroToMap = itemPheromone;
 	}
 
+	public GroupAndRole getGroupAndRoleToMap() {
+		return groupAndRoleToMap;
+	}
+
+	public void setGroupAndRoleToMap(GroupAndRole groupAndRoleToMap) {
+		this.groupAndRoleToMap = groupAndRoleToMap;
+	}
+
+	
 	
 }

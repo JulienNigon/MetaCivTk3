@@ -68,7 +68,9 @@ public class Humain extends Turtle
 	ArrayList<Humain> enfants;
 	HashMap<String,Integer> attributes;
 
-	Boolean isSelected = false;
+	/* For map drawing */
+	public boolean isSelected = false;
+	public boolean isShowGroup = false;
 	
 	Esprit esprit; //The "mind" of the agent.
 	

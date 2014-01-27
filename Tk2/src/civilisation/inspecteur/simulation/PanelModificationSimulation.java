@@ -162,6 +162,8 @@ public class PanelModificationSimulation extends JPanel{
 		panelArbreActions = new PanelArbreActions(null);
 		panelStructureCognitive = new PanelStructureCognitive(this);
 		panelEnvironnement = new PanelEnvironnement(this);
+		panelGroupManager = new PanelGroupManager(this);
+
 		panelTerrains = new PanelTerrains();
 		panelObjets = new PanelObjets(this , panelListeObjets);
 		panelListeObjets = new PanelListeObjets(panelObjets);
@@ -297,6 +299,9 @@ public class PanelModificationSimulation extends JPanel{
 		
 		/*Creation de la toolBar pour le panel des objets*/	
 		toolBarObjets = new JToolBar();
+		
+		/*ToolBar for group manager*/	
+		toolBarGroupManager = new JToolBar();
 		
 		/*Creation de la toolBar pour la liste des civilisations*/	
 		toolBarListeCivilisations = new JToolBar();
