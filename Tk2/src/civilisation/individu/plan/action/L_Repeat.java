@@ -14,6 +14,8 @@ public class L_Repeat extends LAction{
 	@Override
 	public Action effectuer(Humain h) {
 		
+		h.getEsprit().getActions().push(nextAction);
+		
 		for (int i = 0 ; i < n-1 ; i++) {
 			h.getEsprit().getActions().push(listeActions.get(0));
 		}

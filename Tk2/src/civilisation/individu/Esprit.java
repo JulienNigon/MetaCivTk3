@@ -108,9 +108,9 @@ public class Esprit {
 		if ((/*planEnCours == null && */actionEnCours == null))
 		{
 			computeTotalWeight(); //TODO : remove and re-write dynamic evolution of total weight
-			int alea = (int) (Math.random()*(poidsTotalPlan + 1));
+			int alea = (int) (Math.random()*(poidsTotalPlan));
 			int i = 0;
-			while (alea > plans.get(i).getPoids() /*|| plans.get(i).getType() == 1*/)
+			while (alea >= plans.get(i).getPoids() /*|| plans.get(i).getType() == 1*/)
 			{
 				if (plans.get(i).getPoids() > 0) {alea -= plans.get(i).getPoids();	} /*les poids negatifs ne sont pas pris en compte*/		
 				i++;

@@ -21,7 +21,7 @@ public class Initialiseur {
 	HashMap<String, NCogniton> listeCognitons;
 	HashMap<String, Culturon> listCloudCognitons;
 	HashMap<String, NPlan> listePlans;
-	HashMap<Color, Terrain> couleurs_terrains; //TODO : G�rer le cas ou la m�me couleur est utilis�e pour deux terrains
+	HashMap<Color, Terrain> couleurs_terrains; //TODO : Gerer le cas ou la meme couleur est utilisee pour deux terrains
 	final int passabiliteParDefaut = 30;
 
 	public Initialiseur(){
@@ -112,7 +112,7 @@ public class Initialiseur {
 		}	
 		
 		if (terrains.size() == 0){
-			/*Si il n'y a aucun terrain disponible, un terrain pas d�faut est cr��*/
+			/*Si il n'y a aucun terrain disponible, un terrain pas defaut est cree*/
 			Terrain tDefault = new Terrain("Default");
 			terrains.add(tDefault);
 			tDefault.setCouleur(Color.GREEN);
@@ -241,7 +241,7 @@ public class Initialiseur {
 		    }
 		}
 		
-		/*On transmet les informations � la classe de configuration*/
+		/*On transmet les informations a la classe de configuration*/
 		Configuration.cognitonsDeBase = cognitonsDeBase;
 		Configuration.cognitons = tousLesCognitons;
 		Configuration.cloudCognitons = allCloudCogniton;
@@ -380,9 +380,11 @@ public class Initialiseur {
 	    		}
 	       	}
 		}    	
+		
+		System.out.println(System.getProperty("java.version"));
 	}
 	
-	/*Retourne la valeur du premier champ pass� en param�tre rencontr�*/
+	/*Retourne la valeur du premier champ passee en parametre rencontr���*/
 	static public String[] getChamp(String champ ,  File f){
 		
 		 Scanner scanner;

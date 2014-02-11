@@ -63,7 +63,7 @@ public class Configuration {
 	/*Associations couleurs-terrains*/
 	public static HashMap<Color, Terrain> couleurs_terrains;
 	
-	/*Environnement ˆ charger*/
+	/*Environnement ï¿½ charger*/
 	public static String environnementACharger;
 	
 	/*Path to icon*/
@@ -87,7 +87,7 @@ public class Configuration {
 	
 	
 	
-	/*Tableau des traits disponibles ˆ la naissance*/
+	/*Tableau des traits disponibles ï¿½ la naissance*/
 	public static String traitsDisponibles[] = {
 		"civilisation.individu.cognitons.traits.TRAIT_Timide" ,
 		"civilisation.individu.cognitons.traits.TRAIT_Extraverti" ,
@@ -245,7 +245,6 @@ public class Configuration {
 	
 	public static NCogniton getCognitonByName(String s){
 		for (int i = 0 ; i < cognitons.size(); i++){
-			System.out.println("requete " + s);
 			if (cognitons.get(i).getNom().equals(s)){
 				return(cognitons.get(i));
 			}
