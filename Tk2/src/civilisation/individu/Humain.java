@@ -1359,14 +1359,14 @@ public class Humain extends Turtle
 			            case 2: if (d > v) esprit.addCogniton(c);
 			                    break;
 			                    
-			            case 1: if (d >= v) esprit.addCogniton(c);
+			            case 1: if (d >= v && attributes.get(s) != v) esprit.addCogniton(c);
 			                    break;
 			                    
 			            case 0: if (d == v) esprit.addCogniton(c);
 	    						else esprit.removeCogniton(c);
 			            		break;
 			            		
-			            case -1: if (d <= v) ;
+			            case -1: if (d <= v && attributes.get(s) != v) ;
 	    						else esprit.removeCogniton(c);
 			            		break;
 			            		
@@ -1390,7 +1390,7 @@ public class Humain extends Turtle
 			            		else esprit.removeCogniton(c);
 			                    break;
 			                    
-			            case 1: if (d >= v);
+			            case 1: if (d >= v && attributes.get(s) != v);
 	            				else esprit.removeCogniton(c);
 			                    break;
 			                    
@@ -1398,7 +1398,7 @@ public class Humain extends Turtle
 	    						else esprit.removeCogniton(c);
 			            		break;
 			            		
-			            case -1: if (d <= v) esprit.addCogniton(c);
+			            case -1: if (d <= v && attributes.get(s) != v) esprit.addCogniton(c);
 			            		break;
 			            		
 			            case -2: if (d < v) esprit.addCogniton(c);
@@ -1412,10 +1412,6 @@ public class Humain extends Turtle
 	}
 		attributes.put(s, d);
 	}
-
-
-}
-
 
 
 
