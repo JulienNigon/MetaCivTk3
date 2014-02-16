@@ -17,9 +17,17 @@ public class A_SmellAndMove extends Action{
 		//Patch p = h.get(phero.getNom(), 4);
 		//h.setHeading(h.towards(p.x , p.y));
 		Patch p = h.getPatchWithMaxOf(phero.getNom(), 1);
-		h.setHeading(h.towards(p));
+		if(p != null)
+		{
+			h.setHeading(h.towards(p));
+			h.fd(1);
+		}
+		else
+		{
+			h.fd(1);
+		}
 		//h.setHeading(World.getInstance().getPheromone(phero.getNom()).getMinDirection(h.xcor(), h.ycor()));
-		h.fd(1);
+		
 		return nextAction;
 	}
 

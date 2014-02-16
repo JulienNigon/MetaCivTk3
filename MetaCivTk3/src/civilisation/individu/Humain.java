@@ -638,26 +638,40 @@ public class Humain extends Turtle
 				}
 			}			
 		}
-		/*On conserve tous les patch dont la valeur est le max*/
-		for (int i = -inRadius; i <= inRadius ; i++) {
-			for (int j = -inRadius; j <= inRadius ; j++) {
-				if (! (i == 0 && j == 0) && this.isInsideEnvironmentBounds(i, j)) {
-					Patch tmpP = getPatchAt(i, j);
-					double tmp = this.smellAt(patchVariable,i,j);
-					if (tmp == max) {
-						p.add(tmpP);
+		int index = -1;
+		if(max != -Double.MAX_VALUE)
+		{
+			/*On conserve tous les patch dont la valeur est le max*/
+			for (int i = -inRadius; i <= inRadius ; i++) {
+				for (int j = -inRadius; j <= inRadius ; j++) {
+					if (! (i == 0 && j == 0) && this.isInsideEnvironmentBounds(i, j)) {
+						Patch tmpP = getPatchAt(i, j);
+						double tmp = this.smellAt(patchVariable,i,j);
+						if (tmp == max) {
+							p.add(tmpP);
+						}
 					}
 				}
 			}
+			index = (int) (Math.floor(Math.random()*(p.size() - 1)));
 		}
-		int index = (int) (Math.floor(Math.random()*(p.size())));
+
 	/*	if (this.isInsideEnvironmentBounds(1,1) && p.get(index) == getPatchAt(1,1)) {
 			System.out.println("11");
 		}
 		if (this.isInsideEnvironmentBounds(1,1) && p.get(index) == getPatchAt(1,-1)) {
 			System.out.println("1-1");
 		}*/
-		return p.get(index);
+		//System.out.println(index);
+		if(index != -1 && index < p.size())
+		{
+			return p.get(index);
+		}
+		else
+		{
+			return null;
+		}
+		
 	}
 	
 	/**
