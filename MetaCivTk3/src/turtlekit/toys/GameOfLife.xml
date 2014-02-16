@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MDK name="GameOfLife" description="GameOfLife">
+	<Environment class="turtlekit.toys.GameOfLife" />
+	<MadkitProperties envDimension="400,400" startSimu="true" fastRendering="true"/>
+</MDK>

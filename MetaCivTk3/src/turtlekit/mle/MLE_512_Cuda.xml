@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MDK name="very dense" description="test">
+		<Turtle class="turtlekit.mle.Particule" nbOfInstances="10000" roles="0" />
+		<MadkitProperties 
+		envDimension="512" 
+		environment="turtlekit.mle.MLEEnvironment"
+		scheduler="turtlekit.mle.MLEScheduler"
+		viewers="turtlekit.viewer.PheromoneViewer"
+		cuda="true"
+		/>
+</MDK>
