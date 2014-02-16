@@ -26,6 +26,7 @@ import civilisation.inspecteur.viewer.ViewerTableauDeBord;
 import civilisation.world.World;
 import civilisation.world.WorldViewer;
 import turtlekit.kernel.TKLauncher;
+import turtlekit.mle.MLEEnvironment;
 import turtlekit.viewer.PheromoneViewer;
 import turtlekit.viewer.TKDefaultViewer;
 
@@ -57,6 +58,8 @@ public class CivLauncher extends TKLauncher {
 		setMadkitProperty(turtles, TurtleGenerator.class.getName()+","+1);
 		System.out.println(getMadkitProperty(envDimension));
 		System.out.println(getHeight() + " " + getWidth());
+		//setMadkitProperty(Option.noWrap, "true");
+
 		super.createSimulationInstance();
 
 		//this.launchAgent(new ViewerModificationSimulation());

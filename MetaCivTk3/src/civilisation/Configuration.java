@@ -63,7 +63,7 @@ public class Configuration {
 	/*Associations couleurs-terrains*/
 	public static HashMap<Color, Terrain> couleurs_terrains;
 	
-	/*Environnement � charger*/
+	/*Environnement ��� charger*/
 	public static String environnementACharger;
 	
 	/*Path to icon*/
@@ -87,7 +87,7 @@ public class Configuration {
 	
 	
 	
-	/*Tableau des traits disponibles � la naissance*/
+	/*Tableau des traits disponibles ��� la naissance*/
 	public static String traitsDisponibles[] = {
 		"civilisation.individu.cognitons.traits.TRAIT_Timide" ,
 		"civilisation.individu.cognitons.traits.TRAIT_Extraverti" ,
@@ -134,7 +134,7 @@ public class Configuration {
 	@ParametrisationInteger(min=5, max=500, pas = 5, toolTip = "Nombre de passage d'un agent necessaires pour qu'un chemin soit trace.")
 	public static Integer passagesPourCreerRoute = 30;
 	@ParametrisationInteger(min=1, max=150, pas = 1)
-	public static Integer EffacementRoute = 25;
+	public static Integer EffacementRoute = 100;
 
 	
 	

@@ -17,7 +17,7 @@ import civilisation.TurtleGenerator;
 
 
 /** 
- * Repr�sente le monde de jeu
+ * Repr���sente le monde de jeu
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
@@ -219,8 +219,8 @@ public class World extends TKEnvironment
 		}
 
 		
-		/* Gestion des ressources*/ //TODO
-/*		if (tick %100 == 0)
+		/* Periodic actions of the environment*/ 
+		if (tick %150 == 0)
 		{
 			for (int xx = 0; xx < x; xx++)
 			{
@@ -228,30 +228,28 @@ public class World extends TKEnvironment
 				{
 					Terrain t = Configuration.couleurs_terrains.get(this.getPatch(xx, yy).getColor());
 					for (int i = 0 ; i < t.getPheroCroissance().size() ; i++) {
-						world.grid[x][y].incrementPatchVariable(t.getPheromones().get(i).getNom(), t.getPheroCroissance().get(i));
+						this.getPatch(xx,yy).dropPheromone(t.getPheromones().get(i).getNom() , t.getPheroInitiales().get(i).floatValue());
 					}
 					
-					if(world.grid[x][y].smell("passage") > Configuration.EffacementRoute || countCouleurVoisine(world.grid[x][y] , World.getColorForets()) >= 1 )
-						{
-					world.grid[x][y].setPatchVariable("passage",world.grid[x][y].smell("passage")-Configuration.EffacementRoute);
-						}
-		else
-				{
-		world.grid[x][y].setPatchVariable("passage",0);
-				}	
-					if(world.grid[x][y].isMarkPresent("Route") && world.grid[x][y].smell("passage")< Configuration.EffacementRoute)
+					Pheromone ph = this.getPheromone("passage");
+					float phVal = ph.get(xx, yy);
+					//if (phVal >= 100)  System.out.println(phVal);
+					if(phVal > Configuration.EffacementRoute)
 					{
-						//effacer route
+						ph.set(xx, yy, phVal - Configuration.EffacementRoute);
 					}
-					
-					if(world.grid[x][y].getColor() == World.getColorPlaines() && world.grid[x][y].smell("passage") < Configuration.seuilEmergenceForet )
+					else
 					{
-						world.grid[x][y].setColor(World.getColorForets());
-						
+						ph.set(xx, yy, 0);
+					}
+					phVal = ph.get(xx, yy);
+					if(this.getPatch(xx,yy).isMarkPresent("Route") && phVal< Configuration.EffacementRoute)
+					{
+						this.getPatch(xx, yy).getMark("Route");
 					}
 				}
 			}
-		}*/ //TODO
+		}
 	}
 	
 	

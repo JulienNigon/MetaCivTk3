@@ -72,6 +72,7 @@ public class Humain extends Turtle
 	/* For map drawing */
 	public boolean isSelected = false;
 	public boolean isShowGroup = false;
+	public boolean isDie = false;
 	
 	Esprit esprit; //Mind controlling decision making of the agent
 		
@@ -89,7 +90,7 @@ public class Humain extends Turtle
 	}
 	
 	/**
-	 * Constructeur si l'agent ���� des parents
+	 * Constructeur si l'agent ������������ des parents
 	 */
 	public Humain(Civilisation civ , Communaute communaute , Humain pere , Humain mere)
 	{
@@ -105,7 +106,7 @@ public class Humain extends Turtle
 	{
 		
 		//System.out.println("------------------------------------------------");
-		System.out.println("Un agent est mort au cours du projet : " + this.getEsprit().getPlanEnCours());
+		//System.out.println("Un agent est mort au cours du projet : " + this.getEsprit().getPlanEnCours());
 		//System.out.println("Vie : " + this.getVie());
 		//if(this.chemin != null) System.out.println("Chemin : " + this.chemin);
 		//System.out.println("Inventaire" + this.inventaire);
@@ -114,7 +115,7 @@ public class Humain extends Turtle
 		//System.out.println("-------------------******-----------------------");
 		
 		//this.getEsprit().clearAllCognitons();   /*TODO*/
-		end(); //TODO : verifier
+		isDie = true; //TODO : verifier
 
 	}
 	
@@ -147,41 +148,12 @@ public class Humain extends Turtle
 	 */
 	public String penser()
 	{
-		try
-		{
-			gestion();  //Pour l'instant, la fonction de gestion est appell�����e ici, mais une meilleure fa���������on de faire devrait ����������tre trouv���������e
-			return "penser";
-		}
-		catch(Exception e) {
-			e.printStackTrace();
+		if (isDie) {
+			return null;
+		} else {
+			esprit.penser();
 		}
 		return "penser";
-	}
-	
-	/**
-	 * Fonction de gestion basique de l'agent (nourriture...)
-	 */
-	public void gestion()
-	{
-		esprit.penser();	
-				
-		// Positionne le marqueur de sa civilisation
-		this.emit("civ"+civ.getIndexCiv(), 0.01f);
-	}
-	
-
-	
-	/**
-	 * Enfante un nouvel agent
-	 */
-	private void naissance() {
-		Humain h = new Humain(civ, communaute, conjoint, this);
-
-		//TODO
-		
-		createTurtle(h);
-		enfants.add(h);
-		conjoint.getEnfants().add(h);
 	}
 
 	@Override
@@ -280,7 +252,7 @@ public class Humain extends Turtle
 			{
 				this.tempsPatch--;
 				Color coul = this.getNextPatch().getColor();
-				//On va modifier pour que ��a colle avec les nouveaux terrains
+				//On va modifier pour que ������a colle avec les nouveaux terrains
 				if(!Configuration.couleurs_terrains.get(couleur).getInfranchissable())
 				{
 					super.fd(1);
@@ -321,7 +293,7 @@ public class Humain extends Turtle
 				
 				//TODO TK3 : voir si le comportement du getNextPatch est correct
 				Color coul = this.getNextPatch().getColor();
-				//TODO : On va modifier pour que ��a colle avec les nouveaux terrains
+				//TODO : On va modifier pour que ������a colle avec les nouveaux terrains
 				if(!Configuration.couleurs_terrains.get(coul).getInfranchissable())
 				{
 					super.fd(1);
@@ -368,7 +340,7 @@ public class Humain extends Turtle
 	
 	/**
 	 * @param tortues
-	 * @return la turtle la plus eloign������������� de la tortue appelante
+	 * @return la turtle la plus eloign��������������������������������������� de la tortue appelante
 	 */
 	@SuppressWarnings("null")
 	public Turtle MaxOneOf(ArrayList<Turtle> tortues)
@@ -391,18 +363,6 @@ public class Humain extends Turtle
 			}
 		}
 		return this.oneOf(choix);
-	}
-	
-	/**
-	 * 
-	 * @param cible
-	 * @return distance entre la tortue et une tortue cibl�������������e
-	 */
-	public double distanceTo(Turtle cible)
-	{
-		double x = cible.xcor();
-		double y = cible.ycor();
-		return this.distance(x, y);
 	}
 	
 	/**
@@ -558,11 +518,7 @@ public class Humain extends Turtle
 		return tortues;
 	}
 	
-	/**
-	 * 
-	 * @param role
-	 * @return les tortues jouant le role donn������������� en parametre
-	 */
+
 	@SuppressWarnings("null")
 	public ArrayList<Turtle> TurtlesWithRole(String role)
 	{
@@ -577,11 +533,7 @@ public class Humain extends Turtle
 	
 	
 	
-	/**
-	 * @param role
-	 * @return une tortue presente sur le patch ayant un role donn�������������
-	 */
-	
+
 	@SuppressWarnings({ "null", "unused" })
 	public Turtle OneOfTurtlesHereWithRole(String role)
 	{
@@ -606,10 +558,10 @@ public class Humain extends Turtle
 	}
 	
 /**
- * Retourne une tortue pr�����sente sur le m������me patch dont le crit������re pass����� en param������tre correspond
- * @param m : La m�����thode a utiliser pour effectuer la comparaison
- * @param params : les param������tres dont la m�����thode a besoin
- * @param o : la valeur souhait�����e pour la compraison
+ * Retourne une tortue pr���������������sente sur le m������������������me patch dont le crit������������������re pass��������������� en param������������������tre correspond
+ * @param m : La m���������������thode a utiliser pour effectuer la comparaison
+ * @param params : les param������������������tres dont la m���������������thode a besoin
+ * @param o : la valeur souhait���������������e pour la compraison
  * @return
  * @throws IllegalArgumentException
  * @throws IllegalAccessException
@@ -709,8 +661,8 @@ public class Humain extends Turtle
 	}
 	
 	/**
-	 * Retourne un amenagement dont le nom est pass����� en param������tre
-	 * @param type : nom de l'am�����nagement
+	 * Retourne un amenagement dont le nom est pass��������������� en param������������������tre
+	 * @param type : nom de l'am���������������nagement
 	 * @return
 	 */
 	public Amenagement getOneOfAmenagement(String type)
@@ -877,7 +829,7 @@ public class Humain extends Turtle
 
 	public ArrayList<Patch> AStar(Patch cible)
 	{
-		System.out.println("ASTAR :" + cible + this.getPatch());
+		//System.out.println("ASTAR :" + cible + this.getPatch());
 		int[][] map = new int[this.getWorldWidth()][this.getWorldHeight()];
 		int minx = Math.min(cible.x, this.xcor());
 		int maxx = Math.max(cible.x, this.xcor());
@@ -1012,7 +964,7 @@ public class Humain extends Turtle
 			int y = close_list.get(i).getPosY();
 			if(map[x][y] >= Configuration.VitesseEstimeeParDefaut)
 			{
-				System.out.println("ASTARLISTE" + liste);
+				//System.out.println("ASTARLISTE" + liste);
 				return liste;
 			}
 			else
@@ -1020,7 +972,7 @@ public class Humain extends Turtle
 				liste.add(0,this.getPatchAt(x, y));
 			}
 		}
-		System.out.println("ASTARLISTE" + liste);
+		//System.out.println("ASTARLISTE" + liste);
 		return liste;
 	}
 	
@@ -1058,9 +1010,9 @@ public class Humain extends Turtle
 	}
 	/**
 	 * 
-	 * @param current le patch visit�����
-	 * @param visites le tableau des patchs visit�����s ou non
-	 * @return true si il n'y a aucun patch non visit����� autour de current
+	 * @param current le patch visit���������������
+	 * @param visites le tableau des patchs visit���������������s ou non
+	 * @return true si il n'y a aucun patch non visit��������������� autour de current
 	 */
 	private boolean AucunPatchNonVisiteAutour(Patch current, int[][] visites) {
 		// TODO Auto-generated method stub
@@ -1092,7 +1044,7 @@ public class Humain extends Turtle
 	 * 
 	 * @param cible
 	 * @return le Patch raprochant le plus l'agent de sa cible, compte tenu des obstacles
-	 * l'agent sera amen����� a faire des choix qui n'optimiseront pas toujours sa decison, la 
+	 * l'agent sera amen��������������� a faire des choix qui n'optimiseront pas toujours sa decison, la 
 	 * faute a un manque d'information inherant a l'agent
 	 */
 	public ArrayList<Patch> AllerVers(Patch cible)
@@ -1398,6 +1350,12 @@ public class Humain extends Turtle
 	    return Math.toDegrees(inRads);
 	}
 
+	/**
+	 * Try to understand some behaviour from Tk3
+	 */
+	public double distance (double a, double b) {
+		return super.distance(a+0.5, b+0.5);
+	}
 }
 
 
