@@ -71,7 +71,10 @@ public class A_Rentrer extends Action{
 			for(int j = miny - 10; j < maxy + 10 ; j++)
 			{
 				if(i > 0 && i < h.getWorldWidth() && j > 0 && j < h.getWorldHeight())
-				map[i][j] = Configuration.VitesseEstimeeParDefaut;
+				{
+					map[i][j] = Configuration.VitesseEstimeeParDefaut;
+				}
+				
 			}
 		}
 		
@@ -81,22 +84,26 @@ public class A_Rentrer extends Action{
 			{
 					//	Color couleur = h.getPatchColorAt(i - h.getVisionRadius(), j - h.getVisionRadius());
 						
-						int passabilite = Configuration.couleurs_terrains.get(h.getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getPassabilite();
-						if(h.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius) > 0)
-						{
-							map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] = (int) (passabilite - (passabilite/2*1/h.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius)));
-						}
-						else
-						{
-							map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] = passabilite;
-						}
-					
-						
-
-				if(h.getPatchAt( i -Configuration.VisionRadius, j - Configuration.VisionRadius).isMarkPresent("Route"))
+				if(h.xcor() + i < h.getWorldWidth() && h.ycor()+j <  h.getWorldHeight())
 				{
-					map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] -= 1;
+					int passabilite = Configuration.couleurs_terrains.get(h.getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getPassabilite();
+					if(h.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius) > 0)
+					{
+						map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] = (int) (passabilite - (passabilite/2*1/h.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius)));
+					}
+					else
+					{
+						map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] = passabilite;
+					}
+				
+					
+
+					if(h.getPatchAt( i -Configuration.VisionRadius, j - Configuration.VisionRadius).isMarkPresent("Route"))
+					{
+						map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] -= 1;
+					}
 				}
+						
 					
 			}
 		}
