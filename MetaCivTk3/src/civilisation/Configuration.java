@@ -135,7 +135,8 @@ public class Configuration {
 	public static Integer passagesPourCreerRoute = 30;
 	@ParametrisationInteger(min=1, max=150, pas = 1)
 	public static Integer EffacementRoute = 100;
-
+	@ParametrisationInteger(min=1, max=200, toolTip = "Nombre de ticks de vision de l'agent.")
+	public static final int VisionRadius = 10;
 	
 	
 	/**

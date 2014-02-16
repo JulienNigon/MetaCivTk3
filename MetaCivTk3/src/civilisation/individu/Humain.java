@@ -853,7 +853,7 @@ public class Humain extends Turtle
 				int passabilite = Configuration.couleurs_terrains.get(this.getPatchAt(i - this.visionRadius, j - this.visionRadius).getColor()).getPassabilite();
 				map[this.xcor() + i - this.visionRadius][this.ycor()+j - this.visionRadius] = (int) (passabilite - (passabilite/2*1/this.smellAt("passage", i - this.visionRadius, j - this.visionRadius)));
 							 
-				if(this.getPatchAt(i - this.visionRadius, j - this.visionRadius).isMarkPresent("route"))
+				if(this.getPatchAt(i - this.visionRadius, j - this.visionRadius).isMarkPresent("Route"))
 				{
 					map[this.xcor() + i - this.visionRadius][this.ycor()+j - this.visionRadius] /= 10;
 				}
@@ -1349,13 +1349,11 @@ public class Humain extends Turtle
 
 	    return Math.toDegrees(inRads);
 	}
-
-	/**
-	 * Try to understand some behaviour from Tk3
-	 */
-	public double distance (double a, double b) {
-		return super.distance(a+0.5, b+0.5);
+	
+	public ArrayList<Patch> getChemin() {
+	 		return this.chemin;
 	}
+
 }
 
 
