@@ -100,7 +100,7 @@ public class A_Rentrer extends Action{
 
 					if(h.getPatchAt( i -Configuration.VisionRadius, j - Configuration.VisionRadius).isMarkPresent("Route"))
 					{
-						map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] -= 1;
+						map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] = map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] / 2;
 					}
 				}
 						
