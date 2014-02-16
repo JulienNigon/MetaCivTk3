@@ -70,6 +70,7 @@ public class A_Rentrer extends Action{
 		{
 			for(int j = miny - 10; j < maxy + 10 ; j++)
 			{
+				if(i > 0 && i < h.getWorldWidth() && j > 0 && j < h.getWorldHeight())
 				map[i][j] = Configuration.VitesseEstimeeParDefaut;
 			}
 		}
