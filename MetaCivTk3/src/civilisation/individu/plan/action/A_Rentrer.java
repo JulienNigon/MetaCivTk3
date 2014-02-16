@@ -249,13 +249,5 @@ public class A_Rentrer extends Action{
 		return false;
 	}
 	
-	public ArrayList<String[]> getSchemaParametres(){
-		
-		if (schemaParametres == null){
-			schemaParametres = new ArrayList<String[]>();
-			String[] objet = {"**Objet**" , "ObjetGagne"};
-			schemaParametres.add(objet);
-		}
-		return schemaParametres;	
-	}
+
 }
