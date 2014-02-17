@@ -168,9 +168,11 @@ public class A_Rentrer extends Action{
 		}
 		//System.out.println("close_list 1 : " + close_list);
 		noeud = suivant;
-		
+		int hhh = 0;
 		while(noeud != null && (noeud.getPosX() != cible.x || noeud.getPosY() != cible.y) )
 		{
+			hhh++;
+			System.out.println(hhh);
 			//System.out.println("Noeud suivant : "+noeud.getId()+ " x : "+noeud.getPosX()+ " y : "+noeud.getPosY()+ " parent : "+noeud.getParent());
 			open_list.remove(noeud);
 			for(int i = -1; i < 2;i++)
