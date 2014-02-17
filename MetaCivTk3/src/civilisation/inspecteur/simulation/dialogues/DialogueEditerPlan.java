@@ -46,7 +46,7 @@ public class DialogueEditerPlan extends JDialog implements ActionListener, Prope
 	       
 	    //Create an array specifying the number of dialog buttons
 	    //and their text.
-	    Object[] options = {"Ok" , "Cancel"};
+	    Object[] options = {"OK" , "Cancel"};
 	 
 	    //Create the JOptionPane
 	    optionPane = new JOptionPane(array,
@@ -69,7 +69,7 @@ public class DialogueEditerPlan extends JDialog implements ActionListener, Prope
 	public void propertyChange(PropertyChangeEvent e) {
 		System.out.println(optionPane.getValue());
 		if (isVisible() && (optionPane.getValue().equals("OK") || optionPane.getValue().equals("Cancel"))){
-			if (optionPane.getValue().equals("Ok")){
+			if (optionPane.getValue().equals("OK")){
 				gPlan.getPlan().setNom(nom.getText());
 				gPlan.getPlan().setIsSelfPlan(isAuto.isSelected());
 				gPlan.getPlan().setIsBirthPlan(isBirth.isSelected());

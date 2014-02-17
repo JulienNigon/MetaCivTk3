@@ -7,14 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import civilisation.individu.cognitons.NCogniton;
 import civilisation.world.World;
-
-
-/** 
- * Classe reprŽsentant une civilisation (une "Žquipe" d'agents)
- * @author DTEAM
- * @version 1.0 - 2/2013
-*/
 
 public class Civilisation {
 
@@ -23,19 +17,30 @@ public class Civilisation {
 	static int nombreCiv = 0;
 	int indexCiv;
 	int agentsInitiaux;
+	ArrayList<NCogniton> startingCognitons = new ArrayList<NCogniton>();
 	static ArrayList<Civilisation> listeCiv = new ArrayList<Civilisation>();
+	boolean mustBeSaved = true;
+	
 	
 	public Civilisation ()
 	{
 		couleur = new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-		indexCiv = nombreCiv; //Les civilisations sont indexŽes ˆ partir de 0
+		indexCiv = nombreCiv; //Les civilisations sont indexï¿½es ï¿½ partir de 0
 		nombreCiv ++;
 		listeCiv.add(this);
+	}
+	
+	public Civilisation createDaugtherCivilization() {
+		Civilisation civ = new Civilisation();
+		civ.startingCognitons = startingCognitons;
+		mustBeSaved = false;
+		return civ;
 	}
 
 
 	
 	public void enregistrer(File cible) {
+		if (mustBeSaved) {
 		PrintWriter out;
 		try {
 			out = new PrintWriter(new FileWriter(cible.getPath()+"/"+getNom()+Configuration.getExtension()));
@@ -44,10 +49,15 @@ public class Civilisation {
 
 		    float hsb[] = Color.RGBtoHSB( this.getCouleur().getRed(),this.getCouleur().getGreen(),this.getCouleur().getBlue(), null );
 			out.println("Couleur : "+hsb[0]+","+hsb[1]+","+hsb[2]);
+			
+			for (int i = 0 ; i < startingCognitons.size() ; i++) {
+				out.println("Cogniton : "+startingCognitons.get(i).getNom());
+			}
 			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		} 
+		}
 	}
 	
 	//-------------GETTERS-------------
@@ -103,5 +113,19 @@ public class Civilisation {
 	public void postWorldSetup() {
 		World.getInstance().addFlavor("civ"+indexCiv);		
 	}
+
+
+
+	public ArrayList<NCogniton> getStartingCognitons() {
+		return startingCognitons;
+	}
+
+
+
+	public void setStartingCognitons(ArrayList<NCogniton> startingCognitons) {
+		this.startingCognitons = startingCognitons;
+	}
+	
+	
 	
 }

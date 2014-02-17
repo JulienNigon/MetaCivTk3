@@ -11,10 +11,9 @@ import civilisation.pathfinder.Noeud;
 import turtlekit.kernel.Patch;
 
 public class A_Rentrer extends Action{
-	Communaute cible;
 
 	public Action effectuer(Humain h) {
-		cible = h.getCommunaute();
+		Communaute cible = h.getCommunaute();
 		if(h.xcor() != cible.xcor() || h.ycor() != cible.ycor())
 		{
 			if(h.getChemin().isEmpty())
@@ -30,8 +29,8 @@ public class A_Rentrer extends Action{
 			
 			if(h.getChemin() != null && !h.getChemin().isEmpty())
 			{
-				Patch cible = h.getChemin().get(0);
-				h.face(cible);
+				Patch pCible = h.getChemin().get(0);
+				h.face(pCible);
 			}
 
 			h.fd(1);
@@ -46,9 +45,13 @@ public class A_Rentrer extends Action{
 				//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
 				h.getPatch().dropMark("Route", troncon);
 			}
+			return this;
+		}
+		else {
+			return nextAction;
 		}
 		
-		return nextAction;
+		
 	}
 
 	
@@ -72,7 +75,17 @@ public class A_Rentrer extends Action{
 			{
 				if(i > 0 && i < h.getWorldWidth() && j > 0 && j < h.getWorldHeight())
 				{
-					map[i][j] = Configuration.VitesseEstimeeParDefaut;
+					int addi = 0;
+					int nb = 0;
+					for(int l = 0;l < Configuration.terrains.size();l++)
+					{
+						if(Configuration.terrains.get(l).getInfranchissable() == false)
+						{
+							nb++;
+							addi += Configuration.terrains.get(l).getPassabilite();
+						}
+					}
+					map[i][j] = addi/nb;
 				}
 				
 			}
@@ -84,7 +97,7 @@ public class A_Rentrer extends Action{
 			{
 					//	Color couleur = h.getPatchColorAt(i - h.getVisionRadius(), j - h.getVisionRadius());
 						
-				if(h.xcor() + i < h.getWorldWidth() && h.ycor()+j <  h.getWorldHeight())
+				if(h.xcor() + i - Configuration.VisionRadius < h.getWorldWidth() && h.ycor()+j - Configuration.VisionRadius <  h.getWorldHeight() && h.xcor() + i - Configuration.VisionRadius > 0 && h.ycor()+j - Configuration.VisionRadius > 0) 
 				{
 					int passabilite = Configuration.couleurs_terrains.get(h.getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getPassabilite();
 					if(h.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius) > 0)
@@ -168,12 +181,10 @@ public class A_Rentrer extends Action{
 		}
 		//System.out.println("close_list 1 : " + close_list);
 		noeud = suivant;
-		int hhh = 0;
+		
 		while(noeud != null && (noeud.getPosX() != cible.x || noeud.getPosY() != cible.y) )
 		{
-			hhh++;
-			System.out.println(hhh);
-			//System.out.println("Noeud suivant : "+noeud.getId()+ " x : "+noeud.getPosX()+ " y : "+noeud.getPosY()+ " parent : "+noeud.getParent());
+			//System.out.println("Agent : "+h.getID()+" Noeud suivant : "+noeud.getId()+ " x : "+noeud.getPosX()+ " y : "+noeud.getPosY()+ " parent : "+noeud.getParent()+ " x cible : "+cible.x+" y cible : "+cible.y);
 			open_list.remove(noeud);
 			for(int i = -1; i < 2;i++)
 			{

@@ -138,6 +138,9 @@ public class Humain extends Turtle
 		for (int i = 0; i < Configuration.attributesNames.size(); i++){
 			attributes.put(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
 		}
+		for (int i = 0 ; i < civ.getStartingCognitons().size() ; i++) {
+			this.getEsprit().addCogniton(civ.getStartingCognitons().get(i));
+		}
 
 	}
 
@@ -841,40 +844,67 @@ public class Humain extends Turtle
 		}
 	}
 
+	
 	public ArrayList<Patch> AStar(Patch cible)
 	{
-		//System.out.println("ASTAR :" + cible + this.getPatch());
 		int[][] map = new int[this.getWorldWidth()][this.getWorldHeight()];
 		int minx = Math.min(cible.x, this.xcor());
 		int maxx = Math.max(cible.x, this.xcor());
 		int miny = Math.min(cible.y, this.ycor());
 		int maxy = Math.max(cible.y, this.ycor());
-		
+
 		for(int i = minx - 10;i< maxx + 10;i++)
 		{
 			for(int j = miny - 10; j < maxy + 10 ; j++)
 			{
-				map[i][j] = Configuration.VitesseEstimeeParDefaut;
+				if(i > 0 && i < this.getWorldWidth() && j > 0 && j < this.getWorldHeight())
+				{
+					int addi = 0;
+					int nb = 0;
+					for(int l = 0;l < Configuration.terrains.size();l++)
+					{
+						if(Configuration.terrains.get(l).getInfranchissable() == false)
+						{
+							nb++;
+							addi += Configuration.terrains.get(l).getPassabilite();
+						}
+					}
+					map[i][j] = addi/nb;
+				}
+				
 			}
 		}
 		
-		for(int i = 0; i < this.visionRadius * 2 ; i++)
+		for(int i = 0; i < Configuration.VisionRadius ; i++)
 		{
-			for(int j = 0; j < this.visionRadius * 2 ; j++)
+			for(int j = 0; j < Configuration.VisionRadius * 2 ; j++)
 			{
-				Color couleur = this.getPatchAt(i - this.visionRadius, j - this.visionRadius).getColor();
-				
-				int passabilite = Configuration.couleurs_terrains.get(this.getPatchAt(i - this.visionRadius, j - this.visionRadius).getColor()).getPassabilite();
-				map[this.xcor() + i - this.visionRadius][this.ycor()+j - this.visionRadius] = (int) (passabilite - (passabilite/2*1/this.smellAt("passage", i - this.visionRadius, j - this.visionRadius)));
-							 
-				if(this.getPatchAt(i - this.visionRadius, j - this.visionRadius).isMarkPresent("Route"))
+					//	Color couleur = h.getPatchColorAt(i - h.getVisionRadius(), j - h.getVisionRadius());
+						
+				if(this.xcor() + i - Configuration.VisionRadius < this.getWorldWidth() && this.ycor()+j - Configuration.VisionRadius <  this.getWorldHeight() && this.xcor() + i - Configuration.VisionRadius > 0 && this.ycor()+j - Configuration.VisionRadius > 0) 
 				{
-					map[this.xcor() + i - this.visionRadius][this.ycor()+j - this.visionRadius] /= 10;
+					int passabilite = Configuration.couleurs_terrains.get(this.getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getPassabilite();
+					if(this.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius) > 0)
+					{
+						map[this.xcor() + i - Configuration.VisionRadius][this.ycor()+j - Configuration.VisionRadius] = (int) (passabilite - (passabilite/2*1/this.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius)));
+					}
+					else
+					{
+						map[this.xcor() + i - Configuration.VisionRadius][this.ycor()+j - Configuration.VisionRadius] = passabilite;
+					}
+				
+					
+
+					if(this.getPatchAt( i -Configuration.VisionRadius, j - Configuration.VisionRadius).isMarkPresent("Route"))
+					{
+						map[this.xcor() + i - Configuration.VisionRadius][this.ycor()+j - Configuration.VisionRadius] = map[this.xcor() + i - Configuration.VisionRadius][this.ycor()+j - Configuration.VisionRadius] / 2;
+					}
 				}
+						
 					
 			}
 		}
-		/*for(int i = 0; i < map.length; i++)
+	/*	for(int i = 0; i < map.length; i++)
 		{
 			System.out.print("[");
 			for(int j = 0;j < map[i].length;j++)
@@ -886,11 +916,13 @@ public class Humain extends Turtle
 			}
 			System.out.println("]");
 		}*/
+		ArrayList<Noeud> liste_noeud = new ArrayList<Noeud>();
 		ArrayList<Noeud> open_list = new ArrayList<Noeud>();
 		ArrayList<Noeud> close_list = new ArrayList<Noeud>();
 		Noeud noeud = new Noeud(this.getPatch().x,this.getPatch().y,0,0);
 		noeud.setDistanceRacine(0);
 		close_list.add(noeud);
+		liste_noeud.add(noeud);
 		int cpt = 1;
 		for(int i = -1; i < 2;i++)
 		{
@@ -898,20 +930,26 @@ public class Humain extends Turtle
 			{
 				int x = noeud.getPosX();
 				int y = noeud.getPosY();
-				if( (x+i < this.getWorldWidth() && x+i > 0) && (y+i < this.getWorldHeight() && y+i > 0) && (i!= 0 || j != 0) && map[x+i][y+i] != 10000 )
+				if( (x+i < this.getWorldWidth() && x+i > 0) && (y+j < this.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != 0 )
 				{
-					Noeud noeu = new Noeud(x+i,y+i,0,cpt);
-					int distanceRacine = map[x+i][y+i];
+					Noeud noeu = new Noeud(x+i,y+j,0,cpt);
+					int distanceRacine = map[x+i][y+j];
 					noeu.setDistanceRacine(distanceRacine);
 					open_list.add(noeu);
+					liste_noeud.add(noeu);
 					cpt++;
 				}
 			}
 		}
+		/*System.out.println("Open_list 1 : ");
+		for(int i = 0; i < open_list.size();i++)
+		{
+			System.out.println("Noeud : "+open_list.get(i).getId()+" x : "+open_list.get(i).getPosX()+" y : "+open_list.get(i).getPosY()+ " distance : "+open_list.get(i).getDistanceRacine());
+		}*/
 		Noeud suivant = this.PlusProcheNoeud(open_list, cible);
 		if(suivant != null)
 		{
-			if(suivant.getParent() != noeud.getId())
+			/*if(suivant.getParent() != noeud.getId())
 			{
 				
 				for(int i = 0; i< close_list.size();i++)
@@ -922,12 +960,15 @@ public class Humain extends Turtle
 					}
 				}
 				
-			}
+			}*/
 			close_list.add(suivant);
 		}
+		//System.out.println("close_list 1 : " + close_list);
 		noeud = suivant;
+		
 		while(noeud != null && (noeud.getPosX() != cible.x || noeud.getPosY() != cible.y) )
 		{
+			//System.out.println("Agent : "+this.getID()+" Noeud suivant : "+noeud.getId()+ " x : "+noeud.getPosX()+ " y : "+noeud.getPosY()+ " parent : "+noeud.getParent()+ " x cible : "+cible.x+" y cible : "+cible.y);
 			open_list.remove(noeud);
 			for(int i = -1; i < 2;i++)
 			{
@@ -935,15 +976,17 @@ public class Humain extends Turtle
 				{
 					int x = noeud.getPosX();
 					int y = noeud.getPosY();
-					if( (x+i < this.getWorldWidth() && x+i > 0) && (y+i < this.getWorldHeight() && y+i > 0) && (i!= 0 || j != 0) && map[x+i][y+i] != 10000)
+					if( (x+i < this.getWorldWidth() && x+i > 0) && (y+j < this.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != 0)
 					{
-						Noeud noeu = new Noeud(x+i,y+i,noeud.getId(),cpt);
-						if(! doublons(open_list,noeud) && !doublons(close_list,noeud))
+						Noeud noeu = new Noeud(x+i,y+j,noeud.getId(),cpt);
+						if(! doublons(open_list,noeud))
 						{
-							int distanceRacine = map[x+i][y+i] + noeud.getDistanceRacine();
+							int distanceRacine = map[x+i][y+j] + noeud.getDistanceRacine();
 							noeu.setDistanceRacine(distanceRacine);
 							open_list.add(noeu);
+							liste_noeud.add(noeu);
 							cpt++;
+						//	System.out.println("Nouveau noeud "+noeu.getId()+" x : "+noeu.getPosX() + " y : "+noeu.getPosY());
 						}	
 					}
 				}
@@ -951,7 +994,7 @@ public class Humain extends Turtle
 			suivant = this.PlusProcheNoeud(open_list, cible);
 			if(suivant != null)
 			{
-				if(suivant.getParent() != noeud.getId())
+				/*if(suivant.getParent() != noeud.getId())
 				{
 					
 					for(int i = 0; i< close_list.size();i++)
@@ -962,7 +1005,7 @@ public class Humain extends Turtle
 						}
 					}
 					
-				}
+				}*/
 				close_list.add(suivant);
 			}
 			noeud = suivant;
@@ -972,24 +1015,33 @@ public class Humain extends Turtle
 		
 		
 		ArrayList<Patch> liste = new ArrayList<Patch>();
-		for(int i = 0;i < close_list.size();i++)
+		
+		
+	/*	for(int i = 0;i < close_list.size();i++)
 		{
 			int x = close_list.get(i).getPosX();
 			int y = close_list.get(i).getPosY();
 			if(map[x][y] >= Configuration.VitesseEstimeeParDefaut)
 			{
-				//System.out.println("ASTARLISTE" + liste);
 				return liste;
 			}
 			else
 			{
-				liste.add(0,this.getPatchAt(x, y));
+				liste.add(0,this.getPatchAt(x - this.position.x, y - this.position.y));
 			}
+		}*/
+		Noeud nodesui = close_list.get(close_list.size() - 1);
+		while(!(nodesui.getPosX() == this.getPatch().x && nodesui.getPosY() == this.getPatch().y) )
+		{
+			int x = nodesui.getPosX();
+			int y = nodesui.getPosY();
+			liste.add(0,this.getPatchAt(x - this.getPatch().x, y - this.getPatch().y));
+			nodesui = liste_noeud.get(nodesui.getParent());
 		}
-		//System.out.println("ASTARLISTE" + liste);
+//		System.out.println("Pos => x : "+h.xcor() + " y : "+h.ycor());
+
 		return liste;
 	}
-	
 	public boolean doublons(ArrayList<Noeud> liste, Noeud noeud )
 	{
 		for(int i = 0; i < liste.size(); i++)
@@ -1002,6 +1054,7 @@ public class Humain extends Turtle
 		return false;
 	}
 	
+	
 	public Noeud PlusProcheNoeud(ArrayList<Noeud> liste , Patch cible)
 	{
 		Noeud court = null;
@@ -1012,7 +1065,15 @@ public class Humain extends Turtle
 			int x = liste.get(i).getPosX();
 			int y = liste.get(i).getPosY();
 			Patch courant = this.getPatchAt(x - this.xcor(), y - this.ycor());
-			distanceRacine = 10 * Math.max(Math.abs(cible.x - x), Math.abs(cible.y - y));
+			int max = 0;
+			for(int j = 0 ; j < Configuration.terrains.size();j++)
+			{
+				if(Configuration.terrains.get(j).getPassabilite() > max)
+				{
+					max = Configuration.terrains.get(j).getPassabilite();
+				}
+			}
+			distanceRacine = max * Math.max(Math.abs(cible.x - x), Math.abs(cible.y - y));
 			double distance = liste.get(i).getDistanceRacine() + distanceRacine;
 			if(distance < dist)
 			{
@@ -1364,9 +1425,35 @@ public class Humain extends Turtle
 	    return Math.toDegrees(inRads);
 	}
 	
+	/**
+	 * Return the angle towards the specified patch coordinates
+	 */
+	public double towards(int x, int y) {
+	    double dx = x - xcor();
+	    double dy = -(y - ycor());
+	    double inRads = Math.atan2(dy,dx);
+
+	    if (inRads < 0)
+	        inRads = Math.abs(inRads);
+	    else
+	        inRads = 2*Math.PI - inRads;
+
+	    return Math.toDegrees(inRads);
+	}
+	
 	public ArrayList<Patch> getChemin() {
 	 		return this.chemin;
 	}
+
+	public void setCiv(Civilisation civ) {
+		this.civ = civ;
+	}
+
+	public void setCommunaute(Communaute communaute) {
+		this.communaute = communaute;
+	}
+	
+	
 
 }
 

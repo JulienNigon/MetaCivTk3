@@ -362,6 +362,13 @@ public class Initialiseur {
 		    	civ.setAgentsInitiaux(Integer.parseInt(Initialiseur.getChamp("Agents" , file)[0]));
 		    	String[] HSB = getChamp("Couleur" , file);
 		    	civ.setCouleur(Color.getHSBColor((float)Double.parseDouble(HSB[0]), (float)Double.parseDouble(HSB[1]), (float)Double.parseDouble(HSB[2])));
+		       
+		    	ArrayList<String[]> list = Initialiseur.getListeChamp("Cogniton", file);
+		       	ArrayList<NCogniton> cognis = new ArrayList<NCogniton>();		      
+		       	for (int i = 0 ; i < list.size(); i++){
+		       		cognis.add(Configuration.getCognitonByName(list.get(i)[0]));
+		       	}
+		       	civ.setStartingCognitons(cognis);
 		    	Configuration.civilisations.add(civ);
 		    	}
 			}
@@ -369,7 +376,7 @@ public class Initialiseur {
 		
 	}
 	
-	/*Retourne la valeur du premier champ passee en parametre rencontr���������*/
+	/*Retourne la valeur du premier champ passee en parametre rencontr���������������������������*/
 	static public String[] getChamp(String champ ,  File f){
 		
 		 Scanner scanner;
