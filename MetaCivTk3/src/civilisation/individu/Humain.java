@@ -59,7 +59,7 @@ public class Humain extends Turtle
 	ArrayList<Amenagement> amenagements;
 	NInventaire inventaire;
 
-	
+	Patch cible;
 	Humain pere;
 	Humain mere;
 	Humain conjoint;
@@ -1454,7 +1454,10 @@ public class Humain extends Turtle
 	}
 	
 	
-
+	public Patch getCible()
+	{
+		return cible;
+	}
 }
 
 

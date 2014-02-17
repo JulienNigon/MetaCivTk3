@@ -16,14 +16,10 @@ public class A_Rentrer extends Action{
 		Communaute cible = h.getCommunaute();
 		if(h.xcor() != cible.xcor() || h.ycor() != cible.ycor())
 		{
-			if(h.getChemin().isEmpty())
+			if(h.getChemin().isEmpty() || h.getChemin() == null)
 			{
 				h.face(cible);
 				h.getChemin().addAll(AStar(h,cible.getPatch()));
-			/*	for(int i = 0; i < h.getChemin().size();i++)
-				{
-					h.getChemin().get(i).color = Color.red;
-				}*/
 
 			}
 			
@@ -102,8 +98,7 @@ public class A_Rentrer extends Action{
 		{
 			for(int j = 0; j < Configuration.VisionRadius * 2 ; j++)
 			{
-					//	Color couleur = h.getPatchColorAt(i - h.getVisionRadius(), j - h.getVisionRadius());
-						
+	
 				if(h.xcor() + i - Configuration.VisionRadius < h.getWorldWidth() && h.ycor()+j - Configuration.VisionRadius <  h.getWorldHeight() && h.xcor() + i - Configuration.VisionRadius > 0 && h.ycor()+j - Configuration.VisionRadius > 0) 
 				{
 					int passabilite = Configuration.couleurs_terrains.get(h.getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getPassabilite();
@@ -132,18 +127,7 @@ public class A_Rentrer extends Action{
 					
 			}
 		}
-	/*	for(int i = 0; i < map.length; i++)
-		{
-			System.out.print("[");
-			for(int j = 0;j < map[i].length;j++)
-			{
-				if(map[i][j] != 1000)
-				{
-					System.out.print(map[i][j]);
-				}
-			}
-			System.out.println("]");
-		}*/
+
 		ArrayList<Noeud> liste_noeud = new ArrayList<Noeud>();
 		ArrayList<Noeud> open_list = new ArrayList<Noeud>();
 		ArrayList<Noeud> close_list = new ArrayList<Noeud>();
@@ -169,34 +153,16 @@ public class A_Rentrer extends Action{
 				}
 			}
 		}
-		/*System.out.println("Open_list 1 : ");
-		for(int i = 0; i < open_list.size();i++)
-		{
-			System.out.println("Noeud : "+open_list.get(i).getId()+" x : "+open_list.get(i).getPosX()+" y : "+open_list.get(i).getPosY()+ " distance : "+open_list.get(i).getDistanceRacine());
-		}*/
 		Noeud suivant = h.PlusProcheNoeud(open_list, cible);
 		if(suivant != null)
 		{
-			/*if(suivant.getParent() != noeud.getId())
-			{
-				
-				for(int i = 0; i< close_list.size();i++)
-				{
-					if(close_list.get(i).getId() > suivant.getParent())
-					{
-						close_list.remove(i);
-					}
-				}
-				
-			}*/
+
 			close_list.add(suivant);
 		}
-		//System.out.println("close_list 1 : " + close_list);
 		noeud = suivant;
 		
 		while(noeud != null && (noeud.getPosX() != cible.x || noeud.getPosY() != cible.y) )
 		{
-			//System.out.println("Agent : "+h.getID()+" Noeud suivant : "+noeud.getId()+ " x : "+noeud.getPosX()+ " y : "+noeud.getPosY()+ " parent : "+noeud.getParent()+ " x cible : "+cible.x+" y cible : "+cible.y);
 			open_list.remove(noeud);
 			for(int i = -1; i < 2;i++)
 			{
@@ -207,7 +173,7 @@ public class A_Rentrer extends Action{
 					if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != Integer.MAX_VALUE)
 					{
 						Noeud noeu = new Noeud(x+i,y+j,noeud.getId(),cpt);
-						if(!doublons(open_list,noeu) )
+						if(!doublons(open_list,noeu) && !doublons(close_list,noeu) )
 						{
 							int distanceRacine = map[x+i][y+j] + noeud.getDistanceRacine();
 							noeu.setDistanceRacine(distanceRacine);
@@ -222,18 +188,6 @@ public class A_Rentrer extends Action{
 			suivant = h.PlusProcheNoeud(open_list, cible);
 			if(suivant != null)
 			{
-				/*if(suivant.getParent() != noeud.getId())
-				{
-					
-					for(int i = 0; i< close_list.size();i++)
-					{
-						if(close_list.get(i).getId() > suivant.getParent())
-						{
-							close_list.remove(i);
-						}
-					}
-					
-				}*/
 				close_list.add(suivant);
 			}
 			noeud = suivant;
@@ -244,20 +198,7 @@ public class A_Rentrer extends Action{
 		
 		ArrayList<Patch> liste = new ArrayList<Patch>();
 		
-		
-	/*	for(int i = 0;i < close_list.size();i++)
-		{
-			int x = close_list.get(i).getPosX();
-			int y = close_list.get(i).getPosY();
-			if(map[x][y] >= Configuration.VitesseEstimeeParDefaut)
-			{
-				return liste;
-			}
-			else
-			{
-				liste.add(0,h.getPatchAt(x - h.position.x, y - h.position.y));
-			}
-		}*/
+
 		Noeud nodesui = close_list.get(close_list.size() - 1);
 		while(!(nodesui.getPosX() == h.getPatch().x && nodesui.getPosY() == h.getPatch().y) )
 		{
