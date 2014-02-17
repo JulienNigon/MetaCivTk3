@@ -68,30 +68,32 @@ public class A_Rentrer extends Action{
 		int maxx = Math.max(cible.x, h.xcor());
 		int miny = Math.min(cible.y, h.ycor());
 		int maxy = Math.max(cible.y, h.ycor());
-
-		for(int i = minx - 10;i< maxx + 10;i++)
+		
+		int addi = 0;
+		int nb = 0;
+		for(int l = 0;l < Configuration.terrains.size();l++)
 		{
-			for(int j = miny - 10; j < maxy + 10 ; j++)
+			if(Configuration.terrains.get(l).getInfranchissable() == false)
+			{
+				nb++;
+				addi += Configuration.terrains.get(l).getPassabilite();
+			}
+		}
+		int defaut = addi/nb;
+		for(int i = minx - Configuration.VisionRadius;i< maxx + Configuration.VisionRadius;i++)
+		{
+			for(int j = miny - Configuration.VisionRadius; j < maxy + Configuration.VisionRadius ; j++)
 			{
 				if(i > 0 && i < h.getWorldWidth() && j > 0 && j < h.getWorldHeight())
 				{
-					int addi = 0;
-					int nb = 0;
-					for(int l = 0;l < Configuration.terrains.size();l++)
-					{
-						if(Configuration.terrains.get(l).getInfranchissable() == false)
-						{
-							nb++;
-							addi += Configuration.terrains.get(l).getPassabilite();
-						}
-					}
-					map[i][j] = addi/nb;
+					
+					map[i][j] = 0;
 				}
 				
 			}
 		}
 		
-		for(int i = 0; i < Configuration.VisionRadius ; i++)
+		for(int i = 0; i < Configuration.VisionRadius*2 ; i++)
 		{
 			for(int j = 0; j < Configuration.VisionRadius * 2 ; j++)
 			{
@@ -259,8 +261,32 @@ public class A_Rentrer extends Action{
 			liste.add(0,h.getPatchAt(x - h.getPatch().x, y - h.getPatch().y));
 			nodesui = liste_noeud.get(nodesui.getParent());
 		}
-//		System.out.println("Pos => x : "+h.xcor() + " y : "+h.ycor());
+	//	System.out.println("Debut ");
+		for(int i = 0;i < liste.size();i++)
+		{
+			int x = liste.get(i).x;
+			int y = liste.get(i).y;
+			if(i == 0 && map[x][y] <= 0)
+			{
 
+			}
+			if(map[x][y] <= 0)
+			{
+				
+				if(i == 0)
+				{
+					//System.out.println("test");
+					
+					h.setHeading(Math.random()*360.);
+					h.fd(1);
+				}
+			//	System.out.println("Fin 1 "+"cible x : "+cible.x+" cible y :"+cible.y);
+				return liste;
+			}
+			//System.out.println("Pos => x : "+x + " y : "+y);
+		}
+//		System.out.println("Pos => x : "+h.xcor() + " y : "+h.ycor());
+	//	System.out.println("Fin 2 cible x : "+cible.x+" cible y :"+cible.y);
 		return liste;
 	}
 	public boolean doublons(ArrayList<Noeud> liste, Noeud noeud )
