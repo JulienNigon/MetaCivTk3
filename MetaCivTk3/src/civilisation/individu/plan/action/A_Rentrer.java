@@ -71,23 +71,28 @@ public class A_Rentrer extends Action{
 		
 		int addi = 0;
 		int nb = 0;
+		int min = 10000;
 		for(int l = 0;l < Configuration.terrains.size();l++)
 		{
 			if(Configuration.terrains.get(l).getInfranchissable() == false)
 			{
 				nb++;
 				addi += Configuration.terrains.get(l).getPassabilite();
+				if(Configuration.terrains.get(l).getPassabilite() < min)
+				{
+					min = Configuration.terrains.get(l).getPassabilite();
+				}
 			}
 		}
-		int defaut = addi/nb;
-		for(int i = minx - Configuration.VisionRadius;i< maxx + Configuration.VisionRadius;i++)
+		int defaut = min /*addi/nb*/;
+		for(int i = minx - Configuration.VisionRadius *6;i< maxx + Configuration.VisionRadius * 6;i++)
 		{
-			for(int j = miny - Configuration.VisionRadius; j < maxy + Configuration.VisionRadius ; j++)
+			for(int j = miny - Configuration.VisionRadius * 4; j < maxy + Configuration.VisionRadius * 4 ; j++)
 			{
 				if(i > 0 && i < h.getWorldWidth() && j > 0 && j < h.getWorldHeight())
 				{
 					
-					map[i][j] = 0;
+					map[i][j] = defaut;
 				}
 				
 			}
@@ -202,7 +207,7 @@ public class A_Rentrer extends Action{
 					if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != Integer.MAX_VALUE)
 					{
 						Noeud noeu = new Noeud(x+i,y+j,noeud.getId(),cpt);
-						if(! doublons(open_list,noeud))
+						if(!doublons(open_list,noeu) )
 						{
 							int distanceRacine = map[x+i][y+j] + noeud.getDistanceRacine();
 							noeu.setDistanceRacine(distanceRacine);
@@ -261,16 +266,12 @@ public class A_Rentrer extends Action{
 			liste.add(0,h.getPatchAt(x - h.getPatch().x, y - h.getPatch().y));
 			nodesui = liste_noeud.get(nodesui.getParent());
 		}
-	//	System.out.println("Debut ");
+//		System.out.println("Debut ");
 		for(int i = 0;i < liste.size();i++)
 		{
 			int x = liste.get(i).x;
 			int y = liste.get(i).y;
-			if(i == 0 && map[x][y] <= 0)
-			{
-
-			}
-			if(map[x][y] <= 0)
+			if(x > h.xcor() + Configuration.VisionRadius || x < h.xcor() - Configuration.VisionRadius || y > h.ycor() + Configuration.VisionRadius || y < h.ycor() - Configuration.VisionRadius )
 			{
 				
 				if(i == 0)
@@ -283,7 +284,7 @@ public class A_Rentrer extends Action{
 			//	System.out.println("Fin 1 "+"cible x : "+cible.x+" cible y :"+cible.y);
 				return liste;
 			}
-			//System.out.println("Pos => x : "+x + " y : "+y);
+	//		System.out.println("Pos => x : "+x + " y : "+y);
 		}
 //		System.out.println("Pos => x : "+h.xcor() + " y : "+h.ycor());
 	//	System.out.println("Fin 2 cible x : "+cible.x+" cible y :"+cible.y);
