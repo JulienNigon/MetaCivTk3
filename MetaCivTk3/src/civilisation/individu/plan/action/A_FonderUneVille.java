@@ -2,6 +2,7 @@ package civilisation.individu.plan.action;
 
 import civilisation.Civilisation;
 import civilisation.Communaute;
+import civilisation.Configuration;
 import civilisation.individu.Humain;
 
 public class A_FonderUneVille extends Action{
@@ -14,6 +15,7 @@ public class A_FonderUneVille extends Action{
 			Civilisation civ = h.getCiv().createDaugtherCivilization();
 			h.setCiv(civ);
 			Communaute c = new Communaute(civ);
+			
 			h.setCommunaute(c);
 			h.launchAgent(c);
 			c.moveTo(h.getX(), h.getY());

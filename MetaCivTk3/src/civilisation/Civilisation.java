@@ -34,6 +34,7 @@ public class Civilisation {
 		Civilisation civ = new Civilisation();
 		civ.startingCognitons = startingCognitons;
 		mustBeSaved = false;
+		Configuration.civilisations.add(civ);
 		return civ;
 	}
 

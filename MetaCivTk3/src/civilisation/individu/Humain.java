@@ -1458,6 +1458,11 @@ public class Humain extends Turtle
 	{
 		return cible;
 	}
+	
+	public void setCible(Patch cible)
+	{
+		this.cible = cible;
+	}
 }
 
 
