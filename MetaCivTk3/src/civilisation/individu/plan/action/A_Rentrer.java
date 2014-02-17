@@ -115,6 +115,11 @@ public class A_Rentrer extends Action{
 					{
 						map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] = map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] / 2;
 					}
+					
+					if(Configuration.couleurs_terrains.get(h.getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getInfranchissable() == true)
+					{
+						map[h.xcor() + i - Configuration.VisionRadius][h.ycor()+j - Configuration.VisionRadius] = Integer.MAX_VALUE;
+					}
 				}
 						
 					
@@ -146,7 +151,7 @@ public class A_Rentrer extends Action{
 			{
 				int x = noeud.getPosX();
 				int y = noeud.getPosY();
-				if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != 0 )
+				if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != Integer.MAX_VALUE )
 				{
 					Noeud noeu = new Noeud(x+i,y+j,0,cpt);
 					int distanceRacine = map[x+i][y+j];
@@ -192,7 +197,7 @@ public class A_Rentrer extends Action{
 				{
 					int x = noeud.getPosX();
 					int y = noeud.getPosY();
-					if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != 0)
+					if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != Integer.MAX_VALUE)
 					{
 						Noeud noeu = new Noeud(x+i,y+j,noeud.getId(),cpt);
 						if(! doublons(open_list,noeud))
