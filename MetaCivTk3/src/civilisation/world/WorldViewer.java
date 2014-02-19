@@ -19,6 +19,7 @@ import civilisation.GroupAndRole;
 import civilisation.ItemPheromone;
 import civilisation.TurtleGenerator;
 import civilisation.amenagement.Amenagement;
+import civilisation.amenagement.Amenagement_Champ;
 import civilisation.inspecteur.FenetreInspecteur;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
@@ -115,18 +116,17 @@ public class WorldViewer extends TKDefaultViewer
 					}*/
 				
 			 	
-				if (p.isMarkPresent("Champ"))
+				if (p.isMarkPresent(Amenagement_Champ.class.getName()))
 				{
-					Amenagement mark = (Amenagement) p.getMark("Champ");
+					Amenagement mark = (Amenagement) p.getMark(Amenagement_Champ.class.getName());
 					mark.dessiner(g, x, y,  this.getCellSize());
-					p.dropMark("Champ", mark); // On repose la mark, car elle est retir�e � l'appel du get�
+					p.dropMark(Amenagement_Champ.class.getName(), mark);
 				}
 				if (p.isMarkPresent("Route"))
 				{
 					Amenagement mark = (Amenagement) p.getMark("Route");
 					mark.dessiner(g, x, y, this.getCellSize());
-					p.dropMark("Route", mark); // On repose la mark, car elle est retir�e � l'appel du get�
-
+					p.dropMark("Route", mark);
 				}
 		
 				
@@ -217,10 +217,10 @@ public class WorldViewer extends TKDefaultViewer
 		}
 
 
-		// Les dessins sur le carr� de couleur
+		// Les dessins sur le carr��� de couleur
 		if(t.isPlayingRole("Communaute")){
 			
-			//Le carr� de couleur
+			//Le carr��� de couleur
 			g.setColor(t.getColor());
 			g.fillRect(x+1,y+1,this.getCellSize() -1,this.getCellSize() -1);
 			

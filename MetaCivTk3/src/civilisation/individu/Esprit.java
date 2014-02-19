@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
+import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.Group;
 import civilisation.GroupAndRole;
@@ -27,7 +28,7 @@ import civilisation.individu.plan.action.Action;
 
 public class Esprit {
 	
-	/* Les diff��rentes listes contenants les croyances de l'agent */
+	/* Les diff������rentes listes contenants les croyances de l'agent */
 	ArrayList<CCogniton> cognitons;
 	
 	/* La liste des projets envisageable par l'agent*/
@@ -83,7 +84,6 @@ public class Esprit {
 	 */
 	public void penser()
 	{
-		
 		/*Apply the Self-plan*/
 		if (Configuration.autoPlan != null) {
 			actions.push(null); //end of self-plan marker
@@ -118,7 +118,7 @@ public class Esprit {
 	}
 	
 	/**
-	 * Modifie le poids total d'une valeur donn�����e.
+	 * Modifie le poids total d'une valeur donn���������������e.
 	 * @param variation de poids
 	 */
 	public void ajouterPoidsTotal(int poids)
@@ -159,8 +159,8 @@ public class Esprit {
 
 	/**
 	 * Change le poids actuel d'un plan
-	 * @param plan : Le plan �� modifier
-	 * @param p : le poids �� ajouter
+	 * @param plan : Le plan ������ modifier
+	 * @param p : le poids ������ ajouter
 	 */
 	public void modifierPoids(NPlan plan, int p) 
 	{
@@ -198,7 +198,7 @@ public class Esprit {
 	}
 
 	/**
-	 * Modifie le poids total d'une valeur donn�����e.
+	 * Modifie le poids total d'une valeur donn���������������e.
 	 * @param variation de poids
 	 */
 	public void addPoidsTotal(int p)
