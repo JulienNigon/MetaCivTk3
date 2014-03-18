@@ -24,7 +24,7 @@ public class JJAnimationForDiagramme extends JJAnimation{
 		}
 	}
 	
-	// Pour rendre inutilisable le constructeur par défaut
+	// Pour rendre inutilisable le constructeur par d_faut
 	private JJAnimationForDiagramme(int pas , JJComponent compo , double dx , double dy, boolean vieLimite) {
 		super(pas,compo,vieLimite);
 	}

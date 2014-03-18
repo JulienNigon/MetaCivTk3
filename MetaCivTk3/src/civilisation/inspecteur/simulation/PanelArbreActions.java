@@ -20,7 +20,7 @@ public class PanelArbreActions extends JJPanel{
 	NPlan plan;
 	JToolBar toolBar = new JToolBar();
 	JPopupMenu popup;
-	Action actionActive; /*Pour mémoriser l'action en cours de modification, le cas écheant*/
+	Action actionActive; /*Pour m_moriser l'action en cours de modification, le cas _cheant*/
 
 	public PanelArbreActions(NPlan plan){
 		
@@ -30,7 +30,7 @@ public class PanelArbreActions extends JJPanel{
 		if (plan != null){
 
 			this.plan = plan;
-			System.out.println("Plan obersvé : " + this.plan.getNom());
+			System.out.println("Plan obersv_ : " + this.plan.getNom());
 			setupArbreActions();
 
 			
@@ -80,7 +80,7 @@ public class PanelArbreActions extends JJPanel{
 		}
 		
 		if (peutRecevoirAction){
-			JMenuItem ajouterActionApres = new JMenuItem("Ajouter une action après");
+			JMenuItem ajouterActionApres = new JMenuItem("Ajouter une action apr_s");
 			ajouterActionApres.addActionListener(new ActionsMenuActions(this,1,a));
 			ajouterActionApres.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
 			popup.add(ajouterActionApres);

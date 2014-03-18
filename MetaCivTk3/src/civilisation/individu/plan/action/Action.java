@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import civilisation.Configuration;
-import civilisation.GroupAndRole;
+import civilisation.group.GroupAndRole;
 import civilisation.individu.Humain;
 
 public abstract class Action {
@@ -130,12 +130,12 @@ public abstract class Action {
 	}
 	
 	/**
-	 * Retourne la structure des paramètres.
-	 * Permet de déterminer la présentation de la fenêtre de réglages.
+	 * Retourne la structure des param_tres.
+	 * Permet de d_terminer la pr_sentation de la fen_tre de r_glages.
 	 */
 	public ArrayList<String[]> getSchemaParametres(){
 		
-		//Retourne null si n'est pas redéfini dans les classes filles
+		//Retourne null si n'est pas red_fini dans les classes filles
 		return schemaParametres;	
 	}
 	
@@ -203,7 +203,7 @@ public abstract class Action {
 	public void addActionAfter(Action action, Action ref) {
 		for (int i = 0 ; i < listeActions.size(); i++){
 			if (listeActions.get(i).equals(ref)){
-				//System.out.println("Action ajoutée : " + (i+1));
+				//System.out.println("Action ajout_e : " + (i+1));
 				listeActions.add(i+1,action);
 				listeActions.get(i).setNextAction(action);
 				
@@ -285,15 +285,15 @@ public abstract class Action {
 	}
 	
 	/**
-	 * Redéfinir cette fonction pour les actions qui jouent le rôle de contrôleurs logiques.
-	 * @return 0 si l'action est simple, sinon le nombre de sous-actions qu'elle comporte, -1 si ce nombre est illimité
+	 * Red_finir cette fonction pour les actions qui jouent le r_le de contr_leurs logiques.
+	 * @return 0 si l'action est simple, sinon le nombre de sous-actions qu'elle comporte, -1 si ce nombre est illimit_
 	 */
 	public int getNumberActionSlot(){
 		return 0;
 	}
 
 	/**
-	 * Redéfinir cette fonction pour donner un texte informatif aux différentes actions
+	 * Red_finir cette fonction pour donner un texte informatif aux diff_rentes actions
 	 * @return un texte descriptif de l'action
 	 */
 	public String getInfo() {

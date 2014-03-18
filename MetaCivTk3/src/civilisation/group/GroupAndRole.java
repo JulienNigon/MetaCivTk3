@@ -1,4 +1,6 @@
-package civilisation;
+package civilisation.group;
+
+import civilisation.Configuration;
 
 /**
  * Just a convenient class to load, save and use a combination of a groupModel and a role

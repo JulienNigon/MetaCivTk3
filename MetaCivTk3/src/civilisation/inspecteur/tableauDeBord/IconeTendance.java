@@ -48,11 +48,11 @@ public class IconeTendance extends JJComponent{
 		try {
 			if (tendance == 1){
 				img = ImageIO.read(this.getClass().getResource("../icones/arrow-045.png"));
-				this.setToolTipText("tendance ˆ la hausse");
+				this.setToolTipText("tendance _ la hausse");
 			}
 			else if (tendance == -1){
 				img = ImageIO.read(this.getClass().getResource("../icones/arrow-315.png"));
-				this.setToolTipText("tendance ˆ la baisse");
+				this.setToolTipText("tendance _ la baisse");
 			}
 			else{
 				img = ImageIO.read(this.getClass().getResource("../icones/arrow-000.png"));

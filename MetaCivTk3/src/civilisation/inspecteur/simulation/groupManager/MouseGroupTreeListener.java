@@ -1,33 +1,28 @@
-package civilisation.inspecteur.simulation;
+package civilisation.inspecteur.simulation.groupManager;
+
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.SwingUtilities;
 
-/** 
- * G_re l'interaction avec les cognitons graphiques (GCognitons)
- * @author DTEAM
- * @version 1.1 - 2/2013
-*/
+public class MouseGroupTreeListener implements MouseListener{
 
-public class MouseGCognitonListener implements MouseListener{
-
-	GCogniton c;
+	PanelGroupTree p;
 	
-	public MouseGCognitonListener(GCogniton c)
+	public MouseGroupTreeListener(PanelGroupTree p)
 	{
-		this.c = c;
+		this.p = p;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//c.selectionner();
-	    if(SwingUtilities.isRightMouseButton(e)){
-			c.afficherPopup(e);
-	    }
-
+		
+		
+	    if(SwingUtilities.isLeftMouseButton(e)){
+			p.changeSelection(((NodeGroupTree)p.getGroupTree().getPathForLocation(e.getX(), e.getY()).getLastPathComponent()).getGm());
+	    }	
 	}
-
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -35,13 +30,11 @@ public class MouseGCognitonListener implements MouseListener{
 		
 	}
 
-
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
@@ -49,13 +42,12 @@ public class MouseGCognitonListener implements MouseListener{
 		
 	}
 
-
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 
 
 }

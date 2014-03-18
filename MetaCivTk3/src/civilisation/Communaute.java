@@ -29,7 +29,7 @@ import civilisation.world.World;
 import turtlekit.kernel.Turtle;
 
 /** 
- * Une communaut�, point de rassemblement d'un peuple
+ * Une communaut___, point de rassemblement d'un peuple
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
@@ -91,7 +91,7 @@ public class Communaute extends Turtle
 	} 
 
 	/**
-	 * Action unique appell�e seulement use seule fois pour initialiser certaines informations
+	 * Action unique appell___e seulement use seule fois pour initialiser certaines informations
 	 * @return Action suivante de la communaute
 	 */
 	public String start()
@@ -117,8 +117,8 @@ public class Communaute extends Turtle
 	}
 	
 	/**
-	 * Action unique appell�e seulement use seule fois pour initialiser certaines informations.
-	 * Permet de creer les agents li�s � cette communaut�
+	 * Action unique appell___e seulement use seule fois pour initialiser certaines informations.
+	 * Permet de creer les agents li___s ___ cette communaut___
 	 * @return Action suivante de la communaute
 	 */
 	public String start2()

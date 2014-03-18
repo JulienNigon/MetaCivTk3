@@ -131,7 +131,7 @@ public class PanelEnvironnement extends JJPanel{
 	}
 	
 	/*
-	 * Retourne le terrain le plus proche en fonction de la couleur passée en paramètre
+	 * Retourne le terrain le plus proche en fonction de la couleur pass_e en param_tre
 	 */
 	private Terrain getTerrainSemblable(Color c){
 		int variation = 10000;

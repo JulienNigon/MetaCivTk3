@@ -106,7 +106,7 @@ public class PanelParametres extends JPanel{
 		    else if (fields[i].getType().equals(Double.class)){
 		    	if(anno.length > 0){
 			    	for (double j = ((ParametrisationDouble) anno[0]).min() ; j <= ((ParametrisationDouble) anno[0]).max(); j += ((ParametrisationDouble) anno[0]).pas()){
-				    	comboBox.get(i).addItem(Math.round(j*10000.0)/10000.0);  //Arrondi a quatres dŽcimales
+				    	comboBox.get(i).addItem(Math.round(j*10000.0)/10000.0);  //Arrondi a quatres d_cimales
 				    	if (((Double)fields[i].get(null)).equals(Math.round(j*10000.0)/10000.0)){
 				    		comboBox.get(i).setSelectedIndex(comboBox.get(i).getItemCount()-1);
 				    	}

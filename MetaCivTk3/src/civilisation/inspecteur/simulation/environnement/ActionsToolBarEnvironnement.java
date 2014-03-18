@@ -41,7 +41,7 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 			System.out.println("--Reglage des dimensions (TODO)--");
 		}
 		else if (index == 3){
-			System.out.println("--Creation d'un environnement à partir d'une image--");
+			System.out.println("--Creation d'un environnement _ partir d'une image--");
 		    JFileChooser chooser = new JFileChooser();
 		    FileNameExtensionFilter filter = new FileNameExtensionFilter(".png","png");
 		    chooser.setFileFilter(filter);
@@ -54,7 +54,7 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 					p.generationEnvironnementViaImage(buffer);
 					
 				} catch (IOException e1) {
-					System.out.println("Nécessite une image suivant le lien : /bin/civilisation/ressources/image.png");
+					System.out.println("N_cessite une image suivant le lien : /bin/civilisation/ressources/image.png");
 					e1.printStackTrace();
 				}
 		    }
@@ -79,11 +79,11 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 				p.zoom(-1);
 			}
 			else{
-				System.out.println("Vous ne pouvez pas dézoomer plus.");
+				System.out.println("Vous ne pouvez pas d_zoomer plus.");
 			}
 		}
 		else if (index == 8){
-			System.out.println("--Définir l'environnement de la simulation--");
+			System.out.println("--D_finir l'environnement de la simulation--");
 			DialogueSelectionnerEnvironnementActif d = new DialogueSelectionnerEnvironnementActif((Frame) p.getTopLevelAncestor() , true , p);
 			d.setVisible(true);		
 		}

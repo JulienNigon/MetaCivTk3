@@ -68,7 +68,7 @@ public class PanelPerformances extends JPanel{
 		osVersion.setText("Version : " + System.getProperty("os.version"));
 		osArch.setText("Architecture : " + System.getProperty("os.arch"));
 		totalMem.setText("Memoire totale : " + Runtime.getRuntime().totalMemory());
-		usedMem.setText("Memoire utilisée : " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+		usedMem.setText("Memoire utilis_e : " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
 	}
 	
 

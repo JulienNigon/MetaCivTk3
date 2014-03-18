@@ -37,8 +37,8 @@ public class A_Move extends Action{
 	
 
 	/**
-	 * Retourne la structure des paramtres.
-	 * Permet de dterminer la prsentation de la fentre de rglages.
+	 * Retourne la structure des param_tres.
+	 * Permet de d_terminer la pr_sentation de la fen_tre de r_glages.
 	 */
 	@Override
 	public ArrayList<String[]> getSchemaParametres(){

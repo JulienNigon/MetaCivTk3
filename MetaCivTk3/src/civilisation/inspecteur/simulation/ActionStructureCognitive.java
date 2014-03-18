@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /** 
- * Gère l'interaction avec la toolBar qui modifie la structure cognitive
+ * G_re l'interaction avec la toolBar qui modifie la structure cognitive
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

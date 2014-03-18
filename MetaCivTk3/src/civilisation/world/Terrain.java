@@ -13,7 +13,7 @@ import civilisation.ItemPheromone;
 public class Terrain {
 
 	/** 
-	 * Conserve les informations relatives aux différents types de territoires qui compose l'environnement des agents.
+	 * Conserve les informations relatives aux diff_rents types de territoires qui compose l'environnement des agents.
 	 * @version MetaCiv 1.0
 	*/
 	

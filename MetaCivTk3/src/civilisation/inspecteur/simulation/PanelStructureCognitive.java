@@ -37,9 +37,9 @@ public class PanelStructureCognitive extends JJPanel{
 	ArrayList<GLien> gLiensConditionnels;
 	ArrayList<GLien> gLinksTrigger;
 
-	ArrayList<NCogniton> allCognitons;
-	ArrayList<NPlan> plans;
-	ArrayList<GTrigger> gTriggers;
+	protected ArrayList<NCogniton> allCognitons;
+	protected ArrayList<NPlan> plans;
+	protected ArrayList<GTrigger> gTriggers;
 	
 	double espacement = 40;
 	double espaceCognitonsPlans = 350;
@@ -69,9 +69,24 @@ public class PanelStructureCognitive extends JJPanel{
 
 		gTriggers = new ArrayList<GTrigger>();
 
+		initializeItemsToDraw();
+		initializeDrawing();
+		}
+	
+	/**
+	 * Override this function to draw only some items
+	 */
+	protected void initializeItemsToDraw() {
+
 		allCognitons = Configuration.cognitons;
 		allCognitons.addAll(Configuration.cloudCognitons);
 		plans = Configuration.plans;
+		
+	}
+	
+	protected void initializeDrawing() {
+
+
 		
 		for (int i = 0; i < allCognitons.size(); i++){		
 			if (allCognitons.get(i) instanceof Culturon) {
@@ -89,9 +104,9 @@ public class PanelStructureCognitive extends JJPanel{
 		creerLiensInfluence();
 		creerLiensConditionnels();
 		createTriggerLink();
-		
-
-		}
+	}
+	
+	
 
 	
 
@@ -254,10 +269,12 @@ public class PanelStructureCognitive extends JJPanel{
 		for (int i = 0; i < gCognitons.size(); i++){
 			for (int j = 0; j < gCognitons.get(i).getCogniton().getLiensPlans().size(); j++){
 				int k = 0;
-				while(!gCognitons.get(i).getCogniton().getLiensPlans().get(j).getP().equals(gPlan.get(k).getPlan())){
+				while(k < gPlan.size() && !gCognitons.get(i).getCogniton().getLiensPlans().get(j).getP().equals(gPlan.get(k).getPlan())){
 					k++;
 				}
-				gLiens.add(new GLien(this,gCognitons.get(i),gPlan.get(k),gCognitons.get(i).getCogniton().getLiensPlans().get(j).getPoids() , Color.BLACK));
+				if (k < gPlan.size()) {
+					gLiens.add(new GLien(this,gCognitons.get(i),gPlan.get(k),gCognitons.get(i).getCogniton().getLiensPlans().get(j).getPoids() , Color.BLACK));
+				}
 				//this.add(gLiens.get(gLiens.size()-1));
 			}
 
@@ -275,14 +292,15 @@ public class PanelStructureCognitive extends JJPanel{
 		for (int i = 0; i < gCognitons.size(); i++){
 			for (int j = 0; j < gCognitons.get(i).getCogniton().getPlansAutorises().size(); j++){
 				int k = 0;
-				while(!gCognitons.get(i).getCogniton().getPlansAutorises().get(j).equals(gPlan.get(k).getPlan())){
+				while(k < gPlan.size() && !gCognitons.get(i).getCogniton().getPlansAutorises().get(j).equals(gPlan.get(k).getPlan())){
 					k++;
 				}
+				if (k < gPlan.size()) {
 				gLiensConditionnels.add(new GLien(this,gCognitons.get(i),
 						gPlan.get(k),
 						-1 , Color.RED));
-				//this.add(gLiens.get(gLiens.size()-1));
-			}
+				}
+				}
 
 		}
 		for (int i = 0; i < gCognitons.size(); i++){
@@ -338,7 +356,7 @@ public class PanelStructureCognitive extends JJPanel{
     	Graphics2D g2d = (Graphics2D) g;
     	super.paintComponent(g);
 
-    	/*TODO solution pas terrible pour les GLiens qui servent un peu � rien�*/
+    	/*TODO solution pas terrible pour les GLiens qui servent un peu ___ rien___*/
     	for (int i = 0; i < gLiens.size(); i++){
             g2d.setStroke(new BasicStroke(2));
     		g2d.drawLine((int)gLiens.get(i).getA().getCentreX(), (int)gLiens.get(i).getA().getCentreY(),(int) gLiens.get(i).getB().getCentreX(), (int)gLiens.get(i).getB().getCentreY());

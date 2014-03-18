@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.plan.NPlan;
@@ -65,7 +66,7 @@ public class Configuration {
 	/*Associations couleurs-terrains*/
 	public static HashMap<Color, Terrain> couleurs_terrains;
 	
-	/*Environnement ��� charger*/
+	/*Environnement ___ charger*/
 	public static String environnementACharger;
 	
 	/*Path to icon*/
@@ -89,7 +90,7 @@ public class Configuration {
 	
 	
 	
-	/*Tableau des traits disponibles ��� la naissance*/
+	/*Tableau des traits disponibles ___ la naissance*/
 	public static String traitsDisponibles[] = {
 		"civilisation.individu.cognitons.traits.TRAIT_Timide" ,
 		"civilisation.individu.cognitons.traits.TRAIT_Extraverti" ,

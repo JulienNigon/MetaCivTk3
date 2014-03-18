@@ -10,8 +10,8 @@ import java.util.Stack;
 
 import civilisation.Communaute;
 import civilisation.Configuration;
-import civilisation.Group;
-import civilisation.GroupAndRole;
+import civilisation.group.Group;
+import civilisation.group.GroupAndRole;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.plan.NPlan;
@@ -28,7 +28,7 @@ import civilisation.individu.plan.action.Action;
 
 public class Esprit {
 	
-	/* Les diff������rentes listes contenants les croyances de l'agent */
+	/* Les diff______rentes listes contenants les croyances de l'agent */
 	ArrayList<CCogniton> cognitons;
 	
 	/* La liste des projets envisageable par l'agent*/
@@ -118,7 +118,7 @@ public class Esprit {
 	}
 	
 	/**
-	 * Modifie le poids total d'une valeur donn���������������e.
+	 * Modifie le poids total d'une valeur donn_______________e.
 	 * @param variation de poids
 	 */
 	public void ajouterPoidsTotal(int poids)
@@ -159,8 +159,8 @@ public class Esprit {
 
 	/**
 	 * Change le poids actuel d'un plan
-	 * @param plan : Le plan ������ modifier
-	 * @param p : le poids ������ ajouter
+	 * @param plan : Le plan ______ modifier
+	 * @param p : le poids ______ ajouter
 	 */
 	public void modifierPoids(NPlan plan, int p) 
 	{
@@ -198,7 +198,7 @@ public class Esprit {
 	}
 
 	/**
-	 * Modifie le poids total d'une valeur donn���������������e.
+	 * Modifie le poids total d'une valeur donn_______________e.
 	 * @param variation de poids
 	 */
 	public void addPoidsTotal(int p)

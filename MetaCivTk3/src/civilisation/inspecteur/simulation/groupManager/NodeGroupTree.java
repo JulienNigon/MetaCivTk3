@@ -2,7 +2,7 @@ package civilisation.inspecteur.simulation.groupManager;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import civilisation.GroupModel;
+import civilisation.group.GroupModel;
 import civilisation.individu.plan.action.Action;
 
 public class NodeGroupTree extends DefaultMutableTreeNode{

@@ -7,14 +7,14 @@ import civilisation.inventaire.NInventaire;
 
 
 /** 
- * Un bâtiment construit à l'intérieure d'une ville
+ * Un b_timent construit _ l'int_rieure d'une ville
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
 
 public class Batiment {
 
-	Humain possesseur; //Si null, indique que ce bâtiment est publique
+	Humain possesseur; //Si null, indique que ce b_timent est publique
 	Communaute c;
 	Boolean termine;
 	int bois_requis;
@@ -60,7 +60,7 @@ public class Batiment {
 	}
 	
 	/**
-	 * Avance la construction en bois du bâtiment
+	 * Avance la construction en bois du b_timent
 	 **/
 	public void construireBois()
 	{
@@ -72,7 +72,7 @@ public class Batiment {
 	}
 	
 	/**
-	 * Avance la construction en pierre du bâtiment
+	 * Avance la construction en pierre du b_timent
 	 **/
 	public void construirePierre()
 	{

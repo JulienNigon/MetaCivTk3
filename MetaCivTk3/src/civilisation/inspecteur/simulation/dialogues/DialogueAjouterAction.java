@@ -22,7 +22,7 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
     JOptionPane optionPane;
     PanelArbreActions p;
     Option_BeforeAfter option;
-    JTextPane infos; /*Affiche les infos concernant l'action s�l�ctionn�e*/
+    JTextPane infos; /*Affiche les infos concernant l'action s___l___ctionn___e*/
     
 	public DialogueAjouterAction(Frame f , boolean modal , PanelArbreActions p, Option_BeforeAfter option){
 		super(f,modal);
@@ -39,7 +39,7 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 		}
 		
 		listeActions.addActionListener(this);
-		changeInfos(); /*Mise � jour du texte informatif*/
+		changeInfos(); /*Mise ___ jour du texte informatif*/
 		this.setTitle("Add new action");
 		
 		

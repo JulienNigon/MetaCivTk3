@@ -11,7 +11,7 @@ import civilisation.individu.Humain;
 
 
 /** 
- * Un sous panel pour repr�senter les croyances d'un agent
+ * Un sous panel pour repr___senter les croyances d'un agent
  * @author DTEAM
  * @version 1.0 - 3/2013
 */

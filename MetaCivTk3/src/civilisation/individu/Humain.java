@@ -92,7 +92,7 @@ public class Humain extends Turtle
 	}
 	
 	/**
-	 * Constructeur si l'agent ������������ des parents
+	 * Constructeur si l'agent ____________ des parents
 	 */
 	public Humain(Civilisation civ , Communaute communaute , Humain pere , Humain mere)
 	{
@@ -249,7 +249,7 @@ public class Humain extends Turtle
 			{
 				this.tempsPatch--;
 				Color coul = this.getNextPatch().getColor();
-				//On va modifier pour que ������a colle avec les nouveaux terrains
+				//On va modifier pour que ______a colle avec les nouveaux terrains
 				if(!Configuration.couleurs_terrains.get(couleur).getInfranchissable())
 				{
 					super.fd(1);
@@ -290,7 +290,7 @@ public class Humain extends Turtle
 				
 				//TODO TK3 : voir si le comportement du getNextPatch est correct
 				Color coul = this.getNextPatch().getColor();
-				//TODO : On va modifier pour que ������a colle avec les nouveaux terrains
+				//TODO : On va modifier pour que ______a colle avec les nouveaux terrains
 				if(!Configuration.couleurs_terrains.get(coul).getInfranchissable())
 				{
 					super.fd(1);
@@ -337,14 +337,14 @@ public class Humain extends Turtle
 	
 	/**
 	 * @param tortues
-	 * @return la turtle la plus eloign��������������������������������������� de la tortue appelante
+	 * @return la turtle la plus eloign_______________________________________ de la tortue appelante
 	 */
 	@SuppressWarnings("null")
 	public Turtle MaxOneOf(ArrayList<Turtle> tortues)
 	{
 		ArrayList<Turtle> choix = new ArrayList<Turtle>();
 		double min = 0;
-		for(int i = 0;i<0;i++)
+		for(int i = 0; i < choix.size();i++)
 		{
 			int x = tortues.get(i).xcor();
 			int y = tortues.get(i).ycor();
@@ -555,10 +555,10 @@ public class Humain extends Turtle
 	}
 	
 /**
- * Retourne une tortue pr���������������sente sur le m������������������me patch dont le crit������������������re pass��������������� en param������������������tre correspond
- * @param m : La m���������������thode a utiliser pour effectuer la comparaison
- * @param params : les param������������������tres dont la m���������������thode a besoin
- * @param o : la valeur souhait���������������e pour la compraison
+ * Retourne une tortue pr_______________sente sur le m__________________me patch dont le crit__________________re pass_______________ en param__________________tre correspond
+ * @param m : La m_______________thode a utiliser pour effectuer la comparaison
+ * @param params : les param__________________tres dont la m_______________thode a besoin
+ * @param o : la valeur souhait_______________e pour la compraison
  * @return
  * @throws IllegalArgumentException
  * @throws IllegalAccessException
@@ -672,8 +672,8 @@ public class Humain extends Turtle
 	}
 	
 	/**
-	 * Retourne un amenagement dont le nom est pass��������������� en param������������������tre
-	 * @param type : nom de l'am���������������nagement
+	 * Retourne un amenagement dont le nom est pass_______________ en param__________________tre
+	 * @param type : nom de l'am_______________nagement
 	 * @return
 	 */
 	public Amenagement getOneOfAmenagement(String type)
@@ -1111,9 +1111,9 @@ public class Humain extends Turtle
 	}
 	/**
 	 * 
-	 * @param current le patch visit���������������
-	 * @param visites le tableau des patchs visit���������������s ou non
-	 * @return true si il n'y a aucun patch non visit��������������� autour de current
+	 * @param current le patch visit_______________
+	 * @param visites le tableau des patchs visit_______________s ou non
+	 * @return true si il n'y a aucun patch non visit_______________ autour de current
 	 */
 	private boolean AucunPatchNonVisiteAutour(Patch current, int[][] visites) {
 		// TODO Auto-generated method stub
@@ -1145,7 +1145,7 @@ public class Humain extends Turtle
 	 * 
 	 * @param cible
 	 * @return le Patch raprochant le plus l'agent de sa cible, compte tenu des obstacles
-	 * l'agent sera amen��������������� a faire des choix qui n'optimiseront pas toujours sa decison, la 
+	 * l'agent sera amen_______________ a faire des choix qui n'optimiseront pas toujours sa decison, la 
 	 * faute a un manque d'information inherant a l'agent
 	 */
 	public ArrayList<Patch> allerVers(Patch cible)

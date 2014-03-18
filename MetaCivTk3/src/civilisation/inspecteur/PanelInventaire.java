@@ -13,7 +13,7 @@ import civilisation.inventaire.Objet;
 
 
 /** 
- * Un sous panel pour repr�senter les informations sur l'inventaire de l'agent selectionne
+ * Un sous panel pour repr___senter les informations sur l'inventaire de l'agent selectionne
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

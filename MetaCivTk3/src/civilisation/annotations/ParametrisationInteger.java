@@ -7,7 +7,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 /** 
- * Annotation pour gérer les paramètres de la simulation de types integer
+ * Annotation pour g_rer les param_tres de la simulation de types integer
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

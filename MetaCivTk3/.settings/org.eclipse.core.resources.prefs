@@ -5,5 +5,7 @@ encoding//src/civilisation/Initialiseur.java=UTF-8
 encoding//src/civilisation/individu/Esprit.java=UTF-8
 encoding//src/civilisation/individu/Humain.java=UTF-8
 encoding//src/civilisation/individu/plan/action/A_DoAgriculture.java=UTF-8
+encoding//src/civilisation/inspecteur/simulation/PanelModificationSimulation.java=UTF-8
+encoding//src/civilisation/inspecteur/simulation/groupManager/PanelGroupTree.java=UTF-8
 encoding//src/civilisation/world/World.java=UTF-8
 encoding//src/civilisation/world/WorldViewer.java=UTF-8

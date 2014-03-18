@@ -1,4 +1,4 @@
-package civilisation;
+package civilisation.group;
 
 import java.util.ArrayList;
 import java.util.HashMap;

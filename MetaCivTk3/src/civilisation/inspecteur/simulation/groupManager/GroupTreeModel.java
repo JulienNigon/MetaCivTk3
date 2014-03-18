@@ -3,8 +3,8 @@ package civilisation.inspecteur.simulation.groupManager;
 import javax.swing.tree.*;
 
 import civilisation.Configuration;
-import civilisation.Group;
-import civilisation.GroupModel;
+import civilisation.group.Group;
+import civilisation.group.GroupModel;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 

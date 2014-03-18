@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 /** 
- * Fen�tre contenat l'inspecteur
+ * Fen___tre contenat l'inspecteur
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

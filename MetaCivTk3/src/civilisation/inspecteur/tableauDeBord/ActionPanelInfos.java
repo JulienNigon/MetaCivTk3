@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /** 
- * Gère l'interaction avec le panel d'informations
+ * G_re l'interaction avec le panel d'informations
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

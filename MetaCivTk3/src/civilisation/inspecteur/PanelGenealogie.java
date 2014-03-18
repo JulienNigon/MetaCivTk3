@@ -14,7 +14,7 @@ import civilisation.individu.Humain;
 
 
 /** 
- * Un sous panel pour repr�senter la g�n�alogie d'un agent
+ * Un sous panel pour repr___senter la g___n___alogie d'un agent
  * @author DTEAM
  * @version 1.0 - 3/2013
 */

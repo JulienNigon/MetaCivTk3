@@ -1,6 +1,6 @@
 package civilisation.individu.plan;
 
-import civilisation.Group;
+import civilisation.group.Group;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.CCogniton;
@@ -68,7 +68,7 @@ public class NPlanPondere {
 	
 	/**
 	 * Modifie le poids du projet d'un poids p,
-	 * Demande � l'esprit concern� de modifier le poids total en cons�quence
+	 * Demande ___ l'esprit concern___ de modifier le poids total en cons___quence
 	 */
 	public void changerPoids(int p)
 	{
@@ -78,22 +78,22 @@ public class NPlanPondere {
 		//This code must be rewrite to optimize
 	/*	if (poids > 0 && p < 0 && (-1)*p > poids)
 		{
-			e.addPoidsTotal(-1*poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie n�gative
+			e.addPoidsTotal(-1*poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie n___gative
 		}
 		else if (poids <= 0 && p < 0)
 		{
-			// Le poids total n'est pas modifi�
+			// Le poids total n'est pas modifi___
 		}
 		else if (poids < 0 && p > 0 && p > (-1)*poids)
 		{
-			e.addPoidsTotal(p+poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie n�gative
+			e.addPoidsTotal(p+poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie n___gative
 		}
 		else if (poids < 0 && (-1)*p <= poids ) {
 			
 		}
 		else if (poids > 0 && p < 0 && p > (-1)*poids)
 		{
-			e.addPoidsTotal(p+poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie n�gative
+			e.addPoidsTotal(p+poids); // On modifie le poids total des projets dans l'esprit, en ne comptant pas la partie n___gative
 		}
 		else
 		{

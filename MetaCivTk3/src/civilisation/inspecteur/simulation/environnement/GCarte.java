@@ -27,7 +27,7 @@ public class GCarte extends JJComponent{
 
 
 	PanelEnvironnement panelEnvironnement;
-	BufferedImage bufferedImage; /*Image en mémoire pour dessin plus rapide*/
+	BufferedImage bufferedImage; /*Image en m_moire pour dessin plus rapide*/
 	int espacementVerticalCarte;
 	int espacementHorizontalCarte;
 	JPopupMenu popup;
@@ -62,13 +62,13 @@ public class GCarte extends JJComponent{
 	public void changerPatch(MouseEvent e) {
     	int taille = panelEnvironnement.getTaillePseudoPatch();
 		Terrain terrain = (Terrain) panelEnvironnement.getPanelPrincipal().getPanelTerrains().getListeTerrains().getSelectedValue();
-		if (terrain != null){ /*On vérifie qu'un terrain est sélectionné*/
+		if (terrain != null){ /*On v_rifie qu'un terrain est s_lectionn_*/
 			int x = (int)(e.getX()/(double)taille);
 			int y = (int)(e.getY()/(double)taille);
 			panelEnvironnement.getCarte().get(y).get(x).setTerrain(terrain);
 		}
 		else{
-			System.out.println("Aucun terrain sélectionné!");
+			System.out.println("Aucun terrain s_lectionn_!");
 		}
 		dessinerBufferImage();
 		
@@ -131,19 +131,19 @@ public class GCarte extends JJComponent{
 	}
 
 	
-	//TODO La peinture est completement à revoir : récursivité trop longue...
+	//TODO La peinture est completement _ revoir : r_cursivit_ trop longue...
 	public void peindre(MouseEvent e) {
-		System.out.println("!!!En cours de développement!!!");
+		System.out.println("!!!En cours de d_veloppement!!!");
 
     	int taille = panelEnvironnement.getTaillePseudoPatch();
 		Terrain terrain = (Terrain) panelEnvironnement.getPanelPrincipal().getPanelTerrains().getListeTerrains().getSelectedValue();
-		if (terrain != null){ /*On vérifie qu'un terrain est sélectionné*/
+		if (terrain != null){ /*On v_rifie qu'un terrain est s_lectionn_*/
 			int x = (int)(e.getX()/(double)taille);
 			int y = (int)(e.getY()/(double)taille);
 			peintureDynamique(x , y ,panelEnvironnement.getCarte().get(y).get(x) , terrain, panelEnvironnement.getCarte().get(y).get(x).getTerrain());
 		}
 		else{
-			System.out.println("Aucun terrain sélectionné!");
+			System.out.println("Aucun terrain s_lectionn_!");
 		}
 		dessinerBufferImage();		
 	}
@@ -168,9 +168,9 @@ public class GCarte extends JJComponent{
 	}
 
 	public void afficherPopup(MouseEvent e) {
-		popup = new JPopupMenu("Actions spéciales");
+		popup = new JPopupMenu("Actions sp_ciales");
 		
-		JMenuItem editerPhero = new JMenuItem("Emplacement de départ");
+		JMenuItem editerPhero = new JMenuItem("Emplacement de d_part");
 		editerPhero.addActionListener(new ActionsMenuGCarte(this,0,e));
 		editerPhero.setIcon(new ImageIcon(this.getClass().getResource("../../icones/pencil.png")));
 		popup.add(editerPhero);

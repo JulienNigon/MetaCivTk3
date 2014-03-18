@@ -11,7 +11,7 @@ import civilisation.Communaute;
 
 
 /** 
- * Un sous panel pour repr�senter la liste des batiments d'une communaute
+ * Un sous panel pour repr___senter la liste des batiments d'une communaute
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

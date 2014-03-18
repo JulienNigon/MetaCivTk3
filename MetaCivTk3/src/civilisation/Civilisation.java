@@ -25,7 +25,7 @@ public class Civilisation {
 	public Civilisation ()
 	{
 		couleur = new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-		indexCiv = nombreCiv; //Les civilisations sont index�es � partir de 0
+		indexCiv = nombreCiv; //Les civilisations sont index_es _ partir de 0
 		nombreCiv ++;
 		listeCiv.add(this);
 	}

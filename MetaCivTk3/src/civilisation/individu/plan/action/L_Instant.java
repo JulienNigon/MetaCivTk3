@@ -8,7 +8,7 @@ public class L_Instant extends LAction{
 	
 	@Override
 	public Action effectuer(Humain h) {	
-	//TODO a refaire avec le mécanisme de pile
+	//TODO a refaire avec le m_canisme de pile
 		
 		
 		/*

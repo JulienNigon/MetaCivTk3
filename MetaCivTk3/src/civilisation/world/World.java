@@ -17,7 +17,7 @@ import civilisation.TurtleGenerator;
 
 
 /** 
- * Repr���sente le monde de jeu
+ * Repr___sente le monde de jeu
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

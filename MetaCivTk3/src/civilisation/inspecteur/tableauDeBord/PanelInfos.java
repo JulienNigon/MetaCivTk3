@@ -38,12 +38,12 @@ public class PanelInfos extends JJPanel{
 		
 		ImageIcon icone = new ImageIcon(this.getClass().getResource("../icones/disks-black.png"));	
 		sonder = new JButton(icone);
-		sonder.setToolTipText("Mettre à joue les données");
+		sonder.setToolTipText("Mettre _ joue les donn_es");
 		sonder.addActionListener(new ActionPanelInfos(this, 0));
 		toolBar.add(sonder);
 		
 		dernierSondage = new JLabel("---");
-		dernierSondage.setToolTipText("tick auquel le sondage a été effectué pour la dernière fois");
+		dernierSondage.setToolTipText("tick auquel le sondage a _t_ effectu_ pour la derni_re fois");
 		toolBar.add(dernierSondage);
 
 	}

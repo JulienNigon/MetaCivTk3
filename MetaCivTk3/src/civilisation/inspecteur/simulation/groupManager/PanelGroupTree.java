@@ -11,6 +11,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 
+import civilisation.group.GroupModel;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inspecteur.animations.JJPanel;
@@ -25,24 +26,39 @@ public class PanelGroupTree  extends JJPanel{
 
 	JTree groupTree;
 	JPopupMenu popup;
+	PanelGroupManager panelGroupManager;
 
-	public PanelGroupTree(){
+	public PanelGroupTree(PanelGroupManager panelGroupManager){
 		
 		this.setLayout(new BorderLayout());
 		this.setMinimumSize(new Dimension(300,500));
-	
+		this.panelGroupManager = panelGroupManager;
 		setupTree();
 	}
 	
 	private void setupTree(){
 		groupTree = new JTree(new GroupTreeModel());
 		groupTree.setRootVisible(false);
-		ArbreActionsRenderer renderer = new ArbreActionsRenderer();
-	//	arbreActions.setCellRenderer(renderer);
-	//	arbreActions.addMouseListener(new MouseArbreActionsListener(this));
+		GroupTreeRenderer renderer = new GroupTreeRenderer();
+		groupTree.setCellRenderer(renderer);
+		groupTree.addMouseListener(new MouseGroupTreeListener(this));
 		groupTree.setBackground(this.getBackground());
 		this.add(groupTree , BorderLayout.CENTER);
 	}
+	
+	public void changeSelection(GroupModel gm) {
+		panelGroupManager.changeSelection(gm);
+	}
+
+	public JTree getGroupTree() {
+		return groupTree;
+	}
+
+	public void setGroupTree(JTree groupTree) {
+		this.groupTree = groupTree;
+	}
+	
+	
 	
 /*	public void changePlan(NPlan plan) {
 		if (arbreActions != null) {
@@ -72,7 +88,7 @@ public class PanelGroupTree  extends JJPanel{
 		}
 		
 		if (peutRecevoirAction){
-			JMenuItem ajouterActionApres = new JMenuItem("Ajouter une action après");
+			JMenuItem ajouterActionApres = new JMenuItem("Ajouter une action apr_s");
 	//		ajouterActionApres.addActionListener(new ActionsMenuActions(this,1,a));
 			ajouterActionApres.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
 			popup.add(ajouterActionApres);

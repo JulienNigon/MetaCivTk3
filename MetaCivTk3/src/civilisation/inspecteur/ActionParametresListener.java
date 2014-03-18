@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /** 
- * Gère l'interaction avec la fenêtre de réglage des valeurs des cognitons
+ * G_re l'interaction avec la fen_tre de r_glage des valeurs des cognitons
  * @author DTEAM
  * @version 1.0 - 2/2013
 */

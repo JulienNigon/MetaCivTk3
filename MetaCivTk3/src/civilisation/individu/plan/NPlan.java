@@ -25,7 +25,7 @@ public class NPlan {
 	}
 
 	/**
-	 * Active le plan en effectuant l'action correspondant � la progression de l'agent
+	 * Active le plan en effectuant l'action correspondant ___ la progression de l'agent
 	 * @param h : L'agent effectuant l'action
 	 */
 	public void activer(Humain h , Action action){
@@ -202,7 +202,7 @@ public class NPlan {
 		
 	}
 	
-	/*A des fins de debuggage�*/
+	/*A des fins de debuggage___*/
 	public void seDecrire(){
 		for (int i = 0 ; i < actions.size(); i++){
 			System.out.println(actions.get(i).toString());

@@ -57,7 +57,7 @@ public class NCogniton{
 				+ " \n Type : " + typeDeCogniton
 				+ " \n Liens : " + liens
 				+ " \n Liens avec les plans : " + liensPlans
-				+ " \n Plans autorisés : " + plansAutorises
+				+ " \n Plans autoris_s : " + plansAutorises
 				+"\n\n"
 				);
 	}
@@ -85,10 +85,10 @@ public class NCogniton{
 	
 	
 	/**
-	 * Ajoute ou retire des projets a l'esprit associé
-	 * @param nouveauxPlans : liste des plans à ajouter ou enlever
+	 * Ajoute ou retire des projets a l'esprit associ_
+	 * @param nouveauxPlans : liste des plans _ ajouter ou enlever
 	 * @param add : true indique qu'il faut les ajouter, false les enlever
-	 * @param e : l'esprit associé
+	 * @param e : l'esprit associ_
 	 */
 	public void modifierPlans(Boolean add, Esprit e)
 	{

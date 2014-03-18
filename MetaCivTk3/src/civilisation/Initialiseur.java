@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.*;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
@@ -376,7 +377,7 @@ public class Initialiseur {
 		
 	}
 	
-	/*Retourne la valeur du premier champ passee en parametre rencontr���������������������������*/
+	/*Retourne la valeur du premier champ passee en parametre rencontr___________________________*/
 	static public String[] getChamp(String champ ,  File f){
 		
 		 Scanner scanner;

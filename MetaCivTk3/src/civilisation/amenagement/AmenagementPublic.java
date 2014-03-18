@@ -6,7 +6,7 @@ import turtlekit.kernel.Patch;
 
 public class AmenagementPublic extends Amenagement {
 
-	Patch position; //Le patch contenant l'am�nagement
+	Patch position; //Le patch contenant l'am___nagement
 
 	
 	

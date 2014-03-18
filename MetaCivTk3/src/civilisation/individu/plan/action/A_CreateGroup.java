@@ -2,10 +2,10 @@ package civilisation.individu.plan.action;
 
 import java.util.ArrayList;
 
-import civilisation.Group;
-import civilisation.GroupAndRole;
-import civilisation.GroupModel;
 import civilisation.ItemPheromone;
+import civilisation.group.Group;
+import civilisation.group.GroupAndRole;
+import civilisation.group.GroupModel;
 import civilisation.individu.Humain;
 import turtlekit.kernel.Turtle;
 

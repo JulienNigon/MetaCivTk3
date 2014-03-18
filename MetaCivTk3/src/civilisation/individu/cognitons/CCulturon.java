@@ -1,6 +1,6 @@
 package civilisation.individu.cognitons;
 
-import civilisation.Group;
+import civilisation.group.Group;
 
 
 /**

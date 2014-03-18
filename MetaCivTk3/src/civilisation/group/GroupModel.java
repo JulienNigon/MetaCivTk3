@@ -1,4 +1,4 @@
-package civilisation;
+package civilisation.group;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import civilisation.Configuration;
 import civilisation.individu.cognitons.CCogniton;
 
 public class GroupModel {
@@ -55,7 +56,7 @@ public class GroupModel {
 	public void setCulturons(HashMap<String, ArrayList<CCogniton>> culturons) {
 		this.culturons = culturons;
 	}
-
+	
 	public void enregistrer(File cible) {
 		PrintWriter out;
 		try {
@@ -78,6 +79,10 @@ public class GroupModel {
 		}  
 	}
 	
+	
+	//public ArrayList<CCogniton> getCulturonFromRole(String role) {
+		
+	//}
 	
 
 }

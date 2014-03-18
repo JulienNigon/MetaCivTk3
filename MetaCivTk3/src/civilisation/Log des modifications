@@ -1,25 +1,25 @@
 A partir de la version 1.05
-Log des différentes modifications
+Log des diff_rentes modifications
 
 
 VERSION 1.05
-- Refonte de la structure de décision (Esprit et toutes les classes qui vont avec)
+- Refonte de la structure de d_cision (Esprit et toutes les classes qui vont avec)
 - Affichage sommaire des modificateurs de comportements dans l'inspecteur d'agents
 
 
 VERSION 1.06
 
-- Certains modificateurs pour l'esprit ont été renommés (en anglais)
-- Prise en charge des valeurs négatives pour les modificateurs de comportement
+- Certains modificateurs pour l'esprit ont _t_ renomm_s (en anglais)
+- Prise en charge des valeurs n_gatives pour les modificateurs de comportement
 - Les skills retournent un taux de transfert
 - Les memes retournent un taux de transfert
-- Les beliefs retournent si il peuvent ou non être communiqués et s'appliquer à d'autres agents
+- Les beliefs retournent si il peuvent ou non _tre communiqu_s et s'appliquer _ d'autres agents
 - Fonction de suppression des modificateurs de comportement
-- Les modificateurs de comportement (croyances), ont été renommées cognitons
-- Réecriture des cognitons pour qu'ils soient plus simple à manipuler (ancienne méthode trop lourde…)
-- Nouvelle fonction OneOfHumanHereWith qui renvoi un humain en fonction d'une fonction de test passée en paramètre
-- Nouvelle fonction pour générer dynamiquement des cognitons à partir d'une chaîne de caractères
-- Nouvelles fonctions pour gérer (de manière sommaire) les naissances
+- Les modificateurs de comportement (croyances), ont _t_ renomm_es cognitons
+- R_ecriture des cognitons pour qu'ils soient plus simple _ manipuler (ancienne m_thode trop lourde_)
+- Nouvelle fonction OneOfHumanHereWith qui renvoi un humain en fonction d'une fonction de test pass_e en param_tre
+- Nouvelle fonction pour g_n_rer dynamiquement des cognitons _ partir d'une cha_ne de caract_res
+- Nouvelles fonctions pour g_rer (de mani_re sommaire) les naissances
 - Correction d'un bug majeur sur le calcul des poids des cognitons
 - Gestion des objets apportant des cognitons (ajout et suppression)
 
@@ -36,23 +36,23 @@ VERSION 1.06
 
 - Affichage couleur des cognitons dans l'inspecteur
 - Correction d'un bug lors de l'affichage des cognitons dans l'inspecteur
-- Infobulles plus précises pour les cognitons dans l'inspecteur
-- Paramètre XML pour règler la beauté de l'affichage
-	--> Agent communauté un peu plus beau
+- Infobulles plus pr_cises pour les cognitons dans l'inspecteur
+- Param_tre XML pour r_gler la beaut_ de l'affichage
+	--> Agent communaut_ un peu plus beau
 	
 	
 VERSION 1.07
 - Gestion des amenagements apportant des cognitons (ajout et suppression)
 - Gain de talent lors de la chasse, de l'agriculture et de la cueillette
-- Ajout du pathfinder au retour à la communauté
-- Modifications de l'interface d'informations (inspecteur) (icones, dispositions…)
+- Ajout du pathfinder au retour _ la communaut_
+- Modifications de l'interface d'informations (inspecteur) (icones, dispositions_)
 - Corresction de divers bugs sur la gestion des cognitons
-- Système d'exclusion entre des TRAITS (timide/extraverti par exemple)
-- Ajout du système de réflexes
-- Hérédité des skills, et hérédité partielle des memes et des traits
-- Développement de nouveaux memes et skills en "chaînant" à partir des anciens à la naissance
-- Apparition de nouveaux traits de caractères chez les nouveaux nés
-- Affichage généalogique dans l'inspecteur
+- Syst_me d'exclusion entre des TRAITS (timide/extraverti par exemple)
+- Ajout du syst_me de r_flexes
+- H_r_dit_ des skills, et h_r_dit_ partielle des memes et des traits
+- D_veloppement de nouveaux memes et skills en "cha_nant" _ partir des anciens _ la naissance
+- Apparition de nouveaux traits de caract_res chez les nouveaux n_s
+- Affichage g_n_alogique dans l'inspecteur
 
 
 - Nouveau cogniton BELIEF : PossedeChamp
@@ -66,12 +66,12 @@ VERSION 1.07
 
 
 VERSION 1.08
-- Refonte de l'affichage pour être plus pratique et plus dans l'esprit turtlekit
+- Refonte de l'affichage pour _tre plus pratique et plus dans l'esprit turtlekit
 
 
 VERSION 1.09
 - Nouveau pathfinder
-- Nombreuses améliorations du système cognitif
+- Nombreuses am_liorations du syst_me cognitif
 
 VERSION 1.10
 - Actions de groupe

@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import civilisation.Configuration;
-import civilisation.GroupAndRole;
+import civilisation.group.GroupAndRole;
 import civilisation.individu.plan.action.Action;
 import civilisation.individu.plan.action.Comparator;
 import civilisation.individu.plan.action.OptionsActions;
@@ -109,7 +109,7 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 		    array = boxs.toArray();
 		}
 		else{
-			JLabel label = new JLabel("Cette action n'est pas �ditable!");
+			JLabel label = new JLabel("Cette action n'est pas ___ditable!");
 		    array = new Object[1];
 		    array[0] = label;
 		}
@@ -148,11 +148,11 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					OptionsActions opt = null;
 
 					if (schema.get(i)[0].equals("**Objet**")){
-						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi�me terme est toujours le nom du param�tre pour les param�tres complexes*/
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
 						opt.addParametre(Configuration.getObjetByName((String)boxs.get(i).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Pheromone**")){
-						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi�me terme est toujours le nom du param�tre pour les param�tres complexes*/
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
 						opt.addParametre(Configuration.getPheromoneByName((String)boxs.get(i).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Cogniton**")){
@@ -168,11 +168,11 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 						opt.addParametre(new GroupAndRole((String)boxs.get(i).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Integer**")){
-						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi�me terme est toujours le nom du param�tre pour les param�tres complexes*/
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
 						opt.addParametre((Integer)boxs.get(i).getSelectedItem());
 					}
 					else if (schema.get(i)[0].equals("**Double**")){
-						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi�me terme est toujours le nom du param�tre pour les param�tres complexes*/
+						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
 						opt.addParametre((Double)boxs.get(i).getSelectedItem());
 					}
 					else if (schema.get(i)[0].equals("**Attribute**")){

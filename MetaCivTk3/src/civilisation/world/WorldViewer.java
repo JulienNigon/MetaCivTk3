@@ -15,11 +15,11 @@ import java.util.List;
 
 import civilisation.Civilisation;
 import civilisation.Configuration;
-import civilisation.GroupAndRole;
 import civilisation.ItemPheromone;
 import civilisation.TurtleGenerator;
 import civilisation.amenagement.Amenagement;
 import civilisation.amenagement.Amenagement_Champ;
+import civilisation.group.GroupAndRole;
 import civilisation.inspecteur.FenetreInspecteur;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
@@ -217,10 +217,10 @@ public class WorldViewer extends TKDefaultViewer
 		}
 
 
-		// Les dessins sur le carr��� de couleur
+		// Les dessins sur le carr___ de couleur
 		if(t.isPlayingRole("Communaute")){
 			
-			//Le carr��� de couleur
+			//Le carr___ de couleur
 			g.setColor(t.getColor());
 			g.fillRect(x+1,y+1,this.getCellSize() -1,this.getCellSize() -1);
 			

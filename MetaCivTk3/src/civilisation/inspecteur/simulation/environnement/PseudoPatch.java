@@ -4,7 +4,7 @@ import civilisation.world.Terrain;
 
 
 /** 
- * Classe pour gerer les pseudos patchs pour la génération de l'environnement
+ * Classe pour gerer les pseudos patchs pour la g_n_ration de l'environnement
  * @version MetaCiv 1.0
 */
 

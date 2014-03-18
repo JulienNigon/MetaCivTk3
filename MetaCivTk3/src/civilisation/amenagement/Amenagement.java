@@ -8,7 +8,7 @@ import turtlekit.kernel.Patch;
 
 public class Amenagement {
 
-	Patch position; //Le patch contenant l'am�nagement
+	Patch position; //Le patch contenant l'am___nagement
 	Humain possesseur; //Possesseur de l'amenagement
 	
 	
@@ -41,8 +41,8 @@ public class Amenagement {
 	}
 
 	/**
-	 * Les cognitons declench�s par cet amenagement
-	 * @return tableau de string repr�sentant les cognitons
+	 * Les cognitons declench___s par cet amenagement
+	 * @return tableau de string repr___sentant les cognitons
 	 */
 	public String[] cognitonsLies()
 	{

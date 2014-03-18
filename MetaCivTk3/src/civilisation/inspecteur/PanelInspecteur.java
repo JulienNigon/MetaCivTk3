@@ -35,7 +35,7 @@ import civilisation.individu.Humain;
 import civilisation.world.World;
 
 /** 
- * Le JPanel contenant toute l'information affich�e par l'inspecteur : permet d'obtenir des informations sur les agents
+ * Le JPanel contenant toute l'information affich___e par l'inspecteur : permet d'obtenir des informations sur les agents
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
@@ -157,7 +157,7 @@ public class PanelInspecteur extends JPanel{
 			donnees[2][1] = h.getY();
 			donnees[3][0] = "";
 			donnees[3][1] = "";
-			donnees[4][0] = "n� Civilisation";
+			donnees[4][0] = "n___ Civilisation";
 			donnees[4][1] = h.getCiv().getIndexCiv();
 			donnees[5][0] = "Couleur Civ";
 			donnees[5][1] = h.getCiv().getCouleur();
@@ -175,10 +175,10 @@ public class PanelInspecteur extends JPanel{
 			}
 		
 			patch.actualiser(select(agentID));  //On met a jour le panel du patch
-			inventaire.actualiser(select(agentID)); //On met � jour l'affichage de l'inventaire
-			croyances.actualiser(select(agentID)); //On met � jour l'affichage des croyances
-			plans.actualiser(select(agentID)); //On met � jour l'affichage des plans
-			genealogie.actualiser((Humain)select(agentID)); //On met � jour l'affichage de la genealogie
+			inventaire.actualiser(select(agentID)); //On met ___ jour l'affichage de l'inventaire
+			croyances.actualiser(select(agentID)); //On met ___ jour l'affichage des croyances
+			plans.actualiser(select(agentID)); //On met ___ jour l'affichage des plans
+			genealogie.actualiser((Humain)select(agentID)); //On met ___ jour l'affichage de la genealogie
 		
 			this.updateUI();
 		}

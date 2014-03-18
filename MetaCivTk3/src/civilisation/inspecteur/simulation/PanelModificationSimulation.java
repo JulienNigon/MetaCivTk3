@@ -19,6 +19,7 @@ import civilisation.inspecteur.simulation.environnement.ActionsToolBarEnvironnem
 import civilisation.inspecteur.simulation.environnement.ActionsToolBarTerrains;
 import civilisation.inspecteur.simulation.environnement.PanelEnvironnement;
 import civilisation.inspecteur.simulation.environnement.PanelTerrains;
+import civilisation.inspecteur.simulation.groupManager.GroupToolBar;
 import civilisation.inspecteur.simulation.groupManager.PanelGroupManager;
 import civilisation.inspecteur.simulation.groupManager.PanelGroupTree;
 import civilisation.inspecteur.simulation.objets.ActionsToolBarListeObjets;
@@ -74,7 +75,7 @@ public class PanelModificationSimulation extends JPanel{
 	JButton choisirEnvironnementActif;
 	JButton pheromone;
 	
-	JToolBar toolBarGroupManager;
+	GroupToolBar toolBarGroupManager;
 	
 	JToolBar toolBarGroupTree;
 
@@ -150,7 +151,7 @@ public class PanelModificationSimulation extends JPanel{
 		boutonAttribute.addActionListener(new ActionPanelCognitonsGraphiques(this, 6));
 		toolBar.add(boutonAttribute);
 		
-		ImageIcon iconeGroupManager = new ImageIcon(this.getClass().getResource("../icones/blue-document-attribute.png"));	
+		ImageIcon iconeGroupManager = new ImageIcon(this.getClass().getResource("../icones/foaf.png"));	
 		boutonGroupManager = new JButton(iconeGroupManager);
 		boutonGroupManager.setToolTipText("Manage group");
 		boutonGroupManager.addActionListener(new ActionPanelCognitonsGraphiques(this, 7));
@@ -162,6 +163,7 @@ public class PanelModificationSimulation extends JPanel{
 		panelStructureCognitive = new PanelStructureCognitive(this);
 		panelEnvironnement = new PanelEnvironnement(this);
 		panelGroupManager = new PanelGroupManager(this);
+		panelGroupTree = new PanelGroupTree(panelGroupManager);
 
 		panelTerrains = new PanelTerrains();
 		panelObjets = new PanelObjets(this , panelListeObjets);
@@ -172,27 +174,29 @@ public class PanelModificationSimulation extends JPanel{
 		panelCivilisations.setPanelListeCivilisations(panelListeCivilisations);
 		panelAttributes = new PanelAttributes(this);
 
-		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
+		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Action tree");
 		bordure.setTitleJustification(TitledBorder.LEFT);
-		bordure.setTitle("Action tree");
 		panelArbreActions.setBorder(bordure);
-		
-		
-		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
+			
+		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Cognitons and plans");
 		bordure.setTitleJustification(TitledBorder.LEFT);
-		bordure.setTitle("Cognitons and plans");
 		panelStructureCognitive.setBorder(bordure);
 		
-		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
+		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Environment");
 		bordure.setTitleJustification(TitledBorder.LEFT);
-		bordure.setTitle("Environment");
 		panelEnvironnement.setBorder(bordure);
 		
-		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Arborescence d'actions");
+		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Patch type");
 		bordure.setTitleJustification(TitledBorder.LEFT);
-		bordure.setTitle("Patch type");
 		panelTerrains.setBorder(bordure);
+		
+		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Group manager");
+		bordure.setTitleJustification(TitledBorder.LEFT);
+		panelGroupManager.setBorder(bordure);
 		 
+		bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Group tree");
+		bordure.setTitleJustification(TitledBorder.LEFT);
+		panelGroupTree.setBorder(bordure);
 
 		/*Creation de la toolBar pour la structure cognitive*/
 		toolBarStructureCognitive = new JToolBar();
@@ -230,13 +234,13 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeLimitesEnvironnement = new ImageIcon(this.getClass().getResource("../icones/compass.png"));
 		limitesEnvironnement = new JButton(iconeLimitesEnvironnement);
 		limitesEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,2));
-		limitesEnvironnement.setToolTipText("D�finir les limites de l'environnement");
+		limitesEnvironnement.setToolTipText("Définir les limites de l'environnement");
 		toolBarEnvironnement.add(limitesEnvironnement);
 		
 		ImageIcon iconeGenererEnvironnement = new ImageIcon(this.getClass().getResource("../icones/picture--arrow.png"));
 		genererEnvironnement = new JButton(iconeGenererEnvironnement);
 		genererEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,3));
-		genererEnvironnement.setToolTipText("Generer un environnement � partir d'une image existante");
+		genererEnvironnement.setToolTipText("Generer un environnement ___ partir d'une image existante");
 		toolBarEnvironnement.add(genererEnvironnement);
 		
 		toolBarEnvironnement.addSeparator();
@@ -272,7 +276,7 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeChoisirEnv = new ImageIcon(this.getClass().getResource("../icones/ui-color-picker-switch.png"));
 		choisirEnvironnementActif = new JButton(iconeChoisirEnv);
 		choisirEnvironnementActif.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,8));
-		choisirEnvironnementActif.setToolTipText("Choisir l'environnment � utiliser pour la simulation");
+		choisirEnvironnementActif.setToolTipText("Choisir l'environnment ___ utiliser pour la simulation");
 		toolBarEnvironnement.add(choisirEnvironnementActif);
 
 		ImageIcon iconePheromone = new ImageIcon(this.getClass().getResource("../icones/ui-color-picker-switch.png"));
@@ -313,8 +317,10 @@ public class PanelModificationSimulation extends JPanel{
 		toolBarObjets = new JToolBar();
 		
 		/*ToolBar for group manager*/	
-		toolBarGroupManager = new JToolBar();
-		
+		toolBarGroupManager = new GroupToolBar(panelGroupManager);
+		toolBarGroupTree = new JToolBar();
+		panelGroupManager.setToolBar(toolBarGroupManager);
+
 		/*Creation de la toolBar pour la liste des civilisations*/	
 		toolBarListeCivilisations = new JToolBar();
 		

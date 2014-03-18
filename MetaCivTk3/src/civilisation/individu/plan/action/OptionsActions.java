@@ -2,9 +2,9 @@ package civilisation.individu.plan.action;
 
 import java.util.ArrayList;
 
-import civilisation.GroupAndRole;
-import civilisation.GroupModel;
 import civilisation.ItemPheromone;
+import civilisation.group.GroupAndRole;
+import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inventaire.Objet;
 

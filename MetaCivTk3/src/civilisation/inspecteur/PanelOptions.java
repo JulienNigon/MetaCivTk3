@@ -13,7 +13,7 @@ import javax.swing.JToolBar;
 
 import turtlekit.kernel.Turtle;
 import civilisation.Configuration;
-import civilisation.GroupAndRole;
+import civilisation.group.GroupAndRole;
 import civilisation.individu.Humain;
 import civilisation.world.World;
 import civilisation.world.WorldViewer;
@@ -54,8 +54,8 @@ public class PanelOptions extends JPanel{
         JLabel labelAffichage = new JLabel("Affichage des plans : ");
         
         frontiereAffichee = new JComboBox();
-        frontiereAffichee.addItem("Fronti�res visibles");
-        frontiereAffichee.addItem("Fronti�res masqu�es");
+        frontiereAffichee.addItem("Fronti___res visibles");
+        frontiereAffichee.addItem("Fronti___res masqu___es");
         frontiereAffichee.addActionListener(new ActionOptionsListener(this, 1));
         
         /* Allow to select a phero-map*/

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /** 
- * Gère l'interaction avec la fenêtre des options
+ * G_re l'interaction avec la fen_tre des options
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
