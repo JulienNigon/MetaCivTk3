@@ -26,7 +26,7 @@ public class DialogueChoisirEnvironnement extends JDialog implements ActionListe
 
 		listeEnvironnements = new JComboBox();
 		
-		File[] files = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements").listFiles();
+		File[] files = new File(Configuration.pathToRessources + "/environnements").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 		    	listeEnvironnements.addItem(file);

@@ -42,17 +42,17 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			
 			
 			System.out.println("---Enregistrement des param_tres de la simulation---");
-			File cible = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources");
+			File cible = new File(Configuration.pathToRessources + "");
 			
 			/*
 			 * On met de c_t_ les diff_rents environnments
 			 * A ameliorer!
 			 */
-			File environnements = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements");
+			File environnements = new File(Configuration.pathToRessources + "/environnements");
 			if (environnements.isDirectory())
 				System.out.println("--_ Sauvegarde des environnements de simulation");
 				try {
-					copierDossier(environnements , new File(System.getProperty("user.dir")+"/bin/civilisation/environnements"));
+					copierDossier(environnements , new File(System.getProperty("user.dir")+"/civilisation/environnements"));
 				} catch (IOException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
@@ -79,7 +79,7 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			}
 
 			System.out.println("--_ Enregistrement des attributs");
-			File attributes = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/attributes");
+			File attributes = new File(Configuration.pathToRessources + "/attributes");
 			attributes.mkdir();
 			for (int i = 0; i < Configuration.attributesNames.size();i++){
 				try {
@@ -94,28 +94,28 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			}
 					
 			System.out.println("--_ Enregistrement des cognitons");
-			File cognitons = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/cognitons");
+			File cognitons = new File(Configuration.pathToRessources + "/cognitons");
 			cognitons.mkdir();
 			for (int i = 0; i < Configuration.cognitons.size();i++){
 				Configuration.cognitons.get(i).enregistrer(cognitons);
 			}
 			
 			System.out.println("--_ Save cloud cognitons");
-			File cloudCognitons = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/cloudCognitons");
+			File cloudCognitons = new File(Configuration.pathToRessources + "/cloudCognitons");
 			cloudCognitons.mkdir();
 			for (int i = 0; i < Configuration.cloudCognitons.size();i++){
 				Configuration.cloudCognitons.get(i).enregistrer(cloudCognitons);
 			}
 
 			System.out.println("--_ Enregistrement des objets");
-			File objets = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/objets");
+			File objets = new File(Configuration.pathToRessources + "/objets");
 			objets.mkdir();
 			for (int i = 0; i < Configuration.objets.size();i++){
 				Configuration.objets.get(i).enregistrer(objets);
 			}
 
 			System.out.println("--_ Enregistrement des items pheromones");
-			File phero = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/itemPheromones");
+			File phero = new File(Configuration.pathToRessources + "/itemPheromones");
 			phero.mkdir();
 			for (int i = 0; i < Configuration.itemsPheromones.size();i++){
 				System.out.println("Configuration.itemsPheromones");
@@ -123,40 +123,40 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			}
 			
 			System.out.println("--_ Enregistrement des plans");
-			File plans = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/plans");
+			File plans = new File(Configuration.pathToRessources + "/plans");
 			plans.mkdir();
 			for (int i = 0; i < Configuration.plans.size();i++){
 				Configuration.plans.get(i).enregistrer(plans);
 			}			
 			
 			System.out.println("--_ Enregistrement des terrains");
-			File terrains = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/terrains");
+			File terrains = new File(Configuration.pathToRessources + "/terrains");
 			terrains.mkdir();
 			for (int i = 0; i < Configuration.terrains.size();i++){
 				Configuration.terrains.get(i).enregistrer(terrains);
 			}
 			
 			System.out.println("--_ Enregistrement des civilisations");
-			File civilisations = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/civilisations");
+			File civilisations = new File(Configuration.pathToRessources + "/civilisations");
 			civilisations.mkdir();
 			for (int i = 0; i < Configuration.civilisations.size();i++){
 				Configuration.civilisations.get(i).enregistrer(civilisations);
 			}
 			
 			System.out.println("--_ Save groups");
-			File groups = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/groups");
+			File groups = new File(Configuration.pathToRessources + "/groups");
 			groups.mkdir();
 			for (int i = 0; i < Configuration.groups.size();i++){
 				Configuration.groups.get(i).enregistrer(groups);
 			}
 
 			/*On remet les environnements en place*/
-			environnements = new File(System.getProperty("user.dir")+"/bin/civilisation/environnements");
+			environnements = new File(System.getProperty("user.dir")+"/civilisation/environnements");
 			System.out.println(environnements.getAbsolutePath() + " "+environnements.isDirectory());
 			if (environnements.isDirectory()){
 				System.out.println("env");
 				try {
-					copierDossier(environnements , new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements"));
+					copierDossier(environnements , new File(Configuration.pathToRessources + "/environnements"));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -172,9 +172,9 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 			Date date = new Date();
 			
-	    	File versionActuelle = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources");
-	    	File archive = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources"+dateFormat.format(date));
-	    	System.out.println(System.getProperty("user.dir")+"/bin/civilisation/ressources"+" "+dateFormat.format(date));
+	    	File versionActuelle = new File(Configuration.pathToRessources + "");
+	    	File archive = new File(Configuration.pathToRessources + ""+dateFormat.format(date));
+	    	System.out.println(Configuration.pathToRessources + ""+" "+dateFormat.format(date));
 
 	    	try {
 	    		copierDossier(versionActuelle, archive);

@@ -70,14 +70,14 @@ public class PanelEnvironnement extends JJPanel{
 	
 
 	public void sauvegarderEnvironnement(String nomDeSauvegarde){
-		File environnements = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements");
+		File environnements = new File(Configuration.pathToRessources + "/environnements");
 	if(!environnements.isDirectory()) environnements.mkdir();
 	
 	PrintWriter out;
 	try {
 		
 		
-		out = new PrintWriter(new FileWriter(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+nomDeSauvegarde+Configuration.getExtension()));
+		out = new PrintWriter(new FileWriter(Configuration.pathToRessources + "/environnements/"+nomDeSauvegarde+Configuration.getExtension()));
 		out.println("Nom : " + nomDeSauvegarde);
 		out.println("Largeur : " + largeur);
 		out.println("Hauteur : " + hauteur);

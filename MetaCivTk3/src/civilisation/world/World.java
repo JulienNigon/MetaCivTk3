@@ -71,8 +71,8 @@ public class World extends TKEnvironment
 
 		new Initialiseur(); //Initialize simulation
 		
-		x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
-       	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
+		x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
+       	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
 
 		
 		/*Reglages sur les civilisations*/
@@ -91,7 +91,7 @@ public class World extends TKEnvironment
 		if (Configuration.environnementACharger != null){
 		   System.out.println("Chargement de l'environnement");
 	       HashMap<Integer,Terrain> typeTerrains = new HashMap<Integer,Terrain>();
-	       ArrayList<String[]> listeTerrains = Initialiseur.getListeChamp("Terrain", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
+	       ArrayList<String[]> listeTerrains = Initialiseur.getListeChamp("Terrain", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 	       for (int i = 0; i < listeTerrains.size(); i++){
 			   //System.out.println("hash "+i+" "+listeTerrains.get(i)[0]+" "+Configuration.getTerrainByName(listeTerrains.get(i)[0]));
 
@@ -99,7 +99,7 @@ public class World extends TKEnvironment
 			   //System.out.println(typeTerrains.get(i) + typeTerrains.get(i).getCouleur().toString());
 	       }
 	       
-	       ArrayList<String[]> terrains = Initialiseur.getListeChamp("Rang", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
+	       ArrayList<String[]> terrains = Initialiseur.getListeChamp("Rang", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 	       for (int i = 0; i < x; i++){
 	    	   for (int j = 0; j < y; j++){
 	    		   Terrain t = typeTerrains.get(Integer.parseInt(terrains.get(y-j-1)[i]));
@@ -205,7 +205,7 @@ public class World extends TKEnvironment
 		
 		if (tick == 1) {
 		       /*Install starting civilizations*/
-		       ArrayList<String[]> listeCivs = Initialiseur.getListeChamp("Civilisation", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
+		       ArrayList<String[]> listeCivs = Initialiseur.getListeChamp("Civilisation", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 		       for (int i = 0; i < listeCivs.size(); i++){
 		    	   
 		    	   int u = Integer.parseInt(listeCivs.get(i)[1]);

@@ -41,7 +41,7 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 			System.out.println("--Reglage des dimensions (TODO)--");
 		}
 		else if (index == 3){
-			System.out.println("--Creation d'un environnement _ partir d'une image--");
+			System.out.println("--Create environment from png--");
 		    JFileChooser chooser = new JFileChooser();
 		    FileNameExtensionFilter filter = new FileNameExtensionFilter(".png","png");
 		    chooser.setFileFilter(filter);
@@ -54,7 +54,7 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 					p.generationEnvironnementViaImage(buffer);
 					
 				} catch (IOException e1) {
-					System.out.println("N_cessite une image suivant le lien : /bin/civilisation/ressources/image.png");
+					System.out.println("N_cessite une image suivant le lien : /civilisation/ressources/image.png");
 					e1.printStackTrace();
 				}
 		    }

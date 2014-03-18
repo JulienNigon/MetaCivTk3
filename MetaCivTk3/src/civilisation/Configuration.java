@@ -72,6 +72,9 @@ public class Configuration {
 	/*Path to icon*/
 	public static String pathToIcon = "/bin/civilisation/inspecteur/icones";
 	
+	/*Path to ressources*/
+	public static String pathToRessources = "/civilisation/ressources";
+	
 	/*Modificateurs de l'esprit*/
 	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1, toolTip = "Une valeur elevee augmente les chances que les memes soient transferes aux enfants.")
 	public static Double facteurHereditaireMemes = 1.0;

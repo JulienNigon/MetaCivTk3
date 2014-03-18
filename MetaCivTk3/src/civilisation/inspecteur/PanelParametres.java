@@ -138,35 +138,35 @@ public class PanelParametres extends JPanel{
 		Field field, fPoids;
 
 		
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/beliefs").listFiles();	
+		files = new File(System.getProperty("user.dir")+"/civilisation/individu/cognitons/beliefs").listFiles();	
 		for (File file : files) {
 		    if (file.isFile()) {
 		        s = file.getName().split("\\.")[0];
 		        listeCognitons.add(Class.forName("civilisation.individu.cognitons.beliefs." + s));	
 		    }
 		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/memes").listFiles();	
+		files = new File(System.getProperty("user.dir")+"/civilisation/individu/cognitons/memes").listFiles();	
 		for (File file : files) {
 		    if (file.isFile()) {
 		        s = file.getName().split("\\.")[0];
 		        listeCognitons.add(Class.forName("civilisation.individu.cognitons.memes." + s));		        
 		    }
 		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/percepts").listFiles();	
+		files = new File(System.getProperty("user.dir")+"/civilisation/individu/cognitons/percepts").listFiles();	
 		for (File file : files) {
 		    if (file.isFile()) {
 		        s = file.getName().split("\\.")[0];
 		        listeCognitons.add(Class.forName("civilisation.individu.cognitons.percepts." + s));		        
 		    }
 		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/skills").listFiles();	
+		files = new File(System.getProperty("user.dir")+"/civilisation/individu/cognitons/skills").listFiles();	
 		for (File file : files) {
 		    if (file.isFile()) {
 		        s = file.getName().split("\\.")[0];
 		        listeCognitons.add(Class.forName("civilisation.individu.cognitons.skills." + s));		        
 		    }
 		}
-		files = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/cognitons/traits").listFiles();	
+		files = new File(System.getProperty("user.dir")+"/civilisation/individu/cognitons/traits").listFiles();	
 		for (File file : files) {
 		    if (file.isFile()) {
 		        s = file.getName().split("\\.")[0];

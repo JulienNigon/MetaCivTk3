@@ -11,9 +11,14 @@ import static turtlekit.kernel.TurtleKit.Option.startSimu;
 import static turtlekit.kernel.TurtleKit.Option.turtles;
 import static turtlekit.kernel.TurtleKit.Option.viewers;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import civilisation.inspecteur.viewer.ViewerAgent;
 import civilisation.inspecteur.viewer.ViewerInspecteur;
@@ -43,11 +48,24 @@ public class CivLauncher extends TKLauncher {
 	@Override
 	protected void createSimulationInstance() {
 		
+	    JFileChooser chooser = new JFileChooser();
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
+	    chooser.setFileFilter(filter);
+	    int returnVal = chooser.showOpenDialog(null);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = chooser.getSelectedFile();
+			Configuration.pathToRessources = file.getParent();
+			System.out.println("Selected path : " + Configuration.pathToRessources);
+	    } else {
+	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
+			System.out.println("Selected path : " + Configuration.pathToRessources);
+
+	    }
 		
 
 		Initialiseur.readParameters(); //Load minimum informations about the simulation
-		int x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
-		int	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
+		int x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
+		int	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
 
 		System.out.println("X : " + x + "  Y : " + y);
 		setMadkitProperty(envDimension, x+","+y);

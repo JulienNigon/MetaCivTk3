@@ -42,7 +42,7 @@ public class DialogueChoisirCouleurTerrain extends JDialog implements ActionList
 	        
 	    optionPane.addPropertyChangeListener(this);
 	        
-		ImageIcon icone = new ImageIcon(System.getProperty("user.dir")+"/bin/civilisation/graphismes/LogoMedium.png");
+		ImageIcon icone = new ImageIcon(System.getProperty("user.dir")+"/civilisation/graphismes/LogoMedium.png");
 		optionPane.setIcon(icone);
 		this.pack();
 	}

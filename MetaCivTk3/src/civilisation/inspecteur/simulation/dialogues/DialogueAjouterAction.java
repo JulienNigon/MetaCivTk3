@@ -59,7 +59,7 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 	        
 	    optionPane.addPropertyChangeListener(this);
 	        
-		ImageIcon icone = new ImageIcon(System.getProperty("user.dir")+"/bin/civilisation/graphismes/LogoMedium.png");
+		ImageIcon icone = new ImageIcon(System.getProperty("user.dir")+"/civilisation/graphismes/LogoMedium.png");
 		optionPane.setIcon(icone);
 		this.pack();
 	}

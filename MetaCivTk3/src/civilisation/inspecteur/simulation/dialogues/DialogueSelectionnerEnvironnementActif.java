@@ -26,7 +26,7 @@ public class DialogueSelectionnerEnvironnementActif extends JDialog implements A
 		this.p = p;
 		listeEnvironnements = new JComboBox();
 
-		File[] files = new File(System.getProperty("user.dir")+"/bin/civilisation/ressources/environnements").listFiles();
+		File[] files = new File(Configuration.pathToRessources + "/environnements").listFiles();
 
 		for (int i = 0; i < files.length; i++){
 			listeEnvironnements.addItem(files[i].getName());
@@ -51,7 +51,7 @@ public class DialogueSelectionnerEnvironnementActif extends JDialog implements A
 	        
 	    optionPane.addPropertyChangeListener(this);
 	        
-		ImageIcon icone = new ImageIcon(System.getProperty("user.dir")+"/bin/civilisation/graphismes/LogoMedium.png");
+		ImageIcon icone = new ImageIcon(System.getProperty("user.dir")+"/civilisation/graphismes/LogoMedium.png");
 		optionPane.setIcon(icone);
 		this.pack();
 	}
