@@ -20,6 +20,7 @@ import civilisation.Configuration;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.inspecteur.animations.JJAnimationOpacite;
 import civilisation.inspecteur.animations.JJAnimationRotation;
@@ -41,8 +42,8 @@ public class PanelStructureCognitive extends JJPanel{
 	protected ArrayList<NPlan> plans;
 	protected ArrayList<GTrigger> gTriggers;
 	
-	double espacement = 40;
-	double espaceCognitonsPlans = 350;
+	protected double espacement = 40;
+	protected double espaceCognitonsPlans = 350;
 	int tempsEntreApparitionSpheresLiens = 100;
 	int compteur = 0;
 	int initXTrigger = 12;
@@ -61,17 +62,19 @@ public class PanelStructureCognitive extends JJPanel{
 		this.panelPrincipal = panelPrincipal;
 		this.setDelay(5);
 		
+		initializeArray();
+		initializeItemsToDraw();
+		initializeDrawing();
+		}
+	
+	protected void initializeArray() {
 		gCognitons = new ArrayList<GCogniton>();
 		gPlan = new ArrayList<GPlan>();
 		gLiens = new ArrayList<GLien>();
 		gLiensConditionnels = new ArrayList<GLien>();
 		gLinksTrigger = new ArrayList<GLien>();
-
 		gTriggers = new ArrayList<GTrigger>();
-
-		initializeItemsToDraw();
-		initializeDrawing();
-		}
+	}
 	
 	/**
 	 * Override this function to draw only some items
@@ -79,7 +82,6 @@ public class PanelStructureCognitive extends JJPanel{
 	protected void initializeItemsToDraw() {
 
 		allCognitons = Configuration.cognitons;
-		allCognitons.addAll(Configuration.cloudCognitons);
 		plans = Configuration.plans;
 		
 	}
@@ -89,9 +91,7 @@ public class PanelStructureCognitive extends JJPanel{
 
 		
 		for (int i = 0; i < allCognitons.size(); i++){		
-			if (allCognitons.get(i) instanceof Culturon) {
-				showCloudCogniton((Culturon) allCognitons.get(i),20,40+espacement*i);
-			} else {
+			if (allCognitons.get(i).getType() != TypeDeCogniton.CULTURON) {
 				afficherCogniton(allCognitons.get(i),80,40+espacement*i);
 			}
 		}
@@ -163,10 +163,10 @@ public class PanelStructureCognitive extends JJPanel{
 		popupGPlans = new JPopupMenu("Plan");
 		JMenuItem editerPlan = new JMenuItem("Editer le Plan");
 		editerPlan.addActionListener(new ActionsMenuGPlan(p,0));
-		editerPlan.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
+		editerPlan.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/pencil.png"));
 		popupGPlans.add(editerPlan);
 		JMenuItem supprimerPlan = new JMenuItem("Supprimer");
-		supprimerPlan.setIcon(new ImageIcon(this.getClass().getResource("../icones/cross.png")));
+		supprimerPlan.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/cross.png"));
 		popupGPlans.add(supprimerPlan);
 		
 		popupGPlans.show(this, (int)p.getXx() + e.getX(), (int)p.getYy() + e.getY());
@@ -174,28 +174,31 @@ public class PanelStructureCognitive extends JJPanel{
 	
 	public void afficherPopupCogniton(MouseEvent e , GCogniton c){
 		
+		System.out.println(Configuration.pathToIcon + "/pencil.png");
+		System.out.println(this.getClass().getResource("../icones/arrow-out.png"));
+
 		popupGCognitons = new JPopupMenu("Cogniton");
 		JMenuItem editerCogniton = new JMenuItem("Editer le Cogniton");
 		editerCogniton.addActionListener(new ActionsMenuGCogniton(c,0));
-		editerCogniton.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
+		editerCogniton.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/pencil.png"));
 		popupGCognitons.add(editerCogniton);
 		JMenuItem editerInfluences = new JMenuItem("Editer les liens d'influence");
 		editerInfluences.addActionListener(new ActionsMenuGCogniton(c,1));
-		editerInfluences.setIcon(new ImageIcon(this.getClass().getResource("../icones/arrow-out.png")));
+		editerInfluences.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/arrow-out.png"));
 		popupGCognitons.add(editerInfluences);
 		JMenuItem editerConditions = new JMenuItem("Editer les liens conditionnels");
 		editerConditions.addActionListener(new ActionsMenuGCogniton(c,2));
-		editerConditions.setIcon(new ImageIcon(this.getClass().getResource("../icones/lock--arrow.png")));
+		editerConditions.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/lock--arrow.png"));
 		popupGCognitons.add(editerConditions);
 		JMenuItem editTriggeringAttributes = new JMenuItem("Edit triggering attributes");
 		editTriggeringAttributes.addActionListener(new ActionsMenuGCogniton(c,3));
-		editTriggeringAttributes.setIcon(new ImageIcon(this.getClass().getResource("../icones/lock--arrow.png")));
+		editTriggeringAttributes.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/lock--arrow.png"));
 		popupGCognitons.add(editTriggeringAttributes);
 		JMenuItem editerChaine = new JMenuItem("Editer les liens inter-cognitons");
-		editerChaine.setIcon(new ImageIcon(this.getClass().getResource("../icones/arrow-in-out.png")));
+		editerChaine.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/arrow-in-out.png"));
 		popupGCognitons.add(editerChaine);
 		JMenuItem supprimerCogniton = new JMenuItem("Supprimer");
-		supprimerCogniton.setIcon(new ImageIcon(this.getClass().getResource("../icones/cross.png")));
+		supprimerCogniton.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/cross.png"));
 		popupGCognitons.add(supprimerCogniton);
 		popupGCognitons.show(this, (int)c.getXx() + e.getX(), (int)c.getYy() + e.getY());
 	}

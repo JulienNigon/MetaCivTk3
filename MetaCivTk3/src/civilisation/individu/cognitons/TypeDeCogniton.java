@@ -9,7 +9,7 @@ public enum TypeDeCogniton {
 	    PERCEPT(new Color(190,245,116)),
 	    SKILL(new Color(204,204,255)),
 	    TRAIT(new Color(204,204,204)),
-	    CLOUD(Color.BLACK);
+	    CULTURON(Color.ORANGE);
 	    
 	    private final Color couleur;   /*Cogniton color*/
 	    
@@ -36,7 +36,7 @@ public enum TypeDeCogniton {
 				return TypeDeCogniton.TRAIT;
 			}
 			else {
-				return TypeDeCogniton.CLOUD;
+				return TypeDeCogniton.CULTURON;
 			}
 		}
 	    

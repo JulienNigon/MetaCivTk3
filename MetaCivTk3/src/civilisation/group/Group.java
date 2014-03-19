@@ -2,6 +2,7 @@ package civilisation.group;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import madkit.kernel.Agent;
 import civilisation.individu.Esprit;
@@ -17,7 +18,8 @@ public class Group extends Turtle
 	Group parent;
 	GroupModel groupModel;
 	Patch position;
-	
+	HashMap<String,ArrayList<CCogniton>> rolesAndCulturons = new HashMap<String,ArrayList<CCogniton>>();
+
 	public Group() {
 	}
 	
@@ -25,10 +27,24 @@ public class Group extends Turtle
 		this.parent = parent;
 		this.groupModel = groupModel;
 		this.position = position;
+		
+
+	    Iterator<String> iterator = groupModel.getCulturons().keySet().iterator();
+	    while(iterator.hasNext()) {
+	    	String role = iterator.next();
+	    	ArrayList<CCogniton> culturons = new ArrayList<CCogniton>();
+	    	ArrayList<NCogniton> modelCulturons = groupModel.getCulturons().get(role);
+	    	for(int i = 0 ; i < modelCulturons.size() ; i++) {
+	    		culturons.add(new CCogniton(modelCulturons.get(i)));
+	    	}
+	    	this.setRole(role, culturons);
+	    	
+	    }
+		
 	}
 	
 	public void applyCulturons(String role , Esprit e){
-		ArrayList<CCogniton> c = groupModel.getCulturons().get(role);
+		ArrayList<CCogniton> c = rolesAndCulturons.get(role);
 		for (int i = 0 ; i < c.size() ; i++){
 			c.get(i).appliquerPoids(e);
 		}
@@ -36,7 +52,7 @@ public class Group extends Turtle
 	}
 	
 	public void setupCulturons(String role , Esprit e){
-		ArrayList<CCogniton> c = groupModel.getCulturons().get(role);
+		ArrayList<CCogniton> c = rolesAndCulturons.get(role);
 		System.out.println(c.size() + " " + c.get(0).getCogniton().getNom());
 		for (int i = 0 ; i < c.size() ; i++){
 			c.get(i).mettreEnPlace(e);
@@ -44,6 +60,24 @@ public class Group extends Turtle
 		if (parent != null) parent.setupCulturons(role, e);
 	}
 
+	public void setRole(String role){
+		rolesAndCulturons.put(role , null);
+	}
+	
+	public void setRole(String role , ArrayList<CCogniton> newCulturons){
+		rolesAndCulturons.put(role , newCulturons);
+	}
+	
+	public void addCulturonToRole(String role , CCogniton culturon){
+		if (!rolesAndCulturons.containsKey(role)) {
+			ArrayList<CCogniton> lc = new ArrayList<CCogniton>();
+			lc.add(culturon);
+			rolesAndCulturons.put(role , lc);
+		} else {
+			rolesAndCulturons.get(role).add(culturon);
+		}
+	}
+	
 	public Group getParent() {
 		return parent;
 	}

@@ -162,7 +162,7 @@ public class PanelModificationSimulation extends JPanel{
 		panelArbreActions = new PanelArbreActions(null);
 		panelStructureCognitive = new PanelStructureCognitive(this);
 		panelEnvironnement = new PanelEnvironnement(this);
-		panelGroupManager = new PanelGroupManager(this);
+		panelGroupManager = new PanelGroupManager(this , null);
 		panelGroupTree = new PanelGroupTree(panelGroupManager);
 
 		panelTerrains = new PanelTerrains();

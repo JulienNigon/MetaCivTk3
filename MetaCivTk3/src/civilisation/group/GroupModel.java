@@ -10,13 +10,14 @@ import java.util.Set;
 
 import civilisation.Configuration;
 import civilisation.individu.cognitons.CCogniton;
+import civilisation.individu.cognitons.NCogniton;
 
 public class GroupModel {
 	
 	String name;
 	//Group have an HashMap, which associate Role (String) to an arraylist of CCogniton.
 	//Each PCogniton contain a Culturon instead of a standard Cogniton.
-	HashMap<String,ArrayList<CCogniton>> rolesAndCulturons = new HashMap<String,ArrayList<CCogniton>>();
+	HashMap<String,ArrayList<NCogniton>> rolesAndCulturons = new HashMap<String,ArrayList<NCogniton>>();
 	
 	public GroupModel(String name) {
 		super();
@@ -27,13 +28,13 @@ public class GroupModel {
 		rolesAndCulturons.put(role , null);
 	}
 	
-	public void setRole(ArrayList<CCogniton> newCulturons , String role){
+	public void setRole(ArrayList<NCogniton> newCulturons , String role){
 		rolesAndCulturons.put(role , newCulturons);
 	}
 	
-	public void addCulturonToRole(String role , CCogniton culturon){
+	public void addCulturonToRole(String role , NCogniton culturon){
 		if (!rolesAndCulturons.containsKey(role)) {
-			ArrayList<CCogniton> lc = new ArrayList<CCogniton>();
+			ArrayList<NCogniton> lc = new ArrayList<NCogniton>();
 			lc.add(culturon);
 			rolesAndCulturons.put(role , lc);
 		} else {
@@ -49,11 +50,11 @@ public class GroupModel {
 		this.name = name;
 	}
 
-	public HashMap<String, ArrayList<CCogniton>> getCulturons() {
+	public HashMap<String, ArrayList<NCogniton>> getCulturons() {
 		return rolesAndCulturons;
 	}
 
-	public void setCulturons(HashMap<String, ArrayList<CCogniton>> rolesAndCulturons) {
+	public void setCulturons(HashMap<String, ArrayList<NCogniton>> rolesAndCulturons) {
 		this.rolesAndCulturons = rolesAndCulturons;
 	}
 	
@@ -65,10 +66,10 @@ public class GroupModel {
 			
 			Object[] keysRoles = (Object[]) rolesAndCulturons.keySet().toArray();
 			for (int i = 0; i < keysRoles.length ;i++){
-				ArrayList<CCogniton> arrayList = rolesAndCulturons.get((String)keysRoles[i]);
+				ArrayList<NCogniton> arrayList = rolesAndCulturons.get((String)keysRoles[i]);
 				
 				for (int j = 0 ; j < arrayList.size() ; j++) {
-					out.println("Culturon : " + (String)keysRoles[i] +"," + arrayList.get(j).getCogniton().getNom());
+					out.println("Culturon : " + (String)keysRoles[i] +"," + arrayList.get(j).getNom());
 				}
 			} 
 			
@@ -80,7 +81,7 @@ public class GroupModel {
 	}
 	
 	
-	public ArrayList<CCogniton> getCulturonFromRole(String role) {
+	public ArrayList<NCogniton> getCulturonFromRole(String role) {
 		return rolesAndCulturons.get(role);
 	}
 	

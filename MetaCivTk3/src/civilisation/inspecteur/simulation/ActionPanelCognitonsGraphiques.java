@@ -97,6 +97,7 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			File cognitons = new File(Configuration.pathToRessources + "/cognitons");
 			cognitons.mkdir();
 			for (int i = 0; i < Configuration.cognitons.size();i++){
+				System.out.println("Save : " + Configuration.cognitons.get(i).getNom());
 				Configuration.cognitons.get(i).enregistrer(cognitons);
 			}
 			

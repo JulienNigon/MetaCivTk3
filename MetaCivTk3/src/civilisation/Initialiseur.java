@@ -258,7 +258,7 @@ public class Initialiseur {
 		    	GroupModel g = new GroupModel(nom);
 		    	ArrayList<String[]> culturons = Initialiseur.getListeChamp("Culturon", file);
 		    	for (int i = 0 ; i < culturons.size() ; i++) {
-		    		g.addCulturonToRole(culturons.get(i)[0], new CCogniton(Configuration.getCognitonByName(culturons.get(i)[1])));
+		    		g.addCulturonToRole(culturons.get(i)[0], Configuration.getCognitonByName(culturons.get(i)[1]));
 		    	}
 
 		    	Configuration.groups.add(g);

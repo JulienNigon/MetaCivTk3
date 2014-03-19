@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
+
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
@@ -288,6 +290,10 @@ public class Configuration {
 	
 	public static String getExtension() {
 		return ".metaciv";
+	}
+	
+	public static ImageIcon getIcon (String name) {
+		return new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/" + name);
 	}
 	
 }

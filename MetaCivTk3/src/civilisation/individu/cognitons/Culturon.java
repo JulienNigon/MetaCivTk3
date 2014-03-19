@@ -14,7 +14,7 @@ public class Culturon extends NCogniton{
 	public void creerCognitonLambda(){
 		nom = "newCulturon_" + Configuration.cloudCognitons.size(); /*TODO : faire un nom unique*/
 		description = "A new cloud cogniton";
-		typeDeCogniton = TypeDeCogniton.CLOUD;
+		typeDeCogniton = TypeDeCogniton.CULTURON;
 	}
 	
 

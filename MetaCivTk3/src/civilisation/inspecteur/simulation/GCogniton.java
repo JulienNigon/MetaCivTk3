@@ -49,11 +49,11 @@ public class GCogniton extends GItemCognitif{
 
     	this.setBounds(   (int)(this.getXx()+margeEcriture),(int)this.getYy()+2,(int) (fm.stringWidth(cogniton.getNom()) + (2*margeEcriture) ),2*fm.getHeight());
     	
-    	g2d.fill(new Rectangle2D.Double(0 ,0,fm.stringWidth(cogniton.getNom()) + (2*margeEcriture),2*fm.getHeight()));
+    	g2d.fill(new Ellipse2D.Double(0 ,0,fm.stringWidth(cogniton.getNom()) + (2*margeEcriture),2*fm.getHeight()));
     	this.setW(fm.stringWidth(cogniton.getNom()) + (2*margeEcriture));
     	this.setH(2*fm.getHeight() + (hueCircleSize/2) + 2);
     	g2d.setColor(cogniton.getType().getCouleur());
-    	g2d.fill(new Rectangle2D.Double(margeEcriture,2,fm.stringWidth(cogniton.getNom()),2*fm.getHeight()-4));
+    	g2d.fill(new Ellipse2D.Double(margeEcriture,2,fm.stringWidth(cogniton.getNom()),2*fm.getHeight()-4));
     	
     	g2d.setColor(Color.BLACK);
     	g2d.drawString(cogniton.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
