@@ -1,9 +1,11 @@
 package civilisation;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import civilisation.group.GroupModel;
@@ -293,7 +295,11 @@ public class Configuration {
 	}
 	
 	public static ImageIcon getIcon (String name) {
-		return new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/" + name);
+		try {
+			return new ImageIcon(ImageIO.read(Configuration.class.getResourceAsStream("../civilisation/inspecteur/icones/" + name)));
+		} catch (IOException e) {
+			return null;
+		}
 	}
 	
 }

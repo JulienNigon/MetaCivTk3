@@ -2,6 +2,7 @@ package civilisation.individu.plan.action;
 
 import javax.swing.ImageIcon;
 
+import civilisation.Configuration;
 import civilisation.individu.Humain;
 
 public class L_Instant extends LAction{
@@ -24,7 +25,7 @@ public class L_Instant extends LAction{
 
 	@Override
 	public ImageIcon getIcon(){
-		return new ImageIcon(this.getClass().getResource("../../../inspecteur/icones/processor.png"));
+		return Configuration.getIcon("processor.png");
 	}
 	
 	@Override

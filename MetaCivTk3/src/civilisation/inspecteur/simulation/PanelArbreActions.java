@@ -3,12 +3,14 @@ package civilisation.inspecteur.simulation;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 
+import civilisation.Configuration;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inspecteur.animations.JJPanel;
@@ -68,7 +70,7 @@ public class PanelArbreActions extends JJPanel{
 		popup = new JPopupMenu("Action");
 		JMenuItem editerAction = new JMenuItem("Editer l'action");
 		editerAction.addActionListener(new ActionsMenuActions(this,0,a));
-		editerAction.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
+		editerAction.setIcon(Configuration.getIcon("pencil.png"));
 		popup.add(editerAction);
 		
 		
@@ -82,24 +84,24 @@ public class PanelArbreActions extends JJPanel{
 		if (peutRecevoirAction){
 			JMenuItem ajouterActionApres = new JMenuItem("Ajouter une action apr_s");
 			ajouterActionApres.addActionListener(new ActionsMenuActions(this,1,a));
-			ajouterActionApres.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
+			ajouterActionApres.setIcon(Configuration.getIcon("pencil.png"));
 			popup.add(ajouterActionApres);
 			JMenuItem ajouterActionAvant = new JMenuItem("Ajouter une action avant");
 			ajouterActionAvant.addActionListener(new ActionsMenuActions(this,2,a));
-			ajouterActionAvant.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
+			ajouterActionAvant.setIcon(Configuration.getIcon("pencil.png"));
 			popup.add(ajouterActionAvant);
 		}
 		
 		if (a.getNumberActionSlot() == -1 || a.getNumberActionSlot() > a.getListeActions().size()){
 			JMenuItem ajouterActionInterne = new JMenuItem("Ajouter une action interne");
 			ajouterActionInterne.addActionListener(new ActionsMenuActions(this,3,a));
-			ajouterActionInterne.setIcon(new ImageIcon(this.getClass().getResource("../icones/pencil.png")));
+			ajouterActionInterne.setIcon(Configuration.getIcon("pencil.png"));
 			popup.add(ajouterActionInterne);
 		}
 		
 		JMenuItem removeAction = new JMenuItem("Remove action");
 		removeAction.addActionListener(new ActionsMenuActions(this,4,a));
-		removeAction.setIcon(new ImageIcon(this.getClass().getResource("../icones/cross.png")));
+		removeAction.setIcon(Configuration.getIcon("cross.png"));
 		popup.add(removeAction);
 		
 		popup.show(this, this.getX() + e.getX(), this.getY() + e.getY());

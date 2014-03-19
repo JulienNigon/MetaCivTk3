@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.*;
@@ -221,7 +222,8 @@ public class Initialiseur {
 		}	
 		
        	/*Preparation d'un jeu d'actions, pour pouvoir facilement les manipuler dans le reste du programme*/
-       	
+		System.out.println(System.getProperty("java.class.path"));
+		
 		System.out.println("Loading actions...");
        	Class action;
        	Configuration.actions = new ArrayList<Action>();

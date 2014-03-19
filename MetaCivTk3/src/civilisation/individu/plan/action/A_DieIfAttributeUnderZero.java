@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import civilisation.Configuration;
 import civilisation.ItemPheromone;
 import civilisation.individu.Humain;
 import civilisation.inventaire.Objet;
@@ -26,7 +27,7 @@ public class A_DieIfAttributeUnderZero extends Action{
 
 	@Override
 	public ImageIcon getIcon(){
-		return new ImageIcon(this.getClass().getResource("../../../inspecteur/icones/headstone-rip.png"));
+		return Configuration.getIcon("headstone-rip.png");
 	}
 
 	

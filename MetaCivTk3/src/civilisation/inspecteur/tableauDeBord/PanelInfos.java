@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JToolBar;
 import javax.swing.border.TitledBorder;
 
+import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJPanel;
 
 public class PanelInfos extends JJPanel{
@@ -36,7 +37,7 @@ public class PanelInfos extends JJPanel{
 		toolBar = new JToolBar();
 		this.add(toolBar , BorderLayout.NORTH);
 		
-		ImageIcon icone = new ImageIcon(this.getClass().getResource("../icones/disks-black.png"));	
+		ImageIcon icone = Configuration.getIcon("disks-black.png");	
 		sonder = new JButton(icone);
 		sonder.setToolTipText("Mettre _ joue les donn_es");
 		sonder.addActionListener(new ActionPanelInfos(this, 0));

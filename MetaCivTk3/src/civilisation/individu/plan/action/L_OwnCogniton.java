@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import civilisation.Configuration;
 import civilisation.ItemPheromone;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.NCogniton;
@@ -30,7 +31,7 @@ public class L_OwnCogniton extends LAction{
 
 	@Override
 	public ImageIcon getIcon(){
-		return new ImageIcon(this.getClass().getResource("../../../inspecteur/icones/processor.png"));
+		return Configuration.getIcon("processor.png");
 	}
 	
 	@Override

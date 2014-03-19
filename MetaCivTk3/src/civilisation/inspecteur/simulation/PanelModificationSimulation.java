@@ -10,6 +10,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import civilisation.Configuration;
 import civilisation.individu.plan.NPlan;
 import civilisation.inspecteur.simulation.attributes.PanelAttributes;
 import civilisation.inspecteur.simulation.civilisations.ActionsToolBarListeCivilisations;
@@ -107,13 +108,13 @@ public class PanelModificationSimulation extends JPanel{
 		/*Create main toolBar*/
 		toolBar = new JToolBar(SwingConstants.VERTICAL);
 		
-		ImageIcon iconeSauvegarder = new ImageIcon(this.getClass().getResource("../icones/disk-black.png"));	
+		ImageIcon iconeSauvegarder = Configuration.getIcon("disk-black.png");	
 		boutonSauvegarder = new JButton(iconeSauvegarder);
 		boutonSauvegarder.setToolTipText("Save");
 		boutonSauvegarder.addActionListener(new ActionPanelCognitonsGraphiques(this, 0));
 		toolBar.add(boutonSauvegarder);
 		
-		ImageIcon iconeArchiver = new ImageIcon(this.getClass().getResource("../icones/disks-black.png"));	
+		ImageIcon iconeArchiver = Configuration.getIcon("disks-black.png");	
 		boutonArchiver = new JButton(iconeArchiver);
 		boutonArchiver.setToolTipText("Make a copy of current save");
 		boutonArchiver.addActionListener(new ActionPanelCognitonsGraphiques(this, 1));
@@ -121,37 +122,37 @@ public class PanelModificationSimulation extends JPanel{
 		
 		toolBar.addSeparator();
 
-		ImageIcon iconeStructureCognitive = new ImageIcon(this.getClass().getResource("../icones/brain.png"));	
+		ImageIcon iconeStructureCognitive = Configuration.getIcon("brain.png");	
 		boutonStructureCognitive = new JButton(iconeStructureCognitive);
 		boutonStructureCognitive.setToolTipText("Edit cognitive scheme");
 		boutonStructureCognitive.addActionListener(new ActionPanelCognitonsGraphiques(this, 2));
 		toolBar.add(boutonStructureCognitive);
 
-		ImageIcon iconeEnvironnement = new ImageIcon(this.getClass().getResource("../icones/globe.png"));	
+		ImageIcon iconeEnvironnement = Configuration.getIcon("globe.png");	
 		boutonEnvironnement = new JButton(iconeEnvironnement);
 		boutonEnvironnement.setToolTipText("Edit environment");
 		boutonEnvironnement.addActionListener(new ActionPanelCognitonsGraphiques(this, 3));
 		toolBar.add(boutonEnvironnement);
 		
-		ImageIcon iconeObjets = new ImageIcon(this.getClass().getResource("../icones/briefcase.png"));	
+		ImageIcon iconeObjets = Configuration.getIcon("briefcase.png");	
 		boutonObjets = new JButton(iconeObjets);
 		boutonObjets.setToolTipText("Edit item");
 		boutonObjets.addActionListener(new ActionPanelCognitonsGraphiques(this, 4));
 		toolBar.add(boutonObjets);
 		
-		ImageIcon iconeCivilisations = new ImageIcon(this.getClass().getResource("../icones/bank.png"));	
+		ImageIcon iconeCivilisations = Configuration.getIcon("bank.png");	
 		boutonCivilisations = new JButton(iconeCivilisations);
 		boutonCivilisations.setToolTipText("Edit civilizations");
 		boutonCivilisations.addActionListener(new ActionPanelCognitonsGraphiques(this, 5));
 		toolBar.add(boutonCivilisations);
 		
-		ImageIcon iconeAttributes = new ImageIcon(this.getClass().getResource("../icones/blue-document-attribute.png"));	
+		ImageIcon iconeAttributes = Configuration.getIcon("blue-document-attribute.png");	
 		boutonAttribute = new JButton(iconeAttributes);
 		boutonAttribute.setToolTipText("Edit attributes");
 		boutonAttribute.addActionListener(new ActionPanelCognitonsGraphiques(this, 6));
 		toolBar.add(boutonAttribute);
 		
-		ImageIcon iconeGroupManager = new ImageIcon(this.getClass().getResource("../icones/foaf.png"));	
+		ImageIcon iconeGroupManager = Configuration.getIcon("foaf.png");	
 		boutonGroupManager = new JButton(iconeGroupManager);
 		boutonGroupManager.setToolTipText("Manage group");
 		boutonGroupManager.addActionListener(new ActionPanelCognitonsGraphiques(this, 7));
@@ -201,17 +202,17 @@ public class PanelModificationSimulation extends JPanel{
 		/*Creation de la toolBar pour la structure cognitive*/
 		toolBarStructureCognitive = new JToolBar();
 		
-		ImageIcon iconeAjouterCogniton = new ImageIcon(this.getClass().getResource("../icones/brain--plus.png"));
+		ImageIcon iconeAjouterCogniton = Configuration.getIcon("brain--plus.png");
 		boutonAjouterCogniton = new JButton(iconeAjouterCogniton);
 		boutonAjouterCogniton.addActionListener(new ActionStructureCognitive(this,0));
 		toolBarStructureCognitive.add(boutonAjouterCogniton);
 		
-		ImageIcon iconeAjouterPlan = new ImageIcon(this.getClass().getResource("../icones/hammer--plus.png"));
+		ImageIcon iconeAjouterPlan = Configuration.getIcon("hammer--plus.png");
 		boutonAjouterPlan = new JButton(iconeAjouterPlan);
 		boutonAjouterPlan.addActionListener(new ActionStructureCognitive(this,1));
 		toolBarStructureCognitive.add(boutonAjouterPlan);
 		
-		ImageIcon iconeAddCloudCogniton = new ImageIcon(this.getClass().getResource("../icones/weather-cloud.png"));
+		ImageIcon iconeAddCloudCogniton = Configuration.getIcon("weather-cloud.png");
 		boutonAddCloudCogniton = new JButton(iconeAddCloudCogniton);
 		boutonAddCloudCogniton.addActionListener(new ActionStructureCognitive(this,2));
 		toolBarStructureCognitive.add(boutonAddCloudCogniton);
@@ -219,25 +220,25 @@ public class PanelModificationSimulation extends JPanel{
 		/*Creation de la toolBar pour l'environnement*/
 		toolBarEnvironnement = new JToolBar();
 		
-		ImageIcon iconeEnregistrerEnvironnement = new ImageIcon(this.getClass().getResource("../icones/disk.png"));
+		ImageIcon iconeEnregistrerEnvironnement = Configuration.getIcon("disk.png");
 		enregistrerEnvironnement = new JButton(iconeEnregistrerEnvironnement);
 		enregistrerEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,0));
 		enregistrerEnvironnement.setToolTipText("Enregistrer cet environnement");
 		toolBarEnvironnement.add(enregistrerEnvironnement);
 		
-		ImageIcon iconeChargerEnvironnement = new ImageIcon(this.getClass().getResource("../icones/disk--arrow.png"));
+		ImageIcon iconeChargerEnvironnement = Configuration.getIcon("disk--arrow.png");
 		chargerEnvironnement = new JButton(iconeChargerEnvironnement);
 		chargerEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,1));
 		chargerEnvironnement.setToolTipText("Charger un environnement");
 		toolBarEnvironnement.add(chargerEnvironnement);
 		
-		ImageIcon iconeLimitesEnvironnement = new ImageIcon(this.getClass().getResource("../icones/compass.png"));
+		ImageIcon iconeLimitesEnvironnement = Configuration.getIcon("compass.png");
 		limitesEnvironnement = new JButton(iconeLimitesEnvironnement);
 		limitesEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,2));
 		limitesEnvironnement.setToolTipText("Définir les limites de l'environnement");
 		toolBarEnvironnement.add(limitesEnvironnement);
 		
-		ImageIcon iconeGenererEnvironnement = new ImageIcon(this.getClass().getResource("../icones/picture--arrow.png"));
+		ImageIcon iconeGenererEnvironnement = Configuration.getIcon("picture--arrow.png");
 		genererEnvironnement = new JButton(iconeGenererEnvironnement);
 		genererEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,3));
 		genererEnvironnement.setToolTipText("Generer un environnement ___ partir d'une image existante");
@@ -245,13 +246,13 @@ public class PanelModificationSimulation extends JPanel{
 		
 		toolBarEnvironnement.addSeparator();
 
-		ImageIcon iconeCrayon = new ImageIcon(this.getClass().getResource("../icones/pencil.png"));
+		ImageIcon iconeCrayon = Configuration.getIcon("pencil.png");
 		crayon = new JButton(iconeCrayon);
 		crayon.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,4));
 		crayon.setToolTipText("Dessiner avec le crayon");
 		toolBarEnvironnement.add(crayon);
 		
-		ImageIcon iconePotPeinture = new ImageIcon(this.getClass().getResource("../icones/paint-can.png"));
+		ImageIcon iconePotPeinture = Configuration.getIcon("paint-can.png");
 		potPeinture = new JButton(iconePotPeinture);
 		potPeinture.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,5));
 		potPeinture.setToolTipText("Dessiner avec le pot de peinture");
@@ -259,13 +260,13 @@ public class PanelModificationSimulation extends JPanel{
 		
 		toolBarEnvironnement.addSeparator();
 
-		ImageIcon iconeZoomer = new ImageIcon(this.getClass().getResource("../icones/plus.png"));
+		ImageIcon iconeZoomer = Configuration.getIcon("plus.png");
 		zoomer = new JButton(iconeZoomer);
 		zoomer.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,6));
 		zoomer.setToolTipText("Zoomer");
 		toolBarEnvironnement.add(zoomer);
 		
-		ImageIcon iconeDezoomer = new ImageIcon(this.getClass().getResource("../icones/minus.png"));
+		ImageIcon iconeDezoomer = Configuration.getIcon("minus.png");
 		dezoomer = new JButton(iconeDezoomer);
 		dezoomer.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,7));
 		dezoomer.setToolTipText("Dezoomer");
@@ -273,20 +274,20 @@ public class PanelModificationSimulation extends JPanel{
 		
 		toolBarEnvironnement.addSeparator();
 
-		ImageIcon iconeChoisirEnv = new ImageIcon(this.getClass().getResource("../icones/ui-color-picker-switch.png"));
+		ImageIcon iconeChoisirEnv = Configuration.getIcon("ui-color-picker-switch.png");
 		choisirEnvironnementActif = new JButton(iconeChoisirEnv);
 		choisirEnvironnementActif.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,8));
 		choisirEnvironnementActif.setToolTipText("Choisir l'environnment ___ utiliser pour la simulation");
 		toolBarEnvironnement.add(choisirEnvironnementActif);
 
-		ImageIcon iconePheromone = new ImageIcon(this.getClass().getResource("../icones/ui-color-picker-switch.png"));
+		ImageIcon iconePheromone = Configuration.getIcon("ui-color-picker-switch.png");
 		pheromone = new JButton(iconePheromone);
 		pheromone.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,9));
 		pheromone.setToolTipText("Manage pheromon");
 		toolBarEnvironnement.add(pheromone);
 		
 		/*Creation de la toolBar pour l'arbre d'actions*/	
-		ImageIcon icone = new ImageIcon(this.getClass().getResource("../icones/lightning--plus.png"));
+		ImageIcon icone = Configuration.getIcon("lightning--plus.png");
 		ajouterAction = new JButton(icone);
 		ajouterAction.setToolTipText("Add a new action at the start of the plan");
 		ajouterAction.addActionListener(new ActionsToolBarArbreActions(panelArbreActions , 0));
@@ -299,7 +300,7 @@ public class PanelModificationSimulation extends JPanel{
 		/*Creation de la toolBar pour la liste des terrains*/	
 		toolBarListeTerrains = new JToolBar();
 
-		icone = new ImageIcon(this.getClass().getResource("../icones/tree--plus.png"));
+		icone = Configuration.getIcon("tree--plus.png");
 		ajouterTerrain = new JButton(icone);
 		ajouterTerrain.addActionListener(new ActionsToolBarTerrains(panelTerrains,0));
 		toolBarListeTerrains.add(ajouterTerrain);
@@ -307,7 +308,7 @@ public class PanelModificationSimulation extends JPanel{
 		/*Creation de la toolBar pour la liste des objets*/	
 		toolBarListeObjets = new JToolBar();
 		
-		icone = new ImageIcon(this.getClass().getResource("../icones/ui-color-picker-switch.png"));
+		icone = Configuration.getIcon("ui-color-picker-switch.png");
 		createItem = new JButton(icone);
 		createItem.addActionListener(new ActionsToolBarListeObjets(panelListeObjets,0));
 		createItem.setToolTipText("Create new item");
@@ -324,7 +325,7 @@ public class PanelModificationSimulation extends JPanel{
 		/*Creation de la toolBar pour la liste des civilisations*/	
 		toolBarListeCivilisations = new JToolBar();
 		
-		icone = new ImageIcon(this.getClass().getResource("../icones/bank.png"));
+		icone = Configuration.getIcon("bank.png");
 		createCivilization = new JButton(icone);
 		createCivilization.addActionListener(new ActionsToolBarListeCivilisations(panelListeCivilisations,0));
 		createCivilization.setToolTipText("Create new civilization");

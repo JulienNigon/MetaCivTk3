@@ -158,7 +158,7 @@ public abstract class Action {
 	}
 	
 	public ImageIcon getIcon(){
-		return new ImageIcon(this.getClass().getResource("../../../inspecteur/icones/arrow-000-medium.png"));
+		return Configuration.getIcon("arrow-000-medium.png");
 	}
 
 	public ArrayList<Action> getListeActions() {

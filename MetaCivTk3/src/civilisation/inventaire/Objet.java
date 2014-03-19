@@ -28,7 +28,7 @@ public class Objet {
 	
 	public Objet(String name){
 		nom = name;
-		icone = new ImageIcon(this.getClass().getResource("../inspecteur/icones/"+defaultIconName));
+		icone = Configuration.getIcon(defaultIconName);
 		nomIcone = defaultIconName;
 	}
 
@@ -72,7 +72,7 @@ public class Objet {
 	}
 	
 	public void setIconeFromString(String s){
-		icone = new ImageIcon(this.getClass().getResource("../inspecteur/icones/"+s));
+		icone = Configuration.getIcon(s);
 		nomIcone = s;
 	}
 	
