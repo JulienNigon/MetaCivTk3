@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
@@ -19,18 +20,14 @@ public class IconeTendance extends JJComponent{
 			double h , int positif) {
 		super(parent, xx, yy, w, h);
 		tendance = positif;
-		try {
-			if (tendance == 1){
-				img = ImageIO.read(this.getClass().getResource("../icones/arrow-045.png"));
-			}
-			else if (tendance == -1){
-				img = ImageIO.read(this.getClass().getResource("../icones/arrow-315.png"));
-			}
-			else{
-				img = ImageIO.read(this.getClass().getResource("../icones/arrow-000.png"));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (tendance == 1){
+			img = Configuration.getImage("arrow-045.png");
+		}
+		else if (tendance == -1){
+			img = Configuration.getImage("arrow-315.png");
+		}
+		else{
+			img = Configuration.getImage("arrow-000.png");
 		}
 		this.setBounds((int)xx,(int)yy,(int)w,(int)h);
 	}

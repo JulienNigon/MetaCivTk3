@@ -18,8 +18,7 @@ public class A_CreateGroup extends Action{
 	public Action effectuer(Humain h) {
 		Group g = new Group(null, group, h.getPatchAt(0, 0));
 		h.createTurtle(g);
-		h.getEsprit().getGroups().put(g,role);
-		g.setupCulturons(role, h.getEsprit());
+		h.getEsprit().joinGroup(g, role);
 		
 		return nextAction;
 	}

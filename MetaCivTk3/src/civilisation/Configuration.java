@@ -1,6 +1,7 @@
 package civilisation;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -296,11 +297,21 @@ public class Configuration {
 	
 	public static ImageIcon getIcon (String name) {
 		try {
-			return new ImageIcon(ImageIO.read(Configuration.class.getResourceAsStream("../civilisation/inspecteur/icones/" + name)));
+			return new ImageIcon(ImageIO.read(Configuration.class.getResourceAsStream("/civilisation/inspecteur/icones/" + name)));
 		} catch (IOException e) {
 			return null;
 		}
 	}
 	
+	public static Image getImage (String name) {
+		try {
+			return ImageIO.read(Configuration.class.getResourceAsStream("/civilisation/inspecteur/icones/" + name));
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
+	
+
 }
 

@@ -394,7 +394,7 @@ public class Humain extends Turtle
 		ArrayList<Turtle> choix = new ArrayList<Turtle>();
 		for(int i = 0;i<cibles.length;i++)
 		{
-			if(cibles[i].isPlayingRole("Humain")) choix.add(cibles[i]);
+			if(cibles[i].isPlayingRole("Humain") && cibles[i]!=this) choix.add(cibles[i]);
 		}
 		
 		if(!choix.isEmpty()) return (Humain) oneOf(choix);

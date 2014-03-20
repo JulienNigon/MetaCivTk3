@@ -2,12 +2,19 @@ package civilisation;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.*;
@@ -221,15 +228,15 @@ public class Initialiseur {
 			}
 		}	
 		
+
        	/*Preparation d'un jeu d'actions, pour pouvoir facilement les manipuler dans le reste du programme*/
-		System.out.println(System.getProperty("java.class.path"));
-		
-		System.out.println("Loading actions...");
+		//System.out.println(this.getClass().);
+
        	Class action;
        	Configuration.actions = new ArrayList<Action>();
-		File[] sourcesActions = new File(System.getProperty("user.dir")+"/bin/civilisation/individu/plan/action").listFiles();
+		File[] sourcesActions = new File(System.getProperty("user.dir")+"/civilisation/actions").listFiles();
 		for (File file : sourcesActions) {
-		    if (file.isFile() && file.getName().endsWith(".class") && file.getName().charAt(1) == '_') {
+		    if (file.isFile() && file.getName().endsWith(".java") && file.getName().charAt(1) == '_') {
 		    	try {
 					action = Class.forName("civilisation.individu.plan.action."+file.getName().split("\\.")[0]);
 					System.out.println("\tLoad action : " + action.getName());
@@ -243,6 +250,7 @@ public class Initialiseur {
 				}
 		    }
 		}
+		
 		
 		/*On transmet les informations a la classe de configuration*/
 		Configuration.cognitonsDeBase = cognitonsDeBase;
@@ -511,6 +519,7 @@ public class Initialiseur {
 		
 
 	}
-		
+	
+
 
 }

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
+import civilisation.Configuration;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inspecteur.animations.JJComponent;
@@ -43,21 +44,11 @@ public class GCloudCogniton extends GCogniton{
 
 		File image;
         try {
-			try {
-				image = new File(this.getClass().getResource("../../graphismes/nuage.png").toURI());
-				if (image != null) {
-					System.out.println("pas null");
-				}
-				bImg = ImageIO.read(image);
-				System.out.println(this.getClass().getResource("../../graphismes/nuage.png").getPath());
 
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			bImg = ImageIO.read(Configuration.class.getResourceAsStream("civilisation/graphisme"));
+
 
 		} catch (IOException e) {
-			System.out.println(this.getClass().getResource("../../graphismes/nuage.png").getPath());
 
 			e.printStackTrace();
 		}

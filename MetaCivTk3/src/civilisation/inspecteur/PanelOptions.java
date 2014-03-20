@@ -127,7 +127,8 @@ public class PanelOptions extends JPanel{
 
 	public void showGroupAndRole() {
 		
-		for (int i = 0 ; i < Configuration.maxAgents ; i++) {
+		int nHumans = World.getInstance().getTurtlesWithRoles("Humain").size();
+		for (int i = 0 ; i < nHumans ; i++) {
 			
 			if ((select(i) != null && select(i).getClass() == Humain.class))
 			{

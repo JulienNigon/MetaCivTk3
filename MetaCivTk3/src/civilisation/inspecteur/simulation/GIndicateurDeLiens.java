@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
@@ -18,16 +19,11 @@ public class GIndicateurDeLiens extends JJComponent{
 	public GIndicateurDeLiens(JJPanel parent, double xx, double yy, double w,
 			double h , boolean positif) {
 		super(parent, xx, yy, w, h);
-		try {
-			if (positif){
-				img = ImageIO.read(this.getClass().getResource("../icones/status.png"));
-			}
-			else{
-				img = ImageIO.read(this.getClass().getResource("../icones/status-busy.png"));
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (positif){
+			img = Configuration.getImage("status.png");
+		}
+		else{
+			img = Configuration.getImage("status-busy.png");
 		}
 		this.setBounds((int)xx,(int)yy,(int)w,(int)h);
 	}

@@ -21,6 +21,7 @@ import civilisation.inspecteur.simulation.environnement.ActionsToolBarTerrains;
 import civilisation.inspecteur.simulation.environnement.PanelEnvironnement;
 import civilisation.inspecteur.simulation.environnement.PanelTerrains;
 import civilisation.inspecteur.simulation.groupManager.GroupToolBar;
+import civilisation.inspecteur.simulation.groupManager.GroupTreeToolBar;
 import civilisation.inspecteur.simulation.groupManager.PanelGroupManager;
 import civilisation.inspecteur.simulation.groupManager.PanelGroupTree;
 import civilisation.inspecteur.simulation.objets.ActionsToolBarListeObjets;
@@ -78,7 +79,7 @@ public class PanelModificationSimulation extends JPanel{
 	
 	GroupToolBar toolBarGroupManager;
 	
-	JToolBar toolBarGroupTree;
+	GroupTreeToolBar toolBarGroupTree;
 
 	JToolBar toolBarCivilisations;
 	
@@ -319,7 +320,7 @@ public class PanelModificationSimulation extends JPanel{
 		
 		/*ToolBar for group manager*/	
 		toolBarGroupManager = new GroupToolBar(panelGroupManager);
-		toolBarGroupTree = new JToolBar();
+		toolBarGroupTree = new GroupTreeToolBar(panelGroupTree);
 		panelGroupManager.setToolBar(toolBarGroupManager);
 
 		/*Creation de la toolBar pour la liste des civilisations*/	

@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import civilisation.Configuration;
 import civilisation.individu.Humain;
 
 
@@ -55,88 +57,81 @@ public class PanelGenealogie extends JPanel{
         	
         	
             Color c;
-    	try {
-			Image iconeFemme = ImageIO.read(this.getClass().getResource("icones/user-green-female.png"));
-			Image iconeHomme = ImageIO.read(this.getClass().getResource("icones/user.png"));
-			Image iconeMort = ImageIO.read(this.getClass().getResource("icones/headstone-rip.png"));
-			Image icone;
-    		
-			if (t.getMere() != null)
-			{
-	            drawMembreFamille(g2d, border + 40, border, Color.RED, iconeFemme);
-			}
-			else
-			{
-	            drawMembreFamille(g2d, border + 40, border, Color.RED, iconeMort);
-			}
-			
-			if (t.getPere() != null)
-			{
-				drawMembreFamille(g2d, border + 0, border, Color.BLUE, iconeHomme);
-			}
-			else
-			{
-				drawMembreFamille(g2d, border + 0, border, Color.BLUE, iconeMort);
-			}
+    	Image iconeFemme = Configuration.getImage("user-green-female.png");
+		Image iconeHomme = Configuration.getImage("icones/user.png");
+		Image iconeMort = Configuration.getImage("icones/headstone-rip.png");
+		Image icone;
+		
+		if (t.getMere() != null)
+		{
+		    drawMembreFamille(g2d, border + 40, border, Color.RED, iconeFemme);
+		}
+		else
+		{
+		    drawMembreFamille(g2d, border + 40, border, Color.RED, iconeMort);
+		}
+		
+		if (t.getPere() != null)
+		{
+			drawMembreFamille(g2d, border + 0, border, Color.BLUE, iconeHomme);
+		}
+		else
+		{
+			drawMembreFamille(g2d, border + 0, border, Color.BLUE, iconeMort);
+		}
 
-            if (t.isWoman())
-            {
-            	c = Color.red;
-            	icone = iconeFemme;
-            }
-            else
-            {
-            	c = Color.blue;
-            	icone = iconeHomme;
-            }
-            
-            drawMembreFamille(g2d, border + 20, border + 30, c, icone);
+		if (t.isWoman())
+		{
+			c = Color.red;
+			icone = iconeFemme;
+		}
+		else
+		{
+			c = Color.blue;
+			icone = iconeHomme;
+		}
+		
+		drawMembreFamille(g2d, border + 20, border + 30, c, icone);
 
-            g2d.setPaint(Color.BLACK);
-            g2d.drawLine(border + 10, border + 20, border + 10, border + 25);
-            g2d.drawLine(border + 50, border + 20, border + 50, border + 25);
-            g2d.drawLine(border + 10, border + 25, border + 50, border + 25);
-            g2d.drawLine(border + 30, border + 25, border + 30, border + 30);
-            
-            if (!t.getEnfants().isEmpty())
-            {
-                g2d.drawLine(border + 30, border + 50, border + 30, border + 55);
-                g2d.drawLine(border + 30, border + 55, border + 0, border + 55);
-                g2d.drawLine(border + 0, border + 55, border + 0, border + 70);
-                g2d.drawLine(border + 0, border + 70, border + 10, border + 70);
-                for (int i = 0; i < t.getEnfants().size(); i++)
-                {
-                	if (t.getEnfants().get(i).isWoman())
-                	{
-        	            drawMembreFamille(g2d, border + 10 + 10*i, border + 60, Color.RED, iconeFemme);
-                	}
-                	else
-                	{
-        	            drawMembreFamille(g2d, border + 10 + 10*i, border + 60, Color.BLUE, iconeHomme);
-                	}
-                }
-            }
+		g2d.setPaint(Color.BLACK);
+		g2d.drawLine(border + 10, border + 20, border + 10, border + 25);
+		g2d.drawLine(border + 50, border + 20, border + 50, border + 25);
+		g2d.drawLine(border + 10, border + 25, border + 50, border + 25);
+		g2d.drawLine(border + 30, border + 25, border + 30, border + 30);
+		
+		if (!t.getEnfants().isEmpty())
+		{
+		    g2d.drawLine(border + 30, border + 50, border + 30, border + 55);
+		    g2d.drawLine(border + 30, border + 55, border + 0, border + 55);
+		    g2d.drawLine(border + 0, border + 55, border + 0, border + 70);
+		    g2d.drawLine(border + 0, border + 70, border + 10, border + 70);
+		    for (int i = 0; i < t.getEnfants().size(); i++)
+		    {
+		    	if (t.getEnfants().get(i).isWoman())
+		    	{
+		            drawMembreFamille(g2d, border + 10 + 10*i, border + 60, Color.RED, iconeFemme);
+		    	}
+		    	else
+		    	{
+		            drawMembreFamille(g2d, border + 10 + 10*i, border + 60, Color.BLUE, iconeHomme);
+		    	}
+		    }
+		}
 
-            if (t.getConjoint() != null)
-            {
-                g2d.drawLine(border + 40, border + 40, border + 50, border + 40);
+		if (t.getConjoint() != null)
+		{
+		    g2d.drawLine(border + 40, border + 40, border + 50, border + 40);
 
-                if (t.getConjoint().isWoman())
-                {
-        	           drawMembreFamille(g2d, border + 50, border + 30, Color.RED, iconeFemme);
-               	}
-               	else
-               	{
-        	           drawMembreFamille(g2d, border + 50, border + 30, Color.BLUE, iconeHomme);
-               	}
-                
-            }
-            
-        
-    		} catch (IOException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
+		    if (t.getConjoint().isWoman())
+		    {
+		           drawMembreFamille(g2d, border + 50, border + 30, Color.RED, iconeFemme);
+		   	}
+		   	else
+		   	{
+		           drawMembreFamille(g2d, border + 50, border + 30, Color.BLUE, iconeHomme);
+		   	}
+		    
+		}
         }
     }
     

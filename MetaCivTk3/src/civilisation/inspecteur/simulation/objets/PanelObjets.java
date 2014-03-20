@@ -35,8 +35,8 @@ public class PanelObjets extends JPanel{
 		nameField.addActionListener(new ActionPanelObjet(this));
 		this.add(nameField);
 		
-		iconSelector = new JJIconSelector(Configuration.pathToIcon);
-		this.add(iconSelector);
+		//iconSelector = new JJIconSelector(Configuration.pathToIcon);
+		//this.add(iconSelector);
 		
 		this.add(new JLabel("Icon :"));
 		comboIcon = new JComboBox();

@@ -12,6 +12,7 @@ import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.group.Group;
 import civilisation.group.GroupAndRole;
+import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.plan.NPlan;
@@ -371,18 +372,34 @@ public class Esprit {
 		Object[] tab = groups.keySet().toArray();
 
 		for (int i = 0 ; i < groups.size(); i++) {
-			System.out.println(groupAndRoleToMap.getGroupModel().getName() + " " + ((Group)tab[i]).getGroupModel().getName());
-			System.out.println(groupAndRoleToMap.getRole() + " " + groups.get(tab[i]));
-			
-			if (((Group)tab[i]).getGroupModel().getName().equals(groupAndRoleToMap.getGroupModel().getName()) && groups.get(tab[i]).equals(groupAndRoleToMap.getRole())) {
-				System.out.println("has g&r");
+		if (((Group)tab[i]).getGroupModel().getName().equals(groupAndRoleToMap.getGroupModel().getName()) && groups.get(tab[i]).equals(groupAndRoleToMap.getRole())) {
 				return true;
 			}
-		}
-		
+		}	
 		return false;
 	}
 	
+	/**
+	 * @param gm : the group model researched
+	 * @return the concrete group instanciating GroupModel gm of this agent, null if none
+	 */
+	public Group getConcreteGroup(GroupModel gm) {
+		Object[] tab = groups.keySet().toArray();
+		for (int i = 0 ; i < groups.size(); i++) {
+			if (((Group)tab[i]).getGroupModel().equals(gm)) {
+				return ((Group)tab[i]);
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * The agent join a specified group g and play the role r
+	 */
+	public void joinGroup(Group g , String r) {
+		getGroups().put(g,r);
+		g.setupCulturons(r, this);
+	}
 	
 } 
 
