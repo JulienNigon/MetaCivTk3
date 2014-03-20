@@ -23,7 +23,19 @@ public class Group extends Turtle
 	public Group() {
 	}
 	
+	public void activate() {
+		super.activate();
+		playRole("Group");
+	}
+	
+	public String doNothing(){
+		return "doNothing";
+	}
+	
 	public Group(Group parent , GroupModel groupModel, Patch position){
+		
+		super("doNothing"); //Behavior of a group as a turtle
+		
 		this.parent = parent;
 		this.groupModel = groupModel;
 		this.position = position;
@@ -53,7 +65,7 @@ public class Group extends Turtle
 	
 	public void setupCulturons(String role , Esprit e){
 		ArrayList<CCogniton> c = rolesAndCulturons.get(role);
-		System.out.println(c.size() + " " + c.get(0).getCogniton().getNom());
+		//System.out.println(c.size() + " " + c.get(0).getCogniton().getNom());
 		for (int i = 0 ; i < c.size() ; i++){
 			c.get(i).mettreEnPlace(e);
 		}

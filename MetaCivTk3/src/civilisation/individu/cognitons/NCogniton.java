@@ -102,7 +102,9 @@ public class NCogniton{
 			{
 				for (int i = 0 ; i < taille ; i++)
 				{
-					e.addPlan(plansAutorises.get(i));
+					NPlan p = plansAutorises.get(i);
+					if (!e.ownPlan(p))
+					e.addPlan(p);
 				}
 				e.redefinirPoids();
 			}

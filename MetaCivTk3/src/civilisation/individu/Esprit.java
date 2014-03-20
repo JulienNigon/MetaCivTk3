@@ -110,6 +110,7 @@ public class Esprit {
 				if (plans.get(i).getPoids() > 0) {alea -= plans.get(i).getPoids();	} /*les poids negatifs ne sont pas pris en compte*/		
 				i++;
 			}
+			//System.out.println(plans.get(i).getPoids() + plans.get(i).getPlan().getNom());
 			planEnCours = plans.get(i);
 			actions.push(null); //end of plan marker
 		}
@@ -322,6 +323,21 @@ public class Esprit {
 		}
 		return false;
 	}
+	
+	/**
+	 * Return true if the agent own a specific plan
+	 * @param plan
+	 * @return
+	 */
+	public boolean ownPlan(NPlan plan) {
+		
+		for (int i = 0 ; i < this.plans.size(); i++) {
+			if (plans.get(i).getPlan().equals(plan)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Recompute the total weigth from plans
@@ -380,6 +396,21 @@ public class Esprit {
 	}
 	
 	/**
+	 * Check if the agent own a specific combination of a concrete group and a role
+	 * @return true/false
+	 */
+	public boolean hasConcreteGroupAndRole(Group g , String r) {
+		Object[] tab = groups.keySet().toArray();
+
+		for (int i = 0 ; i < groups.size(); i++) {
+		if (((Group)tab[i]).equals(g) && groups.get(tab[i]).equals(r)) {
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	/**
 	 * @param gm : the group model researched
 	 * @return the concrete group instanciating GroupModel gm of this agent, null if none
 	 */
@@ -394,11 +425,14 @@ public class Esprit {
 	}
 	
 	/**
-	 * The agent join a specified group g and play the role r
+	 * The agent join a specified restrictive group g and play the role r
+	 * A restrictive group doesn't allow an agent to be part of an other group with the same structural organization
 	 */
-	public void joinGroup(Group g , String r) {
-		getGroups().put(g,r);
-		g.setupCulturons(r, this);
+	public void joinRestrictiveGroup(Group g , String r) {
+		if (!hasGroupAndRole(new GroupAndRole(g,r))) {
+			getGroups().put(g,r);
+			g.setupCulturons(r, this);
+		}
 	}
 	
 } 

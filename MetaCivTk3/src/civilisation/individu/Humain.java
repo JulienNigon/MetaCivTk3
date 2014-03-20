@@ -390,11 +390,11 @@ public class Humain extends Turtle
 	 */	
 	public Humain oneOfHumanHere()
 	{
-		Turtle[] cibles = turtlesHere();
+		List<Turtle> cibles = turtlesHere();
 		ArrayList<Turtle> choix = new ArrayList<Turtle>();
-		for(int i = 0;i<cibles.length;i++)
+		for(int i = 0;i<cibles.size();i++)
 		{
-			if(cibles[i].isPlayingRole("Humain") && cibles[i]!=this) choix.add(cibles[i]);
+			if(cibles.get(i).isPlayingRole("Humain") && cibles.get(i)!=this) choix.add(cibles.get(i));
 		}
 		
 		if(!choix.isEmpty()) return (Humain) oneOf(choix);
@@ -534,15 +534,16 @@ public class Humain extends Turtle
 	@SuppressWarnings({ "null", "unused" })
 	public Turtle OneOfTurtlesHereWithRole(String role)
 	{
-		Turtle[] cibles = this.turtlesHere();
+		List<Turtle> cibles = this.turtlesHere();
 		ArrayList<Turtle> choix = new ArrayList<Turtle>();
-		for(int i = 0;i<cibles.length;i++)
+		for(int i = 0;i<cibles.size();i++)
 		{
-			if(cibles[i].isPlayingRole(role))
+			if(cibles.get(i).isPlayingRole(role))
 			{
-				choix.add(cibles[i]);
+				choix.add(cibles.get(i));
 			}
 		}
+		
 		if(!choix.isEmpty())
 		{
 			return this.oneOf(choix);
@@ -568,15 +569,15 @@ public class Humain extends Turtle
 	@SuppressWarnings({ "null", "unused" })
 	public Turtle OneOfHumanHereWith(Method m, Object[] params, Object o) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException
 	{
-		Turtle[] cibles = this.turtlesHere();
+		List<Turtle> cibles = this.turtlesHere();
 		ArrayList<Turtle> choix = new ArrayList<Turtle>();
-		for(int i = 0;i<cibles.length;i++)
+		for(int i = 0;i<cibles.size();i++)
 		{
-			if (cibles[i].isPlayingRole("Humain"))
+			if (cibles.get(i).isPlayingRole("Humain"))
 			{
-				if( m.invoke((Humain) cibles[i], params).equals(o))
+				if( m.invoke((Humain) cibles.get(i), params).equals(o))
 				{
-					choix.add(cibles[i]);
+					choix.add(cibles.get(i));
 				}
 			}
 		}
@@ -1251,8 +1252,8 @@ public class Humain extends Turtle
 		return this.getPatch().isMarkPresent(s);
 	}
 	
-	public Turtle[] turtlesHere() {
-		return (Turtle[]) this.getOtherTurtles(0, true).toArray();
+	public List<Turtle> turtlesHere() {
+		return this.getOtherTurtles(0, true);
 	}
 	
 	//----------------GETTERS/SETTERS-------------------

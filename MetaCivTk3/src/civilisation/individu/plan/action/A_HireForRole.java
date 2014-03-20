@@ -9,18 +9,20 @@ import civilisation.group.GroupModel;
 import civilisation.individu.Humain;
 import turtlekit.kernel.Turtle;
 
-public class A_CreateGroup extends Action{
+public class A_HireForRole extends Action{
 
 	GroupModel group;
 	String role;
 
 	@Override
 	public Action effectuer(Humain h) {
-		Group g = new Group(null, group, h.getPatchAt(0, 0));
-		
-		h.createTurtle(g);
-		
-		h.getEsprit().joinRestrictiveGroup(g, role);
+		Group gr = h.getEsprit().getConcreteGroup(group);
+		if (gr != null) {
+			Humain target = h.oneOfHumanHere();
+			if (target != null) {
+				target.getEsprit().joinRestrictiveGroup(gr, role);
+			}
+		}
 		
 		return nextAction;
 	}
@@ -52,7 +54,7 @@ public class A_CreateGroup extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Create a new group and give a role to this agent in this group.<html>";
+		return super.getInfo() + " Pick another random agent in the patch and give it a role in a group.<html>";
 	}
 
 

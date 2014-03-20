@@ -128,8 +128,8 @@ public class PanelOptions extends JPanel{
 	public void showGroupAndRole() {
 		
 		int nHumans = World.getInstance().getTurtlesWithRoles("Humain").size();
+		if (!groupesAndRoles.getSelectedItem().equals("--NONE--")) {
 		for (int i = 0 ; i < nHumans ; i++) {
-			
 			if ((select(i) != null && select(i).getClass() == Humain.class))
 			{
 				System.out.println(i);
@@ -140,15 +140,17 @@ public class PanelOptions extends JPanel{
 				} else {
 					((Humain) select(i)).isShowGroup = false;			
 				}
-			}		
+			}
 		}
-		
-		
-		/*if (groupesAndRoles.getSelectedIndex() > 0) {
-			WorldViewer.getInstance().setGroupAndRoleToMap(new GroupAndRole((String)groupesAndRoles.getSelectedItem()));
-		} else {
-			WorldViewer.getInstance().setGroupAndRoleToMap(null);
-		}	*/	
+		}
+		else {
+			for (int i = 0 ; i < nHumans ; i++) {
+				if ((select(i) != null && select(i).getClass() == Humain.class))
+				{		
+					((Humain) select(i)).isShowGroup = false;			
+				}
+			}	
+		}
 	}
 
 

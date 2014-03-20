@@ -16,6 +16,11 @@ public class GroupAndRole {
 		role = s.split(":")[1];
 		groupModel = Configuration.getGroupModelByName(g);
 	}
+	
+	public GroupAndRole (Group g , String r) {
+		groupModel = g.getGroupModel();
+		role = r;
+	}
 
 	public GroupModel getGroupModel() {
 		return groupModel;
