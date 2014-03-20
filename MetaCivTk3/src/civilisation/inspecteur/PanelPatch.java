@@ -8,6 +8,7 @@ import javax.swing.JTable;
 
 import turtlekit.kernel.Turtle;
 import civilisation.Civilisation;
+import civilisation.Configuration;
 
 
 /** 
@@ -25,7 +26,6 @@ public class PanelPatch extends JPanel{
 	public PanelPatch()
 	{
 		this.setLayout(new BorderLayout());
-		this.add(nomTerrain, BorderLayout.NORTH);
 		
         String[] entetes = {"Attribut", "Valeur"};
         tableau = new JTable(donnees, entetes);
@@ -49,7 +49,9 @@ public class PanelPatch extends JPanel{
 		donnees[0][1] = t.getPatch().x;
 		donnees[1][0] = "Patch Y";
 		donnees[1][1] = t.getPatch().y;
-		
+		donnees[2][0] = "Terrain";
+		donnees[2][1] = Configuration.couleurs_terrains.get(t.getPatch().getColor()).getNom();
+			
 		/*for (int i = 2; i < Configuration.get + 2;i++)
 		{
 			donnees[i][0] = "civ"+i;

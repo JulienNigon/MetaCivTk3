@@ -157,12 +157,12 @@ public class PanelInspecteur extends JPanel{
 			donnees[2][1] = h.getY();
 			donnees[3][0] = "";
 			donnees[3][1] = "";
-			donnees[4][0] = "n___ Civilisation";
+			donnees[4][0] = "Civilization ID";
 			donnees[4][1] = h.getCiv().getIndexCiv();
-			donnees[5][0] = "Couleur Civ";
-			donnees[5][1] = h.getCiv().getCouleur();
-			donnees[6][0] = "";
-			donnees[6][1] = "";
+			donnees[5][0] = "";
+			donnees[5][1] = "";
+			donnees[6][0] = "N-GroupRole";
+			donnees[6][1] = h.getEsprit().getGroups().size();
 			donnees[7][0] = "Project";
 			donnees[7][1] = h.getEsprit().getPlanEnCours().getPlan().getNom();
 			donnees[8][0] = "Total plan weight";
