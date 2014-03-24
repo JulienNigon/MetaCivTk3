@@ -32,6 +32,11 @@ public class ActionsToolBarGroupManager implements ActionListener{
 		if (index == 0){
 			gt.groupSelectionChanged();	
 		}
+		if (index == 2) 
+		{
+			//Add a new Culturon to the group and role
+			gt.panelGroupManager.creerCogniton();
+		}
 	}
 	
 }

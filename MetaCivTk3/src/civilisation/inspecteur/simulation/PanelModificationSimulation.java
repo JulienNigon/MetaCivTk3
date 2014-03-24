@@ -236,7 +236,7 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeLimitesEnvironnement = Configuration.getIcon("compass.png");
 		limitesEnvironnement = new JButton(iconeLimitesEnvironnement);
 		limitesEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,2));
-		limitesEnvironnement.setToolTipText("Définir les limites de l'environnement");
+		limitesEnvironnement.setToolTipText("Set environment bounds");
 		toolBarEnvironnement.add(limitesEnvironnement);
 		
 		ImageIcon iconeGenererEnvironnement = Configuration.getIcon("picture--arrow.png");

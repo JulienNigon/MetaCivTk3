@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import madkit.kernel.Agent;
 import civilisation.individu.Esprit;
+import civilisation.individu.Humain;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.cognitons.NCogniton;
@@ -19,6 +20,8 @@ public class Group extends Turtle
 	GroupModel groupModel;
 	Patch position;
 	HashMap<String,ArrayList<CCogniton>> rolesAndCulturons = new HashMap<String,ArrayList<CCogniton>>();
+	static HashMap<GroupModel,ArrayList<Group>> allGroups = new HashMap<GroupModel,ArrayList<Group>>();
+	static ArrayList<Humain> members = new ArrayList<Humain>();
 
 	public Group() {
 	}
@@ -52,7 +55,7 @@ public class Group extends Turtle
 	    	this.setRole(role, culturons);
 	    	
 	    }
-		
+	    		
 	}
 	
 	public void applyCulturons(String role , Esprit e){

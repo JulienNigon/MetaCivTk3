@@ -253,12 +253,12 @@ public class PanelStructureCognitive extends JJPanel{
 		
 	}
 
-	public void creerCogniton() {
+	public NCogniton creerCogniton() {
 		NCogniton nouveauCogniton = new NCogniton();
 		Configuration.addCogniton(nouveauCogniton);
 		nouveauCogniton.creerCognitonLambda();
 		afficherCogniton(nouveauCogniton, 100,100);
-		
+		return nouveauCogniton;
 	}
 	
 	public void creerPlan() {

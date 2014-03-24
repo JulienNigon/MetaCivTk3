@@ -8,6 +8,7 @@ import javax.swing.border.TitledBorder;
 
 import civilisation.Configuration;
 import civilisation.group.GroupModel;
+import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.inspecteur.animations.JJPanel;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
@@ -75,5 +76,12 @@ public class PanelGroupManager extends PanelStructureCognitive{
 		createTriggerLink();
 	}
 	
+	public NCogniton creerCogniton() {
+		
+		NCogniton newCulturon = super.creerCogniton();
+		newCulturon.setType(TypeDeCogniton.CULTURON);
+		groupModel.addCulturonToRole(toolBar.getSelectedRole(), newCulturon);
+		return newCulturon;
+	}
 	
 }

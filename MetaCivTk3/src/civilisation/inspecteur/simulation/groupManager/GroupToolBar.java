@@ -19,6 +19,7 @@ public class GroupToolBar extends JToolBar{
 	JButton buttonAddExistingCulturon;
 	JButton buttonRemoveRole;
 	JButton buttonAddRole;
+	JButton buttonRenameRole;
 
 	public GroupToolBar(PanelGroupManager panelGroupManager) {
 		super();
@@ -42,6 +43,11 @@ public class GroupToolBar extends JToolBar{
 		buttonAddRole.addActionListener(new ActionsToolBarGroupManager(this,4));
 		buttonAddRole.setToolTipText("Add a new role to this group");
 		this.add(buttonAddRole);
+		
+		buttonRenameRole = new JButton(Configuration.getIcon("weather-cloud.png"));
+		buttonRenameRole.addActionListener(new ActionsToolBarGroupManager(this,5));
+		buttonRenameRole.setToolTipText("Rename the current role");
+		this.add(buttonRenameRole);
 		
 		comboRole = new JComboBox();
 		this.add(comboRole);
