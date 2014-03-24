@@ -47,6 +47,7 @@ public class PanelInspecteur extends JPanel{
 	JButton agentSuivant;
 	JButton agentPrecedent;
 	PanelPatch patch = new PanelPatch();
+	PanelGroupViewer groups = new PanelGroupViewer();
 	PanelInventaire inventaire = new PanelInventaire();
 	PanelListeCognitons croyances = new PanelListeCognitons();
 	PanelListePlans plans = new PanelListePlans();
@@ -63,7 +64,13 @@ public class PanelInspecteur extends JPanel{
 		
 
 		this.add(toolBar, BorderLayout.NORTH);
-		this.add(patch, BorderLayout.SOUTH);
+		
+		JPanel southPanel = new JPanel();
+		southPanel.setLayout(new BorderLayout());
+		southPanel.add(patch, BorderLayout.EAST);
+		southPanel.add(groups, BorderLayout.CENTER);
+		
+		this.add(southPanel, BorderLayout.SOUTH);
 		this.add(inventaire, BorderLayout.EAST);
 		
 		JPanel cognitonsEtPlans = new JPanel();
@@ -179,6 +186,7 @@ public class PanelInspecteur extends JPanel{
 			croyances.actualiser(select(agentID)); //On met ___ jour l'affichage des croyances
 			plans.actualiser(select(agentID)); //On met ___ jour l'affichage des plans
 			genealogie.actualiser((Humain)select(agentID)); //On met ___ jour l'affichage de la genealogie
+			groups.actualiser((Humain)select(agentID));
 		
 			this.updateUI();
 		}

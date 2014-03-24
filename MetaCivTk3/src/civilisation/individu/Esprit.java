@@ -396,6 +396,22 @@ public class Esprit {
 	}
 	
 	/**
+	 * Check if the agent is part of a group with the specified structural organisation
+	 * @param gm
+	 * @return
+	 */
+	public boolean hasStructuralGroup(GroupModel gm) {
+		Object[] tab = groups.keySet().toArray();
+
+		for (int i = 0 ; i < groups.size(); i++) {
+		if (((Group)tab[i]).getGroupModel().equals(gm)) {
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	/**
 	 * Check if the agent own a specific combination of a concrete group and a role
 	 * @return true/false
 	 */
@@ -426,12 +442,27 @@ public class Esprit {
 	
 	/**
 	 * The agent join a specified restrictive group g and play the role r
-	 * A restrictive group doesn't allow an agent to be part of an other group with the same structural organization
+	 * A restrictive group doesn't allow an agent to be part of an other group with the same structural organization,
+	 * or to play two different roles in the same group
 	 */
 	public void joinRestrictiveGroup(Group g , String r) {
-		if (!hasGroupAndRole(new GroupAndRole(g,r))) {
-			getGroups().put(g,r);
-			g.setupCulturons(r, this);
+		if (!this.hasStructuralGroup(g.getGroupModel())) {
+			g.joinGroup(this, r);
+		}
+	}
+
+	public void runBirthPlan() {
+		if (Configuration.birthPlan != null) {
+			actions.push(null); //end of self-plan marker
+
+			Configuration.birthPlan.activer(h, Configuration.birthPlan.getActions().get(0));
+			
+			Action a = null;
+
+			while (( a = actions.pop()) != null) {
+				//System.out.println("a depop : " + a + "depop" + actions);
+				Configuration.birthPlan.activer(h, a);
+			}
 		}
 	}
 	

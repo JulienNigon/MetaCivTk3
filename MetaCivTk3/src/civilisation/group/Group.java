@@ -21,23 +21,27 @@ public class Group extends Turtle
 	Patch position;
 	HashMap<String,ArrayList<CCogniton>> rolesAndCulturons = new HashMap<String,ArrayList<CCogniton>>();
 	static HashMap<GroupModel,ArrayList<Group>> allGroups = new HashMap<GroupModel,ArrayList<Group>>();
-	static ArrayList<Humain> members = new ArrayList<Humain>();
+	ArrayList<Humain> members = new ArrayList<Humain>();
 
 	public Group() {
 	}
 	
 	public void activate() {
 		super.activate();
+		playRole(groupModel.getName());
 		playRole("Group");
 	}
 	
-	public String doNothing(){
-		return "doNothing";
+	public String live(){
+		if (members.size() == 0) {
+			this.killAgent(this);
+		}
+		return "live";
 	}
 	
 	public Group(Group parent , GroupModel groupModel, Patch position){
 		
-		super("doNothing"); //Behavior of a group as a turtle
+		super("live"); //Behavior of a group as a turtle
 		
 		this.parent = parent;
 		this.groupModel = groupModel;
@@ -91,6 +95,18 @@ public class Group extends Turtle
 		} else {
 			rolesAndCulturons.get(role).add(culturon);
 		}
+	}
+	
+	public void joinGroup(Esprit e, String role) {
+		e.getGroups().put(this,role);
+		setupCulturons(role, e);
+		members.add(e.getHumain());
+	}
+	
+	public void leaveGroup(Esprit e) {
+		e.getGroups().remove(this);
+		//setupCulturons(role, e);
+		if (members.remove(e.getHumain())) System.out.println("agent removed , reste : " + members.size());
 	}
 	
 	public Group getParent() {

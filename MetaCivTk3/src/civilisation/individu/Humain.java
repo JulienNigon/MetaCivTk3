@@ -25,6 +25,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import civilisation.Civilisation;
 import civilisation.Communaute;
@@ -32,6 +33,7 @@ import civilisation.Configuration;
 import civilisation.amenagement.Amenagement;
 import civilisation.amenagement.Amenagement_Champ;
 import civilisation.amenagement.Amenagement_Route;
+import civilisation.group.Group;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.inventaire.NInventaire;
 import civilisation.inventaire.Objet;
@@ -123,6 +125,18 @@ public class Humain extends Turtle
 
 	}
 	
+	public void end() {
+		super.end();
+		Group[] grps = new Group[0];
+		Group[] keys = esprit.groups.keySet().toArray(grps);
+		for (int i = 0 ; i < keys.length; i++) {
+			System.out.println(keys[i].toString() + " i : " + i + " keys length : " + keys.length);
+			keys[i].leaveGroup(esprit);
+			System.out.println("group leaved");
+
+		}
+	}
+	
 
 	/**
 	 * Standard agent initialization
@@ -170,6 +184,7 @@ public class Humain extends Turtle
 		this.moveTo(communaute.getPatch().x, communaute.getPatch().y);
 		setColor(civ.getCouleur());
 		playRole("Humain");
+		esprit.runBirthPlan();
 	} 
 
 /**
