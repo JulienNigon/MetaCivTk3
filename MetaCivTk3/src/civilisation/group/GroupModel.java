@@ -25,11 +25,20 @@ public class GroupModel {
 	}
 
 	public void setRole(String role){
-		rolesAndCulturons.put(role , null);
+		rolesAndCulturons.put(role , new ArrayList<NCogniton>());
 	}
 	
 	public void setRole(ArrayList<NCogniton> newCulturons , String role){
 		rolesAndCulturons.put(role , newCulturons);
+	}
+	
+	public void removeRole(String role) {
+		rolesAndCulturons.remove(role);
+	}
+	
+	public void changeRoleName(String oldName, String newName){
+		rolesAndCulturons.put(newName, rolesAndCulturons.get(oldName));
+		rolesAndCulturons.remove(oldName);
 	}
 	
 	public void addCulturonToRole(String role , NCogniton culturon){

@@ -130,9 +130,9 @@ public class Humain extends Turtle
 		Group[] grps = new Group[0];
 		Group[] keys = esprit.groups.keySet().toArray(grps);
 		for (int i = 0 ; i < keys.length; i++) {
-			System.out.println(keys[i].toString() + " i : " + i + " keys length : " + keys.length);
+			//System.out.println(keys[i].toString() + " i : " + i + " keys length : " + keys.length);
 			keys[i].leaveGroup(esprit);
-			System.out.println("group leaved");
+			//System.out.println("group leaved");
 
 		}
 	}
@@ -409,7 +409,7 @@ public class Humain extends Turtle
 		ArrayList<Turtle> choix = new ArrayList<Turtle>();
 		for(int i = 0;i<cibles.size();i++)
 		{
-			if(cibles.get(i).isPlayingRole("Humain") && cibles.get(i)!=this) choix.add(cibles.get(i));
+			if(cibles.get(i) != null && cibles.get(i).getClass().equals(this.getClass()) && cibles.get(i)!=this) choix.add(cibles.get(i));
 		}
 		
 		if(!choix.isEmpty()) return (Humain) oneOf(choix);

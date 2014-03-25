@@ -12,7 +12,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import civilisation.inspecteur.simulation.dialogues.DialogCreateRole;
 import civilisation.inspecteur.simulation.dialogues.DialogEditPheromon;
+import civilisation.inspecteur.simulation.dialogues.DialogueEditerCogniton;
 import civilisation.inspecteur.simulation.dialogues.DialogueEnregistrerEnvironnement;
 import civilisation.inspecteur.simulation.dialogues.DialogueSelectionnerEnvironnementActif;
 
@@ -30,7 +32,7 @@ public class ActionsToolBarGroupTreeManager implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (index == 0){
-			
+
 		}
 	}
 	

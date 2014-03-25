@@ -57,6 +57,11 @@ public class PanelGroupTree  extends JJPanel{
 	public void setGroupTree(JTree groupTree) {
 		this.groupTree = groupTree;
 	}
+
+	public void createGroup(String text) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

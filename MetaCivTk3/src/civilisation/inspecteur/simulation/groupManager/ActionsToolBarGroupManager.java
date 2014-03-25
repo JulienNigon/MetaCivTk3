@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import civilisation.inspecteur.simulation.dialogues.DialogChangeRoleName;
+import civilisation.inspecteur.simulation.dialogues.DialogCreateRole;
 import civilisation.inspecteur.simulation.dialogues.DialogEditPheromon;
 import civilisation.inspecteur.simulation.dialogues.DialogueEnregistrerEnvironnement;
 import civilisation.inspecteur.simulation.dialogues.DialogueSelectionnerEnvironnementActif;
@@ -36,6 +38,20 @@ public class ActionsToolBarGroupManager implements ActionListener{
 		{
 			//Add a new Culturon to the group and role
 			gt.panelGroupManager.creerCogniton();
+		}
+		if (index == 4) 
+		{
+			DialogCreateRole d = new DialogCreateRole((Frame) gt.getTopLevelAncestor() , true , gt);
+			d.setVisible(true);
+		}
+		if (index == 3) 
+		{
+			gt.removeRole();
+		}
+		if (index == 5) 
+		{
+			DialogChangeRoleName d = new DialogChangeRoleName((Frame) gt.getTopLevelAncestor() , true , gt);
+			d.setVisible(true);
 		}
 	}
 	

@@ -106,7 +106,7 @@ public class Group extends Turtle
 	public void leaveGroup(Esprit e) {
 		e.getGroups().remove(this);
 		//setupCulturons(role, e);
-		if (members.remove(e.getHumain())) System.out.println("agent removed , reste : " + members.size());
+		members.remove(e.getHumain());
 	}
 	
 	public Group getParent() {
