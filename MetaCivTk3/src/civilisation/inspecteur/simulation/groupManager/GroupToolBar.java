@@ -20,6 +20,7 @@ public class GroupToolBar extends JToolBar{
 	JButton buttonRemoveRole;
 	JButton buttonAddRole;
 	JButton buttonRenameRole;
+	JButton buttonRenameGroup;
 	GroupModel groupModel;
 
 	public GroupToolBar(PanelGroupManager panelGroupManager) {
@@ -51,6 +52,13 @@ public class GroupToolBar extends JToolBar{
 		buttonRenameRole.addActionListener(new ActionsToolBarGroupManager(this,5));
 		buttonRenameRole.setToolTipText("Rename the current role");
 		this.add(buttonRenameRole);
+		
+		addSeparator();
+		
+		buttonRenameGroup = new JButton(Configuration.getIcon("user--pencil.png"));
+		buttonRenameGroup.addActionListener(new ActionsToolBarGroupManager(this,6));
+		buttonRenameGroup.setToolTipText("Rename the current group");
+		this.add(buttonRenameGroup);
 		
 		comboRole = new JComboBox();
 		this.add(comboRole);
@@ -101,6 +109,11 @@ public class GroupToolBar extends JToolBar{
 		if (groupModel.getCulturons().size() <= 1) {
 			buttonRemoveRole.setEnabled(false);
 		}
+	}
+
+	public void changeGroupName(String text) {
+		groupModel.setName(text);
+		
 	}
 	
 }

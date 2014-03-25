@@ -1,5 +1,8 @@
 package civilisation.individu.plan;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 import civilisation.group.Group;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
@@ -13,10 +16,8 @@ public class NPlanPondere {
 	Humain h;
 	Esprit e;
 	
-	
-	// Work in progress....
-	// The group of the conditional culturon associated (could be null)
-	Group group;
+	HashMap<CCogniton,Double> influences = new HashMap<CCogniton,Double>();
+	HashSet<CCogniton> conditions = new HashSet<CCogniton>();
 
 	//The conditional CCogniton associated (could be null)
 	CCogniton cCogniton;
@@ -32,7 +33,7 @@ public class NPlanPondere {
 	}
 	
 	/**
-	 * Aplly the action "action" in the plan
+	 * Apply the action "action" in the plan
 	 * @param action
 	 */
 	public void activer(Action action){
@@ -51,12 +52,6 @@ public class NPlanPondere {
 	}
 	public void setPlan(NPlan plan) {
 		this.plan = plan;
-	}
-	public Group getGroup() {
-		return group;
-	}
-	public void setGroup(Group group) {
-		this.group = group;
 	}
 	public CCogniton getcCogniton() {
 		return cCogniton;
@@ -107,7 +102,9 @@ public class NPlanPondere {
 		return "[Plan : " + plan.getNom() + " , Poids : " + poids + "]";
 	}
 	
-	
+	public void addInfluence(CCogniton cogni) {
+		this.influences.put(cogni,cogni.weigth);
+	}
 	
 
 }

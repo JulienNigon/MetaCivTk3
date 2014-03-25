@@ -1,15 +1,23 @@
 package civilisation.inspecteur;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 import turtlekit.kernel.Turtle;
+import civilisation.Configuration;
 import civilisation.group.Group;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
+import civilisation.inspecteur.advanced.MousePanelGroupListener;
+import civilisation.inspecteur.simulation.environnement.ActionsMenuTerrain;
+import civilisation.world.WorldViewer;
 
 
 /**
@@ -29,6 +37,8 @@ public class PanelGroupViewer extends JPanel{
 
 	JTable roleTable;
 	Object[][] roles = new Object[10][1];
+	
+	JPopupMenu popup;
 
 	public PanelGroupViewer()
 	{
@@ -37,6 +47,7 @@ public class PanelGroupViewer extends JPanel{
 		
         String[] entetes = {"Groups"};
         groupTable = new JTable(groups, entetes);
+        groupTable.addMouseListener(new MousePanelGroupListener(this,0));
         //renderer = new JTableRendererCognitons();
         //groupTable.setDefaultRenderer(Object.class, renderer);
 
@@ -65,7 +76,7 @@ public class PanelGroupViewer extends JPanel{
 		}
 		for (int i = 0; i < keys.length ;i++)
 		{
-			groups[i][0] = keys[i].getGroupModel().getName() + " ID:"+keys[i].hashCode();
+			groups[i][0] = keys[i]/*.getGroupModel().getName() + " ID:"+keys[i].hashCode()*/;
 		}
 		
 		for (int i=0; i < roles.length;i++)
@@ -79,6 +90,49 @@ public class PanelGroupViewer extends JPanel{
 		}
 
 		this.updateUI();
+		
+	}
+
+
+
+	public JTable getGroupTable() {
+		return groupTable;
+	}
+
+
+
+	public void setGroupTable(JTable groupTable) {
+		this.groupTable = groupTable;
+	}
+
+
+
+	public JTable getRoleTable() {
+		return roleTable;
+	}
+
+
+
+	public void setRoleTable(JTable roleTable) {
+		this.roleTable = roleTable;
+	}
+	
+	public void afficherPopup(MouseEvent e) {
+		
+		popup = new JPopupMenu("Groups");
+		
+		JMenuItem showInWorldViewer = new JMenuItem("Show in world view");
+		showInWorldViewer.addActionListener(new MousePanelGroupListener(this,1));
+		showInWorldViewer.setIcon(Configuration.getIcon("eye.png"));
+		popup.add(showInWorldViewer);
+		
+		popup.show(this, e.getX(), e.getY());		
+	}
+
+
+
+	public void changeObservedGroup() {
+		WorldViewer.getInstance().setGroupToObserve((Group) groupTable.getValueAt(groupTable.getSelectedRow(), 0));
 		
 	}
 }

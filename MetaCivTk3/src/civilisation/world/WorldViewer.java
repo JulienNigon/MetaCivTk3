@@ -19,6 +19,7 @@ import civilisation.ItemPheromone;
 import civilisation.TurtleGenerator;
 import civilisation.amenagement.Amenagement;
 import civilisation.amenagement.Amenagement_Champ;
+import civilisation.group.Group;
 import civilisation.group.GroupAndRole;
 import civilisation.inspecteur.FenetreInspecteur;
 import civilisation.individu.Esprit;
@@ -48,6 +49,9 @@ public class WorldViewer extends TKDefaultViewer
 	ItemPheromone pheroToMap;
 	Pheromone pheromoneToMap;
 	GroupAndRole groupAndRoleToMap;
+	Group groupToObserve;
+	Turtle selectedAgent;
+	private boolean endRendering;
 
 	
 
@@ -144,11 +148,11 @@ public class WorldViewer extends TKDefaultViewer
 	 */
 	private void paintOneTurtle(Graphics g,Turtle t,int x,int y, boolean first)
     {
+		int size;
+		int dx , dy;
+		
 		if(t.isPlayingRole("Humain")){
-			
-			int size;
-			int dx , dy;
-			
+				
 			
 			if (this.getCellSize() > 20) {
 				size = 4 + (this.getCellSize() - 20)/10;
@@ -172,8 +176,8 @@ public class WorldViewer extends TKDefaultViewer
 			Esprit e = ((Humain) t).getEsprit();
 			
 			// Les dessins sous le carre de couleur
-			if(((Humain) t).getIsSelected()){
-				g.setColor(Color.white);
+			if(t==selectedAgent){
+				g.setColor(Color.BLUE);
 				g.fillRect(dx-2,dy-2,size +4,size +4);
 			}
 			
@@ -184,7 +188,7 @@ public class WorldViewer extends TKDefaultViewer
 					g.setColor(t.getPatch().getColor());
 					g.fillRect(dx,dy,size,size);
 					g.setColor(t.getColor());
-					g.fillRect(dx+1,dy+1,size,size - 2);
+					g.fillRect(dx+1,dy+1,size - 2,size - 2);
 				}
 				else 
 				{
@@ -234,6 +238,28 @@ public class WorldViewer extends TKDefaultViewer
 		if(t.isPlayingRole("Group")){
 			//Groups are not visible, so we paint the patch instead
 			paintPatch(g, t.getPatch(),x,y,World.getInstance().get1DIndex(t.xcor(), t.ycor()));
+			
+			//If it's the observed group
+			if(this.groupToObserve == t && endRendering){ //Observed Group is drawn over other draw
+				Group group = (Group)t;
+				size = this.getCellSize();
+				dx = x;
+				dy = y;
+				
+
+
+				g.setColor(Color.ORANGE);
+
+				for (int i = 0 ; i < group.getMembers().size() ; i++) {
+					Turtle target = group.getMembers().get(i);
+					System.out.println("world height : " + target.getWorldHeight() + "  getY() : " + Math.round(target.getY()));
+					g.drawLine(dx + size/2, dy + size/2, (target.xcor() + 1) * size - (size/2), (target.getWorldHeight()-target.ycor()) * size - (size/2));
+				}
+				
+				g.setColor(Color.RED);
+				g.fillRect(dx,dy,size,size);
+
+			}	
 		}	
 	}
 	
@@ -280,6 +306,34 @@ public class WorldViewer extends TKDefaultViewer
 		this.groupAndRoleToMap = groupAndRoleToMap;
 	}
 
-	
+
+	public Group getGroupToObserve() {
+		return groupToObserve;
+	}
+
+
+	public void setGroupToObserve(Group groupToObserve) {
+		System.out.println("Now watching group : " + groupToObserve.getGroupModel().getName() + " ID:" + groupToObserve.hashCode());
+		this.groupToObserve = groupToObserve;
+	}
+
+
+	public Turtle getSelectedAgent() {
+		return selectedAgent;
+	}
+
+
+	public void setSelectedAgent(Turtle selectedAgent) {
+		this.selectedAgent = selectedAgent;
+	}
+
+	protected void render(Graphics g) {
+		super.render(g);
+		endRendering = true;
+		if (this.groupToObserve != null) {
+			paintOneTurtle( g, groupToObserve, groupToObserve.xcor()*this.cellSize, (groupToObserve.getWorldHeight() - groupToObserve.ycor())*this.cellSize, true);
+		}
+		endRendering = false;
+	}
 	
 }

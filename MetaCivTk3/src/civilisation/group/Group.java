@@ -35,6 +35,8 @@ public class Group extends Turtle
 	public String live(){
 		if (members.size() == 0) {
 			this.killAgent(this);
+		} else {
+			this.moveTo(members.get(0).getX(), members.get(0).getY());
 		}
 		return "live";
 	}
@@ -132,6 +134,15 @@ public class Group extends Turtle
 	public void setPosition(Patch position) {
 		this.position = position;
 	}
+
+	public ArrayList<Humain> getMembers() {
+		return members;
+	}
+
+	public void setMembers(ArrayList<Humain> members) {
+		this.members = members;
+	}
+	
 	
 	
 	

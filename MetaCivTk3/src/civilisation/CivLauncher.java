@@ -48,7 +48,8 @@ public class CivLauncher extends TKLauncher {
 	@Override
 	protected void createSimulationInstance() {
 		
-	    JFileChooser chooser = new JFileChooser();
+		//TODO : Correct the 1/2 crash chance at start
+	/*    JFileChooser chooser = new JFileChooser();
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
 	    chooser.setFileFilter(filter);
 	    int returnVal = chooser.showOpenDialog(null);
@@ -60,8 +61,8 @@ public class CivLauncher extends TKLauncher {
 	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
 			System.out.println("Selected path : " + Configuration.pathToRessources);
 
-	    }
-		
+	    }*/
+		Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
 
 		Initialiseur.readParameters(); //Load minimum informations about the simulation
 		int x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);

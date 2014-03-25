@@ -32,7 +32,7 @@ public class ActionsToolBarGroupTreeManager implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (index == 0){
-
+			gt.addNewGroup();
 		}
 	}
 	

@@ -33,6 +33,7 @@ import turtlekit.kernel.Turtle;
 import civilisation.Configuration;
 import civilisation.individu.Humain;
 import civilisation.world.World;
+import civilisation.world.WorldViewer;
 
 /** 
  * Le JPanel contenant toute l'information affich___e par l'inspecteur : permet d'obtenir des informations sur les agents
@@ -153,7 +154,7 @@ public class PanelInspecteur extends JPanel{
 	{
 		Humain h = (Humain) select(agentID);
 		if (h != null) {
-			h.setIsSelected(true);
+			WorldViewer.getInstance().setSelectedAgent(h);
 		
 		
 			donnees[0][0] = "ID";

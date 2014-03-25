@@ -27,6 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import org.jfree.chart.JFreeChart;
+
 import civilisation.Civilisation;
 import civilisation.Communaute;
 import civilisation.Configuration;
@@ -456,7 +458,7 @@ public class Humain extends Turtle
 		int imin = 0;
 		for(int i = 0;i<tortues.size();i++)
 		{
-			if (  tortues.get(i).isPlayingRole("Communaute")   &&   !tortues.get(i).equals(communaute))
+			if (  tortues.get(i).isPlayingRole("Communaute") && !tortues.get(i).equals(communaute))
 			{
 				int xt = tortues.get(i).xcor();
 				int yt = tortues.get(i).ycor();
@@ -473,6 +475,7 @@ public class Humain extends Turtle
 		else{
 			return (Communaute) tortues.get(imin);
 		}	
+		
 	}
 	
 	

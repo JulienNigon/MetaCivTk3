@@ -32,6 +32,12 @@ public class GroupTreeToolBar extends JToolBar{
 	}
 
 
+	public void addNewGroup() {
+		panelGroupTree.addNewGroup();
+		
+	}
+
+
 
 	
 }

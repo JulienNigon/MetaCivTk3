@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import civilisation.inspecteur.simulation.dialogues.DialogChangeGroupName;
 import civilisation.inspecteur.simulation.dialogues.DialogChangeRoleName;
 import civilisation.inspecteur.simulation.dialogues.DialogCreateRole;
 import civilisation.inspecteur.simulation.dialogues.DialogEditPheromon;
@@ -51,6 +52,11 @@ public class ActionsToolBarGroupManager implements ActionListener{
 		if (index == 5) 
 		{
 			DialogChangeRoleName d = new DialogChangeRoleName((Frame) gt.getTopLevelAncestor() , true , gt);
+			d.setVisible(true);
+		}
+		if (index == 6) 
+		{
+			DialogChangeGroupName d = new DialogChangeGroupName((Frame) gt.getTopLevelAncestor() , true , gt);
 			d.setVisible(true);
 		}
 	}

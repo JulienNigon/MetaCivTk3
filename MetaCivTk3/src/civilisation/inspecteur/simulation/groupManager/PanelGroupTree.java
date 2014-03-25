@@ -11,6 +11,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 
+import civilisation.Configuration;
 import civilisation.group.GroupModel;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
@@ -58,8 +59,16 @@ public class PanelGroupTree  extends JJPanel{
 		this.groupTree = groupTree;
 	}
 
-	public void createGroup(String text) {
-		// TODO Auto-generated method stub
+	public void addNewGroup() {
+		Configuration.groups.add(new GroupModel("new_group_model"+Configuration.groups.size()));
+		this.remove(groupTree);
+		groupTree = new JTree(new GroupTreeModel());
+		groupTree.setRootVisible(false);
+		GroupTreeRenderer renderer = new GroupTreeRenderer();
+		groupTree.setCellRenderer(renderer);
+		groupTree.addMouseListener(new MouseGroupTreeListener(this));
+		groupTree.setBackground(this.getBackground());
+		this.add(groupTree , BorderLayout.CENTER);
 		
 	}
 	
