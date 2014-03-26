@@ -105,7 +105,7 @@ public class A_AllerVers extends Action{
 			{
 					//	Color couleur = h.getPatchColorAt(i - h.getVisionRadius(), j - h.getVisionRadius());
 						
-				if(h.xcor() + i - Configuration.VisionRadius < h.getWorldWidth() && h.ycor()+j - Configuration.VisionRadius <  h.getWorldHeight() && h.xcor() + i - Configuration.VisionRadius > 0 && h.ycor()+j - Configuration.VisionRadius > 0) 
+				if(h.xcor() + i - Configuration.VisionRadius < h.getWorldWidth() && h.ycor()+j - Configuration.VisionRadius <  h.getWorldHeight() && h.xcor() + i - Configuration.VisionRadius >= 0 && h.ycor()+j - Configuration.VisionRadius >= 0) 
 				{
 					int passabilite = Configuration.couleurs_terrains.get(h.getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getPassabilite();
 					if(h.smellAt("passage", i - Configuration.VisionRadius, j - Configuration.VisionRadius) > 0)
@@ -159,10 +159,10 @@ public class A_AllerVers extends Action{
 			{
 				int x = noeud.getPosX();
 				int y = noeud.getPosY();
-				if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != Integer.MAX_VALUE )
+				if( ((x+i)%h.getWorldWidth() < h.getWorldWidth() && (x+i)%h.getWorldWidth() > 0) && ((y+j)%h.getWorldHeight() < h.getWorldHeight() && (y+j)%h.getWorldHeight() > 0) && (i!= 0 || j != 0) && map[(x+i)%h.getWorldWidth()][(y+j)%h.getWorldHeight()] != Integer.MAX_VALUE )
 				{
-					Noeud noeu = new Noeud(x+i,y+j,0,cpt);
-					int distanceRacine = map[x+i][y+j];
+					Noeud noeu = new Noeud((x+i)%h.getWorldWidth(),y+j,0,cpt);
+					int distanceRacine = map[(x+i)%h.getWorldWidth()][(y+j)%h.getWorldHeight()];
 					noeu.setDistanceRacine(distanceRacine);
 					open_list.add(noeu);
 					liste_noeud.add(noeu);
@@ -205,12 +205,12 @@ public class A_AllerVers extends Action{
 				{
 					int x = noeud.getPosX();
 					int y = noeud.getPosY();
-					if( (x+i < h.getWorldWidth() && x+i > 0) && (y+j < h.getWorldHeight() && y+j > 0) && (i!= 0 || j != 0) && map[x+i][y+j] != Integer.MAX_VALUE)
+					if( ((x+i)%h.getWorldWidth() < h.getWorldWidth() && (x+i)%h.getWorldWidth() >= 0) && ((y+j)%h.getWorldHeight() < h.getWorldHeight() && (y+j)%h.getWorldHeight() >= 0) && (i!= 0 || j != 0) && map[(x+i)%h.getWorldWidth()][(y+j)%h.getWorldHeight()] != Integer.MAX_VALUE)
 					{
-						Noeud noeu = new Noeud(x+i,y+j,noeud.getId(),cpt);
+						Noeud noeu = new Noeud((x+i)%h.getWorldWidth(),(y+j)%h.getWorldHeight(),noeud.getId(),cpt);
 						if(!doublons(open_list,noeu) )
 						{
-							int distanceRacine = map[x+i][y+j] + noeud.getDistanceRacine();
+							int distanceRacine = map[(x+i)%h.getWorldWidth()][(y+j)%h.getWorldHeight()] + noeud.getDistanceRacine();
 							noeu.setDistanceRacine(distanceRacine);
 							open_list.add(noeu);
 							liste_noeud.add(noeu);
