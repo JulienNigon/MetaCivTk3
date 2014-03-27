@@ -177,6 +177,7 @@ public class Humain extends Turtle
 			return null;
 		} else {
 			esprit.penser();
+			//KKK
 		}
 		return "penser";
 	}

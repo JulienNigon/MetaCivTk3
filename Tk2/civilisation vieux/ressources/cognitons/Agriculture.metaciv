@@ -1,6 +1,0 @@
-Nom : Agriculture
-Description : Permet aux agents de planter des champs
-Type : SKILL
-Initial : 0
-Influence : Cultiver,5
-Permet : Cultiver

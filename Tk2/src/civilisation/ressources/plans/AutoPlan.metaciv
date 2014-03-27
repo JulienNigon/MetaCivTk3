@@ -1,7 +1,0 @@
-Nom : AutoPlan
-Birth : false
-Self : true
-
-Action : L_CompareAttribute,attributeToCompare(Attribute Vie),comparator(Comparator <),n(Double 0.0)
-	Action : A_Die
-	Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -1)

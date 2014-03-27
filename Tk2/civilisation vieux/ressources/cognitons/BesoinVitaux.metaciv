@@ -1,6 +1,0 @@
-Nom : BesoinsVitaux
-Description : Les connaissances de base d'un agent
-Type : MEME
-Initial : 1
-Influence : Chasser,4
-Influence : Cueillir,-3
