@@ -25,6 +25,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.jfree.chart.JFreeChart;
@@ -70,6 +71,7 @@ public class Humain extends Turtle
 	Humain conjoint;
 	Boolean woman;
 	ArrayList<Humain> enfants;
+	Map<Object,Object> memory;
 	
 	
 	HashMap<String,Amenagement> buildings = new HashMap<String , Amenagement>();
@@ -1516,6 +1518,15 @@ public class Humain extends Turtle
 	public void setBuildings(HashMap<String , Amenagement> buildings) {
 		this.buildings = buildings;
 	}
+
+	public Map<Object, Object> getMemory() {
+		return memory;
+	}
+
+	public void setMemory(Map<Object, Object> memory) {
+		this.memory = memory;
+	}
+	
 	
 	
 }

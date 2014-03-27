@@ -235,6 +235,11 @@ public class WorldViewer extends TKDefaultViewer
 			g.drawLine(x, y, x+this.getCellSize() -1, y);
 		}	
 		
+		if(t.isPlayingRole("gener")){
+			//Groups are not visible, so we paint the patch instead
+			paintPatch(g, t.getPatch(),x,y,World.getInstance().get1DIndex(t.xcor(), t.ycor()));
+		}
+		
 		if(t.isPlayingRole("Group")){
 			//Groups are not visible, so we paint the patch instead
 			paintPatch(g, t.getPatch(),x,y,World.getInstance().get1DIndex(t.xcor(), t.ycor()));

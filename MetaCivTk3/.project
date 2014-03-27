@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Tk2</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Tk2</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

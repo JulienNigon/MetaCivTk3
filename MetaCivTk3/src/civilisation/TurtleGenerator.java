@@ -15,10 +15,16 @@ public class TurtleGenerator extends Turtle{
 	
 	public TurtleGenerator(){
 		turtleGenerator = this;
+		
+	}
+	
+	public String doNothing(){
+		//this.playRole("Generator");
+		return null;
 	}
 	
 	public void activate() {
-		this.moveTo(0, 0);
+		this.moveTo(0, 0);	
 	}
 	
 	public static TurtleGenerator getInstance(){

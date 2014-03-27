@@ -301,7 +301,7 @@ public class PanelStructureCognitive extends JJPanel{
 				if (k < gPlan.size()) {
 				gLiensConditionnels.add(new GLien(this,gCognitons.get(i),
 						gPlan.get(k),
-						-1 , Color.RED));
+						-1 , Color.BLUE));
 				}
 				}
 
@@ -366,7 +366,7 @@ public class PanelStructureCognitive extends JJPanel{
     	}
     	
     	for (int i = 0; i < gLiensConditionnels.size(); i++){
-    		g2d.setColor(Color.RED);
+    		g2d.setColor(Color.BLUE);
             g2d.setStroke(new BasicStroke(2));
     		g2d.drawLine((int)gLiensConditionnels.get(i).getA().getCentreX()-2, (int)gLiensConditionnels.get(i).getA().getCentreY()-2,(int) gLiensConditionnels.get(i).getB().getCentreX()-2, (int)gLiensConditionnels.get(i).getB().getCentreY()-2);
     	}
