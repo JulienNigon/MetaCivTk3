@@ -454,17 +454,17 @@ public class Esprit {
 		}
 	}
 
-	public void runBirthPlan() {
-		if (Configuration.birthPlan != null) {
+	public void runInitiatePlan() {
+		if (Configuration.initiatePlan != null) {
 			actions.push(null); //end of self-plan marker
 
-			Configuration.birthPlan.activer(h, Configuration.birthPlan.getActions().get(0));
+			Configuration.initiatePlan.activer(h, Configuration.initiatePlan.getActions().get(0));
 			
 			Action a = null;
 
 			while (( a = actions.pop()) != null) {
 				//System.out.println("a depop : " + a + "depop" + actions);
-				Configuration.birthPlan.activer(h, a);
+				Configuration.initiatePlan.activer(h, a);
 			}
 		}
 	}

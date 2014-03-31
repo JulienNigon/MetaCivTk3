@@ -19,11 +19,7 @@ public class A_ChangeAttribute extends Action{
 	@Override
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
-		
-		for (int i = 0 ; i < option.getParametres().size(); i++) {
-			System.out.println(option.getParametres().get(i).toString());
-		}
-		
+
 		if (option.getParametres().get(0).getClass() == String.class) {
 			attributeName = (String) option.getParametres().get(0);
 		} else if (option.getParametres().get(0).getClass() == Integer.class) {

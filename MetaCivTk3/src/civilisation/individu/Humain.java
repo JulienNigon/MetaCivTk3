@@ -192,7 +192,7 @@ public class Humain extends Turtle
 		playRole("Humain");
 		for (HumainListener l : listeners)
 			l.onHumainActivate(this);
-		esprit.runBirthPlan();
+		esprit.runInitiatePlan();
 	} 
 
 /**

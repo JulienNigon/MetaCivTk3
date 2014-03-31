@@ -136,8 +136,8 @@ public class PanelArbreActions extends JJPanel{
 			treeModel.addAction((NodeArbreActions)treeModel.getRoot() , a);
 		}
 		
-		//this.remove(arbreActions);
-		//setupArbreActions();
+		this.remove(arbreActions);
+		setupArbreActions();
 		//plan.seDecrire();
 	}
 

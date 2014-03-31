@@ -47,7 +47,7 @@ public class Configuration {
 	
 	/*All plans*/
 	public static ArrayList<NPlan> plans;
-	public static NPlan birthPlan;
+	public static NPlan initiatePlan;
 	public static NPlan autoPlan;
 
 	/*Group model*/

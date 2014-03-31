@@ -302,7 +302,7 @@ public class Initialiseur {
 		    		Configuration.autoPlan = listePlans.get(nom);
 		    	}
 		    	else if (listePlans.get(nom).getIsBirthPlan()) {
-		    		Configuration.birthPlan = listePlans.get(nom);
+		    		Configuration.initiatePlan = listePlans.get(nom);
 		    	}
 			    tousLesPlans.add(listePlans.get(nom));
 		    	
