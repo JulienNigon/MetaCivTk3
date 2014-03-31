@@ -281,7 +281,7 @@ public class PanelModificationSimulation extends JPanel{
 		choisirEnvironnementActif.setToolTipText("Choisir l'environnment ___ utiliser pour la simulation");
 		toolBarEnvironnement.add(choisirEnvironnementActif);
 
-		ImageIcon iconePheromone = Configuration.getIcon("ui-color-picker-switch.png");
+		ImageIcon iconePheromone = Configuration.getIcon("marker.png");
 		pheromone = new JButton(iconePheromone);
 		pheromone.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,9));
 		pheromone.setToolTipText("Manage pheromon");

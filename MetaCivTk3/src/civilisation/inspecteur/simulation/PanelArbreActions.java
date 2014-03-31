@@ -23,6 +23,8 @@ public class PanelArbreActions extends JJPanel{
 	JToolBar toolBar = new JToolBar();
 	JPopupMenu popup;
 	Action actionActive; /*Pour m_moriser l'action en cours de modification, le cas _cheant*/
+	NodeArbreActions nodeActionActive;
+	ModeleArbreActions treeModel;
 
 	public PanelArbreActions(NPlan plan){
 		
@@ -32,18 +34,19 @@ public class PanelArbreActions extends JJPanel{
 		if (plan != null){
 
 			this.plan = plan;
-			System.out.println("Plan obersv_ : " + this.plan.getNom());
+			//System.out.println("Plan obersv_ : " + this.plan.getNom());
 			setupArbreActions();
 
 			
 			this.add(toolBar , BorderLayout.NORTH);
 		} else {
-			System.out.println("Plan de l'arbre est null");
+			//System.out.println("Plan de l'arbre est null");
 		}
 	}
 	
 	private void setupArbreActions(){
-		arbreActions = new JTree(new ModeleArbreActions(plan));
+		treeModel = new ModeleArbreActions(plan);
+		arbreActions = new JTree(treeModel);
 		arbreActions.setRootVisible(false);
 		ArbreActionsRenderer renderer = new ArbreActionsRenderer();
 		arbreActions.setCellRenderer(renderer);
@@ -124,15 +127,18 @@ public class PanelArbreActions extends JJPanel{
 		}
 		else if (option == Option_BeforeAfter.INTERNAL){
 			plan.addSubAction(a, actionActive);
+			nodeActionActive.add(new NodeArbreActions(a));
 		}
 		else if (option == Option_BeforeAfter.FIRST){
 			if (plan == null) System.out.println("NULL");
 			System.out.println("plan : " + plan.getNom());
 			plan.addFirstAction(a);
+			treeModel.addAction((NodeArbreActions)treeModel.getRoot() , a);
 		}
-		this.remove(arbreActions);
-		setupArbreActions();
-		plan.seDecrire();
+		
+		//this.remove(arbreActions);
+		//setupArbreActions();
+		//plan.seDecrire();
 	}
 
 	public Action getActionActive() {
@@ -148,7 +154,16 @@ public class PanelArbreActions extends JJPanel{
 		this.remove(arbreActions);
 		setupArbreActions();
 	}
-	
+
+	public NodeArbreActions getNodeActionActive() {
+		return nodeActionActive;
+	}
+
+	public void setNodeActionActive(NodeArbreActions nodeActionActive) {
+		this.nodeActionActive = nodeActionActive;
+	}
+
+
 	
 	
 	

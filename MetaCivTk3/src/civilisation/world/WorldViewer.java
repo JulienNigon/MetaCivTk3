@@ -52,6 +52,7 @@ public class WorldViewer extends TKDefaultViewer
 	Group groupToObserve;
 	Turtle selectedAgent;
 	private boolean endRendering;
+	private int sizeForAccurateView = 8;
 
 	
 
@@ -155,7 +156,7 @@ public class WorldViewer extends TKDefaultViewer
 				
 			
 			if (this.getCellSize() > 20) {
-				size = 4 + (this.getCellSize() - 20)/10;
+				size = this.sizeForAccurateView + (this.getCellSize() - 20)/10;
 				dx = x + (int)(this.getCellSize() * (t.getX()%1));
 				dy = y + (int)(this.getCellSize() * (t.getY()%1));
 				//System.out.println(size+" "+dx+" "+dy+" "+this.getCellSize()+" "+x+" "+y);
@@ -222,7 +223,7 @@ public class WorldViewer extends TKDefaultViewer
 
 
 		// Les dessins sur le carr___ de couleur
-		if(t.isPlayingRole("Communaute")){
+		else if(t.isPlayingRole("Communaute")){
 			
 			//Le carr___ de couleur
 			g.setColor(t.getColor());
@@ -234,13 +235,9 @@ public class WorldViewer extends TKDefaultViewer
 			g.drawLine(x, y, x, y+this.getCellSize() -1);
 			g.drawLine(x, y, x+this.getCellSize() -1, y);
 		}	
+
 		
-		if(t.isPlayingRole("gener")){
-			//Groups are not visible, so we paint the patch instead
-			paintPatch(g, t.getPatch(),x,y,World.getInstance().get1DIndex(t.xcor(), t.ycor()));
-		}
-		
-		if(t.isPlayingRole("Group")){
+		else if(t.isPlayingRole("Group")){
 			//Groups are not visible, so we paint the patch instead
 			paintPatch(g, t.getPatch(),x,y,World.getInstance().get1DIndex(t.xcor(), t.ycor()));
 			
@@ -265,7 +262,11 @@ public class WorldViewer extends TKDefaultViewer
 				g.fillRect(dx,dy,size,size);
 
 			}	
-		}	
+		}
+		else {
+			//All other turtles used in simulation are invisible
+			paintPatch(g, t.getPatch(),x,y,World.getInstance().get1DIndex(t.xcor(), t.ycor()));
+		}
 	}
 	
 	

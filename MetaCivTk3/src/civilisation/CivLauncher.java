@@ -14,6 +14,7 @@ import static turtlekit.kernel.TurtleKit.Option.viewers;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
@@ -48,6 +49,8 @@ public class CivLauncher extends TKLauncher {
 	@Override
 	protected void createSimulationInstance() {
 		
+		printStartMessage();
+
 		//TODO : Correct the 1/2 crash chance at start
 	/*    JFileChooser chooser = new JFileChooser();
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
@@ -68,15 +71,12 @@ public class CivLauncher extends TKLauncher {
 		int x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
 		int	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
 
-		System.out.println("X : " + x + "  Y : " + y);
 		setMadkitProperty(envDimension, x+","+y);
 		initProperties();
 		setMadkitProperty(startSimu, "false");
 		setMadkitProperty(viewers, WorldViewer.class.getName() /*+","+ TKDefaultViewer.class.getName()*/);
 		setMadkitProperty(environment, World.class.getName());
 		setMadkitProperty(turtles, TurtleGenerator.class.getName()+","+1);
-		System.out.println(getMadkitProperty(envDimension));
-		System.out.println(getHeight() + " " + getWidth());
 		//setMadkitProperty(Option.noWrap, "true");
 
 		super.createSimulationInstance();
@@ -90,6 +90,16 @@ public class CivLauncher extends TKLauncher {
 	
 	public static void main(String[] args) {
 		executeThisLauncher("--popDensity","0");
+	}
+	
+	public void printStartMessage() {
+		//Show version
+		System.out.println("\n\t---------------------------------------" +
+		"\n\t               MetaCiv" + "\n\t           version: "
+				+ Configuration.versionNumber +
+				"\n\t      MetaCiv Team (c) 2013-"
+				+ Calendar.getInstance().get(Calendar.YEAR) + 
+				"\n\t---------------------------------------\n");
 	}
 
 }

@@ -86,10 +86,10 @@ public class World extends TKEnvironment
 		}
 		
 		
-		System.out.println(Configuration.environnementACharger);
+		//System.out.println(Configuration.environnementACharger);
 
 		if (Configuration.environnementACharger != null){
-		   System.out.println("Chargement de l'environnement");
+		   //System.out.println("Chargement de l'environnement");
 	       HashMap<Integer,Terrain> typeTerrains = new HashMap<Integer,Terrain>();
 	       ArrayList<String[]> listeTerrains = Initialiseur.getListeChamp("Terrain", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
 	       for (int i = 0; i < listeTerrains.size(); i++){
@@ -184,7 +184,7 @@ public class World extends TKEnvironment
 		}
 		
 
-		System.out.println("---End World Setup---"); 
+		//System.out.println("---End World Setup---"); 
 
 	}
 

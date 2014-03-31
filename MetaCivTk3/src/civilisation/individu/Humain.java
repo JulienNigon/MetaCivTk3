@@ -71,8 +71,8 @@ public class Humain extends Turtle
 	Humain conjoint;
 	Boolean woman;
 	ArrayList<Humain> enfants;
-	Map<Object,Object> memory;
-	
+
+	private static ArrayList<HumainListener> listeners = new ArrayList<HumainListener>();
 	
 	HashMap<String,Amenagement> buildings = new HashMap<String , Amenagement>();
 	HashMap<String,Integer> attributes;
@@ -127,6 +127,8 @@ public class Humain extends Turtle
 		Amenagement champ = buildings.get(Amenagement_Champ.class.getName());
 		if (champ != null) champ.getPosition().getMark(Amenagement_Champ.class.getName());
 
+		for (HumainListener l : listeners)
+			l.onHumainDie(this);
 	}
 	
 	public void end() {
@@ -177,7 +179,6 @@ public class Humain extends Turtle
 			return null;
 		} else {
 			esprit.penser();
-			//KKK
 		}
 		return "penser";
 	}
@@ -189,6 +190,8 @@ public class Humain extends Turtle
 		this.moveTo(communaute.getPatch().x, communaute.getPatch().y);
 		setColor(civ.getCouleur());
 		playRole("Humain");
+		for (HumainListener l : listeners)
+			l.onHumainActivate(this);
 		esprit.runBirthPlan();
 	} 
 
@@ -1520,15 +1523,20 @@ public class Humain extends Turtle
 		this.buildings = buildings;
 	}
 
-	public Map<Object, Object> getMemory() {
-		return memory;
+	public static void addHumanListener(HumainListener listener) 
+	{
+		listeners.add(listener);
+	}
+	public static void removeHumanListener(HumainListener listener)
+	{
+		listeners.remove(listener);
 	}
 
-	public void setMemory(Map<Object, Object> memory) {
-		this.memory = memory;
+	public interface HumainListener
+	{
+		public void onHumainActivate(Humain humain);
+		public void onHumainDie(Humain humain);
 	}
-	
-	
 	
 }
 

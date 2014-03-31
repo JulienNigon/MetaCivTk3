@@ -6,6 +6,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 import civilisation.Communaute;
@@ -41,6 +42,8 @@ public class Esprit {
 	/* HashMap to store the groups of the agent and his role in this group*/
 	HashMap<Group , String> groups;
 
+	Map<Object,Object> memory;
+	
 	/*Autres attributs:*/
 	Humain h;
 	NPlanPondere planEnCours;
@@ -464,6 +467,14 @@ public class Esprit {
 				Configuration.birthPlan.activer(h, a);
 			}
 		}
+	}
+	
+	public Map<Object, Object> getMemory() {
+		return memory;
+	}
+
+	public void setMemory(Map<Object, Object> memory) {
+		this.memory = memory;
 	}
 	
 } 

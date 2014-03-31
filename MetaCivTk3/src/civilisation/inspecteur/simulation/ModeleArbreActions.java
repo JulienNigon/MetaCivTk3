@@ -21,7 +21,7 @@ public class ModeleArbreActions extends DefaultTreeModel
 		}
 	}
 	
-	protected void addAction(NodeArbreActions parent , Action action){		
+	public void addAction(NodeArbreActions parent , Action action){		
 		NodeArbreActions node = new NodeArbreActions(action);
 		if (!action.getListeActions().isEmpty()){
 			for (int i = 0; i < action.getListeActions().size(); i++){

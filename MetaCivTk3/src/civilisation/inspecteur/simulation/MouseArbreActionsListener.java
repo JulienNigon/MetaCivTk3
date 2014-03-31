@@ -17,11 +17,10 @@ public class MouseArbreActionsListener implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		;
 	    if(SwingUtilities.isRightMouseButton(e)){
 			p.afficherPopup(e,((NodeArbreActions)p.getArbreActions().getPathForLocation(e.getX(), e.getY()).getLastPathComponent()).getAction());
 			p.setActionActive(((NodeArbreActions)p.getArbreActions().getPathForLocation(e.getX(), e.getY()).getLastPathComponent()).getAction());
+			p.setNodeActionActive((NodeArbreActions)p.getArbreActions().getPathForLocation(e.getX(), e.getY()).getLastPathComponent());
 	    }	
 	}
 

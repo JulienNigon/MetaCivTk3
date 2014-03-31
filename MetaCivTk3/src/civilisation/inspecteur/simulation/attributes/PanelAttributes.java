@@ -53,15 +53,13 @@ public class PanelAttributes extends JPanel{
 				Configuration.attributesStartingValues.add((Integer) attributesStartingValue.get(i).getValue());
 			}
 			
-			System.out.println(Configuration.attributesNames.get(i));
+			//System.out.println(Configuration.attributesNames.get(i));
 		}
 		setupField();
 		revalidate();
 	}
 
 	public void setupField() {
-		System.out.println("perform + " + isSetuping);
-		
 		attributesName = new ArrayList<JTextField>();
 		attributesStartingValue = new ArrayList<JSpinner>();
 		

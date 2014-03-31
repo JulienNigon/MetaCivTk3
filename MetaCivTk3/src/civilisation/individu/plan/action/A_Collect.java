@@ -27,8 +27,6 @@ public class A_Collect extends Action{
 		else if (option.getParametres().get(0).getClass() == Double.class) {
 			nPheroToCollect = (Double) option.getParametres().get(0);
 		}
-		
-
 	}
 	
 	@Override

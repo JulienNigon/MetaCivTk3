@@ -11,7 +11,6 @@ public class MouseGCarteListener implements MouseListener , MouseMotionListener{
 	GCarte gCarte;
 	
 	public MouseGCarteListener(GCarte gCarte){
-		System.out.println("creation");
 		this.gCarte = gCarte;
 	}
 	

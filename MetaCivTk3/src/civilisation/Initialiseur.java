@@ -47,13 +47,13 @@ public class Initialiseur {
 		String nom;
 		
 		
-		System.out.println("Attributes loading...");
+		//System.out.println("Attributes loading...");
 		File[] filesAttributes = new File(Configuration.pathToRessources + "/attributes").listFiles();
 		ArrayList<String> attributesNames = new ArrayList<String>();
 		ArrayList<Integer> attributesStartingValues = new ArrayList<Integer>();
 		for (File file : filesAttributes) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-				System.out.println("Load attribute : " + file.getName());
+				//System.out.println("Load attribute : " + file.getName());
 			    if (file.isFile()) {
 			    	String name = getChamp("Name" , file)[0];
 			    	attributesNames.add(name);
@@ -66,12 +66,12 @@ public class Initialiseur {
 		Configuration.attributesStartingValues = attributesStartingValues;
 		
 		
-		System.out.println("Chargement des pheromones");
+		//System.out.println("Chargement des pheromones");
 		File[] filesPhero = new File(Configuration.pathToRessources + "/itemPheromones").listFiles();
 		ArrayList<ItemPheromone> phero = new ArrayList<ItemPheromone>();
 		for (File file : filesPhero) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-				System.out.println("Creation de la pheromone : " + file.getName());
+				//System.out.println("Creation de la pheromone : " + file.getName());
 			    if (file.isFile()) {
 			    	nom = getChamp("Nom" , file)[0];
 			    	phero.add(new ItemPheromone(nom));
@@ -80,12 +80,12 @@ public class Initialiseur {
 		}	
 		Configuration.itemsPheromones = phero;
 		
-		System.out.println("Chargement des terrains");
+		//System.out.println("Chargement des terrains");
 		File[] filesTerrains = new File(Configuration.pathToRessources + "/terrains").listFiles();
 		ArrayList<Terrain> terrains = new ArrayList<Terrain>();
 		for (File file : filesTerrains) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Creation du terrain : " + file.getName());
+			//System.out.println("Creation du terrain : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Terrain t = new Terrain(nom);
@@ -135,11 +135,11 @@ public class Initialiseur {
 		Configuration.couleurs_terrains = couleurs_terrains;		
 		
    		Configuration.attributesTrigerringValues = new HashMap<String , ArrayList<Object[]>>();
-		System.out.println("Loading cognitons...");
+		//System.out.println("Loading cognitons...");
 		File[] files = new File(Configuration.pathToRessources + "/cognitons").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("\tLoad cogniton : " + file.getName());
+			//System.out.println("\tLoad cogniton : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listeCognitons.put(nom , new NCogniton());
@@ -164,7 +164,7 @@ public class Initialiseur {
 		       		trig[0] = cogni;
 		       		trig[1] = Integer.parseInt(triggers.get(i)[1]);
 		       		trig[2] = Integer.parseInt(triggers.get(i)[2]);
-		       		//System.out.println(trig[0] + " " + trig[1] + " " + trig[2]);
+		       		////System.out.println(trig[0] + " " + trig[1] + " " + trig[2]);
 		       		if(Configuration.attributesTrigerringValues.get(triggers.get(i)[0]) == null) { Configuration.attributesTrigerringValues.put(triggers.get(i)[0] , new ArrayList<Object[]>()); }
 		       		Configuration.attributesTrigerringValues.get(triggers.get(i)[0]).add(trig);
 		       		
@@ -183,11 +183,11 @@ public class Initialiseur {
 			}
 		}
 		
-		System.out.println("Loading culturons...");
+		//System.out.println("Loading culturons...");
 		files = new File(Configuration.pathToRessources + "/cloudCognitons").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Load culturon : " + file.getName());
+			//System.out.println("Load culturon : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listCloudCognitons.put(nom , new Culturon());
@@ -210,12 +210,12 @@ public class Initialiseur {
 		}	
 
 		
-		System.out.println("Chargement des objets d'inventaire");
+		//System.out.println("Chargement des objets d'inventaire");
 		Configuration.objets = new ArrayList<Objet>();
 		files = new File(Configuration.pathToRessources + "/objets").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Chargement de : " + file.getName());
+			//System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Objet o = new Objet();
@@ -230,16 +230,16 @@ public class Initialiseur {
 		
 
        	/*Preparation d'un jeu d'actions, pour pouvoir facilement les manipuler dans le reste du programme*/
-		//System.out.println(this.getClass().);
 
        	Class action;
        	Configuration.actions = new ArrayList<Action>();
-		File[] sourcesActions = new File(System.getProperty("user.dir")+"/civilisation/actions").listFiles();
+       	System.out.println(Configuration.pathToRessources + "../actions");
+		File[] sourcesActions = new File(Configuration.pathToRessources + "/../actions").listFiles();
 		for (File file : sourcesActions) {
 		    if (file.isFile() && file.getName().endsWith(".java") && file.getName().charAt(1) == '_') {
 		    	try {
 					action = Class.forName("civilisation.individu.plan.action."+file.getName().split("\\.")[0]);
-					System.out.println("\tLoad action : " + action.getName());
+					//System.out.println("\tLoad action : " + action.getName());
 					Configuration.actions.add((Action) action.newInstance());
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
@@ -257,12 +257,12 @@ public class Initialiseur {
 		Configuration.cognitons = tousLesCognitons;
 		Configuration.cloudCognitons = allCloudCogniton;
 		
-		System.out.println("Loading groups..");
+		//System.out.println("Loading groups..");
 		Configuration.groups = new ArrayList<GroupModel>();
 		files = new File(Configuration.pathToRessources + "/groups").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("\tLoad group : " + file.getName());
+			//System.out.println("\tLoad group : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Name" , file)[0];
 		    	GroupModel g = new GroupModel(nom);
@@ -277,11 +277,11 @@ public class Initialiseur {
 		}	
 		
 		
-		System.out.println("Loading plans...");
+		//System.out.println("Loading plans...");
 		File[] filesPlans = new File(Configuration.pathToRessources + "/plans").listFiles();
 		for (File file : filesPlans) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Creation du plan : " + file.getName());
+			//System.out.println("Creation du plan : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listePlans.put(nom , new NPlan());
@@ -313,11 +313,11 @@ public class Initialiseur {
 			}
 		}	
 		
-		System.out.println("Creating links...");
+		//System.out.println("Creating links...");
 		files = new File(Configuration.pathToRessources + "/cognitons").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Create links of : " + file.getName());
+			//System.out.println("Create links of : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	
@@ -341,12 +341,12 @@ public class Initialiseur {
 		       	liste = Initialiseur.getListeChamp("Permet", file);
 		       	ArrayList<NPlan> plans = new ArrayList<NPlan>();		      
 		       	for (int i = 0 ; i < liste.size(); i++){
-			       	//System.out.println("Le nom qu'on trouve : " + liste.get(i)[0]);
-			       	//System.out.println("Hach assoccie : " + listePlans.get(liste.get(i)[0]));
+			       	////System.out.println("Le nom qu'on trouve : " + liste.get(i)[0]);
+			       	////System.out.println("Hach assoccie : " + listePlans.get(liste.get(i)[0]));
 		       		plans.add(listePlans.get(liste.get(i)[0]));
 		       	}
-		       	//System.out.println("plans autorises : "+ nom + "  : "+plans.toString());
-		       //	System.out.println("array : "+ plans);
+		       	////System.out.println("plans autorises : "+ nom + "  : "+plans.toString());
+		       //	//System.out.println("array : "+ plans);
 
 	       		listeCognitons.get(nom).setPlansAutorises(plans);
 		    }
@@ -356,17 +356,17 @@ public class Initialiseur {
 
 		Configuration.plans = tousLesPlans;
 
-		//System.out.println("Verification");	
+		////System.out.println("Verification");	
 		
 		//printAllCognitons();
 		
 		/*Lecture des civilisations*/
-		System.out.println("Loading civilizations...");
+		//System.out.println("Loading civilizations...");
 		Configuration.civilisations = new ArrayList<Civilisation>();
 		files = new File(Configuration.pathToRessources + "/civilisations").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Load civilization : " + file.getName());
+			//System.out.println("Load civilization : " + file.getName());
 		    if (file.isFile()) {
 		    	Civilisation civ = new Civilisation();
 		    	civ.setNom(getChamp("Nom" , file)[0]);
@@ -409,14 +409,14 @@ public class Initialiseur {
 	}
 	
 	public static void readParameters() {
-		System.out.println("Reading parameters...");
+		//System.out.println("Reading parameters...");
 		File params = new File(Configuration.pathToRessources + "/parametres"+Configuration.getExtension());
 		if (params.exists()){
 	       	String s = getChamp("Carte", params)[0];
 	       	if (!s.equals("AUCUNE")){
 	    		File carte = new File(Configuration.pathToRessources + "/environnements/"+s);
 	    		if (carte.isFile()){
-	    			System.out.println("Loading map : "+s);
+	    			//System.out.println("Loading map : "+s);
 	    			Configuration.environnementACharger = s.split("\\.")[0];
 	    		}
 	       	}
@@ -513,12 +513,7 @@ public class Initialiseur {
    	}*/
 	}
 	
-	/*Pour tester*/
-	private void printAllCognitons(){
-		System.out.println(listeCognitons.values().toString());
-		
 
-	}
 	
 
 
