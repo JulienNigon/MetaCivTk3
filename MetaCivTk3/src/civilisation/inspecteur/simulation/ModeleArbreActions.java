@@ -31,17 +31,8 @@ public class ModeleArbreActions extends DefaultTreeModel
 		parent.add(node);
 	}
 	
-	public void ajouterNoeud(NodeArbreActions parent)
-	{
-		//NodeArbreActions node = new NodeArbreActions("enfant");
-		//parent.add(node);
-	}
-	
-	public void supprimerNoeud(NodeArbreActions cible)
-	{
-		this.removeNodeFromParent(cible);
 
-	}
+
 
 	
 	

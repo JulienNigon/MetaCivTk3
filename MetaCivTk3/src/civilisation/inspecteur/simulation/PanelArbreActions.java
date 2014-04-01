@@ -9,6 +9,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeNode;
 
 import civilisation.Configuration;
 import civilisation.individu.plan.NPlan;
@@ -121,23 +123,28 @@ public class PanelArbreActions extends JJPanel{
 	public void addNewAction(Action a, Option_BeforeAfter option){
 		if (option == Option_BeforeAfter.AFTER){
 			plan.addActionAfter(a, actionActive);
+			System.out.println("plan : " + plan.getNom() + " " + nodeActionActive.toString());
+			treeModel.insertNodeInto(new NodeArbreActions(a), (MutableTreeNode) nodeActionActive.getParent(), nodeActionActive.getParent().getIndex(nodeActionActive)+1);
 		}
 		else if (option == Option_BeforeAfter.BEFORE){
 			plan.addActionBefore(a, actionActive);
+			treeModel.insertNodeInto(new NodeArbreActions(a), (MutableTreeNode) nodeActionActive.getParent(), nodeActionActive.getParent().getIndex(nodeActionActive));
 		}
 		else if (option == Option_BeforeAfter.INTERNAL){
 			plan.addSubAction(a, actionActive);
-			nodeActionActive.add(new NodeArbreActions(a));
+			treeModel.insertNodeInto(new NodeArbreActions(a),nodeActionActive,0);
 		}
 		else if (option == Option_BeforeAfter.FIRST){
 			if (plan == null) System.out.println("NULL");
-			System.out.println("plan : " + plan.getNom());
+			System.out.println("plan : " + plan.getNom() + ((NodeArbreActions)treeModel.getRoot()).getChildCount());
 			plan.addFirstAction(a);
-			treeModel.addAction((NodeArbreActions)treeModel.getRoot() , a);
+			NodeArbreActions newNode = new NodeArbreActions(a);
+			treeModel.insertNodeInto(newNode,(NodeArbreActions)treeModel.getRoot(),0);
+			treeModel.reload((TreeNode) treeModel.getRoot());
+			//TODO : don't close tree
 		}
-		
-		this.remove(arbreActions);
-		setupArbreActions();
+		//this.remove(arbreActions);
+		//setupArbreActions();
 		//plan.seDecrire();
 	}
 

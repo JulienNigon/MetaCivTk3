@@ -1,6 +1,9 @@
 package civilisation.inspecteur.simulation.attributes;
 
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -48,15 +51,19 @@ public class PanelAttributes extends JPanel{
 		for (int i = 0 ; i < attributesName.size() ; i++) {
 
 			
-			if (attributesName.get(i).getText() != "" ) {
+			if (!attributesName.get(i).getText().equals("") ) {
 				Configuration.attributesNames.add(attributesName.get(i).getText());
 				Configuration.attributesStartingValues.add((Integer) attributesStartingValue.get(i).getValue());
 			}
 			
 			//System.out.println(Configuration.attributesNames.get(i));
 		}
-		setupField();
-		revalidate();
+		if (attributesName.size() == Configuration.attributesNames.size()) {
+			System.out.println(attributesName.size() + " " + Configuration.attributesNames.size());
+			setupField();
+			revalidate();
+		}
+		
 	}
 
 	public void setupField() {
@@ -96,4 +103,8 @@ public class PanelAttributes extends JPanel{
 		isSetuping = false;
 	}
 	
+	public void paint(Graphics g) {
+		super.paint(g);
+		//this.performChange();
+	}
 }

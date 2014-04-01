@@ -59,7 +59,6 @@ public class PanelModificationSimulation extends JPanel{
 	JToolBar toolBarStructureCognitive;
 	JButton boutonAjouterCogniton;
 	JButton boutonAjouterPlan;
-	JButton boutonAddCloudCogniton;
 
 	JToolBar toolBarArbreActions;
 	JButton ajouterAction;
@@ -212,11 +211,7 @@ public class PanelModificationSimulation extends JPanel{
 		boutonAjouterPlan = new JButton(iconeAjouterPlan);
 		boutonAjouterPlan.addActionListener(new ActionStructureCognitive(this,1));
 		toolBarStructureCognitive.add(boutonAjouterPlan);
-		
-		ImageIcon iconeAddCloudCogniton = Configuration.getIcon("weather-cloud.png");
-		boutonAddCloudCogniton = new JButton(iconeAddCloudCogniton);
-		boutonAddCloudCogniton.addActionListener(new ActionStructureCognitive(this,2));
-		toolBarStructureCognitive.add(boutonAddCloudCogniton);
+
 		
 		/*Creation de la toolBar pour l'environnement*/
 		toolBarEnvironnement = new JToolBar();

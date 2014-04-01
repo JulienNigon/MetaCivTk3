@@ -35,7 +35,6 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 		listeActions = new JComboBox();
 
 		for (int i = 0; i < Configuration.actions.size(); i++){
-			System.out.println("une action " + i );
 			listeActions.addItem(Configuration.actions.get(i).getName().split("\\.")[Configuration.actions.get(i).getName().split("\\.").length -1]);
 		}
 		

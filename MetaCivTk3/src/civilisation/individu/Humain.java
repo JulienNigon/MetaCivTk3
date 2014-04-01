@@ -160,7 +160,8 @@ public class Humain extends Turtle
 
 		attributes = new HashMap<String,Integer>();
 		for (int i = 0; i < Configuration.attributesNames.size(); i++){
-			attributes.put(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
+			attributes.put(Configuration.attributesNames.get(i), 0);
+			putAttr(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
 		}
 		for (int i = 0 ; i < civ.getStartingCognitons().size() ; i++) {
 			this.getEsprit().addCogniton(civ.getStartingCognitons().get(i));

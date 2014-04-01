@@ -17,7 +17,7 @@ public class ArbreActionsRenderer  extends DefaultTreeCellRenderer{
 	        super.getTreeCellRendererComponent(tree, value,
 	        selected, expanded, leaf, row, hasFocus);
 
-	        if (((NodeArbreActions) value).isRoot()){
+	        if (!((NodeArbreActions) value).isRoot()){
 			    this.setText(((NodeArbreActions) value).getAction().toString());
 			    this.setIcon(((NodeArbreActions) value).getAction().getIcon());
 			   
@@ -46,17 +46,17 @@ public class ArbreActionsRenderer  extends DefaultTreeCellRenderer{
 			    
 			    this.setToolTipText(toolTip);
 
-
+			    if (((NodeArbreActions) value).getAction().isLogical()) {
+				    this.setBackground(Color.gray);
+				    this.setBackgroundNonSelectionColor(Color.gray);
+			    }
+			    
 
 	        }
 		    this.setBackground(tree.getBackground());
 		    this.setBackgroundNonSelectionColor(tree.getBackground());
 
-		    if (((NodeArbreActions) value).getAction().isLogical()) {
-			    this.setBackground(Color.gray);
-			    this.setBackgroundNonSelectionColor(Color.gray);
-		    }
-		    
+
 		    
 
 
