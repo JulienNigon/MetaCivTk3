@@ -86,7 +86,7 @@ public class CivLauncher extends TKLauncher {
 		//this.launchAgent(new ViewerPerformances());
 		//this.launchAgent(new ViewerTableauDeBord());
 		this.launchAgent(new ViewerTabbed());
-	}
+		}
 	
 	public static void main(String[] args) {
 		executeThisLauncher("--popDensity","0");
