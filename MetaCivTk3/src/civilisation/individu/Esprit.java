@@ -445,7 +445,7 @@ public class Esprit {
 	
 	/**
 	 * The agent join a specified restrictive group g and play the role r
-	 * A restrictive group doesn't allow an agent to be part of an other group with the same structural organization,
+	 * Join restrictive group doesn't allow an agent to be part of an other group with the same structural organization,
 	 * or to play two different roles in the same group
 	 */
 	public void joinRestrictiveGroup(Group g , String r) {
