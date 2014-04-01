@@ -28,7 +28,7 @@ import civilisation.annotations.*;
 
 public class Configuration {
 
-	public static String versionNumber = "1.00";
+	public static String versionNumber = "1.01";
 	public static String versionName = "Baba Yetu";
 	
 	/*Attributes*/
