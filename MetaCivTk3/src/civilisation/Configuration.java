@@ -21,7 +21,7 @@ import civilisation.annotations.*;
 /** 
  * Contain all major data for running the simulation
  * @author DTEAM
- * @version 1.0 - 2/2013
+ * @version 1.01 - 2/2013
 */
 
 

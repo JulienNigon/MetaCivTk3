@@ -230,8 +230,8 @@ public class Initialiseur {
 		
 
        	/*Preparation d'un jeu d'actions, pour pouvoir facilement les manipuler dans le reste du programme*/
-
-       	Class action;
+		loadActions();
+     /*  	Class action;
        	Configuration.actions = new ArrayList<Action>();
        	System.out.println(Configuration.pathToRessources + "../actions");
 		File[] sourcesActions = new File(Configuration.pathToRessources + "/../actions").listFiles();
@@ -249,7 +249,7 @@ public class Initialiseur {
 					e.printStackTrace();
 				}
 		    }
-		}
+		}*/
 		
 		
 		/*On transmet les informations a la classe de configuration*/
@@ -513,6 +513,63 @@ public class Initialiseur {
    	}*/
 	}
 	
+	private void loadActions() // charge toutes les actions présente dans le dossier actions
+	{
+		System.out.println("Loading Actions :");
+		File folder = new File(Configuration.pathToRessources+"/actions");
+		Configuration.actions = new ArrayList<Action>();
+		try
+		{
+			URL fileURL = folder.toURI().toURL();
+			URL urls [] = { fileURL};  
+			URLClassLoader ucl = new URLClassLoader(urls);  // chargeur de classe qui pointe dans dehors du  jar/dossier "bin"
+				
+			loadActionsRecursif(ucl, folder, "");
+		}
+		catch (MalformedURLException e1)
+		{
+			e1.printStackTrace();
+		}
+	}
+	
+	
+	private void loadActionsRecursif(URLClassLoader loader,File folder,String path) // appel recursif sur tout les dossiers fils
+	{
+		System.out.println("Dossier : " + folder.getName());
+		File[] files = folder.listFiles();
+		for (File f : files)
+		{
+			if (f.isDirectory())
+			{
+				loadActionsRecursif(loader,f, path+f.getName()+".");
+			}
+			else
+			{
+				try
+				{
+					Class<?> c = loader.loadClass(path+f.getName().substring(0, f.getName().length()-6)); // TODO peut être a modifier le   "substring(0, f.getName().length()-6)"  qui correspond au .class 
+					if (Action.class.isAssignableFrom(c))
+					{
+						Action action = (Action) c.newInstance();
+						Configuration.actions.add(action);
+						System.out.println("\tAction loaded : "+action.getSimpleName());
+					}
+				}
+				catch (ClassNotFoundException e)
+				{
+					e.printStackTrace();
+				}
+				catch (InstantiationException e)
+				{
+					e.printStackTrace();
+				}
+				catch (IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 	
 

@@ -30,10 +30,16 @@ public abstract class Action {
 		String nom = "civilisation.individu.plan.action." + s;
 		//System.out.println("nom : " + nom);
 
-		Class c;
+		Class c = null;
 		Action action;
-		try {
-			c = Class.forName(nom);
+		try // un catch sera a supprimer a cause du forName supprimé
+		{
+			for (Action a : Configuration.actions)
+				if (a.getName().equals(nom))
+				{
+					c = a.getClass();
+					break;
+				}
 			Constructor constructor  = null;
 			
 			Object[] valeurs = new Object[]{};
@@ -45,9 +51,6 @@ public abstract class Action {
 			action.parametrer(options);
 			return action;
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

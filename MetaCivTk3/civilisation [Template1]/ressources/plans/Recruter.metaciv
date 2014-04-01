@@ -1,0 +1,7 @@
+Nom : Recruter
+Birth : false
+Self : false
+Action : A_Rentrer
+Action : L_Repeat,n(Integer 10)
+	Action : A_HireForRole,GroupToCreate(GroupAndRole GroupeDeTest:Membre)
+Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer 40)

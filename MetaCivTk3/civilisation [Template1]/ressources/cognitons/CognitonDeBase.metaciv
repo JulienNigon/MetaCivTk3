@@ -1,0 +1,20 @@
+Nom : CognitonDeBase
+Description : Un nouveau cogniton
+Type : BELIEF
+StartChance : 100
+Initial : 1
+Permet : Vagabonder
+Permet : CueillirDesBaies
+Permet : Chasser
+Permet : EleverUnEnfant
+Permet : Fonder_une_ville
+Influence : CueillirDesBaies,6
+Influence : Vagabonder,1
+Influence : Chasser,4
+Hue0 : 0
+Hue1 : 0
+Hue2 : 0
+Hue3 : 0
+Hue4 : 0
+Hue5 : 0
+Hue6 : 0

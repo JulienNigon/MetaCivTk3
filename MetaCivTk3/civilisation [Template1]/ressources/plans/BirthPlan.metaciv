@@ -1,0 +1,5 @@
+Nom : BirthPlan
+Birth : true
+Self : false
+Action : A_ChangeAttribute,Changed attribute(Attribute StockDeGibier),n(Integer -100)
+Action : A_ChangeAttribute,Changed attribute(Attribute StockDeCereale),n(Integer -100)

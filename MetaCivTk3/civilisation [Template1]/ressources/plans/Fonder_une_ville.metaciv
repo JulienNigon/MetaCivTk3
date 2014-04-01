@@ -1,0 +1,5 @@
+Nom : Fonder_une_ville
+Birth : false
+Self : false
+Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer 40)
+Action : A_FonderUneVille
