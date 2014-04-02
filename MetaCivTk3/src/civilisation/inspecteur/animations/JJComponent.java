@@ -99,6 +99,7 @@ public class JJComponent extends JComponent{
 	}
 
 	public void setXx(double xx) {
+		parent.updatePreferredSize(this);
 		this.xx = xx;
 		this.setLocation((int)xx, (int)yy);
 
@@ -109,6 +110,7 @@ public class JJComponent extends JComponent{
 	}
 
 	public void setYy(double yy) {
+		parent.updatePreferredSize(this);
 		this.yy = yy;
 		this.setLocation((int)xx, (int)yy);
 
@@ -138,6 +140,7 @@ public class JJComponent extends JComponent{
 		return (int) yy;
 	}
 	public void setW(double w) {
+		parent.updatePreferredSize(this);
 		this.w = w;
 	}
 
@@ -146,6 +149,7 @@ public class JJComponent extends JComponent{
 	}
 
 	public void setH(double h) {
+		parent.updatePreferredSize(this);
 		this.h = h;
 	}
 

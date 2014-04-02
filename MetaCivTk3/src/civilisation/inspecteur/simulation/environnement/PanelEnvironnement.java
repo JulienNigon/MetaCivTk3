@@ -62,7 +62,7 @@ public class PanelEnvironnement extends JJPanel{
 				carte.get(i).remove(carte.get(i).size()-1);
 			}
 			while(carte.get(i).size() < largeur){
-				carte.get(i).add(new PseudoPatch(terrainParDefaut,carte.get(i).size() - 1,i));
+				carte.get(i).add(new PseudoPatch(terrainParDefaut,carte.get(i).size(),i));
 			}
 		}
 		
@@ -150,6 +150,14 @@ public class PanelEnvironnement extends JJPanel{
 
 		}
 		return t;
+	}
+	
+	public void unmarkAllPatch() {
+		for (int i = 0; i < this.getCarte().size()  ; i++){
+			for (int j = 0; j < this.getCarte().get(i).size()  ; j++){
+				getCarte().get(i).get(j).setMark(false);;
+			}
+		}	
 	}
 	
 	public ArrayList<ArrayList<PseudoPatch>> getCarte() {

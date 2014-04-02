@@ -12,6 +12,7 @@ public class PseudoPatch {
 
 	Terrain terrain;
 	int x , y;
+	boolean mark = false;
 	
 	public PseudoPatch(Terrain terrain, int x, int y){
 		this.terrain = terrain;
@@ -46,6 +47,16 @@ public class PseudoPatch {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+
+	public boolean isMark() {
+		return mark;
+	}
+
+
+	public void setMark(boolean mark) {
+		this.mark = mark;
 	}
 	
 	

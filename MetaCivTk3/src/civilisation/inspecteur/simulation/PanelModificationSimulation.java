@@ -1,11 +1,13 @@
 package civilisation.inspecteur.simulation;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
@@ -348,7 +350,7 @@ public class PanelModificationSimulation extends JPanel{
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
-		panelCentral.add(panelEnvironnement, BorderLayout.CENTER);
+		panelCentral.add(new JScrollPane(panelEnvironnement,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);
 		panelCentral.add(toolBarEnvironnement, BorderLayout.NORTH);
 
 		
@@ -379,7 +381,7 @@ public class PanelModificationSimulation extends JPanel{
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
-		panelCentral.add(panelStructureCognitive, BorderLayout.CENTER);
+		panelCentral.add(new JScrollPane(panelStructureCognitive,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);		
 		panelCentral.add(toolBarStructureCognitive, BorderLayout.NORTH);
 
 		
@@ -529,7 +531,7 @@ public class PanelModificationSimulation extends JPanel{
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
-		panelCentral.add(panelGroupManager, BorderLayout.CENTER);
+		panelCentral.add(new JScrollPane(panelGroupManager,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);		
 		panelCentral.add(toolBarGroupManager, BorderLayout.NORTH);
 
 		

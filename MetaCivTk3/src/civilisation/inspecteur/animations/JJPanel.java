@@ -1,6 +1,7 @@
 package civilisation.inspecteur.animations;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,6 +14,9 @@ public class JJPanel extends JPanel implements ActionListener{
 	int elementsAnimes = 0;
 	int delay = 15;
 	Timer timer;
+	int sizeX = 0;
+	int sizeY = 0;
+	JJComponent maxX, maxY;
 	
 	public JJPanel(){
 		super();
@@ -47,6 +51,11 @@ public class JJPanel extends JPanel implements ActionListener{
 		}
 		
 	
+	public Dimension getPreferredSize() {
+		//System.out.println("getPreferredSize" + this.toString());
+		return super.getPreferredSize();
+	}
+	
 	/*
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -76,6 +85,7 @@ public class JJPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		animate();
 		repaint();
+		//this.setPreferredSize(getMaximumSize());
 		revalidate();
 		
 	}
@@ -95,7 +105,41 @@ public class JJPanel extends JPanel implements ActionListener{
 		timer.setDelay(delay);
 	}
 	
+	public void updatePreferredSize(JJComponent compo) {
+		if (compo.getXx() + compo.getW() > sizeX) {
+			sizeX = (int) (compo.getXx() + compo.getW());
+			this.setPreferredSize(new Dimension(sizeX,sizeY));
+			maxX = compo;
+		}
+		if (compo.getYy() + compo.getH() > sizeY) {
+			sizeY = (int) (compo.getYy() + compo.getH());
+			this.setPreferredSize(new Dimension(sizeX,sizeY));
+			maxY = compo;
+		}
+		if (compo == maxX && compo.getXx() + compo.getW() < sizeX) {
+			sizeX = (int) (compo.getXx() + compo.getW());
+	        Component[] components = this.getComponents();
+	        int max = this.getComponentCount();
+	        for (int i = 0; i < max ; i++){
+	        	if (components[i] instanceof JJComponent){
+		        	this.updatePreferredSize((JJComponent) components[i]);
+	        		}
+	        	}
+	        }
+		
+	if (compo == maxY && compo.getYy() + compo.getH() < sizeY) {
+		sizeY = (int) (compo.getYy() + compo.getH());
+        Component[] components = this.getComponents();
+        int max = this.getComponentCount();
+        for (int i = 0; i < max ; i++){
+        	if (components[i] instanceof JJComponent){
+	        	this.updatePreferredSize((JJComponent) components[i]);
+        		}
+        	}
+        }
 	
+	
+	}
 
 
 

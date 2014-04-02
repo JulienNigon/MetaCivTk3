@@ -1,12 +1,18 @@
 package civilisation.inspecteur.simulation.environnement;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.Stack;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -131,35 +137,48 @@ public class GCarte extends JJComponent{
 	}
 
 	
-	//TODO La peinture est completement _ revoir : r_cursivit_ trop longue...
+
 	public void peindre(MouseEvent e) {
-		System.out.println("!!!En cours de d_veloppement!!!");
 
     	int taille = panelEnvironnement.getTaillePseudoPatch();
+		int x = (int)(e.getX()/(double)taille);
+		int y = (int)(e.getY()/(double)taille);
 		Terrain terrain = (Terrain) panelEnvironnement.getPanelPrincipal().getPanelTerrains().getListeTerrains().getSelectedValue();
-		if (terrain != null){ /*On v_rifie qu'un terrain est s_lectionn_*/
-			int x = (int)(e.getX()/(double)taille);
-			int y = (int)(e.getY()/(double)taille);
-			peintureDynamique(x , y ,panelEnvironnement.getCarte().get(y).get(x) , terrain, panelEnvironnement.getCarte().get(y).get(x).getTerrain());
+		Terrain ref = panelEnvironnement.getCarte().get(y).get(x).getTerrain();
+		if (terrain != null){
+
+			Stack<PseudoPatch> patchList = new Stack<PseudoPatch>();
+			patchList.add(panelEnvironnement.getCarte().get(y).get(x));
+			panelEnvironnement.getCarte().get(y).get(x).setMark(true);
+			
+			while (!patchList.isEmpty()) {
+				peintureDynamique(patchList, terrain, ref);
+			}
 		}
 		else{
 			System.out.println("Aucun terrain s_lectionn_!");
 		}
+		panelEnvironnement.unmarkAllPatch();
 		dessinerBufferImage();		
 	}
 	
-	private void peintureDynamique(int x , int y, PseudoPatch pp , Terrain t, Terrain reference){
+	private void peintureDynamique(Stack<PseudoPatch> patchList, Terrain t, Terrain reference){
+		PseudoPatch pp = patchList.pop();
 		pp.setTerrain(t);
+		int x = pp.getX();
+		int y = pp.getY();
+		
 		for (int i = -1 ; i <= 1 ; i++){
 			for (int j = -1 ; j <= 1; j++){
-				if (x + i > 0 &&
-					y + j > 0 &&
-					x + i < panelEnvironnement.getCarte().get(0).size() &&
-					y + j < panelEnvironnement.getCarte().size()
+				if (x + j >= 0 &&
+					y + i >= 0 &&
+					x + j < panelEnvironnement.getCarte().get(0).size() &&
+					y + i < panelEnvironnement.getCarte().size()
 					){
 					PseudoPatch newPp = panelEnvironnement.getCarte().get(y+i).get(x+j);
-					if (newPp.getTerrain() != reference){
-						peintureDynamique(x+j , y+i ,newPp , t, reference);
+					if (newPp.getTerrain().equals(reference) && !newPp.isMark()){
+						patchList.add(newPp);
+						newPp.setMark(true);
 					}
 				}
 
