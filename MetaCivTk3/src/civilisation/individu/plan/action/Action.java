@@ -27,19 +27,14 @@ public abstract class Action {
 	public static Action actionFactory(String[] options){
 		
 		String s = options[0].split("\\(")[0];
-		String nom = "civilisation.individu.plan.action." + s;
+		String nom = s;
 		//System.out.println("nom : " + nom);
 
 		Class c = null;
 		Action action;
-		try // un catch sera a supprimer a cause du forName supprimé
+		try
 		{
-			for (Action a : Configuration.actions)
-				if (a.getName().equals(nom))
-				{
-					c = a.getClass();
-					break;
-				}
+			c = Configuration.getActionByName(s).getClass();
 			Constructor constructor  = null;
 			
 			Object[] valeurs = new Object[]{};

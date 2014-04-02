@@ -45,18 +45,24 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			File cible = new File(Configuration.pathToRessources + "");
 			
 			/*
-			 * On met de c_t_ les diff_rents environnments
-			 * A ameliorer!
+			 * Save the old environment and actions
 			 */
 			File environnements = new File(Configuration.pathToRessources + "/environnements");
 			if (environnements.isDirectory())
 				System.out.println("--_ Sauvegarde des environnements de simulation");
 				try {
-					copierDossier(environnements , new File(System.getProperty("user.dir")+"/civilisation/environnements"));
+					copierDossier(environnements , new File(System.getProperty("user.dir")+"/TMPenvironnements"));
 				} catch (IOException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
+			File actions = new File(Configuration.pathToRessources + "/actions");
+			if (actions.isDirectory())
+				try {
+					copierDossier(actions , new File(System.getProperty("user.dir")+"/TMPactions"));
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}	
+
 	
 			System.out.println("--_ Suppression de l'ancienne version");
 			supprimerDossier(cible);
@@ -152,10 +158,9 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			}
 
 			/*On remet les environnements en place*/
-			environnements = new File(System.getProperty("user.dir")+"/civilisation/environnements");
+			environnements = new File(System.getProperty("user.dir")+"/TMPenvironnements");
 			System.out.println(environnements.getAbsolutePath() + " "+environnements.isDirectory());
 			if (environnements.isDirectory()){
-				System.out.println("env");
 				try {
 					copierDossier(environnements , new File(Configuration.pathToRessources + "/environnements"));
 				} catch (IOException e1) {
@@ -163,6 +168,17 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 					e1.printStackTrace();
 				}
 				supprimerDossier(environnements);
+			}
+			actions = new File(System.getProperty("user.dir")+"/TMPactions");
+			System.out.println(actions.getAbsolutePath() + " "+actions.isDirectory());
+			if (actions.isDirectory()){
+				try {
+					copierDossier(actions , new File(Configuration.pathToRessources + "/actions"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				supprimerDossier(actions);
 			}
 
 

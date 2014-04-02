@@ -248,7 +248,8 @@ public class Configuration {
 	
 	public static Action getActionByName(String s){
 		for (int i = 0 ; i < actions.size(); i++){
-			if (actions.get(i).getSimpleName().equals(s)){
+			String[] tab = actions.get(i).getSimpleName().split("\\.");
+			if (tab[tab.length - 1].equals(s)){
 				return(actions.get(i));
 			}
 		}
