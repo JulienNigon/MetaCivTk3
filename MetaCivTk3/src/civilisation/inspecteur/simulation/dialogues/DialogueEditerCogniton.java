@@ -43,6 +43,9 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		type = new JComboBox();
 		for (int i = 0; i < TypeDeCogniton.values().length; i++){
 			type.addItem(TypeDeCogniton.values()[i]);
+			if (TypeDeCogniton.values()[i].equals(gCogniton.getCogniton().getType())) {
+				type.setSelectedIndex(i);
+			}
 		}
 		
 		/*Name of the cogniton*/

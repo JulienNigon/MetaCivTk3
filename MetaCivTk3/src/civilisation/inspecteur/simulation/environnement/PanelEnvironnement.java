@@ -7,8 +7,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import civilisation.Civilisation;
+import civilisation.Communaute;
 import civilisation.Configuration;
+import civilisation.Initialiseur;
+import civilisation.TurtleGenerator;
 import civilisation.inspecteur.animations.*;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
 import civilisation.world.Terrain;
@@ -47,7 +52,7 @@ public class PanelEnvironnement extends JJPanel{
 	}
 	
 	
-	protected void redimensionner(){
+	public void redimensionner(){
 
 		Terrain terrainParDefaut = Configuration.terrains.get(0);
 
@@ -68,6 +73,12 @@ public class PanelEnvironnement extends JJPanel{
 		
 	}
 	
+	/**
+	 * Get the patch in the pseudo map at (x,y)
+	 */
+	public PseudoPatch getPatch(int x , int y) {
+		return carte.get(y).get(x);
+	}
 
 	public void sauvegarderEnvironnement(String nomDeSauvegarde){
 		File environnements = new File(Configuration.pathToRessources + "/environnements");
@@ -219,6 +230,65 @@ public class PanelEnvironnement extends JJPanel{
 
 	public void setTypeDessin(int dessin) {
 		this.dessin = dessin;
+	}
+
+
+	public void loadMap(String env) {
+	
+		System.out.println("load map");
+		
+		int x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(Configuration.pathToRessources + "/environnements/"+env))[0]);
+		int y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(Configuration.pathToRessources + "/environnements/"+env))[0]);
+
+		System.out.println(x + " " + y);
+		
+		largeur = x;
+		hauteur = y;
+		redimensionner();
+		
+		HashMap<Integer,Terrain> typeTerrains = new HashMap<Integer,Terrain>();
+		ArrayList<String[]> listeTerrains = Initialiseur.getListeChamp("Terrain", new File(Configuration.pathToRessources + "/environnements/"+env));
+		for (int i = 0; i < listeTerrains.size(); i++){
+			//System.out.println("hash "+i+" "+listeTerrains.get(i)[0]+" "+Configuration.getTerrainByName(listeTerrains.get(i)[0]));
+			Terrain t = Configuration.getTerrainByName(listeTerrains.get(i)[0]);
+			if (t == null) {
+				t = new Terrain("missing_patch_type_"+Configuration.terrains.size());
+				Configuration.terrains.add(t);
+				panelPrincipal.getPanelTerrains().addTerrain(t);
+			}
+			typeTerrains.put(i,t);
+			//System.out.println(typeTerrains.get(i) + typeTerrains.get(i).getCouleur().toString());
+		}
+	       
+		ArrayList<String[]> terrains = Initialiseur.getListeChamp("Rang", new File(Configuration.pathToRessources + "/environnements/"+env));
+		for (int i = 0; i < x; i++){
+			for (int j = 0; j < y; j++){
+				Terrain t = typeTerrains.get(Integer.parseInt(terrains.get(j)[i]));
+				this.getPatch(i,j).setTerrain(t);
+			}
+		}	
+		
+		ArrayList<String[]> listeCivs = Initialiseur.getListeChamp("Civilisation", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
+		for (int i = 0; i < listeCivs.size(); i++){
+	    	   
+			int u = Integer.parseInt(listeCivs.get(i)[1]);
+			int v = Integer.parseInt(listeCivs.get(i)[2]);
+			
+			gCarte.addStartingPosition(Configuration.getCivilisationByName(listeCivs.get(i)[0]), getPatch(u,v));
+
+		}
+	       
+		this.revalidate();
+	}
+
+
+	public GCarte getgCarte() {
+		return gCarte;
+	}
+
+
+	public void setgCarte(GCarte gCarte) {
+		this.gCarte = gCarte;
 	}
     
 	

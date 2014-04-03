@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import civilisation.inspecteur.simulation.dialogues.DialogEditBounds;
 import civilisation.inspecteur.simulation.dialogues.DialogEditPheromon;
+import civilisation.inspecteur.simulation.dialogues.DialogSelectEnvironmentToLoad;
 import civilisation.inspecteur.simulation.dialogues.DialogueEnregistrerEnvironnement;
 import civilisation.inspecteur.simulation.dialogues.DialogueSelectionnerEnvironnementActif;
 
@@ -35,10 +38,14 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 		
 		}
 		else if (index == 1){
-			System.out.println("--Chargement d'un environnement (TODO)--");
+			System.out.println("--Chargement d'un environnement--");
+			DialogSelectEnvironmentToLoad d = new DialogSelectEnvironmentToLoad((Frame) p.getTopLevelAncestor() , true , p);
+			d.setVisible(true);
 		}
 		else if (index == 2){
-			System.out.println("--Reglage des dimensions (TODO)--");
+			System.out.println("--Reglage des dimensions --");
+			DialogEditBounds d = new DialogEditBounds((Frame) p.getTopLevelAncestor() , true , p);
+			d.setVisible(true);
 		}
 		else if (index == 3){
 			System.out.println("--Create environment from png--");
