@@ -250,7 +250,13 @@ public class PanelEnvironnement extends JJPanel{
 		ArrayList<String[]> listeTerrains = Initialiseur.getListeChamp("Terrain", new File(Configuration.pathToRessources + "/environnements/"+env));
 		for (int i = 0; i < listeTerrains.size(); i++){
 			//System.out.println("hash "+i+" "+listeTerrains.get(i)[0]+" "+Configuration.getTerrainByName(listeTerrains.get(i)[0]));
-			typeTerrains.put(i,Configuration.getTerrainByName(listeTerrains.get(i)[0]));
+			Terrain t = Configuration.getTerrainByName(listeTerrains.get(i)[0]);
+			if (t == null) {
+				t = new Terrain("missing_patch_type_"+Configuration.terrains.size());
+				Configuration.terrains.add(t);
+				panelPrincipal.getPanelTerrains().addTerrain(t);
+			}
+			typeTerrains.put(i,t);
 			//System.out.println(typeTerrains.get(i) + typeTerrains.get(i).getCouleur().toString());
 		}
 	       
