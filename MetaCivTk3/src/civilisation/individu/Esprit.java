@@ -381,7 +381,63 @@ public class Esprit {
 		}
 		this.redefinirPoids();
 	}
+	
+	/**
+	 * Set the weight of a cogniton of type t
+	 * @param t
+	 * @param d
+	 */
+	public void setWeightOfCognitonOfType(NCogniton t , Double d)
+	{
+		for (int i = 0 ; i < cognitons.size() ; i++) {
+			if (cognitons.get(i).getCogniton().equals(t)) {
+				cognitons.get(i).setWeigth(d);
+			}
+		}
+		this.redefinirPoids();
+	}
+	/**
+	 * Ajoute un cogniton si il n'est pas présent
+	 * Si il est présent change le poid
+	 * 
+	 */
 
+	public void setCogniton(NCogniton t, Double d)
+	{
+		int i = 0;
+		while(i < cognitons.size() && !cognitons.get(i).getCogniton().equals(t))
+		{
+			i++;
+		}
+		if(i >= cognitons.size())
+		{
+			cognitons.add(new CCogniton(t));
+			t.mettreEnPlace(this , d);
+		}
+		else
+		{
+			this.setWeightOfCognitonOfType(t, d);
+		}
+	}
+	
+	
+	/**
+	 * Ajoute un poid au cogniton si il est présent
+	 * 
+	 */
+	public void AddWeightToCogniton(NCogniton t, Double d)
+	{
+		int i = 0;
+		while(i < cognitons.size() && !cognitons.get(i).getCogniton().equals(t))
+		{
+			i++;
+		}
+		if(i < cognitons.size())
+		{
+			this.changeWeightOfCognitonOfType(t, d);
+		}
+	}
+	
 	/**
 	 * Check if the agent own a specific combination of a group and a role
 	 * @param groupAndRoleToMap

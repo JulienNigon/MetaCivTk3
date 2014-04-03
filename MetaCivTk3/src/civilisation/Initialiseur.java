@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
+import civilisation.effects.Effect;
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.*;
 import civilisation.individu.plan.NPlan;
@@ -210,23 +211,71 @@ public class Initialiseur {
 		}	
 
 		
-		//System.out.println("Chargement des objets d'inventaire");
+		System.out.println("Chargement des effets");
+		Configuration.effets = new ArrayList<Effect>();
+		files = new File(Configuration.pathToRessources + "/effects").listFiles();
+		if(files != null)
+		{
+			
+			for(File file : files)
+			{
+				if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension()))
+				{
+					System.out.println("Chargement de : " + file.getName());
+				    if (file.isFile()) 
+				    {
+				    	nom = Initialiseur.getChamp("Nom" , file)[0];
+				    	Effect e = new Effect();
+				    	e.setName(nom);
+				    	e.setDescription(getChamp("Description" , file)[0]);
+				    	e.setTarget(getChamp("Cible" , file)[0]);
+				    	e.setType(Integer.parseInt(getChamp("Type" , file)[0]));
+				    	e.setVarget(getChamp("NomCible" , file)[0]);
+				    	e.setValue(Double.parseDouble(getChamp("Valeur" , file)[0]));
+				    	if(getChamp("Permanence" , file)[0].equals("true"))
+				    	{
+				    		e.setPermanent(true);
+				    	}
+				    	else
+				    	{
+				    		e.setPermanent(false);
+				    	}
+				    	e.setActivation(Integer.parseInt(getChamp("Activation" , file)[0]));
+	
+				    	Configuration.effets.add(e);
+				    }
+				}	
+			}
+		}
+		
+		System.out.println("Chargement des objets d'inventaire");
 		Configuration.objets = new ArrayList<Objet>();
 		files = new File(Configuration.pathToRessources + "/objets").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			//System.out.println("Chargement de : " + file.getName());
+			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Objet o = new Objet();
 		    	o.setNom(nom);
 		    	o.setDescription(getChamp("Description" , file)[0]);
 		    	o.setIconeFromString(getChamp("Icone", file)[0]);
-
+		    	ArrayList<String[]> eff = Initialiseur.getListeChamp("Effects", file);
+		    	for(int i = 0;i < eff.size();++i)
+		    	{
+		    		Effect ef = Configuration.getEffectByName(eff.get(i)[0]);
+		    		System.out.println(eff.get(i)[0]);
+		    		System.out.println(ef.getName());
+		    		if(ef != null)
+		    		{
+		    			o.addEffect(ef);
+		    		}
+		    	}
 		    	Configuration.objets.add(o);
 		    }
 			}
 		}	
+			
 		
 
        	/*Preparation d'un jeu d'actions, pour pouvoir facilement les manipuler dans le reste du programme*/

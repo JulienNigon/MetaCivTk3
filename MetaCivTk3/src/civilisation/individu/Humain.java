@@ -150,7 +150,7 @@ public class Humain extends Turtle
 	private void initialisation(Civilisation civ, Communaute communaute)
 	{
 		this.civ = civ;
-		inventaire = new NInventaire();
+		inventaire = new NInventaire(this);
 		esprit = new Esprit(this);
 		
 		this.communaute = communaute;

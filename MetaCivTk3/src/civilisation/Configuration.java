@@ -9,6 +9,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import civilisation.effects.Effect;
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
@@ -44,6 +45,9 @@ public class Configuration {
 	
 	/*All cloud cognitons*/
 	public static ArrayList<Culturon> cloudCognitons;
+	
+	/*all effects*/
+	public static ArrayList<Effect> effets;
 	
 	/*All plans*/
 	public static ArrayList<NPlan> plans;
@@ -239,6 +243,7 @@ public class Configuration {
 
 	public static Objet getObjetByName(String s){
 		for (int i = 0 ; i < objets.size(); i++){
+			System.out.println("Objet dans Conf : "+objets.get(i).getNom()+" Objet entrant : "+s);
 			if (objets.get(i).getNom().equals(s)){
 				return(objets.get(i));
 			}
@@ -312,6 +317,32 @@ public class Configuration {
 		}
 	}
 	
+	
+	public static Effect getEffectByName(String name)
+	{
+		int i = 0;
+		if(effets.size()  > 0)
+		{
+			while(i < effets.size() && !effets.get(i).getName().equals(name))
+			{
+				i++;
+				
+			}
+			if(i < effets.size())
+			{
+				return effets.get(i);
+			}
+			else
+			{
+				return null;
+			}
+		}
+		else
+		{
+			return null;
+		}
+		
+	}
 	
 
 }

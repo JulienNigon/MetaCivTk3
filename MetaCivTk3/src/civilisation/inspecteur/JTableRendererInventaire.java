@@ -24,7 +24,7 @@ public class JTableRendererInventaire extends DefaultTableCellRenderer {
 			if (o != null)
 			{
 				setToolTipText((o.toString()));
-				this.setValue((o.toString()));
+				this.setValue(o.getNom());
 
 				if (o.getIcone() != null)
 			    {

@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import civilisation.Configuration;
 
 /** 
@@ -113,6 +114,13 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			for (int i = 0; i < Configuration.cloudCognitons.size();i++){
 				Configuration.cloudCognitons.get(i).enregistrer(cloudCognitons);
 			}
+			
+			System.out.println("--_ Enregistrement des Effets");
+			File effects = new File(Configuration.pathToRessources + "/effects");
+			effects.mkdir();
+			for (int i = 0; i < Configuration.effets.size();i++){
+				Configuration.effets.get(i).enregistrer(effects);
+			}
 
 			System.out.println("--_ Enregistrement des objets");
 			File objets = new File(Configuration.pathToRessources + "/objets");
@@ -136,7 +144,7 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 				Configuration.plans.get(i).enregistrer(plans);
 			}			
 			
-			System.out.println("--_ Enregistrement des terrains");
+				System.out.println("--_ Enregistrement des terrains");
 			File terrains = new File(Configuration.pathToRessources + "/terrains");
 			terrains.mkdir();
 			for (int i = 0; i < Configuration.terrains.size();i++){

@@ -2,30 +2,31 @@ package civilisation.individu.plan.action;
 
 import java.util.ArrayList;
 
+import civilisation.Configuration;
 import civilisation.individu.Humain;
 import civilisation.inventaire.Objet;
 
 public class A_GetItem extends Action{
 
-	Objet obj;
+	Objet objet;
+	int variation;
 	
 	@Override
 	public Action effectuer(Humain h) {
-
-		System.out.println(obj.getNom()); //TODO
+		h.getInventaire().addObjets(objet, variation);
 		return nextAction;
 	}
 
 	@Override
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
-		
-		if (option.getParametres().get(0).getClass().equals(Objet.class)){
-			obj = (Objet) option.getParametres().get(0);
-		}
-		else
-		{
-			System.out.println("Mauvaise initialisation d'une action!");
+
+		if (option.getParametres().get(0).getClass() == Objet.class) {
+			objet = (Objet) option.getParametres().get(0);
+			System.out.println(objet);
+		} else if (option.getParametres().get(0).getClass() == Integer.class) {
+			variation = (Integer) option.getParametres().get(0);
+			System.out.println(variation);
 		}
 
 	}
@@ -40,10 +41,15 @@ public class A_GetItem extends Action{
 		
 		if (schemaParametres == null){
 			schemaParametres = new ArrayList<String[]>();
-			String[] objet = {"**Objet**" , "ObjetGagne"};
-			schemaParametres.add(objet);
+			String[] attrName = {"**Objet**" , "Changed object"};
+			String[] n = {"**Integer**" , "n", "-10" , "10" , "1"};
+
+			schemaParametres.add(attrName);
+			schemaParametres.add(n);
+
 		}
 		return schemaParametres;	
 	}
+	
 	
 }

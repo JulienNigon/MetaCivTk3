@@ -24,7 +24,7 @@ public class Batiment {
 	public Batiment(Humain possesseur , Communaute c)
 	{
 		this.possesseur = possesseur;
-		inventaire = new NInventaire();
+		inventaire = new NInventaire(possesseur);
 		termine = false;
 		this.c = c;
 		if (possesseur != null)

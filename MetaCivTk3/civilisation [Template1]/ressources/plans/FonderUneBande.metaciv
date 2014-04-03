@@ -1,4 +1,0 @@
-Nom : FonderUneBande
-Birth : false
-Self : false
-Action : A_CreateGroup,GroupToCreate(GroupAndRole GroupeDeTest:Chef)

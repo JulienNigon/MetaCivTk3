@@ -1,4 +1,0 @@
-Nom : AutoPlan
-Birth : false
-Self : true
-Action : A_ChangeAttribute,Changed attribute(Attribute Vie),n(Integer -2)

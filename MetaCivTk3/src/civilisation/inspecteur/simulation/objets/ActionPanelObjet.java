@@ -14,6 +14,15 @@ public class ActionPanelObjet implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//System.out.println(e.getActionCommand());
+		if(e.getActionCommand() == "addEffect")
+		{
+			p.addEffects();
+		}
+		else
+		{
+			
+		}
 		p.performChange();
 	}
 

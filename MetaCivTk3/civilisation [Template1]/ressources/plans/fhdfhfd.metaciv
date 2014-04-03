@@ -1,9 +1,0 @@
-Nom : fhdfhfd
-Birth : false
-Self : false
-Action : A_AvanceAleatoirement
-Action : A_AvanceAleatoirement
-Action : L_Repeat
-	Action : A_AddCogniton,Cogniton(Cogniton Affame)
-	Action : A_Collect,PheroToCollect(Pheromone Baies),n(Double -1.8790524691780774E-14)
-	Action : A_Birth
