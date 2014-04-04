@@ -20,7 +20,10 @@ public class A_Rentrer extends Action{
 			{
 				h.face(cible);
 				h.getChemin().addAll(AStar(h,cible.getPatch()));
-
+				if(h.getChemin().isEmpty())
+				{
+					h.wiggle();
+				}
 			}
 			
 			if(h.getChemin() != null && !h.getChemin().isEmpty())

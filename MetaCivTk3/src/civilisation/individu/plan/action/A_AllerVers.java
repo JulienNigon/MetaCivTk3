@@ -21,6 +21,10 @@ public class A_AllerVers extends Action{
 			{
 				h.face(cible);
 				h.getChemin().addAll(AStar(h,cible));
+				if(h.getChemin().isEmpty())
+				{
+					h.wiggle();
+				}
 			/*	for(int i = 0; i < h.getChemin().size();i++)
 				{
 					h.getChemin().get(i).color = Color.red;
