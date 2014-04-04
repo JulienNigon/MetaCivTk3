@@ -46,14 +46,14 @@ public class PanelAttributes extends JPanel{
 	public void performChange() {
 		
 		Configuration.attributesNames = new ArrayList<String>();
-		Configuration.attributesStartingValues = new ArrayList<Integer>();
+		Configuration.attributesStartingValues = new ArrayList<Double>();
 		
 		for (int i = 0 ; i < attributesName.size() ; i++) {
 
 			
 			if (!attributesName.get(i).getText().equals("") ) {
 				Configuration.attributesNames.add(attributesName.get(i).getText());
-				Configuration.attributesStartingValues.add((Integer) attributesStartingValue.get(i).getValue());
+				Configuration.attributesStartingValues.add((Double) attributesStartingValue.get(i).getValue());
 			}
 			
 			//System.out.println(Configuration.attributesNames.get(i));
@@ -82,9 +82,8 @@ public class PanelAttributes extends JPanel{
 			attributesName.get(i).setText(Configuration.attributesNames.get(i));
 			attributesName.get(i).addActionListener(new ActionPanelAttributes(this));
 			this.add(attributesName.get(i),i,0);
-			
 			/*Create JComboBox to select starting value*/
-			SpinnerModel spinModel = new SpinnerNumberModel((int)Configuration.attributesStartingValues.get(i), 0,1000,1);
+			SpinnerModel spinModel = new SpinnerNumberModel((Double)Configuration.attributesStartingValues.get(i), (Double)0.0,(Double)1000.0,(Double)0.1);
 			JSpinner spin = new JSpinner(spinModel);
 			attributesStartingValue.add(spin);
 			this.add(spin,i,1);
@@ -95,7 +94,7 @@ public class PanelAttributes extends JPanel{
 		attributesName.get(Configuration.attributesNames.size()).addActionListener(new ActionPanelAttributes(this));
 		this.add(attributesName.get(Configuration.attributesNames.size()),Configuration.attributesNames.size(),0);
 
-		SpinnerModel spinModel = new SpinnerNumberModel(0, 0,1000,1);
+		SpinnerModel spinModel = new SpinnerNumberModel((Double)0.0, (Double)0.0,(Double)1000.0,(Double)0.1);
 		JSpinner spin = new JSpinner(spinModel);
 		attributesStartingValue.add(spin);
 		this.add(spin, Configuration.attributesNames.size(),1);

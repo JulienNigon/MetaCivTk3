@@ -34,7 +34,7 @@ public class Configuration {
 	
 	/*Attributes*/
 	public static ArrayList<String> attributesNames;
-	public static ArrayList<Integer> attributesStartingValues;
+	public static ArrayList<Double> attributesStartingValues;
 	public static HashMap<String,ArrayList<Object[]>> attributesTrigerringValues;
 	
 	/*All starting cognitons*/
