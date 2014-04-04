@@ -12,7 +12,7 @@ import civilisation.individu.Humain;
 public class Effect {
 
 	private String target; // la cible est un attribut ou un cogniton ?
-	private String Varget; // nom de l'attribut ou du cogniton ciblé
+	private String Varget; // nom de l'attribut ou du cogniton ciblï¿½
 	private Double value; // valeur de la modification
 	private String name;
 	private boolean permanent;
@@ -47,11 +47,11 @@ public class Effect {
 		{
 			switch(type){
 			case 0 :	//add or replace
-				h.getAttr().put(Varget, value.intValue());
+				h.getAttr().put(Varget, value);
 				break;
 				
 			case 1 :	//modify
-				int attr = h.getAttr().get(Varget);
+				double attr = h.getAttr().get(Varget);
 				h.getAttr().put(Varget, attr + value.intValue());
 				break;
 			
@@ -88,7 +88,7 @@ public class Effect {
 		{
 			if(type == 1)
 			{
-				int attr = h.getAttr().get(Varget);
+				double attr = h.getAttr().get(Varget);
 				h.getAttr().put(Varget, attr - value.intValue());
 			}
 		}

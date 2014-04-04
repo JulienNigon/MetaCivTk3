@@ -243,7 +243,7 @@ public class PanelStructureCognitive extends JJPanel{
 			Object[] trigInfo = c.getCogniton().getTriggeringAttributes().get(i);
 			GTrigger newGt = new GTrigger(this,initXTrigger,c.getYy());
 			newGt.setAttributesIndex(Configuration.getAttributeIndexByName((String)trigInfo[0]));
-			newGt.setValue((Integer)trigInfo[1]);
+			newGt.setValue((Double)trigInfo[1]);
 			newGt.setComparator((Integer)trigInfo[2]);
 			newGt.setgCogniton(c);
 			gTriggers.add(newGt);

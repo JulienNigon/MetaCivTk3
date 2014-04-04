@@ -75,7 +75,7 @@ public class Humain extends Turtle
 	private static ArrayList<HumainListener> listeners = new ArrayList<HumainListener>();
 	
 	HashMap<String,Amenagement> buildings = new HashMap<String , Amenagement>();
-	HashMap<String,Integer> attributes;
+	HashMap<String,Double> attributes;
 
 	/* For map drawing */
 	public boolean isSelected = false;
@@ -158,9 +158,9 @@ public class Humain extends Turtle
 		amenagements = new ArrayList<Amenagement>();
 		enfants = new ArrayList<Humain>();
 
-		attributes = new HashMap<String,Integer>();
+		attributes = new HashMap<String,Double>();
 		for (int i = 0; i < Configuration.attributesNames.size(); i++){
-			attributes.put(Configuration.attributesNames.get(i), 0);
+			attributes.put(Configuration.attributesNames.get(i), 0.0);
 			putAttr(Configuration.attributesNames.get(i), Configuration.attributesStartingValues.get(i));
 		}
 		for (int i = 0 ; i < civ.getStartingCognitons().size() ; i++) {
@@ -1359,20 +1359,20 @@ public class Humain extends Turtle
 		return getCiv().getIndexCiv() == getCiv().getIndexCiv();
 	 }
 
-	public HashMap<String, Integer> getAttr() {
+	public HashMap<String, Double> getAttr() {
 		return attributes;
 	}
 
-	public void setAttr(HashMap<String, Integer> attributes) {
+	public void setAttr(HashMap<String, Double> attributes) {
 		this.attributes = attributes;
 	}
 	
-	public void putAttr(String s , Integer d) {
+	public void putAttr(String s , Double d) {
 		ArrayList<Object[]> triggers = Configuration.attributesTrigerringValues.get(s);
 		if (triggers != null) {
 			for (int i = 0 ; i < triggers.size(); i++) {
 				//System.out.println("TRIGGER : " + ((NCogniton)triggers.get(i)[0]).getNom() + " " + triggers.get(i)[1] + " " + triggers.get(i)[2]);
-				Integer v = (Integer) triggers.get(i)[1];
+				Double v = (Double) triggers.get(i)[1];
 				//System.out.println(v +" "+ d + " " + attributes.get(s));
 				
 				//new value > old value

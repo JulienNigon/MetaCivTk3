@@ -12,7 +12,7 @@ public class GTrigger extends GItemCognitif{
 	static final int radius = 30;
 	static final int border = 4;
 	int attributesIndex;
-	int value;
+	double value;
 	int comparator;
 	GCogniton gCogniton;
 	
@@ -64,12 +64,12 @@ public class GTrigger extends GItemCognitif{
 	}
 
 
-	public int getValue() {
+	public double getValue() {
 		return value;
 	}
 
 
-	public void setValue(int value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 

@@ -51,14 +51,14 @@ public class Initialiseur {
 		//System.out.println("Attributes loading...");
 		File[] filesAttributes = new File(Configuration.pathToRessources + "/attributes").listFiles();
 		ArrayList<String> attributesNames = new ArrayList<String>();
-		ArrayList<Integer> attributesStartingValues = new ArrayList<Integer>();
+		ArrayList<Double> attributesStartingValues = new ArrayList<Double>();
 		for (File file : filesAttributes) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
 				//System.out.println("Load attribute : " + file.getName());
 			    if (file.isFile()) {
 			    	String name = getChamp("Name" , file)[0];
 			    	attributesNames.add(name);
-			    	Integer startingValue = Integer.parseInt(getChamp("Starting value" , file)[0]);
+			    	Double startingValue = Double.parseDouble(getChamp("Starting value" , file)[0]);
 			    	attributesStartingValues.add(startingValue);
 			    }
 			}
@@ -163,16 +163,18 @@ public class Initialiseur {
 		       	for(int i = 0 ; i < triggers.size(); i++) {
 		       		Object[] trig = new Object[3];
 		       		trig[0] = cogni;
-		       		trig[1] = Integer.parseInt(triggers.get(i)[1]);
+		       		trig[1] = Double.parseDouble(triggers.get(i)[1]);
 		       		trig[2] = Integer.parseInt(triggers.get(i)[2]);
 		       		////System.out.println(trig[0] + " " + trig[1] + " " + trig[2]);
-		       		if(Configuration.attributesTrigerringValues.get(triggers.get(i)[0]) == null) { Configuration.attributesTrigerringValues.put(triggers.get(i)[0] , new ArrayList<Object[]>()); }
+		       		if(Configuration.attributesTrigerringValues.get(triggers.get(i)[0]) == null) { 
+		       			Configuration.attributesTrigerringValues.put(triggers.get(i)[0] , new ArrayList<Object[]>());
+		       			}
 		       		Configuration.attributesTrigerringValues.get(triggers.get(i)[0]).add(trig);
 		       		
 		       		//Now we add trigger to cognitons to keep the model easy to understand
 		       		trig = new Object[3];
 		       		trig[0] = triggers.get(i)[0];
-		       		trig[1] = Integer.parseInt(triggers.get(i)[1]);
+		       		trig[1] = Double.parseDouble(triggers.get(i)[1]);
 		       		trig[2] = Integer.parseInt(triggers.get(i)[2]);
 		       		cogni.getTriggeringAttributes().add(trig);
 		       		
