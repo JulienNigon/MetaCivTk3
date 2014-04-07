@@ -13,6 +13,7 @@ import civilisation.effects.Effect;
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.decisionMaking.DecisionMaker;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inventaire.Objet;
@@ -37,6 +38,10 @@ public class Configuration {
 	public static ArrayList<Double> attributesStartingValues;
 	public static HashMap<String,ArrayList<Object[]>> attributesTrigerringValues;
 	
+	/*Decision maker*/
+	public static DecisionMaker decisionMaker;
+	public static ArrayList<DecisionMaker> allDecisionMakers;
+
 	/*All starting cognitons*/
 	public static ArrayList<NCogniton> cognitonsDeBase;
 	
@@ -100,50 +105,7 @@ public class Configuration {
 	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1)
 	public static Double facteurApparitionDeNouveauxTraits = 1.0;
 	
-	
-	
-	/*Tableau des traits disponibles ___ la naissance*/
-	public static String traitsDisponibles[] = {
-		"civilisation.individu.cognitons.traits.TRAIT_Timide" ,
-		"civilisation.individu.cognitons.traits.TRAIT_Extraverti" ,
-		"civilisation.individu.cognitons.traits.TRAIT_Agressif",
-		"civilisation.individu.cognitons.traits.TRAIT_Cupide"
-	};
 
-	public static Integer tauxApparitionTraits[] = {
-		10 ,
-		10 ,
-		15,
-		15
-	};
-	
-	/*Modificateur des Humains*/
-	@ParametrisationInteger(min=5, max=200, toolTip = "Nombre de ticks avant l'accouchement.")
-	public static Integer tempsDeGestation = 30;
-	
-	/*Tableau des memes debloques par l'influence*/
-	public static String memesInfluence[] = {
-		"civilisation.individu.cognitons.memes.MEM_InfluenceLimitee" ,
-
-	};
-	
-
-	public static Integer seuilApparitionMemeInfluence[] = {
-		5 ,
-
-	};
-	
-	/*Taille minimale pour la formation d'un groupe*/
-	@ParametrisationInteger(min=1, max=40)
-	public static Integer tailleMinimaleGroupe = 10;
-	
-	/*Taille minimale pour la fondation d'une ville*/
-	@ParametrisationInteger(min=1, max=30)
-	public static Integer humainsPourFonderVille = 5;
-	
-	/*Distance minimale entre villes*/
-	@ParametrisationInteger(min=1, max=100)
-	public static Integer distanceEntreVilles = 14;
 	
 	/*Passages minimaux pour une route*/
 	@ParametrisationInteger(min=5, max=500, pas = 5, toolTip = "Nombre de passage d'un agent necessaires pour qu'un chemin soit trace.")

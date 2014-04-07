@@ -19,6 +19,9 @@ import java.util.jar.JarInputStream;
 import civilisation.effects.Effect;
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.*;
+import civilisation.individu.decisionMaking.DecisionMaker;
+import civilisation.individu.decisionMaking.MaxWeightDecisionMaker;
+import civilisation.individu.decisionMaking.WeightedStochasticDecisionMaker;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inventaire.Objet;
@@ -47,6 +50,8 @@ public class Initialiseur {
 
 		String nom;
 		
+
+
 		
 		//System.out.println("Attributes loading...");
 		File[] filesAttributes = new File(Configuration.pathToRessources + "/attributes").listFiles();
@@ -460,6 +465,13 @@ public class Initialiseur {
 	}
 	
 	public static void readParameters() {
+		
+		//Initialize decisions makers
+		ArrayList<DecisionMaker> decisionMakers = new ArrayList<DecisionMaker>();
+		decisionMakers.add(new WeightedStochasticDecisionMaker(null));
+		decisionMakers.add(new MaxWeightDecisionMaker(null));
+		Configuration.allDecisionMakers = decisionMakers;
+		
 		//System.out.println("Reading parameters...");
 		File params = new File(Configuration.pathToRessources + "/parametres"+Configuration.getExtension());
 		if (params.exists()){
@@ -471,7 +483,22 @@ public class Initialiseur {
 	    			Configuration.environnementACharger = s.split("\\.")[0];
 	    		}
 	       	}
-		}    
+	       	String[] str = getChamp("DecisionMaker", params);
+	       	if (str == null) {
+	       		Configuration.decisionMaker = new WeightedStochasticDecisionMaker(null);
+	       	} else {
+	       		for (int i = 0 ; i < Configuration.allDecisionMakers.size() ; i++) {
+	       			if (Configuration.allDecisionMakers.get(i).toString().equals(str[0])) {
+	       				Configuration.decisionMaker = Configuration.allDecisionMakers.get(i);
+	       			}
+	       		}
+	       	}
+		}  
+		
+		//TODO
+		//Configuration.decisionMaker = new WeightedStochasticDecisionMaker(null);
+		//Configuration.decisionMaker = new MaxWeightDecisionMaker(null);
+
 	}
 	
 	
@@ -563,6 +590,7 @@ public class Initialiseur {
    		}
    	}*/
 	}
+
 	
 	private void loadActions() // charge toutes les actions présente dans le dossier actions
 	{

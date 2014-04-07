@@ -16,6 +16,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+
 import civilisation.Configuration;
 import civilisation.inspecteur.simulation.GCogniton;
 import civilisation.inspecteur.simulation.PanelStructureCognitive;
@@ -24,7 +27,7 @@ public class DialogEditTriggeringAttributes extends JDialog implements ActionLis
 	
 	ArrayList<JComboBox> triggeringAttributes;
 	ArrayList<JComboBox> comparator;
-	ArrayList<JComboBox> triggeringValues;
+	ArrayList<JSpinner> triggeringValues;
 
 	GCogniton gCogniton;
     JOptionPane optionPane;
@@ -35,13 +38,15 @@ public class DialogEditTriggeringAttributes extends JDialog implements ActionLis
 		this.gCogniton = gCogniton;
 
 		triggeringAttributes = new ArrayList<JComboBox>();
-		triggeringValues = new ArrayList<JComboBox>();
+		triggeringValues = new ArrayList<JSpinner>();
 		comparator = new ArrayList<JComboBox>();
 
 		
 		for (int i = 0; i < gCogniton.getCogniton().getLiensPlans().size(); i++){
 			JComboBox box = new JComboBox();
 			box.addItem("--NONE--");
+
+
 			for (int j = 0; j < Configuration.attributesNames.size(); j++){
 				box.addItem(Configuration.attributesNames.get(j));
 			//	if (Configuration.plans.get(j).equals(gCogniton.getCogniton().getLiensPlans().get(i).getP())){
@@ -58,12 +63,11 @@ public class DialogEditTriggeringAttributes extends JDialog implements ActionLis
 			box.addItem("< ");  //-2
 			comparator.add(box);
 			
-			box = new JComboBox();
-			for (int j = -100; j <= 100; j++){
-				box.addItem(j);
-			}
+			SpinnerNumberModel spinModel = new SpinnerNumberModel(0.0, -1000, 1000, 0.1);
+			JSpinner spin = new JSpinner(spinModel);
+			
 			//box.setSelectedIndex(gCogniton.getCogniton().getLiensPlans().get(i).getPoids()+20);
-			triggeringValues.add(box);
+			triggeringValues.add(spin);
 		}
 		ajouterBox();
 		
@@ -105,7 +109,7 @@ public class DialogEditTriggeringAttributes extends JDialog implements ActionLis
 						//System.out.println(triggeringAttributes.get(i).getSelectedIndex()-1 +" : "+ Configuration.plans.size());
 						Object[] tab = new Object[3];
 						tab[0] = triggeringAttributes.get(i).getSelectedItem();
-						tab[1] = (Integer) triggeringValues.get(i).getSelectedItem();
+						tab[1] = triggeringValues.get(i).getValue();
 						tab[2] = ((Integer) comparator.get(i).getSelectedIndex() * (-1)) + 2;
 						System.out.println("inde" + tab[2]);
 						gCogniton.getCogniton().getTriggeringAttributes().add(tab);
@@ -157,12 +161,11 @@ public class DialogEditTriggeringAttributes extends JDialog implements ActionLis
 		box.addItem("< ");  //-2
 		comparator.add(box);
 		
-		box = new JComboBox();
-		for (int j = -100; j <= 100; j++){
-			box.addItem(j);
-		}
-		box.setSelectedIndex(0);
-		triggeringValues.add(box);
+		SpinnerNumberModel spinModel = new SpinnerNumberModel(0.0, -1000, 1000, 0.1);
+		JSpinner spin = new JSpinner(spinModel);
+		
+		//box.setSelectedIndex(gCogniton.getCogniton().getLiensPlans().get(i).getPoids()+20);
+		triggeringValues.add(spin);
 	}
 
 	

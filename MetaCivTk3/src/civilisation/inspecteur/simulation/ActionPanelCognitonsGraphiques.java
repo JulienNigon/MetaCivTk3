@@ -79,9 +79,9 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 				else{
 					out.println("Carte : " + Configuration.environnementACharger + Configuration.getExtension());
 				}
+				out.println("DecisionMaker : " + p.getSelectedDecisionMaker());
 				out.close();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -95,7 +95,6 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 					out.println("Starting value : " + Configuration.attributesStartingValues.get(i));	
 					out.close();
 				} catch (IOException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				} 
 			}

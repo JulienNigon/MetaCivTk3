@@ -37,17 +37,17 @@ public class PanelTerrains extends JJPanel{
 		
 		popup = new JPopupMenu("Terrain");
 		
-		JMenuItem editerPhero = new JMenuItem("Editer les pheromones");
+		JMenuItem editerPhero = new JMenuItem("Edit terrain");
 		editerPhero.addActionListener(new ActionsMenuTerrain(this,0));
 		editerPhero.setIcon(new ImageIcon(this.getClass().getResource("../../icones/pencil.png")));
 		popup.add(editerPhero);
 		
-		JMenuItem editerCouleur = new JMenuItem("Changer la couleur");
+		JMenuItem editerCouleur = new JMenuItem("Change colour");
 		editerCouleur.addActionListener(new ActionsMenuTerrain(this,1));
 		editerCouleur.setIcon(new ImageIcon(this.getClass().getResource("../../icones/color--pencil.png")));
 		popup.add(editerCouleur);
 		
-		JMenuItem supprimer = new JMenuItem("Supprimer");
+		JMenuItem supprimer = new JMenuItem("Remove");
 		supprimer.addActionListener(new ActionsMenuTerrain(this,2));
 		supprimer.setIcon(new ImageIcon(this.getClass().getResource("../../icones/cross.png")));
 		popup.add(supprimer);

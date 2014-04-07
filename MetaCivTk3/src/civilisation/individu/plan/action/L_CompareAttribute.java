@@ -20,7 +20,7 @@ public class L_CompareAttribute extends LAction{
 		
 		if (nextAction != null) h.getEsprit().getActions().push(nextAction);
 		Action a;
-		if (comp.compare((double) (h.getAttr().get(attribute)) , d) ) {
+		if (comp.compare((h.getAttr().get(attribute)) , d) ) {
 			a = listeActions.get(0).effectuer(h);
 		} else {
 			a = listeActions.get(1).effectuer(h);

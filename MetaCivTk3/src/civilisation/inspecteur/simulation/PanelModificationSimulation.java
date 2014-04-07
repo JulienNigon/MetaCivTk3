@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
@@ -13,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import civilisation.Configuration;
+import civilisation.individu.decisionMaking.DecisionMaker;
 import civilisation.individu.plan.NPlan;
 import civilisation.inspecteur.simulation.attributes.PanelAttributes;
 import civilisation.inspecteur.simulation.civilisations.ActionsToolBarListeCivilisations;
@@ -61,6 +63,7 @@ public class PanelModificationSimulation extends JPanel{
 	JToolBar toolBarStructureCognitive;
 	JButton boutonAjouterCogniton;
 	JButton boutonAjouterPlan;
+	JComboBox<DecisionMaker> selectDecisionMaker;
 
 	JToolBar toolBarArbreActions;
 	JButton ajouterAction;
@@ -213,7 +216,10 @@ public class PanelModificationSimulation extends JPanel{
 		boutonAjouterPlan = new JButton(iconeAjouterPlan);
 		boutonAjouterPlan.addActionListener(new ActionStructureCognitive(this,1));
 		toolBarStructureCognitive.add(boutonAjouterPlan);
-
+		
+		this.selectDecisionMaker = new JComboBox<DecisionMaker>((DecisionMaker[]) Configuration.allDecisionMakers.toArray(new DecisionMaker[0]));
+		selectDecisionMaker.setSelectedItem(Configuration.decisionMaker);
+		toolBarStructureCognitive.add(selectDecisionMaker);
 		
 		/*Creation de la toolBar pour l'environnement*/
 		toolBarEnvironnement = new JToolBar();
@@ -548,6 +554,9 @@ public class PanelModificationSimulation extends JPanel{
 		this.add(panelEast, BorderLayout.EAST);			
 	}
 	
+	public String getSelectedDecisionMaker() {
+		return selectDecisionMaker.getSelectedItem().toString();
+	}
 
 
 }

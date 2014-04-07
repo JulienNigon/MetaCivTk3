@@ -21,7 +21,7 @@ public class ActionsToolBarTerrains implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (index == 0){
 			System.out.println("--Nouveau terrain--");
-			Terrain t = new Terrain("Nom par defaut");
+			Terrain t = new Terrain("Default_name_"+Configuration.terrains.size());
 			Configuration.terrains.add(t);
 			p.addTerrain(t);
 			
