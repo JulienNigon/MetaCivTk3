@@ -21,6 +21,7 @@ import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.*;
 import civilisation.individu.decisionMaking.DecisionMaker;
 import civilisation.individu.decisionMaking.MaxWeightDecisionMaker;
+import civilisation.individu.decisionMaking.MaxWeightOx2_DecisionMaker;
 import civilisation.individu.decisionMaking.WeightedStochasticDecisionMaker;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
@@ -470,6 +471,7 @@ public class Initialiseur {
 		ArrayList<DecisionMaker> decisionMakers = new ArrayList<DecisionMaker>();
 		decisionMakers.add(new WeightedStochasticDecisionMaker(null));
 		decisionMakers.add(new MaxWeightDecisionMaker(null));
+		decisionMakers.add(new MaxWeightOx2_DecisionMaker(null));
 		Configuration.allDecisionMakers = decisionMakers;
 		
 		//System.out.println("Reading parameters...");
