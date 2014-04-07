@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
@@ -379,7 +380,7 @@ public class PanelModificationSimulation extends JPanel{
 		
 		setPanelButtonAvailable();
 		this.boutonStructureCognitive.setEnabled(false);
-
+		
 
 		if (panelCentral != null){
 			this.remove(panelCentral);
@@ -400,8 +401,10 @@ public class PanelModificationSimulation extends JPanel{
 		panelEast.add(panelArbreActions, BorderLayout.CENTER);
 		panelEast.add(toolBarArbreActions, BorderLayout.NORTH);
 		
-		this.add(panelCentral, BorderLayout.CENTER);
-		this.add(panelEast, BorderLayout.EAST);
+		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelCentral, panelEast);
+		
+		this.add(split, BorderLayout.CENTER);
+
 		
 	}
 	
