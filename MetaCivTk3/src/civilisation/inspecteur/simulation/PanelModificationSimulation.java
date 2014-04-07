@@ -60,6 +60,7 @@ public class PanelModificationSimulation extends JPanel{
 	
 	JPanel panelCentral;
 	JPanel panelEast;
+	JSplitPane splitPane;
 
 	JToolBar toolBarStructureCognitive;
 	JButton boutonAjouterCogniton;
@@ -351,19 +352,14 @@ public class PanelModificationSimulation extends JPanel{
 		setPanelButtonAvailable();
 		this.boutonEnvironnement.setEnabled(false);
 
-		if (panelCentral != null){
-			this.remove(panelCentral);
-		}
+		clearPanel();
+		
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
 		panelCentral.add(new JScrollPane(panelEnvironnement,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);
 		panelCentral.add(toolBarEnvironnement, BorderLayout.NORTH);
 
-		
-		if (panelEast != null){
-			this.remove(panelEast);
-		}
 		panelEast = new JPanel();
 		panelEast.setLayout(new BorderLayout());
 		
@@ -381,29 +377,26 @@ public class PanelModificationSimulation extends JPanel{
 		setPanelButtonAvailable();
 		this.boutonStructureCognitive.setEnabled(false);
 		
-
-		if (panelCentral != null){
-			this.remove(panelCentral);
-		}
+		clearPanel();
+		
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
 		panelCentral.add(new JScrollPane(panelStructureCognitive,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);		
 		panelCentral.add(toolBarStructureCognitive, BorderLayout.NORTH);
 
-		
-		if (panelEast != null){
-			this.remove(panelEast);
-		}
 		panelEast = new JPanel();
 		panelEast.setLayout(new BorderLayout());
 		
 		panelEast.add(panelArbreActions, BorderLayout.CENTER);
 		panelEast.add(toolBarArbreActions, BorderLayout.NORTH);
 		
-		JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelCentral, panelEast);
-		
-		this.add(split, BorderLayout.CENTER);
+		panelCentral.setMinimumSize(new Dimension(0,0));
+		panelEast.setMinimumSize(new Dimension(0,0));
+
+		//splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelCentral, panelEast);
+		this.add(panelCentral, BorderLayout.CENTER);
+		this.add(panelEast, BorderLayout.EAST);
 
 		
 	}
@@ -413,20 +406,14 @@ public class PanelModificationSimulation extends JPanel{
 		
 		setPanelButtonAvailable();
 		this.boutonObjets.setEnabled(false);
-
-		if (panelCentral != null){
-			this.remove(panelCentral);
-		}
+		clearPanel();
+		
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
 		panelCentral.add(panelObjets, BorderLayout.CENTER);
 		panelCentral.add(toolBarObjets, BorderLayout.NORTH);
 
-		
-		if (panelEast != null){
-			this.remove(panelEast);
-		}
 		panelEast = new JPanel();
 		panelEast.setLayout(new BorderLayout());
 		
@@ -441,20 +428,14 @@ public class PanelModificationSimulation extends JPanel{
 		
 		setPanelButtonAvailable();
 		this.boutonCivilisations.setEnabled(false);
-
-		if (panelCentral != null){
-			this.remove(panelCentral);
-		}
+		clearPanel();
+		
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
 		panelCentral.add(panelCivilisations, BorderLayout.CENTER);
 		panelCentral.add(toolBarCivilisations, BorderLayout.NORTH);
 
-		
-		if (panelEast != null){
-			this.remove(panelEast);
-		}
 		panelEast = new JPanel();
 		panelEast.setLayout(new BorderLayout());
 		
@@ -470,17 +451,12 @@ public class PanelModificationSimulation extends JPanel{
 		setPanelButtonAvailable();
 		this.boutonAttribute.setEnabled(false);
 
-		if (panelCentral != null){
-			this.remove(panelCentral);
-		}
+		clearPanel();
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
 		panelCentral.add(panelAttributes, BorderLayout.CENTER);
 
-		if (panelEast != null){
-			this.remove(panelEast);
-		}
 
 		this.add(panelCentral, BorderLayout.CENTER);
 	}
@@ -534,19 +510,14 @@ public class PanelModificationSimulation extends JPanel{
 		setPanelButtonAvailable();
 		this.boutonGroupManager.setEnabled(false);
 
-		if (panelCentral != null){
-			this.remove(panelCentral);
-		}
+		clearPanel();
+
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
 		panelCentral.add(new JScrollPane(panelGroupManager,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);		
 		panelCentral.add(toolBarGroupManager, BorderLayout.NORTH);
 
-		
-		if (panelEast != null){
-			this.remove(panelEast);
-		}
 		panelEast = new JPanel();
 		panelEast.setLayout(new BorderLayout());
 		
@@ -559,6 +530,18 @@ public class PanelModificationSimulation extends JPanel{
 	
 	public String getSelectedDecisionMaker() {
 		return selectDecisionMaker.getSelectedItem().toString();
+	}
+	
+	private void clearPanel() {
+		if (panelCentral != null){
+			this.remove(panelCentral);
+		}
+		if (panelEast != null){
+			this.remove(panelEast);
+		}
+		if (splitPane != null){
+			this.remove(panelEast);
+		}
 	}
 
 
