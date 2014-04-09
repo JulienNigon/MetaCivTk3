@@ -17,8 +17,7 @@ import civilisation.TurtleGenerator;
 
 
 /** 
- * Repr___sente le monde de jeu
- * @author DTEAM
+ * The environment of the MAS
  * @version 1.0 - 2/2013
 */
 
@@ -30,25 +29,7 @@ public class World extends TKEnvironment
 	private static World instance;
 	File carte;
 	
-	static final Color ColorMontagnes = new Color(170,150,150);
-	static final Color ColorCollines = new Color(150,130,130);
-	static final Color ColorRivieres = new Color(10,10,240);
-	static final Color ColorOcean = new Color(10,10,140);
-	static final Color ColorPlaines = new Color(60,130,60);
-	static final Color ColorDeserts = new Color(255,255,107);
-	static final Color ColorForets = new Color(10,100,10);
-	static final Color ColorBanquise = new Color(245,245,247);
-	static final Color ColorLittoral = new Color(60,140,60);
-	
-	int nMontagnes = 22;
-	int nContinents = 9; 
-	int nForets = 30; 
-	int nDesertsNord = 4; 
-	int nDesertsSud = 4; 
-	int nFleuves = 26;
-	
 	private int tick = 0;
-	
 	int x , y;
 
 	
@@ -258,42 +239,6 @@ public class World extends TKEnvironment
 	
 	/*----------------------GETTERS/SETTERS---------------------------*/
 	
-	
-	public static Color getColorMontagnes() {
-		return ColorMontagnes;
-	}
-
-	public static Color getColorCollines() {
-		return ColorCollines;
-	}
-
-	public static Color getColorRivieres() {
-		return ColorRivieres;
-	}
-
-	public static Color getColorOcean() {
-		return ColorOcean;
-	}
-
-	public static Color getColorPlaines() {
-		return ColorPlaines;
-	}
-
-	public static Color getColorDeserts() {
-		return ColorDeserts;
-	}
-
-	public static Color getColorForets() {
-		return ColorForets;
-	}
-
-	public static Color getColorBanquise() {
-		return ColorBanquise;
-	}
-
-	public static Color getColorLittoral() {
-		return ColorLittoral;
-	}
 
 	public int getTick() {
 		return tick;

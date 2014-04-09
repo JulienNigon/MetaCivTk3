@@ -37,8 +37,6 @@ public class PanelGroupManager extends PanelStructureCognitive{
 		} else {
 			super.initializeItemsToDraw();
 		}
-
-		
 	}
 
 	public void setToolBar(GroupToolBar toolBar) {

@@ -18,6 +18,7 @@ import javax.swing.JToolBar;
 
 import civilisation.Configuration;
 import civilisation.individu.Humain;
+import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
@@ -32,11 +33,11 @@ import civilisation.inspecteur.simulation.dialogues.DialogueEditerCogniton;
 
 public class PanelStructureCognitive extends JJPanel{
 
-	ArrayList<GCogniton> gCognitons;
-	ArrayList<GPlan> gPlan;
-	ArrayList<GLien> gLiens;
-	ArrayList<GLien> gLiensConditionnels;
-	ArrayList<GLien> gLinksTrigger;
+	protected ArrayList<GCogniton> gCognitons;
+	protected ArrayList<GPlan> gPlan;
+	protected ArrayList<GLien> gLiens;
+	protected ArrayList<GLien> gLiensConditionnels;
+	protected ArrayList<GLien> gLinksTrigger;
 
 	protected ArrayList<NCogniton> allCognitons;
 	protected ArrayList<NPlan> plans;
@@ -52,20 +53,29 @@ public class PanelStructureCognitive extends JJPanel{
 	
 	JPopupMenu popupGPlans;
 	JPopupMenu popupGCognitons;
+	
+	protected Humain h;
 
 	
 
 	
-	public PanelStructureCognitive(PanelModificationSimulation panelPrincipal)
+	public PanelStructureCognitive()
 	{
 		super();
-		this.panelPrincipal = panelPrincipal;
 		this.setDelay(5);
 		
 		initializeArray();
 		initializeItemsToDraw();
 		initializeDrawing();
-		}
+	}
+	
+	public PanelStructureCognitive(PanelModificationSimulation panelPrincipal) {
+		this();
+		this.panelPrincipal = panelPrincipal;
+	}
+	public PanelStructureCognitive(boolean b) {
+		//Workaround to allow initialization as we want for chil class
+	}
 	
 	protected void initializeArray() {
 		gCognitons = new ArrayList<GCogniton>();
@@ -111,6 +121,7 @@ public class PanelStructureCognitive extends JJPanel{
 	
 
 	public void selectionnerPlan(NPlan plan){
+		if (panelPrincipal != null)
 		panelPrincipal.changerArbreActions(plan);
 	}
 	
@@ -269,6 +280,7 @@ public class PanelStructureCognitive extends JJPanel{
 	}
 	
 	public void creerLiensInfluence(){
+		
 		for (int i = 0; i < gCognitons.size(); i++){
 			for (int j = 0; j < gCognitons.get(i).getCogniton().getLiensPlans().size(); j++){
 				int k = 0;
@@ -354,6 +366,26 @@ public class PanelStructureCognitive extends JJPanel{
 		gLiensConditionnels.clear();
 	}
 	
+	public void removeCogniton(NCogniton cognitonToRemove) {
+		for (GCogniton cog : gCognitons) {
+			if (cognitonToRemove == cog.getCogniton()) {
+				this.remove(cog);
+				gCognitons.remove(cog);
+				break;
+			}
+		}
+	}
+	
+	public void removePlan(NPlan planToRemove) {
+		for (GPlan pl : gPlan) {
+			if (planToRemove == pl.getPlan()) {
+				this.remove(pl);
+				gPlan.remove(pl);
+				break;
+			}
+		}
+	}
+	
     @Override
 	public void paintComponent(Graphics g) {
     	Graphics2D g2d = (Graphics2D) g;
@@ -387,6 +419,24 @@ public class PanelStructureCognitive extends JJPanel{
 		Configuration.addCloudCogniton(newCloudCogniton);
 		newCloudCogniton.creerCognitonLambda();
 		afficherCogniton(newCloudCogniton, 100,100);		
+	}
+	
+	public boolean planIsDrawn(NPlan p) {
+		for (int i = 0; i < gPlan.size(); i++) {
+			if (gPlan.get(i).getPlan() == p) {
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	public boolean cognitonIsDrawn(NCogniton c) {
+		for (int i = 0; i < gCognitons.size(); i++) {
+			if (gCognitons.get(i).getCogniton() == c) {
+				return true;
+			}
+		}	
+		return false;
 	}
 	
 	}

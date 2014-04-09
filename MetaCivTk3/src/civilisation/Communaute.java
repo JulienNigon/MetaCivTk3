@@ -96,12 +96,6 @@ public class Communaute extends Turtle
 	 */
 	public String start()
 	{
-		while(this.getPatchColor() == World.getColorOcean())
-		{
-			int u = (int) (Math.random()*getWorldWidth());
-			int v = (int) (Math.random()*getWorldHeight());
-			moveTo(u,v);
-		}
 		
 		civ = new Civilisation();
 

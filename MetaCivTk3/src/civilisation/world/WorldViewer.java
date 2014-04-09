@@ -1,6 +1,7 @@
 package civilisation.world;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -13,6 +14,9 @@ import java.awt.event.MouseEvent;
 
 import java.util.List;
 
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+
 import civilisation.Civilisation;
 import civilisation.Configuration;
 import civilisation.ItemPheromone;
@@ -22,9 +26,13 @@ import civilisation.amenagement.Amenagement_Champ;
 import civilisation.group.Group;
 import civilisation.group.GroupAndRole;
 import civilisation.inspecteur.FenetreInspecteur;
+import civilisation.inspecteur.simulation.ActionsMenuActions;
+import civilisation.inspecteur.simulation.NodeArbreActions;
+import civilisation.inspecteur.viewer.ViewerHuman;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
 import civilisation.individu.plan.NPlan;
+import civilisation.individu.plan.action.Action;
 import turtlekit.kernel.Turtle;
 import turtlekit.viewer.TKDefaultViewer;
 import turtlekit.kernel.Patch;
@@ -53,7 +61,7 @@ public class WorldViewer extends TKDefaultViewer
 	Turtle selectedAgent;
 	private boolean endRendering;
 	private int sizeForAccurateView = 8;
-
+	JPopupMenu popup;
 	
 
 	public WorldViewer()
@@ -63,6 +71,7 @@ public class WorldViewer extends TKDefaultViewer
 		
 		cellSize = 5;
 		instance = this;
+		this.getDisplayPane().addMouseListener(new WorldMouseListener(this));
 	}
 	
 
@@ -72,10 +81,21 @@ public class WorldViewer extends TKDefaultViewer
 	}
 
 
-	//TODO repair compatibility
-	/**
-	 * Patch drawing.
-	 */
+	public void afficherPopup(MouseEvent e, Patch p){
+		
+		popup = new JPopupMenu();
+		JMenuItem observeOne = new JMenuItem("Observe one agent");
+		observeOne.addActionListener(new ActionsMenuWorld(this,0,p));
+		observeOne.setIcon(Configuration.getIcon("pencil.png"));
+		popup.add(observeOne);
+		
+		JMenuItem observeAll = new JMenuItem("Observe all agents");
+		observeAll.addActionListener(new ActionsMenuWorld(this,1,p));
+		observeAll.setIcon(Configuration.getIcon("cross.png"));
+		popup.add(observeAll);
+		
+		popup.show((Component) e.getSource(), e.getX(), (e.getY()));
+	}
 	
 	@Override
 	public void paintPatch(Graphics g, Patch p,int x,int y,int cellS){
@@ -340,6 +360,11 @@ public class WorldViewer extends TKDefaultViewer
 			paintOneTurtle( g, groupToObserve, groupToObserve.xcor()*this.cellSize, (groupToObserve.getWorldHeight() - groupToObserve.ycor())*this.cellSize, true);
 		}
 		endRendering = false;
+	}
+
+
+	public void observeHuman(Humain h) {
+		this.launchAgent(new ViewerHuman(h));
 	}
 	
 }

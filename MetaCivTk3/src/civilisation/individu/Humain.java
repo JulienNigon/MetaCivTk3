@@ -250,19 +250,7 @@ public class Humain extends Turtle
 	
 	/*------------------------------------------------------------------------------*/
 	
-	
-	/**
-	 * L'agent avance ou tourne si un obstacle se presente
-	 */
-	public void move(int i)
-	{
-		while (getNextPatch().getColor().equals(World.getColorOcean()) || getNextPatch().getColor().equals(World.getColorRivieres()))	
-		{
-			randomHeading();
-		}
-		fd(i);
-	}
-	
+
 	public void fd(double i)
 	{
 

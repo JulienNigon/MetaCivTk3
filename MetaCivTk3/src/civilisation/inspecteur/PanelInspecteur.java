@@ -55,6 +55,8 @@ public class PanelInspecteur extends JPanel{
 	PanelGenealogie genealogie = new PanelGenealogie();
 
 	int agentID = 0;
+	Humain h = null;
+	boolean fixedHuman = false;
 	JTable tableau;
 	Object[][] donnees = new Object[100][2];
 	
@@ -108,6 +110,12 @@ public class PanelInspecteur extends JPanel{
 		this.setVisible(true);
 	}
 	
+	public PanelInspecteur(Humain h) {
+		this();
+		this.h = h;
+		fixedHuman = true;
+		actualiser();
+	}
 	
 	
 	public void incrementerAgentID()
@@ -152,15 +160,17 @@ public class PanelInspecteur extends JPanel{
 	
 	public void actualiser()
 	{
-		Humain h = (Humain) select(agentID);
+		if (!fixedHuman) h = (Humain) select(agentID);
 		if (h != null) {
 			WorldViewer.getInstance().setSelectedAgent(h);
 		
 		
 			donnees[0][0] = "ID";
 			donnees[0][1] = agentID;
-			donnees[1][0] = "X";
-			donnees[1][1] = h.getX();
+			//donnees[1][0] = "X";
+			//donnees[1][1] = h.getX();
+			donnees[1][0] = "Agent name";
+			donnees[1][1] = h.getName();
 			donnees[2][0] = "Y";
 			donnees[2][1] = h.getY();
 			donnees[3][0] = "";

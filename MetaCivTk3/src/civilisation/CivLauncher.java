@@ -50,6 +50,8 @@ public class CivLauncher extends TKLauncher {
 	protected void createSimulationInstance() {
 		
 		printStartMessage();
+		
+		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true"); //TODO : this correct a strange behaviour of Swing. Must be improved.
 
 		//TODO : Correct the 1/2 crash chance at start
 	/*    JFileChooser chooser = new JFileChooser();

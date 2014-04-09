@@ -539,9 +539,7 @@ public class PanelModificationSimulation extends JPanel{
 		if (panelEast != null){
 			this.remove(panelEast);
 		}
-		if (splitPane != null){
-			this.remove(panelEast);
-		}
+
 	}
 
 
