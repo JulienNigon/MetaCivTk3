@@ -332,6 +332,21 @@ public class Esprit {
 		}
 		return false;
 	}
+	
+	/**
+	 * Return the concrete plan of the type of plan in parameter
+	 * @param plan
+	 * @return
+	 */
+	public NPlanPondere getPlan(NPlan plan) {
+		
+		for (int i = 0 ; i < this.plans.size(); i++) {
+			if (plans.get(i).getPlan().equals(plan)) {
+				return plans.get(i);
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Recompute the total weigth from plans

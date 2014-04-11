@@ -59,8 +59,15 @@ public class NPlanPondere {
 	public void setcCogniton(CCogniton cCogniton) {
 		this.cCogniton = cCogniton;
 	}
-
 	
+	public Humain getH() {
+		return h;
+	}
+
+	public void setH(Humain h) {
+		this.h = h;
+	}
+
 	/**
 	 * Modifie le poids du projet d'un poids p,
 	 * Demande ___ l'esprit concern___ de modifier le poids total en cons___quence

@@ -23,6 +23,7 @@ import civilisation.individu.cognitons.Culturon;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.NPlan;
+import civilisation.individu.plan.NPlanPondere;
 import civilisation.inspecteur.animations.JJAnimationOpacite;
 import civilisation.inspecteur.animations.JJAnimationRotation;
 import civilisation.inspecteur.animations.JJAnimationTranslation;
@@ -97,10 +98,7 @@ public class PanelStructureCognitive extends JJPanel{
 	}
 	
 	protected void initializeDrawing() {
-
-
-		
-		for (int i = 0; i < allCognitons.size(); i++){		
+	for (int i = 0; i < allCognitons.size(); i++){		
 			if (allCognitons.get(i).getType() != TypeDeCogniton.CULTURON) {
 				afficherCogniton(allCognitons.get(i),80,40+espacement*i);
 			}
@@ -108,7 +106,7 @@ public class PanelStructureCognitive extends JJPanel{
 
 		
 		for (int i = 0; i < plans.size(); i++){	
-			afficherPlan(plans.get(i), espaceCognitonsPlans,40+espacement*i);
+			afficherPlan(plans.get(i), espaceCognitonsPlans,40+espacement*i,null);
 		}
 		
 		creerLiensInfluence();
@@ -223,11 +221,14 @@ public class PanelStructureCognitive extends JJPanel{
 		this.showTrigger(gCognitons.get(gCognitons.size()-1));
 	}
 	
-	public void afficherPlan(NPlan p , double posX , double posY){
+	public void afficherPlan(NPlan p , double posX , double posY, NPlanPondere pp){
 		gPlan.add(new GPlan(this,posX,posY,60,25, p));
 		//gPlan.get(gPlan.size()-1).addAnimation(new JJAnimationRotation(-1, gPlan.get(gPlan.size()-1), 0.01, false));
 		this.add(gPlan.get(gPlan.size()-1));
 		this.setComponentZOrder(gPlan.get(gPlan.size()-1), 0);
+		if (pp != null) {
+			gPlan.get(gPlan.size()-1).setConcretePlan(pp);
+		}
 	}
 
 	public void showCloudCogniton(Culturon c , double posX , double posY){
@@ -276,7 +277,7 @@ public class PanelStructureCognitive extends JJPanel{
 		NPlan nouveauPlan = new NPlan();
 		nouveauPlan.setNom("Nouveau plan");
 		Configuration.addPlan(nouveauPlan);
-		afficherPlan(nouveauPlan,100,100);
+		afficherPlan(nouveauPlan,100,100,null);
 	}
 	
 	public void creerLiensInfluence(){

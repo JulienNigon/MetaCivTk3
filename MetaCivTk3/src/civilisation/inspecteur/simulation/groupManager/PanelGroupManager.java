@@ -66,7 +66,7 @@ public class PanelGroupManager extends PanelStructureCognitive{
 
 		
 		for (int i = 0; i < plans.size(); i++){	
-			afficherPlan(plans.get(i), espaceCognitonsPlans,40+espacement*i);
+			afficherPlan(plans.get(i), espaceCognitonsPlans,40+espacement*i,null);
 		}
 		
 		creerLiensInfluence();

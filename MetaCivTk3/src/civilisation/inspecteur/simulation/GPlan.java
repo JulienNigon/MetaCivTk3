@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import civilisation.individu.plan.NPlan;
+import civilisation.individu.plan.NPlanPondere;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
@@ -22,6 +23,7 @@ public class GPlan extends GItemCognitif{
 
 	NPlan plan;
 	static float margeEcriture = 2;
+	NPlanPondere concretePlan = null;
 	
 	public GPlan(JJPanel parent , double xx, double yy, double w, double h, NPlan plan) {
 		super(parent, xx, yy, w, h);
@@ -36,6 +38,10 @@ public class GPlan extends GItemCognitif{
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);
+    	g2d.setColor(Color.BLACK);
+    	if (concretePlan != null && concretePlan.getH().getEsprit().getPlanEnCours() == concretePlan) {
+    		g2d.setColor(Color.magenta);
+    	}
 
     	FontMetrics fm = g2d.getFontMetrics();
     	this.setBounds(   (int)(this.getXx()+margeEcriture),(int)this.getYy()+2,(int) (fm.stringWidth(plan.getNom()) + (2*margeEcriture)),2*fm.getHeight());
@@ -71,5 +77,16 @@ public class GPlan extends GItemCognitif{
 	public void afficherPopup(MouseEvent e){
 		((PanelStructureCognitive) this.getParent()).afficherPopupPlan(e , this);
 	}
+
+
+	public NPlanPondere getConcretePlan() {
+		return concretePlan;
+	}
+
+	public void setConcretePlan(NPlanPondere concretePlan) {
+		this.concretePlan = concretePlan;
+	}
+
+	
 	
 }

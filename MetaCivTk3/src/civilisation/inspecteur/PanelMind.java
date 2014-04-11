@@ -7,6 +7,7 @@ import civilisation.Configuration;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.NPlanPondere;
 import civilisation.inspecteur.animations.JJAnimationOpacite;
@@ -76,7 +77,7 @@ public class PanelMind extends PanelStructureCognitive{
 		//Add plans
 		for (NPlanPondere pl : h.getEsprit().getPlans()) {
 			if (!this.planIsDrawn(pl.getPlan())) {
-				this.afficherPlan(pl.getPlan(), Math.random()*400, Math.random()*400);
+				this.afficherPlan(pl.getPlan(), Math.random()*400, Math.random()*400,pl);
 				
 				this.gPlan.get(gPlan.size()-1).setOpacite(0.0);
 				this.gPlan.get(gPlan.size()-1).addAnimation(new JJAnimationOpacite(50, gPlan.get(gPlan.size()-1), 0.02, false));
@@ -143,7 +144,22 @@ public class PanelMind extends PanelStructureCognitive{
 			}
 		}
 	}
+	
+	protected void initializeDrawing() {
+	for (int i = 0; i < allCognitons.size(); i++){		
+			if (allCognitons.get(i).getType() != TypeDeCogniton.CULTURON) {
+				afficherCogniton(allCognitons.get(i),80,40+espacement*i);
+			}
+		}
 
+		
+		for (int i = 0; i < plans.size(); i++){	
+			afficherPlan(plans.get(i), espaceCognitonsPlans,40+espacement*i,h.getEsprit().getPlan(plans.get(i)));
+		}
+		
+		creerLiensInfluence();
+		creerLiensConditionnels();
+	}
 	
 	//This panel doesn't show trigger links
 	public void createTriggerLink(){}
