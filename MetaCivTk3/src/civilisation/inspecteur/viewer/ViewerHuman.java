@@ -14,6 +14,7 @@ import civilisation.inspecteur.PanelInspecteur;
 import civilisation.inspecteur.PanelMind;
 import civilisation.inspecteur.PanelOptions;
 import civilisation.inspecteur.PanelPerformances;
+import civilisation.inspecteur.groupPanel.PanelGroupOfAnAgent;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
 import civilisation.inspecteur.tableauDeBord.PanelInfos;
 
@@ -31,6 +32,7 @@ public class ViewerHuman extends AbstractViewer{
 		PanelInspecteur panelInspecteur;
 		PanelMind panelMind;
 		Humain h;
+		PanelGroupOfAnAgent panelGroupOfAnAgent;
 	  
 		public ViewerHuman(Humain h) {
 			super();
@@ -50,10 +52,12 @@ public class ViewerHuman extends AbstractViewer{
 			
 			panelInspecteur = new PanelInspecteur(h);
 			panelMind = new PanelMind(h);
+			panelGroupOfAnAgent = new PanelGroupOfAnAgent(h);
 
 		    contentPane = new JTabbedPane();
 		    contentPane.addTab("Agent", panelInspecteur);
 		    contentPane.addTab("Mind", new JScrollPane(panelMind));
+		    contentPane.addTab("Groups", new JScrollPane(panelGroupOfAnAgent));
 
 
 		    frame.setContentPane(contentPane);

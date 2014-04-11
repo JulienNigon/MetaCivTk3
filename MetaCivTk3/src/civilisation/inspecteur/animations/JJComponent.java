@@ -28,9 +28,12 @@ public class JJComponent extends JComponent{
 		super();
 		this.xx = xx;
 		this.yy = yy;
-		this.setLocation((int)xx, (int)yy);
-		this.setSize((int)w, (int)h);
+		//this.setLocation((int)xx, (int)yy);
+		//this.setSize((int)w, (int)h);
+		this.setBounds((int)xx, (int)yy,(int)w, (int)h);
+		parent.updatePreferredSize(this);
 
+		
 		this.w = w;
 		this.h = h;
 		this.parent = parent;
