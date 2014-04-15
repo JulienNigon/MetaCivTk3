@@ -142,8 +142,35 @@ public class Group extends Turtle
 	public void setMembers(ArrayList<Humain> members) {
 		this.members = members;
 	}
+
+	public HashMap<String, ArrayList<CCogniton>> getRolesAndCulturons() {
+		return rolesAndCulturons;
+	}
+
+	public void setRolesAndCulturons(
+			HashMap<String, ArrayList<CCogniton>> rolesAndCulturons) {
+		this.rolesAndCulturons = rolesAndCulturons;
+	}
 	
+	public ArrayList<NCogniton> getArrayListOfCognitonType(String r) {
+		ArrayList<NCogniton> array = new ArrayList<NCogniton>();
+		for (CCogniton cog : rolesAndCulturons.get(r)) {
+			array.add(cog.getCogniton());
+		}
+		return array;
+		
+	}
 	
+	//TODO
+	public boolean roleContainsCulturon(NCogniton cogniton, String r) {
+		for (CCogniton cog : rolesAndCulturons.get(r)) {
+			if (cog.getCogniton() == cogniton) {
+				return true;
+			}
+		}
+		return false;
+		
+	}
 	
 	
 }

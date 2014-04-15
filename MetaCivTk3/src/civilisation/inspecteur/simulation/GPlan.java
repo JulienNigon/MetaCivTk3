@@ -38,9 +38,14 @@ public class GPlan extends GItemCognitif{
 	public void paintComponent(Graphics g) 
     {    
         Graphics2D g2d = genererContexte(g);
+        Color backgroundColor = Color.GRAY;
     	g2d.setColor(Color.BLACK);
-    	if (concretePlan != null && concretePlan.getH().getEsprit().getPlanEnCours() == concretePlan) {
-    		g2d.setColor(Color.magenta);
+    	int weightedBorder = 0;
+    	if (concretePlan != null) {
+    		if (concretePlan.getH().getEsprit().getPlanEnCours() == concretePlan) {
+        		g2d.setColor(new Color (135, 38, 87));
+    		}
+    		backgroundColor = new Color(Math.max(255 - Math.max(concretePlan.getPoids(),0) * 10, 0), Math.max(255 - Math.max(concretePlan.getPoids(),0) * 10, 0), 255);
     	}
 
     	FontMetrics fm = g2d.getFontMetrics();
@@ -49,7 +54,7 @@ public class GPlan extends GItemCognitif{
     	g2d.fill(new Rectangle2D.Double(0,0,fm.stringWidth(plan.getNom()) + (2*margeEcriture),2*fm.getHeight()));
     	this.setW(fm.stringWidth(plan.getNom()) + (2*margeEcriture));
     	this.setH(2*fm.getHeight());
-    	g2d.setColor(Color.GRAY);
+    	g2d.setColor(backgroundColor);
     	g2d.fill(new Rectangle2D.Double(margeEcriture,2,fm.stringWidth(plan.getNom()),2*fm.getHeight()-4));
     	
     	if (plan.getIsSelfPlan()) {
@@ -61,6 +66,7 @@ public class GPlan extends GItemCognitif{
     	}
     	g2d.drawString(plan.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
 
+    	
     	//System.out.println("dessin du composant");
     	//validate();
     }

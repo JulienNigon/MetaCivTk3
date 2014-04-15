@@ -17,6 +17,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 
 import civilisation.Configuration;
+import civilisation.group.Group;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.cognitons.Culturon;
@@ -36,13 +37,15 @@ public class PanelStructureCognitive extends JJPanel{
 
 	protected ArrayList<GCogniton> gCognitons;
 	protected ArrayList<GPlan> gPlan;
+	protected ArrayList<GTrigger> gTriggers;
 	protected ArrayList<GLien> gLiens;
 	protected ArrayList<GLien> gLiensConditionnels;
 	protected ArrayList<GLien> gLinksTrigger;
+	protected ArrayList<GGroupForCognitonGraph> gGroup;
 
 	protected ArrayList<NCogniton> allCognitons;
 	protected ArrayList<NPlan> plans;
-	protected ArrayList<GTrigger> gTriggers;
+	protected ArrayList<Group> groups;
 	
 	protected double espacement = 40;
 	protected double espaceCognitonsPlans = 350;
@@ -54,6 +57,8 @@ public class PanelStructureCognitive extends JJPanel{
 	
 	JPopupMenu popupGPlans;
 	JPopupMenu popupGCognitons;
+	
+	protected boolean showGroup = false;
 	
 	protected Humain h;
 
@@ -85,6 +90,9 @@ public class PanelStructureCognitive extends JJPanel{
 		gLiensConditionnels = new ArrayList<GLien>();
 		gLinksTrigger = new ArrayList<GLien>();
 		gTriggers = new ArrayList<GTrigger>();
+		gGroup = new ArrayList<GGroupForCognitonGraph>();
+		groups = new ArrayList<Group>();
+
 	}
 	
 	/**
@@ -109,6 +117,10 @@ public class PanelStructureCognitive extends JJPanel{
 			afficherPlan(plans.get(i), espaceCognitonsPlans,40+espacement*i,null);
 		}
 		
+	/*	for (int i = 0; i < groups.size(); i++){	
+			showGroup(groups.get(i), espaceCognitonsPlans * 3,40+espacement*i);
+		}
+	*/	
 		creerLiensInfluence();
 		creerLiensConditionnels();
 		createTriggerLink();
@@ -229,6 +241,14 @@ public class PanelStructureCognitive extends JJPanel{
 		if (pp != null) {
 			gPlan.get(gPlan.size()-1).setConcretePlan(pp);
 		}
+	}
+	
+	public void showGroup(Group gr, String role , double posX , double posY){
+		System.out.println("show group");
+		gGroup.add(new GGroupForCognitonGraph(this,posX,posY,60,25, gr, role));
+		//gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationTranslation(-1, gCognitons.get(gCognitons.size()-1), 0.05, 0.05, false));
+		this.add(gGroup.get(gGroup.size()-1));
+		this.setComponentZOrder(gGroup.get(gGroup.size()-1), gGroup.size()-1);
 	}
 
 	public void showCloudCogniton(Culturon c , double posX , double posY){

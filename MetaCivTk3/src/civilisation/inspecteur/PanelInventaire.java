@@ -51,17 +51,10 @@ public class PanelInventaire extends JPanel{
 		//TODO
 		
 		ArrayList<Objet> allObjets = ((Humain) t).getInventaire().getAll();
-		for (int i=0; i < allObjets.size();i++)
+		for (int i=0; i < allObjets.size() && i < donnees.length;i++)
 		{
 			donnees[i][0] = allObjets.get(i);
 		}
-	
-
-		this.updateUI();
-		
+		this.updateUI();	
 	}
-
-
-
-	
 }

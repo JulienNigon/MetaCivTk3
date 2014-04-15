@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import civilisation.Configuration;
+import civilisation.group.Group;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.CCogniton;
 import civilisation.individu.cognitons.NCogniton;
@@ -32,6 +33,7 @@ public class PanelMind extends PanelStructureCognitive{
 		super(true);
 		this.setDelay(5);
 		this.h = h;
+		showGroup = true;
 		
 		initializeArray();
 		initializeItemsToDraw();
@@ -46,17 +48,29 @@ public class PanelMind extends PanelStructureCognitive{
 		plans = new ArrayList<NPlan>();
 
 		for (CCogniton cog : ownedCognitons) {
-			System.out.println(cog.getCogniton().getNom());
 			allCognitons.add(cog.getCogniton());
 		}
+		
 		//	allCognitons.addAll(Configuration.cloudCognitons);
 		ownedPlans = h.getEsprit().getPlans();
 		for (NPlanPondere pl : ownedPlans) {
 			plans.add(pl.getPlan());
 		}
+		for (Group gr : h.getEsprit().getGroups().keySet()) {
+			groups.add(gr);
+			for (NCogniton cog : gr.getArrayListOfCognitonType(h.getEsprit().getGroups().get(gr))) {
+				allCognitons.add(cog);
+			}
+		}
 	}
 	
 	public void updateData() {
+		
+		groups = new ArrayList<Group>();
+		for (Group gr : h.getEsprit().getGroups().keySet()) {
+			groups.add(gr);
+		}
+		
 		//Add cognitons
 		for (CCogniton cog : h.getEsprit().getCognitons()) {
 			if (!this.cognitonIsDrawn(cog.getCogniton())) {
@@ -74,6 +88,25 @@ public class PanelMind extends PanelStructureCognitive{
 				createTriggerLink();
 			}
 		}
+		for (Group gr : groups) {
+			for (CCogniton cog : gr.getRolesAndCulturons().get(h.getEsprit().getGroups().get(gr))) {
+				if (!this.cognitonIsDrawn(cog.getCogniton())) {
+					this.afficherCogniton(cog.getCogniton(), Math.random()*400, Math.random()*400);
+					
+					this.gCognitons.get(gCognitons.size()-1).setOpacite(0.0);
+					this.gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationOpacite(50, gCognitons.get(gCognitons.size()-1), 0.02, false));
+					
+					this.supprimerLiensInfluence();
+					this.supprimerLiensConditionnels();
+					this.clearTriggerLink();
+					
+					creerLiensInfluence();
+					creerLiensConditionnels();
+					createTriggerLink();
+				}
+			}
+		}
+	
 		//Add plans
 		for (NPlanPondere pl : h.getEsprit().getPlans()) {
 			if (!this.planIsDrawn(pl.getPlan())) {
@@ -93,7 +126,7 @@ public class PanelMind extends PanelStructureCognitive{
 		}
 		//Remove cognitons
 		for (NCogniton cog : Configuration.cognitons) {
-			if (this.cognitonIsDrawn(cog) && !h.getEsprit().ownCogniton(cog)) {
+			if (cog.getType() != TypeDeCogniton.CULTURON && this.cognitonIsDrawn(cog) && !h.getEsprit().ownCogniton(cog)) {
 				this.removeCogniton(cog);
 
 				this.supprimerLiensInfluence();
@@ -103,6 +136,24 @@ public class PanelMind extends PanelStructureCognitive{
 				creerLiensInfluence();
 				creerLiensConditionnels();
 				createTriggerLink();
+			} else if (cog.getType() == TypeDeCogniton.CULTURON) {
+				boolean exist = false;
+				for (Group gr : groups) {		
+					if (gr.roleContainsCulturon(cog, h.getEsprit().getGroups().get(gr))) {
+						exist = true;
+					}
+				}
+				if (!exist) {
+					this.removeCogniton(cog);
+
+					this.supprimerLiensInfluence();
+					this.supprimerLiensConditionnels();
+					this.clearTriggerLink();
+					
+					creerLiensInfluence();
+					creerLiensConditionnels();
+					createTriggerLink();
+				}
 			}
 		}
 		//Remove plans
@@ -147,14 +198,16 @@ public class PanelMind extends PanelStructureCognitive{
 	
 	protected void initializeDrawing() {
 	for (int i = 0; i < allCognitons.size(); i++){		
-			if (allCognitons.get(i).getType() != TypeDeCogniton.CULTURON) {
-				afficherCogniton(allCognitons.get(i),80,40+espacement*i);
-			}
+			afficherCogniton(allCognitons.get(i),80,40+espacement*i);
 		}
 
 		
 		for (int i = 0; i < plans.size(); i++){	
 			afficherPlan(plans.get(i), espaceCognitonsPlans,40+espacement*i,h.getEsprit().getPlan(plans.get(i)));
+		}
+		
+		for (int i = 0; i < groups.size(); i++){	
+			showGroup(groups.get(i), h.getEsprit().getGroups().get(groups.get(i)), espaceCognitonsPlans * 1.8,40+espacement*i);
 		}
 		
 		creerLiensInfluence();
