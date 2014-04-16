@@ -2,6 +2,7 @@ package civilisation.inspecteur;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 import civilisation.Configuration;
 import civilisation.group.Group;
@@ -28,12 +29,16 @@ public class PanelMind extends PanelStructureCognitive{
 	
 	ArrayList<GPlan> plansToRemove = new ArrayList<GPlan>();
 	ArrayList<GCogniton> cognitonsToRemove = new ArrayList<GCogniton>();
+	
+	Semaphore semaphore;
 
 	public PanelMind(Humain h) {
 		super(true);
 		this.setDelay(5);
 		this.h = h;
 		showGroup = true;
+		
+		semaphore = new Semaphore(1,true);
 		
 		initializeArray();
 		initializeItemsToDraw();
@@ -65,6 +70,9 @@ public class PanelMind extends PanelStructureCognitive{
 	}
 	
 	public void updateData() {
+		
+		try { semaphore.acquire(); }
+		catch (InterruptedException ex) { System.out.println(ex); }
 		
 		groups = new ArrayList<Group>();
 		for (Group gr : h.getEsprit().getGroups().keySet()) {
@@ -170,6 +178,7 @@ public class PanelMind extends PanelStructureCognitive{
 				createTriggerLink();
 			}
 		}
+		semaphore.release();
 	}
 	
 	public void removeCogniton(NCogniton cognitonToRemove) {
@@ -212,6 +221,13 @@ public class PanelMind extends PanelStructureCognitive{
 		
 		creerLiensInfluence();
 		creerLiensConditionnels();
+	}
+	
+	public void animate() {
+		try { semaphore.acquire(); }
+		catch (InterruptedException ex) { System.out.println(ex); }
+		super.animate();
+		semaphore.release();
 	}
 	
 	//This panel doesn't show trigger links
