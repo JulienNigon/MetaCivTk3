@@ -517,7 +517,7 @@ public class Esprit {
 	}
 
 	public void runInitiatePlan() {
-		if (Configuration.initiatePlan != null) {
+		if (Configuration.initiatePlan != null && Configuration.initiatePlan.getActions().size() > 0) {
 			actions.push(null); //end of self-plan marker
 
 			Configuration.initiatePlan.activer(h, Configuration.initiatePlan.getActions().get(0));

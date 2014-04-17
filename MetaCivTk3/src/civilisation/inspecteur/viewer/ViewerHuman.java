@@ -1,22 +1,27 @@
 
 package civilisation.inspecteur.viewer;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 
 import turtlekit.viewer.AbstractViewer;
 import civilisation.individu.Humain;
 import civilisation.inspecteur.PanelInspecteur;
 import civilisation.inspecteur.PanelMind;
+import civilisation.inspecteur.PanelMiniMap;
 import civilisation.inspecteur.PanelOptions;
 import civilisation.inspecteur.PanelPerformances;
 import civilisation.inspecteur.groupPanel.PanelGroupOfAnAgent;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
 import civilisation.inspecteur.tableauDeBord.PanelInfos;
+import civilisation.world.WorldViewer;
 
 
 /** 
@@ -31,8 +36,10 @@ public class ViewerHuman extends AbstractViewer{
 
 		PanelInspecteur panelInspecteur;
 		PanelMind panelMind;
-		Humain h;
 		PanelGroupOfAnAgent panelGroupOfAnAgent;
+		PanelMiniMap miniMap;
+		
+		Humain h;
 	  
 		public ViewerHuman(Humain h) {
 			super();
@@ -53,20 +60,30 @@ public class ViewerHuman extends AbstractViewer{
 			panelInspecteur = new PanelInspecteur(h);
 			panelMind = new PanelMind(h);
 			panelGroupOfAnAgent = new PanelGroupOfAnAgent(h);
-
+			miniMap = new PanelMiniMap(h);
+			
 		    contentPane = new JTabbedPane();
 		    contentPane.addTab("Agent", panelInspecteur);
 		    contentPane.addTab("Mind", new JScrollPane(panelMind));
 		    contentPane.addTab("Groups", new JScrollPane(panelGroupOfAnAgent));
+		    //contentPane.setPreferredSize(new Dimension(400,400));
 
 
-		    frame.setContentPane(contentPane);
+		    frame.setContentPane(new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,contentPane,miniMap));
 			frame.setLocation(50, 0);
 		}
 
 		@Override
 		public void observe(){
-			panelInspecteur.actualiser();
-			panelMind.updateData();
+			if (h.isAlive()) {
+				//contentPane.setPreferredSize(new Dimension(400,400));
+				panelInspecteur.actualiser();
+				miniMap.updatePosition();
+				panelMind.updateData();
+			}
+			else {
+				this.killAgent(this);
+			}
+
 		}
 }

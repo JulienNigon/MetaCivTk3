@@ -12,10 +12,13 @@ import java.awt.event.MouseEvent;
 
 
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 
 import civilisation.Civilisation;
 import civilisation.Configuration;
@@ -62,18 +65,24 @@ public class WorldViewer extends TKDefaultViewer
 	private boolean endRendering;
 	private int sizeForAccurateView = 8;
 	JPopupMenu popup;
+	BufferedImage bufferedView;
 	
 
 	public WorldViewer()
 	{
 		super();
-		//inspecteur = new FenetreInspecteur("Inspecteur");  /*Inutile avec la version 1.08*/
 		
 		cellSize = 5;
 		instance = this;
 		this.getDisplayPane().addMouseListener(new WorldMouseListener(this));
+
+		
 	}
 	
+	protected void activate() {	
+		super.activate();
+		//this.setDisplayPane(new JScrollPane(new PanelWorldViewer((JScrollPane) this.getDisplayPane())));
+	}
 
 	static public WorldViewer getInstance()
 	{
@@ -361,7 +370,18 @@ public class WorldViewer extends TKDefaultViewer
 		}
 		endRendering = false;
 	}
+	
 
+	
+  /*  public void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+    	super.paintComponents(g);
+    	BufferedImage bufImage = new BufferedImage(100, 100,BufferedImage.TYPE_INT_RGB);  
+        panel.paint(bufImage.createGraphics()); 
+        
+    	g2d.drawImage(bufImage, 10, 10, null);
+
+    }*/
 
 	public void observeHuman(Humain h) {
 		this.launchAgent(new ViewerHuman(h));

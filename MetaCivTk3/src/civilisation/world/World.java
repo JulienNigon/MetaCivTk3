@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import turtlekit.kernel.Patch;
 import turtlekit.kernel.TKEnvironment;
 import turtlekit.mle.AbstractMLEAgent;
 import turtlekit.pheromone.Pheromone;
@@ -233,7 +234,9 @@ public class World extends TKEnvironment
 		}
 	}
 	
-	
+	public Patch getPatchAt(int xx, int yy) {
+		return this.getPatch(xx, yy);
+	}
 	
 	
 	
