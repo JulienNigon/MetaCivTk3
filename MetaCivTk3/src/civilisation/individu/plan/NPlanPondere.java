@@ -110,7 +110,7 @@ public class NPlanPondere {
 	}
 	
 	public void addInfluence(CCogniton cogni) {
-		this.influences.put(cogni,cogni.weigth);
+		this.influences.put(cogni,cogni.getWeigth());
 	}
 	
 
