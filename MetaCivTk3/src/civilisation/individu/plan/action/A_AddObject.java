@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import civilisation.Configuration;
 import civilisation.individu.Humain;
+import civilisation.inventaire.Objet;
 
 public class A_AddObject extends Action{
 
@@ -20,9 +21,10 @@ public class A_AddObject extends Action{
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
 
-		if (option.getParametres().get(0).getClass() == String.class) {
-			ObjectName = (String) option.getParametres().get(0);
-		} else if (option.getParametres().get(0).getClass() == Integer.class) {
+		if (option.getParametres().get(0).getClass().equals(Objet.class)) {
+			ObjectName = ((Objet) option.getParametres().get(0)).getNom();
+		} 
+		else if (option.getParametres().get(0).getClass() == Integer.class) {
 			variation = (Integer) option.getParametres().get(0);
 		}
 
@@ -33,7 +35,7 @@ public class A_AddObject extends Action{
 		
 		if (schemaParametres == null){
 			schemaParametres = new ArrayList<String[]>();
-			String[] attrName = {"**Object**" , "Changed object"};
+			String[] attrName = {"**Objet**" , "Changed object"};
 			String[] n = {"**Integer**" , "n", "-10" , "10" , "1"};
 
 			schemaParametres.add(attrName);

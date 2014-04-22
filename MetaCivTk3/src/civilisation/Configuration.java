@@ -205,7 +205,6 @@ public class Configuration {
 
 	public static Objet getObjetByName(String s){
 		for (int i = 0 ; i < objets.size(); i++){
-			System.out.println("Objet dans Conf : "+objets.get(i).getNom()+" Objet entrant : "+s);
 			if (objets.get(i).getNom().equals(s)){
 				return(objets.get(i));
 			}
