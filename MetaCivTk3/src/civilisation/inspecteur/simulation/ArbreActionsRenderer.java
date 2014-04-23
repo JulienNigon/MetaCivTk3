@@ -45,16 +45,21 @@ public class ArbreActionsRenderer  extends DefaultTreeCellRenderer{
 			    toolTip += "</html>";
 			    
 			    this.setToolTipText(toolTip);
+			    
+			    this.setBackground(tree.getBackground());
+			    this.setBackgroundNonSelectionColor(tree.getBackground());
 
 			    if (((NodeArbreActions) value).getAction().isLogical()) {
-				    this.setBackground(Color.gray);
+				    this.setBackground(Color.GRAY);
 				    this.setBackgroundNonSelectionColor(Color.gray);
 			    }
-			    
+			    if (!((NodeArbreActions) value).getAction().getListeActions().isEmpty()) {
+				    this.setBackground(Color.YELLOW);
+				    this.setBackgroundNonSelectionColor(Color.YELLOW);
+			    }
 
 	        }
-		    this.setBackground(tree.getBackground());
-		    this.setBackgroundNonSelectionColor(tree.getBackground());
+
 
 
 		    
