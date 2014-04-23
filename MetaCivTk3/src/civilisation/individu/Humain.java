@@ -24,6 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1267,6 +1268,28 @@ public class Humain extends Turtle
 	
 	public List<Turtle> turtlesHere() {
 		return this.getOtherTurtles(0, true);
+	}
+	
+	public List<Humain> humansHere() {
+		List<Turtle> turtles = this.getOtherTurtles(0, true);
+		LinkedList<Humain> humans = new LinkedList<Humain>();
+		for (Turtle t : turtles) {
+			if (t instanceof Humain) {
+				humans.add((Humain) t);
+			}
+		}
+		return humans;
+	}
+	
+	public List<Humain> humansHereWithTag(String tag) {
+		List<Turtle> turtles = this.getOtherTurtles(0, true);
+		LinkedList<Humain> humans = new LinkedList<Humain>();
+		for (Turtle t : turtles) {
+			if (t instanceof Humain && ((Humain) t).getEsprit().ownTag(tag)) {
+				humans.add((Humain) t);
+			}
+		}
+		return humans;
 	}
 	
 	//----------------GETTERS/SETTERS-------------------

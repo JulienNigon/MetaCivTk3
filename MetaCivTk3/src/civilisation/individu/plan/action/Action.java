@@ -109,6 +109,9 @@ public abstract class Action {
 					if (param[j].split(" ")[0].equals("Attribute")){
 						option.addParametre(param[j].split(" ")[1]);
 					}
+					if (param[j].split(" ")[0].equals("String")){
+						option.addParametre(param[j].split(" ")[1] , "String");
+					}
 					if (param[j].split(" ")[0].equals("Cogniton")){
 						option.addParametre(Configuration.getCognitonByName(param[j].split(" ")[1]));
 					}

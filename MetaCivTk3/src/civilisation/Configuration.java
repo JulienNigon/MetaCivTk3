@@ -209,6 +209,7 @@ public class Configuration {
 				return(objets.get(i));
 			}
 		}
+		System.exit(-1);
 		return null;
 	}
 	

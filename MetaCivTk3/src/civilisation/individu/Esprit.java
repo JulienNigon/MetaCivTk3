@@ -6,6 +6,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Stack;
 
@@ -42,6 +43,9 @@ public class Esprit {
 	
 	/* HashMap to store the groups of the agent and his role in this group*/
 	HashMap<Group , String> groups;
+	
+	/*Tags are used to tell other agents informations about this agent*/
+	HashSet<String> tags;
 
 	Map<Object,Object> memory;
 	
@@ -64,6 +68,7 @@ public class Esprit {
 		actionsData = new HashMap<Action , Object>();
 		groups = new HashMap<Group , String>();
 		decisionMaker = Configuration.decisionMaker.createNewDecisionMaker(this);
+		tags = new HashSet<String>();
 		
 		this.h = h;
 		poidsTotalPlan = 0;
@@ -542,7 +547,26 @@ public class Esprit {
 	public void setMemory(Map<Object, Object> memory) {
 		this.memory = memory;
 	}
+
+	public HashSet<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(HashSet<String> tags) {
+		this.tags = tags;
+	}
 	
+	public boolean ownTag(String tag) {
+		return tags.contains(tag);
+	}
+	
+	public void addTag(String tag) {
+		tags.add(tag);
+	}
+	
+	public void removeTag(String tag) {
+		tags.remove(tag);
+	}
 } 
 
 

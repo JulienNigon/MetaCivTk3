@@ -1,6 +1,7 @@
 package civilisation.individu.plan.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import civilisation.ItemPheromone;
 import civilisation.group.GroupAndRole;
@@ -13,7 +14,8 @@ public class OptionsActions {
 
 	String name;
 	ArrayList<Object> parametres = new ArrayList<Object>();
-    
+    HashMap<Object,String> specialInfo = new HashMap<Object,String>();
+	
     public OptionsActions(String name){
     	this.name = name;
     }
@@ -33,6 +35,11 @@ public class OptionsActions {
     
 	public void addParametre(Object o){
 		parametres.add(o);
+	}
+	
+	public void addParametre(Object o, String info){
+		addParametre(o);
+		specialInfo.put(o, info);
 	}
 
 	public ArrayList<Object> getParametres() {
@@ -57,56 +64,64 @@ public class OptionsActions {
 						s += ";"; /*Separate multiple parameters*/
 					}
 				}
-				if (parametres.get(i).getClass().equals(GroupModel.class)){
+				else if (parametres.get(i).getClass().equals(GroupModel.class)){
 					s += "Group "; /*Note the space before the name*/
 					s += ((GroupModel) parametres.get(i)).getName();
 					if (i < parametres.size() - 1){
 						s += ";"; /*Separate multiple parameters*/
 					}
 				}
-				if (parametres.get(i).getClass().equals(GroupAndRole.class)){
+				else if (parametres.get(i).getClass().equals(GroupAndRole.class)){
 					s += "GroupAndRole "; /*Note the space before the name*/
 					s += ((GroupAndRole) parametres.get(i)).getGroupModel().getName() +":"+((GroupAndRole) parametres.get(i)).getRole();
 					if (i < parametres.size() - 1){
 						s += ";"; /*Separate multiple parameters*/
 					}
 				}
-				if (parametres.get(i).getClass().equals(Integer.class)){
+				else if (parametres.get(i).getClass().equals(Integer.class)){
 					s += "Integer ";
 					s += parametres.get(i).toString();
 					if (i < parametres.size() - 1){
 						s += ";";
 					}
 				}
-				if (parametres.get(i).getClass().equals(Double.class)){
+				else if (parametres.get(i).getClass().equals(Double.class)){
 					s += "Double ";
 					s += parametres.get(i).toString();
 					if (i < parametres.size() - 1){
 						s += ";";
 					}
 				}
-				if (parametres.get(i).getClass().equals(String.class)){
+				else if (parametres.get(i).getClass().equals(String.class) && this.specialInfo.get(parametres.get(i)) != null && this.specialInfo.get(parametres.get(i)).equals("String")){
+					s += "String ";
+					s += parametres.get(i);
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
+				else if (parametres.get(i).getClass().equals(String.class)){
 					s += "Attribute ";
 					s += parametres.get(i);
 					if (i < parametres.size() - 1){
 						s += ";";
 					}
 				}
-				if (parametres.get(i).getClass().equals(ItemPheromone.class)){
+
+				else if (parametres.get(i).getClass().equals(ItemPheromone.class)){
 					s += "Pheromone ";
 					s += ((ItemPheromone) parametres.get(i)).getNom();
 					if (i < parametres.size() - 1){
 						s += ";";
 					}
 				}
-				if (parametres.get(i).getClass().equals(NCogniton.class)){
+				else if (parametres.get(i).getClass().equals(NCogniton.class)){
 					s += "Cogniton ";
 					s += ((NCogniton) parametres.get(i)).getNom();
 					if (i < parametres.size() - 1){
 						s += ";";
 					}
 				}
-				if (parametres.get(i).getClass().equals(Comparator.class)){
+				else if (parametres.get(i).getClass().equals(Comparator.class)){
 					s += "Comparator ";
 					s += ((Comparator) parametres.get(i)).toSymbol();
 					if (i < parametres.size() - 1){

@@ -8,11 +8,14 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import civilisation.Configuration;
 import civilisation.group.GroupAndRole;
@@ -23,7 +26,9 @@ import civilisation.inspecteur.simulation.PanelArbreActions;
 
 public class DialogueEditerAction extends JDialog implements ActionListener, PropertyChangeListener{
 	
-	ArrayList<JComboBox> boxs = new ArrayList<JComboBox>();
+	ArrayList<JComponent> boxs = new ArrayList<JComponent>();
+	ArrayList<JComponent> components = new ArrayList<JComponent>();
+
     JOptionPane optionPane;
     PanelArbreActions p;
     Action a;
@@ -44,6 +49,7 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 		if (schema != null){
 			for (int i = 0; i < schema.size(); i++){
 				JComboBox box = new JComboBox();
+				boolean isComboBox = true;
 				if (schema.get(i)[0].equals("**Objet**")){
 					for (int j = 0; j < Configuration.objets.size(); j++){
 						box.addItem(Configuration.objets.get(j).getNom());
@@ -95,21 +101,34 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 						box.addItem(Comparator.values()[j].toSymbol());
 					}
 				}
+				else if (schema.get(i)[0].equals("**String**")){
+					
+					
+					boxs.add(new JTextField());
+					isComboBox = false;
+				}
 				else{
 					for (int j = 0; j < schema.get(i).length; j++){
 						box.addItem(schema.get(i)[j]);
 					}
 				}
-				boxs.add(box);
+				if (isComboBox){
+					boxs.add(box);
+				}
+				
+				Box hb = Box.createHorizontalBox();
+				hb.add(new JLabel(schema.get(i)[1]));
+				hb.add(boxs.get(boxs.size()-1));
+				components.add(hb);
 			}
 		}
 
 		Object[] array;
-		if (boxs.size() != 0){
-		    array = boxs.toArray();
+		if (components.size() != 0){
+		    array = components.toArray();
 		}
 		else{
-			JLabel label = new JLabel("Cette action n'est pas ___ditable!");
+			JLabel label = new JLabel("You can't edit this action!");
 		    array = new Object[1];
 		    array[0] = label;
 		}
@@ -149,48 +168,57 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 
 					if (schema.get(i)[0].equals("**Objet**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
-						opt.addParametre(Configuration.getObjetByName((String)boxs.get(i).getSelectedItem()));
+						opt.addParametre(Configuration.getObjetByName((String)((JComboBox) boxs.get(i)).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Pheromone**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
-						opt.addParametre(Configuration.getPheromoneByName((String)boxs.get(i).getSelectedItem()));
+						opt.addParametre(Configuration.getPheromoneByName((String)((JComboBox) boxs.get(i)).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Cogniton**")){
 						opt = new OptionsActions(schema.get(i)[1]);
-						opt.addParametre(Configuration.getCognitonByName((String)boxs.get(i).getSelectedItem()));
+						opt.addParametre(Configuration.getCognitonByName((String)((JComboBox) boxs.get(i)).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Group**")){
 						opt = new OptionsActions(schema.get(i)[1]);
-						opt.addParametre(Configuration.getGroupModelByName((String)boxs.get(i).getSelectedItem()));
+						opt.addParametre(Configuration.getGroupModelByName((String)((JComboBox) boxs.get(i)).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**GroupAndRole**")){
 						opt = new OptionsActions(schema.get(i)[1]);
-						opt.addParametre(new GroupAndRole((String)boxs.get(i).getSelectedItem()));
+						opt.addParametre(new GroupAndRole((String)((JComboBox) boxs.get(i)).getSelectedItem()));
 					}
 					else if (schema.get(i)[0].equals("**Integer**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
-						opt.addParametre((Integer)boxs.get(i).getSelectedItem());
+						opt.addParametre((Integer)((JComboBox) boxs.get(i)).getSelectedItem());
 					}
 					else if (schema.get(i)[0].equals("**Double**")){
 						opt = new OptionsActions(schema.get(i)[1]); /*Le deuxi___me terme est toujours le nom du param___tre pour les param___tres complexes*/
-						opt.addParametre((Double)boxs.get(i).getSelectedItem());
+						opt.addParametre((Double)((JComboBox) boxs.get(i)).getSelectedItem());
 					}
 					else if (schema.get(i)[0].equals("**Attribute**")){
 						opt = new OptionsActions(schema.get(i)[1]);
-						opt.addParametre(boxs.get(i).getSelectedItem());
+						opt.addParametre(((JComboBox) boxs.get(i)).getSelectedItem());
 					}
 					else if (schema.get(i)[0].equals("**Comparator**")){
 						opt = new OptionsActions(schema.get(i)[1]);
-						opt.addParametre(Comparator.toComparator((String)boxs.get(i).getSelectedItem()));
+						opt.addParametre(Comparator.toComparator((String)((JComboBox) boxs.get(i)).getSelectedItem()));
+
 					}
-					else if (schema.get(i)[0] != null){ /*Pas utile*/
+					else if (schema.get(i)[0].equals("**String**")){
+						opt = new OptionsActions(schema.get(i)[1]);
+						opt.addParametre(((JTextField) boxs.get(i)).getText(), "String");
+
+					}
+					else if (schema.get(i)[0] != null){
 						System.out.println(schema.get(i)[0]);
-						opt = new OptionsActions((String)boxs.get(i).getSelectedItem());
+						opt = new OptionsActions((String)((JComboBox) boxs.get(i)).getSelectedItem());
 					}
-					System.out.println(opt);
 					a.parametrerOption(opt);
 				}
 
+			/*	for (int i = 0; i < fields.size(); i++){	
+					OptionsActions opt = null;
+					a.parametrerOption(opt);
+				}*/
 			}		
 	        setVisible(false);
 		}
