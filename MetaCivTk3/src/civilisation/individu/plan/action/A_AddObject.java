@@ -13,7 +13,9 @@ public class A_AddObject extends Action{
 	
 	
 	public Action effectuer(Humain h) {
-		h.getInventaire().addObjets(Configuration.getObjetByName(ObjectName), variation);
+		for (int i = 0 ; i < variation ; i++) {
+			h.getInventaire().addObjets(Configuration.getObjetByName(ObjectName),1);
+		}
 		return nextAction;
 	}
 	
