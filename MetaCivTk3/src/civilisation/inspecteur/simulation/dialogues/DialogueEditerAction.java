@@ -16,6 +16,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 import civilisation.Configuration;
 import civilisation.group.GroupAndRole;
@@ -123,6 +124,12 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 			}
 		}
 
+		JTextPane jTextPane = new JTextPane();
+		jTextPane.setContentType("text/html");
+		jTextPane.setText(a.getInfo());
+		jTextPane.setEditable(false);
+		jTextPane.setBackground(this.getBackground());
+		components.add(jTextPane);
 		Object[] array;
 		if (components.size() != 0){
 		    array = components.toArray();

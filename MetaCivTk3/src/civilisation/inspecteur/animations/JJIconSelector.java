@@ -18,7 +18,7 @@ public class JJIconSelector extends JComboBox{
 		//ImageIcon ico;
 		super();
 		
-		File[] fichiersIcones = new File(System.getProperty("user.dir")+path).listFiles();
+		File[] fichiersIcones = new File(path).listFiles();
 		ArrayList<ItemPheromone> phero = new ArrayList<ItemPheromone>();
 		ArrayList<String> pathTab = new ArrayList<String>();
 		for (File file : fichiersIcones) {

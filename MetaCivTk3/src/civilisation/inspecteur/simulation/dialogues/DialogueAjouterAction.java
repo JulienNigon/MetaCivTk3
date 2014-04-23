@@ -30,7 +30,9 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 		this.p = p;
 		this.option = option;
 		infos = new JTextPane();
+		infos.setEditable(false);
 		infos.setContentType("text/html");
+		infos.setBackground(this.getBackground());
 		
 		listeActions = new JComboBox();
 

@@ -21,6 +21,7 @@ import javax.swing.SpinnerNumberModel;
 import civilisation.Configuration;
 import civilisation.individu.cognitons.NCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
+import civilisation.inspecteur.animations.JJIconSelector;
 import civilisation.inspecteur.simulation.GCogniton;
 
 public class DialogueEditerCogniton extends JDialog implements ActionListener, PropertyChangeListener{
@@ -32,6 +33,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
     JCheckBox recuAuDemarrage;
     JSlider[] hues;
     JSpinner startChance;
+    JJIconSelector iconSelector;
 
 
     
@@ -71,6 +73,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		else
 		{startChance.setEnabled(false);}
 		
+		//this.add(iconSelector = new JJIconSelector());
 		
 		/* hues selection*/
 		hues = new JSlider[NCogniton.nHues];

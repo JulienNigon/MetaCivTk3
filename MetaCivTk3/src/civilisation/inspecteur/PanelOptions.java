@@ -54,8 +54,8 @@ public class PanelOptions extends JPanel{
         JLabel labelAffichage = new JLabel("Affichage des plans : ");
         
         frontiereAffichee = new JComboBox();
-        frontiereAffichee.addItem("Fronti___res visibles");
-        frontiereAffichee.addItem("Fronti___res masqu___es");
+        frontiereAffichee.addItem("Show limes (NYI)");
+        frontiereAffichee.addItem("Hide limes (NYI)");
         frontiereAffichee.addActionListener(new ActionOptionsListener(this, 1));
         
         /* Allow to select a phero-map*/
