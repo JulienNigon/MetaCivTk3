@@ -28,6 +28,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 	ButtonGroup choixTarget;
 	JRadioButton choix1T;
 	JRadioButton choix2T;
+	JRadioButton choix3T;
 	JLabel nomCible;
 	JComboBox listeCibles;
 	JLabel modifValue;
@@ -45,6 +46,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 	ButtonGroup choixActive;
 	JRadioButton choix1A;
 	JRadioButton choix2A;
+	JRadioButton choix3A;
 	JButton SaveEffect;
 	Effect effet;
 	public PanelEffect(PanelObjets panelParent)
@@ -56,11 +58,17 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choixTarget = new ButtonGroup();
 		choix1T = new JRadioButton("Attributes");
 		choix2T = new JRadioButton("Cognitons");
+		choix3T = new JRadioButton("Actions");
 		choix1T.addActionListener(this);
+		choix1T.setActionCommand("Attributs");
 		choix1T.setSelected(true);
 		choix2T.addActionListener(this);
+		choix2T.setActionCommand("Cognitons");
+		choix3T.addActionListener(this);
+		choix3T.setActionCommand("Actions");
 		choixTarget.add(choix1T);
 		choixTarget.add(choix2T);
+		choixTarget.add(choix3T);
 		nomCible = new JLabel("Target Name : ");
 		listeCibles = new JComboBox();
 		if(choix1T.isSelected())
@@ -83,6 +91,9 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choix1Ty = new JRadioButton("Add");
 		choix2Ty = new JRadioButton("Modify");
 		choix3Ty = new JRadioButton("Remove");
+		choix1Ty.addActionListener(this);
+		choix2Ty.addActionListener(this);
+		choix3Ty.addActionListener(this);
 		choixType.add(choix1Ty);
 		choixType.add(choix2Ty);
 		choixType.add(choix3Ty);
@@ -92,8 +103,10 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choixActive = new ButtonGroup();
 		choix1A = new JRadioButton("Possession");
 		choix2A = new JRadioButton("Use");
+		choix3A = new JRadioButton("Remove");
 		choixActive.add(choix1A);
 		choixActive.add(choix2A);
+		choixActive.add(choix3A);
 		permanent = new JLabel("Permanent ? : ");
 		choixPermanent = new ButtonGroup();
 		choix1P = new JRadioButton("Yes");
@@ -103,6 +116,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		SaveEffect = new JButton("Save Effect");
 		SaveEffect.addActionListener(this);
 		SaveEffect.setActionCommand("SaveEffect");
+		
 		Box b1 =  Box.createHorizontalBox();
 		b1.setAlignmentX(LEFT_ALIGNMENT);
 		b1.setAlignmentY(LEFT_ALIGNMENT);
@@ -117,6 +131,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b2.add(target);
 		b2.add(choix1T);
 		b2.add(choix2T);
+		b2.add(choix3T);
 		
 		Box b3 = Box.createHorizontalBox();
 		b3.setAlignmentX(LEFT_ALIGNMENT);
@@ -156,14 +171,15 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b7.add(nomActive);
 		b7.add(choix1A);
 		b7.add(choix2A);
+		b7.add(choix3A);
 		
 		Box b8 = Box.createVerticalBox();
 		b8.add(b1);
 		b8.add(b2);
 		b8.add(b3);
-		b8.add(b4);
 		b8.add(b5);
 		b8.add(b6);
+		b8.add(b4);
 		b8.add(b7);
 		b8.add(SaveEffect);
 		this.add(b8);
@@ -179,17 +195,25 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choixTarget = new ButtonGroup();
 		choix1T = new JRadioButton("Attributes");
 		choix2T = new JRadioButton("Cognitons");
+		choix3T = new JRadioButton("Actions");
+		
 		choix1T.addActionListener(this);
 		choix2T.addActionListener(this);
+		choix3T.addActionListener(this);
 		choixTarget.add(choix1T);
 		choixTarget.add(choix2T);
+		choixTarget.add(choix3T);
 		if(e.getTarget().equals("attribut"))
 		{
 			choix1T.setSelected(true);
 		}
-		else
+		else if(e.getTarget().equals("cogniton"))
 		{
 			choix2T.setSelected(true);
+		}
+		else
+		{
+			choix3T.setSelected(true);
 		}
 		nomCible = new JLabel("Target Name : ");
 		listeCibles = new JComboBox();
@@ -200,11 +224,18 @@ public class PanelEffect extends JPanel implements ActionListener{
 				listeCibles.addItem(Configuration.attributesNames.get(i));
 			}
 		}
-		else
+		else if(e.getTarget().equals("cogniton"))
 		{
 			for(int i = 0; i < Configuration.cognitons.size();++i)
 			{
 				listeCibles.addItem(Configuration.cognitons.get(i).getNom());
+			}
+		}
+		else
+		{
+			for(int i = 0; i < Configuration.actions.size();++i)
+			{
+				listeCibles.addItem(Configuration.actions.get(i).getSimpleName());
 			}
 		}
 		int index = 0;
@@ -221,6 +252,9 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choix1Ty = new JRadioButton("Set");
 		choix2Ty = new JRadioButton("Add");
 		choix3Ty = new JRadioButton("Remove");
+		choix1Ty.addActionListener(this);
+		choix2Ty.addActionListener(this);
+		choix3Ty.addActionListener(this);
 		choixType.add(choix1Ty);
 		choixType.add(choix2Ty);
 		choixType.add(choix3Ty);
@@ -247,15 +281,21 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choixActive = new ButtonGroup();
 		choix1A = new JRadioButton("Possession");
 		choix2A = new JRadioButton("Use");
+		choix3A = new JRadioButton("Remove");
 		choixActive.add(choix1A);
 		choixActive.add(choix2A);
+		choixActive.add(choix3A);
 		if(e.getActivation() == 0)
 		{
 			choix1A.setSelected(true);
 		}
-		else
+		else if(e.getActivation() == 1)
 		{
 			choix2A.setSelected(true);
+		}
+		else
+		{
+			choix3A.setSelected(true);
 		}
 		permanent = new JLabel("Permanent ? : ");
 		choixPermanent = new ButtonGroup();
@@ -288,6 +328,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b2.add(target);
 		b2.add(choix1T);
 		b2.add(choix2T);
+		b2.add(choix3T);
 		
 		Box b3 = Box.createHorizontalBox();
 		b3.setAlignmentX(LEFT_ALIGNMENT);
@@ -327,14 +368,15 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b7.add(nomActive);
 		b7.add(choix1A);
 		b7.add(choix2A);
+		b7.add(choix3A);
 		
 		Box b8 = Box.createVerticalBox();
 		b8.add(b1);
 		b8.add(b2);
 		b8.add(b3);
-		b8.add(b4);
 		b8.add(b5);
 		b8.add(b6);
+		b8.add(b4);
 		b8.add(b7);
 		b8.add(SaveEffect);
 		this.add(b8);
@@ -348,6 +390,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		target.setVisible(true);
 		choix1T.setVisible(true);
 		choix2T.setVisible(true);
+		choix3T.setVisible(true);
 		nomCible.setVisible(true);
 		listeCibles.setVisible(true);
 		modifValue.setVisible(true);
@@ -362,6 +405,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		nomActive.setVisible(true);
 		choix1A.setVisible(true);
 		choix2A.setVisible(true);
+		choix3A.setVisible(true);
 	}
 	
 	public Effect performedChange(Effect e)
@@ -374,17 +418,23 @@ public class PanelEffect extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+
 		if(e.getActionCommand() == "SaveEffect")
 		{
+			
 			Effect ef = new Effect();
 			ef.setName(nomEffetText.getText());
 			if(choix1T.isSelected())
 			{
 				ef.setTarget("attribut");
 			}
-			else
+			else if(choix2T.isSelected())
 			{
 				ef.setTarget("cogniton");
+			}
+			else
+			{
+				ef.setTarget("action");
 			}
 			ef.setVarget(listeCibles.getSelectedItem().toString());
 			ef.setValue(Double.parseDouble(modifValueText.getText()));
@@ -415,35 +465,44 @@ public class PanelEffect extends JPanel implements ActionListener{
 			{
 				ef.setActivation(0);
 			}
-			else
+			else if(choix2A.isSelected())
 			{
 				ef.setActivation(1);
 			}
+			else
+			{
+				ef.setActivation(2);
+			}
 			
 			int i = 0;
-			while(i < Configuration.effets.size() && Configuration.effets.get(i).getName().equals(ef.getName()))
-			{
-				i++;
-			}
-			if(i < Configuration.effets.size())
-			{
-				Configuration.effets.remove(i);
-			}
 			this.effet = ef;
+			if(Configuration.getEffectByName(ef.getName()) != null)
+			{
+				int k = 0;
+				while(  k < Configuration.effets.size() && !Configuration.effets.get(k).getName().equals(ef.getName()))
+				{
+					k++;
+				}
+				if(k < Configuration.effets.size())
+				{
+					Configuration.effets.remove(k);
+				}
+				
+			}
 			Configuration.effets.add(ef);
+
 		}
-		else
+		else if(e.getActionCommand() == "Attributes" || e.getActionCommand() == "Cognitons" || e.getActionCommand() == "Actions")
 		{
 			if(choix1T.isSelected())
 			{
 				listeCibles.removeAllItems();
 				for(int i = 0; i < Configuration.attributesNames.size();++i)
 				{
-					System.out.println("testing2");
 					listeCibles.addItem(Configuration.attributesNames.get(i));
 				}
 			}
-			else
+			else if(choix2T.isSelected())
 			{
 				listeCibles.removeAllItems();
 				for(int i = 0; i < Configuration.cognitons.size();++i)
@@ -451,6 +510,15 @@ public class PanelEffect extends JPanel implements ActionListener{
 					listeCibles.addItem(Configuration.cognitons.get(i).getNom());
 				}
 			}
+			else
+			{
+				listeCibles.removeAllItems();
+				for(int i = 0; i < Configuration.actions.size();++i)
+				{
+					listeCibles.addItem(Configuration.actions.get(i).getSimpleName());
+				}
+			}
+			
 		}
 		
 	}

@@ -269,17 +269,59 @@ public class Initialiseur {
 		    	o.setDescription(getChamp("Description" , file)[0]);
 		    	o.setIconeFromString(getChamp("Icone", file)[0]);
 		    	ArrayList<String[]> eff = Initialiseur.getListeChamp("Effects", file);
-		    	for(int i = 0;i < eff.size();++i)
-		    	{
-		    		Effect ef = Configuration.getEffectByName(eff.get(i)[0]);
-		    		System.out.println(eff.get(i)[0]);
-		    		System.out.println(ef.getName());
-		    		if(ef != null)
-		    		{
-		    			o.addEffect(ef);
-		    		}
-		    	}
+				
+				int i = 0;
+				if(eff.size() > 0)
+				{
+					System.out.println("Nombre effets dans l'objet "+eff.get(0).length);
+					while(i < eff.get(0).length && eff.get(0)[i] != null)
+					{
+						Effect ef = Configuration.getEffectByName(eff.get(0)[i]);
+			    		if(ef != null)
+			    		{
+			    			o.addEffect(ef);
+			    		}
+			    		++i;
+					}
+				}
+				
+				
+				
 		    	Configuration.objets.add(o);
+		    }
+			}
+		}	
+			
+		/*Chargement des recettes
+		 * 
+		 */
+		System.out.println("Chargement des recettes d'objets");
+		
+		files = new File(Configuration.pathToRessources + "/objets").listFiles();
+		for (File file : files) {
+			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
+			System.out.println("Chargement de : " + file.getName());
+		    if (file.isFile()) {
+		    	nom = Initialiseur.getChamp("Nom" , file)[0];
+		    	
+		    	ArrayList<String[]> rec = Initialiseur.getListeChamp("Objets", file);
+		    	ArrayList<String[]> nbre = Initialiseur.getListeChamp("Nombre", file);
+		    	
+				int i = 0;
+				if(rec.size() > 0)
+				{
+					System.out.println("Nombre recettes dans l'objet "+rec.get(0).length);
+					int nb; 
+					while(i < rec.get(0).length && rec.get(0)[i] != null)
+					{
+						
+						nb = Integer.parseInt(nbre.get(0)[i]);
+						Configuration.getObjetByName(nom).addItemRecipe(rec.get(0)[i], nb);
+			    		++i;
+					}
+				}
+				
+			
 		    }
 			}
 		}	

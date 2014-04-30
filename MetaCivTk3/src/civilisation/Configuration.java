@@ -285,6 +285,7 @@ public class Configuration {
 		int i = 0;
 		if(effets.size()  > 0)
 		{
+			
 			while(i < effets.size() && !effets.get(i).getName().equals(name))
 			{
 				i++;
@@ -292,16 +293,51 @@ public class Configuration {
 			}
 			if(i < effets.size())
 			{
+				System.out.println(" effet : "+ effets.get(i).getName());
 				return effets.get(i);
 			}
 			else
 			{
+				System.out.println("null");
 				return null;
 			}
 		}
 		else
 		{
+			System.out.println("null");
 			return null;
+		}
+		
+	}
+
+	public static void addObjetUnique(Objet o) {
+		// TODO Auto-generated method stub
+		int i = 0;
+		while(i < objets.size() && !objets.get(i).getNom().equals(o.getNom()))
+		{
+			++i;
+		}
+		if(i < objets.size())
+		{
+			objets.remove(i);
+		}
+		objets.add(o);
+	}
+
+	public static void addEffectUnique(Effect temp) {
+		// TODO Auto-generated method stub
+		int i = 0;
+		if(temp != null)
+		{
+			while(i < effets.size() && !effets.get(i).getName().equals(temp.getName()))
+			{
+				++i;
+			}
+			if(i < effets.size())
+			{
+				effets.remove(i);
+			}
+			effets.add(temp);
 		}
 		
 	}
