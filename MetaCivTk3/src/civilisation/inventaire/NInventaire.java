@@ -37,7 +37,7 @@ public class NInventaire {
 	public void deleteObjets(Objet o, int i)
 	{
 		int val;
-		if (!listeObjets.containsKey(o)){
+		if (listeObjets.containsKey(o)){
 			val = listeObjets.get(o);
 			listeObjets.remove(o);
 			if(val - i < 0)

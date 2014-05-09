@@ -385,16 +385,10 @@ public class Esprit {
 	 * @param t : the type of cogniton to change
 	 */
 	public void changeWeightOfCognitonOfType(NCogniton t , Double d) {
-		boolean exist = false;
 		for (int i = 0 ; i < cognitons.size() ; i++) {
 			if (cognitons.get(i).getCogniton().equals(t)) {
-				cognitons.get(i).setWeigth(cognitons.get(i).getWeigth() + d,this);
-				exist = true;
+				cognitons.get(i).setWeigth(cognitons.get(i).getWeigth() + d);
 			}
-		}
-		if (!exist) {
-			this.addCogniton(t);
-			cognitons.get(cognitons.size() - 1).setWeigth(d,this);
 		}
 		this.redefinirPoids();
 	}
@@ -406,18 +400,25 @@ public class Esprit {
 	 */
 	public void setWeightOfCognitonOfType(NCogniton t , Double d)
 	{
-		boolean exist = false;
 		for (int i = 0 ; i < cognitons.size() ; i++) {
 			if (cognitons.get(i).getCogniton().equals(t)) {
-				cognitons.get(i).setWeigth(d,this);
+				cognitons.get(i).setWeigth(d);
 			}
-		}
-		if (!exist) {
-			this.addCogniton(t);
-			cognitons.get(cognitons.size() - 1).setWeigth(d,this);
 		}
 		this.redefinirPoids();
 	}
+	
+	
+	
+	/**
+	 * Ajoute un cogniton si il n'est pas présent
+	 * Si il est présent change le poid
+	 * 
+	 */
+
+
+	
+	
 	/**
 	 * Ajoute un cogniton si il n'est pas présent
 	 * Si il est présent change le poid
@@ -444,14 +445,26 @@ public class Esprit {
 	
 	
 	/**
-	 * Ajoute un poid au cogniton si il est présent.
+	 * Ajoute un poid au cogniton si il est présent
 	 * 
 	 */
-	//TODO : redondant, a supprimer?
 	public void AddWeightToCogniton(NCogniton t, Double d)
 	{
-		changeWeightOfCognitonOfType(t , d);
+		int i = 0;
+		while(i < cognitons.size() && !cognitons.get(i).getCogniton().equals(t))
+		{
+			i++;
+		}
+		if(i < cognitons.size())
+		{
+			this.changeWeightOfCognitonOfType(t, d);
+		}
+		else
+		{
+			this.setCogniton(t, d);
+		}
 	}
+	
 	
 	/**
 	 * Check if the agent own a specific combination of a group and a role

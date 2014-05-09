@@ -14,7 +14,7 @@ public class CCogniton {
 
 	public NCogniton cogniton;
 	public HashMap<String , Object> hashmap = new HashMap<String,Object>();
-	private double weigth = 1.0;
+	public double weigth = 1.0;
 	
 	public CCogniton (NCogniton cogniton) {
 		this.cogniton = cogniton;
@@ -40,12 +40,8 @@ public class CCogniton {
 		return weigth;
 	}
 
-	public void setWeigth(double weigth, Esprit e) {
-		if (weigth > 0) {
-			this.weigth = weigth;
-		} else {
-			e.removeCogniton(this.cogniton);
-		}
+	public void setWeigth(double weigth) {
+		this.weigth = weigth;
 	}
 	
 	// Some functions from NCogniton for convenience

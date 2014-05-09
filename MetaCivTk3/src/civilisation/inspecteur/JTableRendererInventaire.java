@@ -19,28 +19,49 @@ public class JTableRendererInventaire extends DefaultTableCellRenderer {
 				isSelected, hasFocus, row, column);
 
 			ImageIcon icone;
-			Objet o = (Objet) value;
-			
-			if (o != null)
+			if(value != null && value.getClass().equals(Objet.class))
 			{
-				setToolTipText((o.toString()));
-				this.setValue(o.getNom());
+				Objet o = (Objet) value;
+				
+				if (o != null)
+				{
+					setToolTipText((o.toString()));
+					this.setValue(o.getNom());
 
-				if (o.getIcone() != null)
-			    {
-		    		setIcon(o.getIcone());
+					if (o.getIcone() != null)
+				    {
+			    		setIcon(o.getIcone());
+					}
+					else
+					{
+						setIcon(null);
+					}
+
+
 				}
 				else
 				{
 					setIcon(null);
+					setValue(null);
+					setToolTipText(null);
 				}
-
-
 			}
 			else
 			{
+				Integer o = (Integer) value;
+				
+				if (o != null)
+				{
+					this.setValue(o);
+
+				}
+				else
+				{
+					
+					setValue(null);
+					
+				}
 				setIcon(null);
-				setValue(null);
 				setToolTipText(null);
 			}
 		    	
