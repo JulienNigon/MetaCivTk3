@@ -411,7 +411,7 @@ public class PanelModificationSimulation extends JPanel{
 		panelCentral = new JPanel();
 		panelCentral.setLayout(new BorderLayout());
 		
-		panelCentral.add(panelObjets, BorderLayout.CENTER);
+		panelCentral.add(new JScrollPane(panelObjets,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS), BorderLayout.CENTER);		
 		panelCentral.add(toolBarObjets, BorderLayout.NORTH);
 
 		panelEast = new JPanel();
