@@ -166,7 +166,7 @@ public class PanelInspecteur extends JPanel{
 		
 		
 			donnees[0][0] = "ID";
-			donnees[0][1] = agentID;
+			donnees[0][1] = h.hashCode();
 			//donnees[1][0] = "X";
 			//donnees[1][1] = h.getX();
 			donnees[1][0] = "Agent name";
@@ -192,12 +192,12 @@ public class PanelInspecteur extends JPanel{
 				donnees[i][1] = h.getAttr().get(Configuration.attributesNames.get(i - var));
 			}
 		
-			patch.actualiser(select(agentID));  //On met a jour le panel du patch
-			inventaire.actualiser(select(agentID)); //On met ___ jour l'affichage de l'inventaire
-			croyances.actualiser(select(agentID)); //On met ___ jour l'affichage des croyances
-			plans.actualiser(select(agentID)); //On met ___ jour l'affichage des plans
-			genealogie.actualiser((Humain)select(agentID)); //On met ___ jour l'affichage de la genealogie
-			groups.actualiser((Humain)select(agentID));
+			patch.actualiser(h);  //On met a jour le panel du patch
+			inventaire.actualiser(h); //On met ___ jour l'affichage de l'inventaire
+			croyances.actualiser(h); //On met ___ jour l'affichage des croyances
+			plans.actualiser(h); //On met ___ jour l'affichage des plans
+			genealogie.actualiser(h); //On met ___ jour l'affichage de la genealogie
+			groups.actualiser(h);
 		
 			this.updateUI();
 		}
