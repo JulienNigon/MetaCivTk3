@@ -81,31 +81,25 @@ public class Civilisation {
 		return nom;
 	}
 
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
 
 	public static ArrayList<Civilisation> getListeCiv() {
 		return listeCiv;
 	}
 
-
 	public static void setListeCiv(ArrayList<Civilisation> listeCiv) {
 		Civilisation.listeCiv = listeCiv;
 	}
-
 
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
 	}
 
-
 	public int getAgentsInitiaux() {
 		return agentsInitiaux;
 	}
-
 
 	public void setAgentsInitiaux(int agentsInitiaux) {
 		this.agentsInitiaux = agentsInitiaux;
@@ -115,13 +109,9 @@ public class Civilisation {
 		World.getInstance().addFlavor("civ"+indexCiv);		
 	}
 
-
-
 	public ArrayList<NCogniton> getStartingCognitons() {
 		return startingCognitons;
 	}
-
-
 
 	public void setStartingCognitons(ArrayList<NCogniton> startingCognitons) {
 		this.startingCognitons = startingCognitons;

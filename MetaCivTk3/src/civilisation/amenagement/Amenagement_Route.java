@@ -3,6 +3,7 @@ package civilisation.amenagement;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 import turtlekit.kernel.Patch;
 
@@ -56,6 +57,8 @@ public class Amenagement_Route extends AmenagementPublic {
 	}
 	
 	public void recomputeLinks(int forcedNeighbor) {
+
+		synchronized (p) {
 		List<Patch> neighbors = p.getNeighbors(1, false); //TODO There is an order??
 		//System.out.println(neighbors);
 		Amenagement mark;
@@ -73,6 +76,7 @@ public class Amenagement_Route extends AmenagementPublic {
 				roadDirection[i] = false;
 			}
 		
+		}
 		}
 
 	}
