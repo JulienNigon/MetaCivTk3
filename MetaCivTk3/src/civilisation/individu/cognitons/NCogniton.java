@@ -79,7 +79,7 @@ public class NCogniton{
 	{
 		for (int i = 0 ; i < liensPlans.size() ; i++)
 		{
-			e.modifierPoids(liensPlans.get(i).getP(), (int)Math.round(liensPlans.get(i).getPoids()*weigth));
+			e.modifierPoids(liensPlans.get(i).getP(), (float)(liensPlans.get(i).getPoids()*weigth));
 		}
 	}
 	

@@ -56,7 +56,7 @@ public class Esprit {
 	Stack<Action> actions = new Stack<Action>();
 	
 	int poidsTotal;
-	int poidsTotalPlan;
+	float poidsTotalPlan;
 
 	private DecisionMaker decisionMaker;
 	
@@ -161,9 +161,9 @@ public class Esprit {
 	/**
 	 * Change le poids actuel d'un plan
 	 * @param plan : Le plan ______ modifier
-	 * @param p : le poids ______ ajouter
+	 * @param f : le poids ______ ajouter
 	 */
-	public void modifierPoids(NPlan plan, int p) 
+	public void modifierPoids(NPlan plan, float f) 
 	{
 		int i = 0;
 		//System.out.println(projets.get(i).getClass().getName());
@@ -178,7 +178,7 @@ public class Esprit {
 
 		if (plans.size() > 0 && i < plans.size())
 		{
-			plans.get(i).changerPoids(p);
+			plans.get(i).changerPoids(f);
 		}
 		else{
 		}
@@ -284,11 +284,11 @@ public class Esprit {
 		}
 	}
 
-	public int getPoidsTotalPlan() {
+	public float getPoidsTotalPlan() {
 		return poidsTotalPlan;
 	}
 
-	public void setPoidsTotalPlan(int poidsTotalPlan) {
+	public void setPoidsTotalPlan(float poidsTotalPlan) {
 		this.poidsTotalPlan = poidsTotalPlan;
 	}
 

@@ -11,7 +11,7 @@ import civilisation.individu.plan.action.Action;
 
 public class NPlanPondere {
 	
-	int poids;
+	float poids;
 	NPlan plan;
 	Humain h;
 	Esprit e;
@@ -41,10 +41,10 @@ public class NPlanPondere {
 	}
 	
 	
-	public int getPoids() {
+	public float getPoids() {
 		return poids;
 	}
-	public void setPoids(int poids) {
+	public void setPoids(float poids) {
 		this.poids = poids;
 	}
 	public NPlan getPlan() {
@@ -72,7 +72,7 @@ public class NPlanPondere {
 	 * Modifie le poids du projet d'un poids p,
 	 * Demande ___ l'esprit concern___ de modifier le poids total en cons___quence
 	 */
-	public void changerPoids(int p)
+	public void changerPoids(float f)
 	{
 		//TODO : Just a fast solution, MUST be improved for performance issues
 		e.computeTotalWeight();
@@ -101,7 +101,7 @@ public class NPlanPondere {
 		{
 			e.addPoidsTotal(p);
 		}*/
-		poids += p;
+		poids += f;
 	}
 	
 	@Override

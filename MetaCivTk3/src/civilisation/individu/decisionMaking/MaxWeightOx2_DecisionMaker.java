@@ -15,10 +15,10 @@ public class MaxWeightOx2_DecisionMaker extends DecisionMaker{
 		/* Select the new plan if there are no action to do */
 		if ((mind.getActionEnCours() == null))
 		{
-			int max = Integer.MIN_VALUE;
+			float max = Integer.MIN_VALUE;
 			NPlanPondere plan = null;
 			for (int i = 0 ; i < mind.getPlans().size(); i++) {
-				int weight = mind.getPlans().get(i).getPoids();
+				float weight = mind.getPlans().get(i).getPoids();
 				if (weight > max) {
 					max = weight;
 					plan = mind.getPlans().get(i);
@@ -29,11 +29,11 @@ public class MaxWeightOx2_DecisionMaker extends DecisionMaker{
 			mind.setPlanEnCours(plan);
 			mind.getActions().push(null); //end of plan marker
 		} else {
-			int max = Integer.MIN_VALUE;
+			float max = Integer.MIN_VALUE;
 			NPlanPondere plan = null;
 			NPlanPondere currentPlan = mind.getPlanEnCours();
 			for (int i = 0 ; i < mind.getPlans().size(); i++) {
-				int weight = mind.getPlans().get(i).getPoids();
+				float weight = mind.getPlans().get(i).getPoids();
 				if (weight > max && weight > 2*currentPlan.getPoids()) {
 					max = weight;
 					plan = mind.getPlans().get(i);

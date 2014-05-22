@@ -45,7 +45,7 @@ public class GPlan extends GItemCognitif{
     		if (concretePlan.getH().getEsprit().getPlanEnCours() == concretePlan) {
         		g2d.setColor(new Color (135, 38, 87));
     		}
-    		backgroundColor = new Color(Math.max(255 - Math.max(concretePlan.getPoids(),0) * 10, 0), Math.max(255 - Math.max(concretePlan.getPoids(),0) * 10, 0), 255);
+    		backgroundColor = new Color(Math.max(1.0f - Math.max(concretePlan.getPoids(),0) * 0.1f, 0), Math.max(1.0f - Math.max(concretePlan.getPoids(),0) * 0.1f, 0), 1.0f);
     	}
 
     	FontMetrics fm = g2d.getFontMetrics();

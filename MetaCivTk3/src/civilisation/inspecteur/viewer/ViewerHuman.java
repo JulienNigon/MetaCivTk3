@@ -15,6 +15,7 @@ import turtlekit.viewer.AbstractViewer;
 import civilisation.individu.Humain;
 import civilisation.inspecteur.PanelInspecteur;
 import civilisation.inspecteur.PanelMind;
+import civilisation.inspecteur.PanelMindData;
 import civilisation.inspecteur.PanelMiniMap;
 import civilisation.inspecteur.PanelOptions;
 import civilisation.inspecteur.PanelPerformances;
@@ -38,6 +39,7 @@ public class ViewerHuman extends AbstractViewer{
 		PanelMind panelMind;
 		PanelGroupOfAnAgent panelGroupOfAnAgent;
 		PanelMiniMap miniMap;
+		PanelMindData panelMindData;
 		
 		Humain h;
 	  
@@ -61,10 +63,11 @@ public class ViewerHuman extends AbstractViewer{
 			panelMind = new PanelMind(h);
 			panelGroupOfAnAgent = new PanelGroupOfAnAgent(h);
 			miniMap = new PanelMiniMap(h);
+			panelMindData = new PanelMindData(h);
 			
 		    contentPane = new JTabbedPane();
 		    contentPane.addTab("Agent", panelInspecteur);
-		    contentPane.addTab("Mind", new JScrollPane(panelMind));
+		    contentPane.addTab("Mind",new JSplitPane(JSplitPane.VERTICAL_SPLIT,panelMindData,new JScrollPane(panelMind)) );
 		    contentPane.addTab("Groups", new JScrollPane(panelGroupOfAnAgent));
 		    //contentPane.setPreferredSize(new Dimension(400,400));
 
@@ -80,6 +83,7 @@ public class ViewerHuman extends AbstractViewer{
 				panelInspecteur.actualiser();
 				miniMap.updatePosition();
 				panelMind.updateData();
+				panelMindData.updateData();
 			}
 			else {
 				this.killAgent(this);
