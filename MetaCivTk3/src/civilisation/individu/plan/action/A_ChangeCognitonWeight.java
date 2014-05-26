@@ -19,7 +19,7 @@ public class A_ChangeCognitonWeight extends Action{
 	@Override
 	public Action effectuer(Humain h) {
 		
-		h.getEsprit().changeWeightOfCognitonOfType(cogniton, change);
+		h.getEsprit().AddWeightToCogniton(cogniton, change);
 		
 		return nextAction;
 		
@@ -27,7 +27,7 @@ public class A_ChangeCognitonWeight extends Action{
 
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Change the weight for a cogniton.<br>If agent doesn't have the cogniton, nothing happens.<html>";
+		return super.getInfo() + " Change the weight for a cogniton.<br>If agent doesn't have the cogniton, add it.<html>";
 	}
 	
 	@Override

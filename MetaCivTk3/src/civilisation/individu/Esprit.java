@@ -409,12 +409,7 @@ public class Esprit {
 	}
 	
 	
-	
-	/**
-	 * Ajoute un cogniton si il n'est pas présent
-	 * Si il est présent change le poid
-	 * 
-	 */
+
 
 
 	

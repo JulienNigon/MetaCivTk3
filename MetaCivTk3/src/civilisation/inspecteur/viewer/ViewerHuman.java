@@ -13,6 +13,7 @@ import javax.swing.JTabbedPane;
 
 import turtlekit.viewer.AbstractViewer;
 import civilisation.individu.Humain;
+import civilisation.inspecteur.PanelAgentData;
 import civilisation.inspecteur.PanelInspecteur;
 import civilisation.inspecteur.PanelMind;
 import civilisation.inspecteur.PanelMindData;
@@ -40,6 +41,7 @@ public class ViewerHuman extends AbstractViewer{
 		PanelGroupOfAnAgent panelGroupOfAnAgent;
 		PanelMiniMap miniMap;
 		PanelMindData panelMindData;
+		PanelAgentData panelAgentData;
 		
 		Humain h;
 	  
@@ -64,15 +66,19 @@ public class ViewerHuman extends AbstractViewer{
 			panelGroupOfAnAgent = new PanelGroupOfAnAgent(h);
 			miniMap = new PanelMiniMap(h);
 			panelMindData = new PanelMindData(h);
-			
+			panelAgentData = new PanelAgentData(h);
+
 		    contentPane = new JTabbedPane();
-		    contentPane.addTab("Agent", panelInspecteur);
 		    contentPane.addTab("Mind",new JSplitPane(JSplitPane.VERTICAL_SPLIT,panelMindData,new JScrollPane(panelMind)) );
+		    contentPane.addTab("Data",panelInspecteur);
+		    contentPane.addTab("Charts",panelAgentData);
 		    contentPane.addTab("Groups", new JScrollPane(panelGroupOfAnAgent));
+		    contentPane.addTab("MiniMap", miniMap);
+
 		    //contentPane.setPreferredSize(new Dimension(400,400));
 
-
-		    frame.setContentPane(new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,contentPane,miniMap));
+		    frame.setContentPane(contentPane);
+		   // frame.setContentPane(new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,contentPane,miniMap));
 			frame.setLocation(50, 0);
 		}
 
@@ -84,6 +90,7 @@ public class ViewerHuman extends AbstractViewer{
 				miniMap.updatePosition();
 				panelMind.updateData();
 				panelMindData.updateData();
+				panelAgentData.updateData();
 			}
 			else {
 				this.killAgent(this);
