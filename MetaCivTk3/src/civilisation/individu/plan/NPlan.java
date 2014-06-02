@@ -193,8 +193,12 @@ public class NPlan {
 		out.print("Action : " + a.toFormatedString());
 		out.println();
 
-		if (!a.getListeActions().isEmpty()){
+		if (!a.getListeActions().isEmpty() && a.internActionsAreLinked()){
 			ecrireAction(out,iteration+1,a.getListeActions().get(0));
+		} else if (!a.getListeActions().isEmpty()) {
+			for (int i = 0; i < a.getListeActions().size(); i++) {
+				ecrireAction(out,iteration+1,a.getListeActions().get(i));
+			}
 		}
 		if (a.getNextAction()!=null){
 			ecrireAction(out,iteration,a.getNextAction());

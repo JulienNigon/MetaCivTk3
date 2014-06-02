@@ -42,6 +42,10 @@ public class PanelMindData extends JPanel{
 	JFreeChart chartPlanWeight;
 	ChartPanel chartPanelPlanWeight;
 	
+	DefaultPieDataset dataCogniWeight;
+	JFreeChart chartCogniWeight;
+	ChartPanel chartPanelCogniWeight;
+	
 	DefaultCategoryDataset dataPlanUse;
 	JFreeChart chartPlanWeightUse;
 	ChartPanel chartPanelPlanUse;
@@ -57,6 +61,12 @@ public class PanelMindData extends JPanel{
         chartPanelPlanWeight.setBackground(this.getBackground());
         this.add(chartPanelPlanWeight);
         
+        chartCogniWeight = createChart(dataCogniWeight, "Cogni weight");
+        chartPanelCogniWeight = new ChartPanel(chartCogniWeight);
+        chartPanelCogniWeight.setPreferredSize(new java.awt.Dimension(300, 150));
+        chartPanelCogniWeight.setBackground(this.getBackground());
+        this.add(chartPanelCogniWeight);
+        
         chartPlanWeightUse = createChartPlanUse(dataPlanUse);
         chartPanelPlanUse = new ChartPanel(chartPlanWeightUse);
         chartPanelPlanUse.setPreferredSize(new java.awt.Dimension(300, 150));
@@ -71,6 +81,10 @@ public class PanelMindData extends JPanel{
         	dataPlanWeight.setValue(h.getEsprit().getPlans().get(i).getPlan().getNom(),  h.getEsprit().getPlans().get(i).getPoids());
     	} 
     	dataPlanUse = new DefaultCategoryDataset();
+    	dataCogniWeight = new DefaultPieDataset();
+    	for (int i = 0 ; i < h.getEsprit().getCognitons().size() ; i++) {
+    		dataCogniWeight.setValue(h.getEsprit().getCognitons().get(i).getCogniton().getNom(),  h.getEsprit().getCognitons().get(i).getWeigth());
+    	} 
     /*	for (int i = 0 ; i < h.getEsprit().getPlans().size() ; i++) {
     		dataPlanUse.setValue(h.getEsprit().getPlans().get(i).getPoids(), h.getEsprit().getPlans().get(i).getPlan().getNom(), "val" );
     	} */
@@ -83,6 +97,13 @@ public class PanelMindData extends JPanel{
         	dataPlanWeight.setValue(h.getEsprit().getPlans().get(i).getPlan().getNom(),  h.getEsprit().getPlans().get(i).getPoids());
     	}
     	chartPanelPlanWeight.repaint();
+    	
+    	dataCogniWeight.clear();
+    	for (int i = 0 ; i < h.getEsprit().getCognitons().size() ; i++) {
+    		dataCogniWeight.setValue(h.getEsprit().getCognitons().get(i).getCogniton().getNom(),  h.getEsprit().getCognitons().get(i).getWeigth());
+    	} 
+    	chartPanelCogniWeight.repaint();
+
     	dataPlanUse.clear();
     	
     	//Update time passed on plan
