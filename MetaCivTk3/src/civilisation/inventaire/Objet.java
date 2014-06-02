@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 import civilisation.Configuration;
 import civilisation.effects.Effect;
-import civilisation.individu.cognitons.CCogniton;
+import civilisation.individu.cognitons.Cogniton;
 
 
  

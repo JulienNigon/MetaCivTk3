@@ -6,7 +6,7 @@ import java.util.List;
 import civilisation.Configuration;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
 
 public class A_Trade extends Action{
@@ -43,21 +43,14 @@ public class A_Trade extends Action{
 		
 		//Do the trade
 		if (!humains.isEmpty()) {
-			
-			System.out.println("Trade underway!");
-			
-			System.out.println("Tag : " + myTag + "  " + " tag2 : " + compatibleTag);
-			
+						
 			Humain target = humains.get((int) Math.floor(humains.size() * Math.random()));
 			
 			//Change my inventory
 			for (int i = 0 ; i < nItemToGive ; i++) {
-				System.out.println(itemToGive);
-				System.out.println(itemToGive.getNom());
 				h.getInventaire().deleteObjets(itemToGive,1);
 			}
 			for (int i = 0 ; i < nItemToTake ; i++) {
-				System.out.println(itemToTake.getNom());
 				h.getInventaire().addObjets(itemToTake,1);
 			}
 			
@@ -69,6 +62,7 @@ public class A_Trade extends Action{
 				target.getInventaire().deleteObjets(itemToTake,1);
 			}
 			
+			//Remove the tags
 			h.getEsprit().cleanActionData(this);
 			h.getEsprit().removeTag(myTag);
 			target.getEsprit().removeTag(compatibleTag);

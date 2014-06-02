@@ -1,23 +1,40 @@
 package civilisation.individu.cognitons;
 
-import civilisation.Configuration;
+import civilisation.group.Group;
 
-public class Culturon extends NCogniton{
 
-	/** 
-	 * Culturons are special cogniton associated to groups instead of humans
-	 * @author DTEAM
-	 * @version 1.0 - 2/2013
-	*/
+/**
+ * Work in progress...
+ * @author juliennigon
+ *
+ */
+
+
+public class Culturon {
+
 	
-	@Override
-	public void creerCognitonLambda(){
-		nom = "newCulturon_" + Configuration.cloudCognitons.size(); /*TODO : faire un nom unique*/
-		description = "A new cloud cogniton";
-		typeDeCogniton = TypeDeCogniton.CULTURON;
+	TypeCulturon typeCulturon;
+	Group group;
+	
+	
+	
+	public Culturon(TypeCulturon typeCulturon, Group group) {
+		super();
+		this.typeCulturon = typeCulturon;
+		this.group = group;
 	}
 	
-
 	
-	
+	public TypeCulturon getCulturon() {
+		return typeCulturon;
+	}
+	public void setCulturon(TypeCulturon typeCulturon) {
+		this.typeCulturon = typeCulturon;
+	}
+	public Group getGroup() {
+		return group;
+	}
+	public void setGroup(Group group) {
+		this.group = group;
+	}
 }

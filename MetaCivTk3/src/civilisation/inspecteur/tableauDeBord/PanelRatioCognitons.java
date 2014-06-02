@@ -8,8 +8,8 @@ import javax.swing.JButton;
 
 import civilisation.Configuration;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.NCogniton;
-import civilisation.individu.cognitons.CCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
+import civilisation.individu.cognitons.Cogniton;
 import civilisation.inspecteur.animations.*;
 import civilisation.world.World;
 
@@ -45,7 +45,7 @@ public class PanelRatioCognitons extends JJPanel{
 		for (int i = 0; i < tortues.length; i++){
 			if (tortues[i].getClass() == Humain.class){
 				Humain h = (Humain) tortues[i];
-				ArrayList<CCogniton> listeCognitons= h.getEsprit().getCognitons();
+				ArrayList<Cogniton> listeCognitons= h.getEsprit().getCognitons();
 				for (int j = 0; j < listeCognitons.size(); j++){
 					Integer v;
 					if (decompteCognitons.get(listeCognitons.get(j).getCogniton().getNom()) == null){

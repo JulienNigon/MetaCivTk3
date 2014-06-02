@@ -7,12 +7,12 @@ import javax.swing.ImageIcon;
 import civilisation.Configuration;
 import civilisation.ItemPheromone;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
 
 public class A_DoubleCognitons extends Action{
 	
-	NCogniton cogniton1 , cogniton2;
+	TypeCogniton cogniton1 , cogniton2;
 
 	
 	@Override
@@ -38,11 +38,11 @@ public class A_DoubleCognitons extends Action{
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
 		
-		if (option.getParametres().get(0).getClass().equals(NCogniton.class)){
+		if (option.getParametres().get(0).getClass().equals(TypeCogniton.class)){
 			if (option.getName().equals("Cogniton1")) {
-				cogniton1 = (NCogniton) option.getParametres().get(0);
+				cogniton1 = (TypeCogniton) option.getParametres().get(0);
 			} else if (option.getName().equals("Cogniton2")) {
-				cogniton2 = (NCogniton) option.getParametres().get(0);
+				cogniton2 = (TypeCogniton) option.getParametres().get(0);
 			}
 			
 		}

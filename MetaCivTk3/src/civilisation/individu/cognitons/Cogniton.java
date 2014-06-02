@@ -6,25 +6,25 @@ import civilisation.individu.Esprit;
 
 
 /**
- * CCogniton is the combination of a Cogniton and a hashmap to store data about the cogniton
- * Only CCogniton are instantiated after initialization. No more NCogniton.
+ * Cogniton is the combination of a Cogniton and a hashmap to store data about the cogniton
+ * Only Cogniton are instantiated after initialization. No more TypeCogniton.
  */
 
-public class CCogniton {
+public class Cogniton {
 
-	public NCogniton cogniton;
+	public TypeCogniton cogniton;
 	public HashMap<String , Object> hashmap = new HashMap<String,Object>();
 	public double weigth = 1.0;
 	
-	public CCogniton (NCogniton cogniton) {
+	public Cogniton (TypeCogniton cogniton) {
 		this.cogniton = cogniton;
 	}
 
-	public NCogniton getCogniton() {
+	public TypeCogniton getCogniton() {
 		return cogniton;
 	}
 
-	public void setCogniton(NCogniton cogniton) {
+	public void setCogniton(TypeCogniton cogniton) {
 		this.cogniton = cogniton;
 	}
 

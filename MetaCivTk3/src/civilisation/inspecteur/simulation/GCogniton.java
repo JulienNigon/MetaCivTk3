@@ -16,18 +16,18 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
 
 public class GCogniton extends GItemCognitif{
 
-	NCogniton cogniton;
+	TypeCogniton cogniton;
 	static float margeEcriture = 2;
 	public final static int hueCircleSize = 12;
 	
-	public GCogniton(JJPanel parent , double xx, double yy, double w, double h, NCogniton cogniton) {
+	public GCogniton(JJPanel parent , double xx, double yy, double w, double h, TypeCogniton cogniton) {
 		super(parent, xx, yy, w, h);
 		this.cogniton = cogniton;
 		this.setToolTipText(cogniton.toString());
@@ -60,9 +60,9 @@ public class GCogniton extends GItemCognitif{
     	
     	/*paint the "hues" of the cogniton*/
     	int huesAlreadyPaint = 0;
-    	for (int i = 0 ; i < NCogniton.nHues; i++) {
+    	for (int i = 0 ; i < TypeCogniton.nHues; i++) {
     		if (cogniton.getHues()[i] != 0){
-    			g2d.setColor(NCogniton.hueColors[i]);
+    			g2d.setColor(TypeCogniton.hueColors[i]);
     			Ellipse2D cercle = new Ellipse2D.Float(hueCircleSize*huesAlreadyPaint, 2*fm.getHeight() - (hueCircleSize/2), hueCircleSize, hueCircleSize);
     			g2d.fill(cercle);
     			g2d.setColor(Color.BLACK);
@@ -92,7 +92,7 @@ public class GCogniton extends GItemCognitif{
 		return (getYy() + (h - (hueCircleSize / 2)))/2.;
 	}*/
 
-	public NCogniton getCogniton() {
+	public TypeCogniton getCogniton() {
 		return cogniton;
 	}
 

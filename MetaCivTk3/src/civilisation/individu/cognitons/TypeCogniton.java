@@ -11,7 +11,7 @@ import civilisation.Configuration;
 import civilisation.individu.Esprit;
 import civilisation.individu.plan.NPlan;
 
-public class NCogniton{
+public class TypeCogniton{
 
 	TypeDeCogniton typeDeCogniton;
 	String nom;
@@ -39,7 +39,7 @@ public class NCogniton{
 	
 
 	
-	public NCogniton(){
+	public TypeCogniton(){
 		liens = new ArrayList<LienCogniton>();
 		liensPlans = new ArrayList<LienPlan>();
 		plansAutorises = new ArrayList<NPlan>();

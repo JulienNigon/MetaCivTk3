@@ -7,9 +7,9 @@ import java.util.Iterator;
 import madkit.kernel.Agent;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.Culturon;
-import civilisation.individu.cognitons.CCogniton;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCulturon;
+import civilisation.individu.cognitons.Cogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import turtlekit.kernel.Turtle;
 import turtlekit.kernel.Patch;
 
@@ -19,7 +19,7 @@ public class Group extends Turtle
 	Group parent;
 	GroupModel groupModel;
 	Patch position;
-	HashMap<String,ArrayList<CCogniton>> rolesAndCulturons = new HashMap<String,ArrayList<CCogniton>>();
+	HashMap<String,ArrayList<Cogniton>> rolesAndCulturons = new HashMap<String,ArrayList<Cogniton>>();
 	static HashMap<GroupModel,ArrayList<Group>> allGroups = new HashMap<GroupModel,ArrayList<Group>>();
 	ArrayList<Humain> members = new ArrayList<Humain>();
 
@@ -53,10 +53,10 @@ public class Group extends Turtle
 	    Iterator<String> iterator = groupModel.getCulturons().keySet().iterator();
 	    while(iterator.hasNext()) {
 	    	String role = iterator.next();
-	    	ArrayList<CCogniton> culturons = new ArrayList<CCogniton>();
-	    	ArrayList<NCogniton> modelCulturons = groupModel.getCulturons().get(role);
+	    	ArrayList<Cogniton> culturons = new ArrayList<Cogniton>();
+	    	ArrayList<TypeCogniton> modelCulturons = groupModel.getCulturons().get(role);
 	    	for(int i = 0 ; i < modelCulturons.size() ; i++) {
-	    		culturons.add(new CCogniton(modelCulturons.get(i)));
+	    		culturons.add(new Cogniton(modelCulturons.get(i)));
 	    	}
 	    	this.setRole(role, culturons);
 	    	
@@ -65,7 +65,7 @@ public class Group extends Turtle
 	}
 	
 	public void applyCulturons(String role , Esprit e){
-		ArrayList<CCogniton> c = rolesAndCulturons.get(role);
+		ArrayList<Cogniton> c = rolesAndCulturons.get(role);
 		for (int i = 0 ; i < c.size() ; i++){
 			c.get(i).appliquerPoids(e);
 		}
@@ -73,7 +73,7 @@ public class Group extends Turtle
 	}
 	
 	public void setupCulturons(String role , Esprit e){
-		ArrayList<CCogniton> c = rolesAndCulturons.get(role);
+		ArrayList<Cogniton> c = rolesAndCulturons.get(role);
 		//System.out.println(c.size() + " " + c.get(0).getCogniton().getNom());
 		for (int i = 0 ; i < c.size() ; i++){
 			c.get(i).mettreEnPlace(e);
@@ -85,13 +85,13 @@ public class Group extends Turtle
 		rolesAndCulturons.put(role , null);
 	}
 	
-	public void setRole(String role , ArrayList<CCogniton> newCulturons){
+	public void setRole(String role , ArrayList<Cogniton> newCulturons){
 		rolesAndCulturons.put(role , newCulturons);
 	}
 	
-	public void addCulturonToRole(String role , CCogniton culturon){
+	public void addCulturonToRole(String role , Cogniton culturon){
 		if (!rolesAndCulturons.containsKey(role)) {
-			ArrayList<CCogniton> lc = new ArrayList<CCogniton>();
+			ArrayList<Cogniton> lc = new ArrayList<Cogniton>();
 			lc.add(culturon);
 			rolesAndCulturons.put(role , lc);
 		} else {
@@ -143,18 +143,18 @@ public class Group extends Turtle
 		this.members = members;
 	}
 
-	public HashMap<String, ArrayList<CCogniton>> getRolesAndCulturons() {
+	public HashMap<String, ArrayList<Cogniton>> getRolesAndCulturons() {
 		return rolesAndCulturons;
 	}
 
 	public void setRolesAndCulturons(
-			HashMap<String, ArrayList<CCogniton>> rolesAndCulturons) {
+			HashMap<String, ArrayList<Cogniton>> rolesAndCulturons) {
 		this.rolesAndCulturons = rolesAndCulturons;
 	}
 	
-	public ArrayList<NCogniton> getArrayListOfCognitonType(String r) {
-		ArrayList<NCogniton> array = new ArrayList<NCogniton>();
-		for (CCogniton cog : rolesAndCulturons.get(r)) {
+	public ArrayList<TypeCogniton> getArrayListOfCognitonType(String r) {
+		ArrayList<TypeCogniton> array = new ArrayList<TypeCogniton>();
+		for (Cogniton cog : rolesAndCulturons.get(r)) {
 			array.add(cog.getCogniton());
 		}
 		return array;
@@ -162,8 +162,8 @@ public class Group extends Turtle
 	}
 	
 	//TODO
-	public boolean roleContainsCulturon(NCogniton cogniton, String r) {
-		for (CCogniton cog : rolesAndCulturons.get(r)) {
+	public boolean roleContainsCulturon(TypeCogniton cogniton, String r) {
+		for (Cogniton cog : rolesAndCulturons.get(r)) {
 			if (cog.getCogniton() == cogniton) {
 				return true;
 			}

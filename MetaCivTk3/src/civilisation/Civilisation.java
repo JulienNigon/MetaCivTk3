@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.world.World;
 
 public class Civilisation {
@@ -17,7 +17,7 @@ public class Civilisation {
 	static int nombreCiv = 0;
 	int indexCiv;
 	int agentsInitiaux;
-	ArrayList<NCogniton> startingCognitons = new ArrayList<NCogniton>();
+	ArrayList<TypeCogniton> startingCognitons = new ArrayList<TypeCogniton>();
 	static ArrayList<Civilisation> listeCiv = new ArrayList<Civilisation>();
 	boolean mustBeSaved = true;
 	
@@ -109,11 +109,11 @@ public class Civilisation {
 		World.getInstance().addFlavor("civ"+indexCiv);		
 	}
 
-	public ArrayList<NCogniton> getStartingCognitons() {
+	public ArrayList<TypeCogniton> getStartingCognitons() {
 		return startingCognitons;
 	}
 
-	public void setStartingCognitons(ArrayList<NCogniton> startingCognitons) {
+	public void setStartingCognitons(ArrayList<TypeCogniton> startingCognitons) {
 		this.startingCognitons = startingCognitons;
 	}
 	

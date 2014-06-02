@@ -8,7 +8,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 import civilisation.group.Group;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inspecteur.animations.JJPanel;
 
 public class GGroupForCognitonGraph extends GItemCognitif{

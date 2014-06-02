@@ -6,7 +6,7 @@ import java.util.HashMap;
 import civilisation.ItemPheromone;
 import civilisation.group.GroupAndRole;
 import civilisation.group.GroupModel;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
 
 
@@ -114,9 +114,9 @@ public class OptionsActions {
 						s += ";";
 					}
 				}
-				else if (parametres.get(i).getClass().equals(NCogniton.class)){
+				else if (parametres.get(i).getClass().equals(TypeCogniton.class)){
 					s += "Cogniton ";
-					s += ((NCogniton) parametres.get(i)).getNom();
+					s += ((TypeCogniton) parametres.get(i)).getNom();
 					if (i < parametres.size() - 1){
 						s += ";";
 					}

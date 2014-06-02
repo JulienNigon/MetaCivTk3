@@ -300,4 +300,8 @@ public abstract class Action {
 	public String getInfo() {
 		return "<html><b style=\"color:pink\">" + this.getSimpleName() +  " : </b>" ;
 	}
+	
+	public boolean internActionsAreLinked() {
+		return true;
+	}
 }

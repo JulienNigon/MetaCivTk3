@@ -19,7 +19,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
 import civilisation.Configuration;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.inspecteur.animations.JJIconSelector;
 import civilisation.inspecteur.simulation.GCogniton;
@@ -76,8 +76,8 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		//this.add(iconSelector = new JJIconSelector());
 		
 		/* hues selection*/
-		hues = new JSlider[NCogniton.nHues];
-		for (int i = 0; i < NCogniton.nHues; i++){
+		hues = new JSlider[TypeCogniton.nHues];
+		for (int i = 0; i < TypeCogniton.nHues; i++){
 			int temp = gCogniton.getCogniton().getHues()[i];
 			hues[i] = new JSlider(0,50,temp);
 			hues[i].setMajorTickSpacing(10);
@@ -137,7 +137,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 					}
 					gCogniton.getCogniton().setRecuAuDemarrage(recuAuDemarrage.isSelected());
 				}
-				for (int i = 0; i < NCogniton.nHues; i++){
+				for (int i = 0; i < TypeCogniton.nHues; i++){
 					gCogniton.getCogniton().getHues()[i] = hues[i].getValue();
 				}
 			}		

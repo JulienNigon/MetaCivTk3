@@ -6,7 +6,7 @@ import java.util.HashSet;
 import civilisation.group.Group;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.CCogniton;
+import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.plan.action.Action;
 
 public class NPlanPondere {
@@ -16,11 +16,11 @@ public class NPlanPondere {
 	Humain h;
 	Esprit e;
 	
-	HashMap<CCogniton,Double> influences = new HashMap<CCogniton,Double>();
-	HashSet<CCogniton> conditions = new HashSet<CCogniton>();
+	HashMap<Cogniton,Double> influences = new HashMap<Cogniton,Double>();
+	HashSet<Cogniton> conditions = new HashSet<Cogniton>();
 
 	//The conditional CCogniton associated (could be null)
-	CCogniton cCogniton;
+	Cogniton cogniton;
 	
 	
 	public NPlanPondere(int poids, NPlan plan, Humain h, Esprit e) {
@@ -53,11 +53,11 @@ public class NPlanPondere {
 	public void setPlan(NPlan plan) {
 		this.plan = plan;
 	}
-	public CCogniton getcCogniton() {
-		return cCogniton;
+	public Cogniton getcCogniton() {
+		return cogniton;
 	}
-	public void setcCogniton(CCogniton cCogniton) {
-		this.cCogniton = cCogniton;
+	public void setcCogniton(Cogniton cogniton) {
+		this.cogniton = cogniton;
 	}
 	
 	public Humain getH() {
@@ -109,7 +109,7 @@ public class NPlanPondere {
 		return "[Plan : " + plan.getNom() + " , Poids : " + poids + "]";
 	}
 	
-	public void addInfluence(CCogniton cogni) {
+	public void addInfluence(Cogniton cogni) {
 		this.influences.put(cogni,cogni.getWeigth());
 	}
 	

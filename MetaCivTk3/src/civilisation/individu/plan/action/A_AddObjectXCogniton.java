@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import civilisation.Configuration;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.CCogniton;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.Cogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
 
 public class A_AddObjectXCogniton extends Action{
@@ -13,11 +13,11 @@ public class A_AddObjectXCogniton extends Action{
 	String ObjectName;
 	Double variation;
 	Integer base;
-	NCogniton cogniton;
+	TypeCogniton cogniton;
 	
 	
 	public Action effectuer(Humain h) {
-		CCogniton cog = h.getEsprit().getCognitonOfType(cogniton);
+		Cogniton cog = h.getEsprit().getCognitonOfType(cogniton);
 		if (cog == null) {
 			for (int i = 0 ; i < base ; i++) {
 				h.getInventaire().addObjets(Configuration.getObjetByName(ObjectName), 1);
@@ -41,8 +41,8 @@ public class A_AddObjectXCogniton extends Action{
 		else if (option.getParametres().get(0).getClass() == Integer.class) {
 			base = (Integer) option.getParametres().get(0);	
 		}
-		else if (option.getParametres().get(0).getClass().equals(NCogniton.class)){
-			cogniton = (NCogniton) option.getParametres().get(0);
+		else if (option.getParametres().get(0).getClass().equals(TypeCogniton.class)){
+			cogniton = (TypeCogniton) option.getParametres().get(0);
 		}
 		else if (option.getParametres().get(0).getClass().equals(Double.class)){
 			variation = (Double) option.getParametres().get(0);

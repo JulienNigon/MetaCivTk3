@@ -31,4 +31,7 @@ public class L_Random extends LAction{
 		return super.getInfo() + " Select randomly one sub-action.<html>";
 	}
 	
+	public boolean internActionsAreLinked() {
+		return false;
+	}
 }

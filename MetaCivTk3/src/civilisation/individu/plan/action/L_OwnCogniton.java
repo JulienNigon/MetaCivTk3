@@ -7,12 +7,12 @@ import javax.swing.ImageIcon;
 import civilisation.Configuration;
 import civilisation.ItemPheromone;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
 
 public class L_OwnCogniton extends LAction{
 	
-	NCogniton cogniton;
+	TypeCogniton cogniton;
 
 	
 	@Override
@@ -48,8 +48,8 @@ public class L_OwnCogniton extends LAction{
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
 		
-		if (option.getParametres().get(0).getClass().equals(NCogniton.class)){
-			cogniton = (NCogniton) option.getParametres().get(0);
+		if (option.getParametres().get(0).getClass().equals(TypeCogniton.class)){
+			cogniton = (TypeCogniton) option.getParametres().get(0);
 		}
 	}
 	
@@ -69,4 +69,7 @@ public class L_OwnCogniton extends LAction{
 		return schemaParametres;	
 	}
 	
+	public boolean internActionsAreLinked() {
+		return false;
+	}
 }

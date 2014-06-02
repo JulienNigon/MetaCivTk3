@@ -78,4 +78,7 @@ public class L_CompareAttribute extends LAction{
 		return schemaParametres;	
 	}
 	
+	public boolean internActionsAreLinked() {
+		return false;
+	}
 }

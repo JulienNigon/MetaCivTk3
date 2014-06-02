@@ -19,22 +19,22 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import civilisation.Configuration;
-import civilisation.individu.cognitons.Culturon;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCulturon;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
 
 public class GCloudCogniton extends GCogniton{
 
-	Culturon cogniton;
+	TypeCulturon cogniton;
 	static float margeEcriture = 2;
 	public final static int hueCircleSize = 12;
 	static final int xSize = 125;
 	static final int ySize = 50;
 	BufferedImage bImg;
 	
-	public GCloudCogniton(JJPanel parent , double xx, double yy, double w, double h, Culturon cogniton) {
+	public GCloudCogniton(JJPanel parent , double xx, double yy, double w, double h, TypeCulturon cogniton) {
 		super(parent, xx, yy, w, h);
 		this.cogniton = cogniton;
 		this.setToolTipText(cogniton.toString());
@@ -77,9 +77,9 @@ public class GCloudCogniton extends GCogniton{
     	
     	/*paint the "hues" of the cogniton*/
     	int huesAlreadyPaint = 0;
-    	for (int i = 0 ; i < NCogniton.nHues; i++) {
+    	for (int i = 0 ; i < TypeCogniton.nHues; i++) {
     		if (cogniton.getHues()[i] != 0){
-    			g2d.setColor(NCogniton.hueColors[i]);
+    			g2d.setColor(TypeCogniton.hueColors[i]);
     			Ellipse2D cercle = new Ellipse2D.Float(hueCircleSize*huesAlreadyPaint, 2*fm.getHeight() - (hueCircleSize/2), hueCircleSize, hueCircleSize);
     			g2d.fill(cercle);
     			g2d.setColor(Color.BLACK);
@@ -111,7 +111,7 @@ public class GCloudCogniton extends GCogniton{
 	}*/
 
 	@Override
-	public NCogniton getCogniton() {
+	public TypeCogniton getCogniton() {
 		return cogniton;
 	}
 

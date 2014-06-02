@@ -15,8 +15,8 @@ import civilisation.Configuration;
 import civilisation.group.Group;
 import civilisation.group.GroupAndRole;
 import civilisation.group.GroupModel;
-import civilisation.individu.cognitons.NCogniton;
-import civilisation.individu.cognitons.CCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
+import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.decisionMaking.DecisionMaker;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.NPlanPondere;
@@ -33,7 +33,7 @@ import civilisation.individu.plan.action.Action;
 public class Esprit {
 	
 	/* Les diff______rentes listes contenants les croyances de l'agent */
-	ArrayList<CCogniton> cognitons;
+	ArrayList<Cogniton> cognitons;
 	
 	/* La liste des projets envisageable par l'agent*/
 	ArrayList<NPlanPondere> plans;
@@ -63,7 +63,7 @@ public class Esprit {
 	
 	public Esprit(Humain h)
 	{
-		cognitons = new ArrayList<CCogniton>();
+		cognitons = new ArrayList<Cogniton>();
 		plans = new ArrayList<NPlanPondere>();
 		actionsData = new HashMap<Action , Object>();
 		groups = new HashMap<Group , String>();
@@ -82,9 +82,9 @@ public class Esprit {
 	 */
 	private void initialisationStandard()
 	{
-		for (NCogniton cogni : Configuration.cognitonsDeBase) {
+		for (TypeCogniton cogni : Configuration.cognitonsDeBase) {
 			if (Math.random() * 100.0 < (double)cogni.getStartChance())
-			cognitons.add(new CCogniton(cogni));
+			cognitons.add(new Cogniton(cogni));
 		}
 		for (int i = 0; i < cognitons.size(); i++) {
 			cognitons.get(i).mettreEnPlace(this);
@@ -140,7 +140,7 @@ public class Esprit {
 		return poidsTotal;
 	}
 		
-	public ArrayList<CCogniton> getCognitons() {
+	public ArrayList<Cogniton> getCognitons() {
 		return cognitons;
 	}
 
@@ -149,7 +149,7 @@ public class Esprit {
 		plans.add(new NPlanPondere( 0 , plan , this.getHumain() , this));
 	}
 	
-	public void addPlan(NPlan plan , CCogniton cCogniton)
+	public void addPlan(NPlan plan , Cogniton cogniton)
 	{
 		plans.add(new NPlanPondere( 0 , plan , this.getHumain() , this));
 	}
@@ -268,12 +268,12 @@ public class Esprit {
 		this.planEnCours = planEnCours;
 	}
 
-	public void addCogniton(NCogniton cogni){
-		cognitons.add(new CCogniton(cogni));
+	public void addCogniton(TypeCogniton cogni){
+		cognitons.add(new Cogniton(cogni));
 		cogni.mettreEnPlace(this , 1.0); //1.0 is the standard weigth for new cogniton
 	}
 
-	public void removeCogniton(NCogniton c) {
+	public void removeCogniton(TypeCogniton c) {
 		//System.out.println("remove cogniton " + c.getNom());
 		for (int i = 0 ; i < this.cognitons.size(); i++) {
 			if (cognitons.get(i).getCogniton() == c) {
@@ -313,7 +313,7 @@ public class Esprit {
 	 * @param cogniton
 	 * @return
 	 */
-	public boolean ownCogniton(NCogniton cogniton) {
+	public boolean ownCogniton(TypeCogniton cogniton) {
 		
 		for (int i = 0 ; i < this.cognitons.size(); i++) {
 			if (cognitons.get(i).getCogniton() == cogniton) {
@@ -370,8 +370,8 @@ public class Esprit {
 	 * @param t
 	 * @return a cogniton of type t (or null if there is any cogniton of this type)
 	 */
-	public CCogniton getCognitonOfType(NCogniton t) {
-		CCogniton c = null;
+	public Cogniton getCognitonOfType(TypeCogniton t) {
+		Cogniton c = null;
 		for (int i = 0 ; i < cognitons.size() ; i++) {
 			if (cognitons.get(i).getCogniton().equals(t)) {
 				c = cognitons.get(i);
@@ -384,7 +384,7 @@ public class Esprit {
 	 * Change the weight of a cogniton of type t
 	 * @param t : the type of cogniton to change
 	 */
-	public void changeWeightOfCognitonOfType(NCogniton t , Double d) {
+	public void changeWeightOfCognitonOfType(TypeCogniton t , Double d) {
 		for (int i = 0 ; i < cognitons.size() ; i++) {
 			if (cognitons.get(i).getCogniton().equals(t)) {
 				cognitons.get(i).setWeigth(cognitons.get(i).getWeigth() + d);
@@ -398,7 +398,7 @@ public class Esprit {
 	 * @param t
 	 * @param d
 	 */
-	public void setWeightOfCognitonOfType(NCogniton t , Double d)
+	public void setWeightOfCognitonOfType(TypeCogniton t , Double d)
 	{
 		for (int i = 0 ; i < cognitons.size() ; i++) {
 			if (cognitons.get(i).getCogniton().equals(t)) {
@@ -420,7 +420,7 @@ public class Esprit {
 	 * 
 	 */
 
-	public void setCogniton(NCogniton t, Double d)
+	public void setCogniton(TypeCogniton t, Double d)
 	{
 		int i = 0;
 		while(i < cognitons.size() && !cognitons.get(i).getCogniton().equals(t))
@@ -429,7 +429,7 @@ public class Esprit {
 		}
 		if(i >= cognitons.size())
 		{
-			cognitons.add(new CCogniton(t));
+			cognitons.add(new Cogniton(t));
 			t.mettreEnPlace(this , d);
 		}
 		else
@@ -443,7 +443,7 @@ public class Esprit {
 	 * Ajoute un poid au cogniton si il est présent
 	 * 
 	 */
-	public void AddWeightToCogniton(NCogniton t, Double d)
+	public void AddWeightToCogniton(TypeCogniton t, Double d)
 	{
 		int i = 0;
 		while(i < cognitons.size() && !cognitons.get(i).getCogniton().equals(t))

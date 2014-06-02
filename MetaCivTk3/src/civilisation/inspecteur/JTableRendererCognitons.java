@@ -7,8 +7,8 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import civilisation.individu.cognitons.NCogniton;
-import civilisation.individu.cognitons.CCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
+import civilisation.individu.cognitons.Cogniton;
 
 public class JTableRendererCognitons extends DefaultTableCellRenderer {
 
@@ -18,7 +18,7 @@ public class JTableRendererCognitons extends DefaultTableCellRenderer {
 		super.getTableCellRendererComponent(table, value,
 				isSelected, hasFocus, row, column);
 
-			CCogniton cogni = (CCogniton) value;
+			Cogniton cogni = (Cogniton) value;
 			
 			if (cogni != null)
 			{

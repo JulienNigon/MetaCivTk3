@@ -11,8 +11,8 @@ import javax.swing.ImageIcon;
 
 import civilisation.effects.Effect;
 import civilisation.group.GroupModel;
-import civilisation.individu.cognitons.Culturon;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCulturon;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.individu.decisionMaking.DecisionMaker;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
@@ -43,13 +43,13 @@ public class Configuration {
 	public static ArrayList<DecisionMaker> allDecisionMakers;
 
 	/*All starting cognitons*/
-	public static ArrayList<NCogniton> cognitonsDeBase;
+	public static ArrayList<TypeCogniton> cognitonsDeBase;
 	
 	/*All cognitons*/
-	public static ArrayList<NCogniton> cognitons;
+	public static ArrayList<TypeCogniton> cognitons;
 	
 	/*All cloud cognitons*/
-	public static ArrayList<Culturon> cloudCognitons;
+	public static ArrayList<TypeCulturon> cloudCognitons;
 	
 	/*all effects*/
 	public static ArrayList<Effect> effets;
@@ -160,11 +160,11 @@ public class Configuration {
 	@ParametrisationDouble(min=-500., max=200., pas = 5., toolTip = "Valeur de passage necessaire a l'apparition d'une foret (generalement negative)")
 	public static Double seuilEmergenceForet = -40.;
 
-	public static void addCogniton(NCogniton nouveauCogniton) {
+	public static void addCogniton(TypeCogniton nouveauCogniton) {
 		cognitons.add(nouveauCogniton);
 	}
 	
-	public static void addCloudCogniton(Culturon newCloudCogniton) {
+	public static void addCloudCogniton(TypeCulturon newCloudCogniton) {
 		cloudCognitons.add(newCloudCogniton);
 	}
 	
@@ -172,11 +172,11 @@ public class Configuration {
 		plans.add(nouveauPlan);
 	}
 	
-	public static void addCognitonDeBase(NCogniton nouveauCogniton) {
+	public static void addCognitonDeBase(TypeCogniton nouveauCogniton) {
 		cognitonsDeBase.add(nouveauCogniton);
 	}
 	
-	public static void removeCognitonDeBase(NCogniton c){
+	public static void removeCognitonDeBase(TypeCogniton c){
 		for (int i = 0 ; i < cognitonsDeBase.size(); i++){
 			if (cognitonsDeBase.get(i).equals(c)){
 				cognitonsDeBase.remove(i);
@@ -223,7 +223,7 @@ public class Configuration {
 		return null;
 	}
 	
-	public static NCogniton getCognitonByName(String s){
+	public static TypeCogniton getCognitonByName(String s){
 		for (int i = 0 ; i < cognitons.size(); i++){
 			if (cognitons.get(i).getNom().equals(s)){
 				return(cognitons.get(i));

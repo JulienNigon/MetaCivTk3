@@ -6,7 +6,7 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import civilisation.individu.cognitons.CCogniton;
+import civilisation.individu.cognitons.Cogniton;
 
 public class JTableRendererAgents extends DefaultTableCellRenderer {
 

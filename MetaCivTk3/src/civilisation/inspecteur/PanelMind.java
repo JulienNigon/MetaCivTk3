@@ -7,8 +7,8 @@ import java.util.concurrent.Semaphore;
 import civilisation.Configuration;
 import civilisation.group.Group;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.CCogniton;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.Cogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.NPlanPondere;
@@ -24,7 +24,7 @@ import civilisation.inspecteur.simulation.PanelStructureCognitive;
 public class PanelMind extends PanelStructureCognitive{
 
 	Humain h;
-	ArrayList<CCogniton> ownedCognitons;
+	ArrayList<Cogniton> ownedCognitons;
 	ArrayList<NPlanPondere> ownedPlans;
 	
 	ArrayList<GPlan> plansToRemove = new ArrayList<GPlan>();
@@ -49,10 +49,10 @@ public class PanelMind extends PanelStructureCognitive{
 	protected void initializeItemsToDraw() {
 
 		ownedCognitons = h.getEsprit().getCognitons();
-		allCognitons = new ArrayList<NCogniton>();
+		allCognitons = new ArrayList<TypeCogniton>();
 		plans = new ArrayList<NPlan>();
 
-		for (CCogniton cog : ownedCognitons) {
+		for (Cogniton cog : ownedCognitons) {
 			allCognitons.add(cog.getCogniton());
 		}
 		
@@ -63,7 +63,7 @@ public class PanelMind extends PanelStructureCognitive{
 		}
 		for (Group gr : h.getEsprit().getGroups().keySet()) {
 			groups.add(gr);
-			for (NCogniton cog : gr.getArrayListOfCognitonType(h.getEsprit().getGroups().get(gr))) {
+			for (TypeCogniton cog : gr.getArrayListOfCognitonType(h.getEsprit().getGroups().get(gr))) {
 				allCognitons.add(cog);
 			}
 		}
@@ -80,7 +80,7 @@ public class PanelMind extends PanelStructureCognitive{
 		}
 		
 		//Add cognitons
-		for (CCogniton cog : h.getEsprit().getCognitons()) {
+		for (Cogniton cog : h.getEsprit().getCognitons()) {
 			if (!this.cognitonIsDrawn(cog.getCogniton())) {
 				this.afficherCogniton(cog.getCogniton(), Math.random()*400, Math.random()*400);
 				
@@ -97,7 +97,7 @@ public class PanelMind extends PanelStructureCognitive{
 			}
 		}
 		for (Group gr : groups) {
-			for (CCogniton cog : gr.getRolesAndCulturons().get(h.getEsprit().getGroups().get(gr))) {
+			for (Cogniton cog : gr.getRolesAndCulturons().get(h.getEsprit().getGroups().get(gr))) {
 				if (!this.cognitonIsDrawn(cog.getCogniton())) {
 					this.afficherCogniton(cog.getCogniton(), Math.random()*400, Math.random()*400);
 					
@@ -133,7 +133,7 @@ public class PanelMind extends PanelStructureCognitive{
 			}
 		}
 		//Remove cognitons
-		for (NCogniton cog : Configuration.cognitons) {
+		for (TypeCogniton cog : Configuration.cognitons) {
 			if (cog.getType() != TypeDeCogniton.CULTURON && this.cognitonIsDrawn(cog) && !h.getEsprit().ownCogniton(cog)) {
 				this.removeCogniton(cog);
 
@@ -181,7 +181,7 @@ public class PanelMind extends PanelStructureCognitive{
 		semaphore.release();
 	}
 	
-	public void removeCogniton(NCogniton cognitonToRemove) {
+	public void removeCogniton(TypeCogniton cognitonToRemove) {
 		for (GCogniton cog : gCognitons) {
 			if (cognitonToRemove == cog.getCogniton()) {
 				this.remove(cog);

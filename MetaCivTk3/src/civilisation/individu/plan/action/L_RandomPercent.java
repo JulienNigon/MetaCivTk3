@@ -67,4 +67,7 @@ public class L_RandomPercent extends LAction{
 		return schemaParametres;	
 	}
 	
+	public boolean internActionsAreLinked() {
+		return false;
+	}
 }

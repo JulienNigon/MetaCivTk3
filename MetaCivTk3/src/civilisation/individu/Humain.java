@@ -38,7 +38,7 @@ import civilisation.amenagement.Amenagement;
 import civilisation.amenagement.Amenagement_Champ;
 import civilisation.amenagement.Amenagement_Route;
 import civilisation.group.Group;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.NInventaire;
 import civilisation.inventaire.Objet;
 import civilisation.pathfinder.Noeud;
@@ -1389,7 +1389,7 @@ public class Humain extends Turtle
 				//new value > old value
 				if (v >= attributes.get(s) && v <= d && d > attributes.get(s)) {
 					Integer cmp = (Integer) triggers.get(i)[2];
-					NCogniton c = (NCogniton) triggers.get(i)[0];
+					TypeCogniton c = (TypeCogniton) triggers.get(i)[0];
 					//System.out.println("Difference franchie montante: " + c.getNom());
 
 					 switch (cmp) {
@@ -1419,7 +1419,7 @@ public class Humain extends Turtle
 				//old value > new value
 				else if (v <= attributes.get(s) && v >= d && d < attributes.get(s)) {
 					Integer cmp = (Integer) triggers.get(i)[2];
-					NCogniton c = (NCogniton) triggers.get(i)[0];
+					TypeCogniton c = (TypeCogniton) triggers.get(i)[0];
 					//System.out.println("Difference franchie descente: " + c.getNom());
 
 					 switch (cmp) {

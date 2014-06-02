@@ -6,13 +6,13 @@ import javax.swing.ImageIcon;
 
 import civilisation.ItemPheromone;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.CCogniton;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.Cogniton;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
 
 public class A_ChangeCognitonWeight extends Action{
 	
-	NCogniton cogniton;
+	TypeCogniton cogniton;
 	Double change;
 
 	
@@ -34,8 +34,8 @@ public class A_ChangeCognitonWeight extends Action{
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
 		
-		if (option.getParametres().get(0).getClass().equals(NCogniton.class)){
-			cogniton = (NCogniton) option.getParametres().get(0);
+		if (option.getParametres().get(0).getClass().equals(TypeCogniton.class)){
+			cogniton = (TypeCogniton) option.getParametres().get(0);
 		}
 		if (option.getParametres().get(0).getClass().equals(Double.class)){
 			change = (Double) option.getParametres().get(0);

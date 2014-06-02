@@ -32,21 +32,21 @@ import civilisation.world.Terrain;
 
 public class Initialiseur {
 
-	HashMap<String, NCogniton> listeCognitons;
-	HashMap<String, Culturon> listCloudCognitons;
+	HashMap<String, TypeCogniton> listeCognitons;
+	HashMap<String, TypeCulturon> listCloudCognitons;
 	HashMap<String, NPlan> listePlans;
 	HashMap<Color, Terrain> couleurs_terrains; //TODO : Gerer le cas ou la meme couleur est utilisee pour deux terrains
 	final int passabiliteParDefaut = 30;
 
 	public Initialiseur(){
 		
-		listeCognitons = new HashMap<String, NCogniton>();
-		listCloudCognitons = new HashMap<String, Culturon>();
+		listeCognitons = new HashMap<String, TypeCogniton>();
+		listCloudCognitons = new HashMap<String, TypeCulturon>();
 		listePlans = new HashMap<String, NPlan>();
 		couleurs_terrains = new HashMap<Color, Terrain>();
-		ArrayList<NCogniton> cognitonsDeBase = new ArrayList<NCogniton>();
-		ArrayList<NCogniton> tousLesCognitons = new ArrayList<NCogniton>();
-		ArrayList<Culturon> allCloudCogniton = new ArrayList<Culturon>();
+		ArrayList<TypeCogniton> cognitonsDeBase = new ArrayList<TypeCogniton>();
+		ArrayList<TypeCogniton> tousLesCognitons = new ArrayList<TypeCogniton>();
+		ArrayList<TypeCulturon> allCloudCogniton = new ArrayList<TypeCulturon>();
 		ArrayList<NPlan> tousLesPlans = new ArrayList<NPlan>();
 
 		String nom;
@@ -149,8 +149,8 @@ public class Initialiseur {
 			//System.out.println("\tLoad cogniton : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
-		    	listeCognitons.put(nom , new NCogniton());
-		    	NCogniton cogni = listeCognitons.get(nom);
+		    	listeCognitons.put(nom , new TypeCogniton());
+		    	TypeCogniton cogni = listeCognitons.get(nom);
 		    	cogni.setNom(nom);
 		    	cogni.setDescription(getChamp("Description" , file)[0]);
 		    	cogni.setStartChance(Integer.parseInt(getChamp("StartChance" , file)[0]));
@@ -159,7 +159,7 @@ public class Initialiseur {
 		    		cognitonsDeBase.add(cogni);
 			    	cogni.setRecuAuDemarrage(true);
 		    	}
-		    	for (int i = 0; i < NCogniton.nHues; i++) {
+		    	for (int i = 0; i < TypeCogniton.nHues; i++) {
 		    		if (getChamp("Hue" + i , file) != null) {
 		    			cogni.getHues()[i] = Integer.parseInt(getChamp("Hue" + i , file)[0]);
 		    		}
@@ -199,8 +199,8 @@ public class Initialiseur {
 			//System.out.println("Load culturon : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
-		    	listCloudCognitons.put(nom , new Culturon());
-		    	Culturon cogni = listCloudCognitons.get(nom);
+		    	listCloudCognitons.put(nom , new TypeCulturon());
+		    	TypeCulturon cogni = listCloudCognitons.get(nom);
 		    	cogni.setNom(nom);
 		    	cogni.setDescription(getChamp("Description" , file)[0]);
 		    	cogni.setType(TypeDeCogniton.toType( getChamp("Type" , file)[0]));
@@ -208,7 +208,7 @@ public class Initialiseur {
 		    		cognitonsDeBase.add(cogni);
 			    	cogni.setRecuAuDemarrage(true);
 		    	}
-		    	for (int i = 0; i < NCogniton.nHues; i++) {
+		    	for (int i = 0; i < TypeCogniton.nHues; i++) {
 		    		if (getChamp("Hue" + i , file) != null) {
 		    			cogni.getHues()[i] = Integer.parseInt(getChamp("Hue" + i , file)[0]);
 		    		}
@@ -474,7 +474,7 @@ public class Initialiseur {
 		    	civ.setCouleur(Color.getHSBColor((float)Double.parseDouble(HSB[0]), (float)Double.parseDouble(HSB[1]), (float)Double.parseDouble(HSB[2])));
 		       
 		    	ArrayList<String[]> list = Initialiseur.getListeChamp("Cogniton", file);
-		       	ArrayList<NCogniton> cognis = new ArrayList<NCogniton>();		      
+		       	ArrayList<TypeCogniton> cognis = new ArrayList<TypeCogniton>();		      
 		       	for (int i = 0 ; i < list.size(); i++){
 		       		cognis.add(Configuration.getCognitonByName(list.get(i)[0]));
 		       	}
@@ -609,7 +609,7 @@ public class Initialiseur {
 				     if(str.split(" : ")[0].equals(champ) && nTab == iteration){
 					     ancienneAction = nouvelleAction;
 					     nouvelleAction = Action.actionFactory(str.split(" : ")[1].split(","));
-					     if (ancienneAction != null){
+					     if (ancienneAction != null && (a == null || a.internActionsAreLinked())){
 					    	 ancienneAction.setNextAction(nouvelleAction);
 					     }
 					     if (a == null){

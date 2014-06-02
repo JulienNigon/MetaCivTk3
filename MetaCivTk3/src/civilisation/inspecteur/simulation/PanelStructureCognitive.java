@@ -19,9 +19,9 @@ import javax.swing.JToolBar;
 import civilisation.Configuration;
 import civilisation.group.Group;
 import civilisation.individu.Humain;
-import civilisation.individu.cognitons.CCogniton;
-import civilisation.individu.cognitons.Culturon;
-import civilisation.individu.cognitons.NCogniton;
+import civilisation.individu.cognitons.Cogniton;
+import civilisation.individu.cognitons.TypeCulturon;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.individu.cognitons.TypeDeCogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.NPlanPondere;
@@ -43,7 +43,7 @@ public class PanelStructureCognitive extends JJPanel{
 	protected ArrayList<GLien> gLinksTrigger;
 	protected ArrayList<GGroupForCognitonGraph> gGroup;
 
-	protected ArrayList<NCogniton> allCognitons;
+	protected ArrayList<TypeCogniton> allCognitons;
 	protected ArrayList<NPlan> plans;
 	protected ArrayList<Group> groups;
 	
@@ -225,7 +225,7 @@ public class PanelStructureCognitive extends JJPanel{
 	}
 
 
-	public void afficherCogniton(NCogniton c , double posX , double posY){
+	public void afficherCogniton(TypeCogniton c , double posX , double posY){
 		gCognitons.add(new GCogniton(this,posX,posY,60,25, c));
 		//gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationTranslation(-1, gCognitons.get(gCognitons.size()-1), 0.05, 0.05, false));
 		this.add(gCognitons.get(gCognitons.size()-1));
@@ -251,7 +251,7 @@ public class PanelStructureCognitive extends JJPanel{
 		this.setComponentZOrder(gGroup.get(gGroup.size()-1), gGroup.size()-1);
 	}
 
-	public void showCloudCogniton(Culturon c , double posX , double posY){
+	public void showCloudCogniton(TypeCulturon c , double posX , double posY){
 		gCognitons.add(new GCloudCogniton(this,posX,posY,60,25, c));
 		//gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationTranslation(-1, gCognitons.get(gCognitons.size()-1), 0.05, 0.05, false));
 		this.add(gCognitons.get(gCognitons.size()-1));
@@ -285,8 +285,8 @@ public class PanelStructureCognitive extends JJPanel{
 		
 	}
 
-	public NCogniton creerCogniton() {
-		NCogniton nouveauCogniton = new NCogniton();
+	public TypeCogniton creerCogniton() {
+		TypeCogniton nouveauCogniton = new TypeCogniton();
 		Configuration.addCogniton(nouveauCogniton);
 		nouveauCogniton.creerCognitonLambda();
 		afficherCogniton(nouveauCogniton, 100,100);
@@ -387,7 +387,7 @@ public class PanelStructureCognitive extends JJPanel{
 		gLiensConditionnels.clear();
 	}
 	
-	public void removeCogniton(NCogniton cognitonToRemove) {
+	public void removeCogniton(TypeCogniton cognitonToRemove) {
 		for (GCogniton cog : gCognitons) {
 			if (cognitonToRemove == cog.getCogniton()) {
 				this.remove(cog);
@@ -436,7 +436,7 @@ public class PanelStructureCognitive extends JJPanel{
 
 	public void createCloudCogniton() {
 
-		Culturon newCloudCogniton = new Culturon();
+		TypeCulturon newCloudCogniton = new TypeCulturon();
 		Configuration.addCloudCogniton(newCloudCogniton);
 		newCloudCogniton.creerCognitonLambda();
 		afficherCogniton(newCloudCogniton, 100,100);		
@@ -451,7 +451,7 @@ public class PanelStructureCognitive extends JJPanel{
 		return false;
 	}
 	
-	public boolean cognitonIsDrawn(NCogniton c) {
+	public boolean cognitonIsDrawn(TypeCogniton c) {
 		for (int i = 0; i < gCognitons.size(); i++) {
 			if (gCognitons.get(i).getCogniton() == c) {
 				return true;
