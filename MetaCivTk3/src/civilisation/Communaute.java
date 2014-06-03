@@ -45,6 +45,7 @@ public class Communaute extends Turtle
 	ArrayList<Batiment> batiments;
 	static int nombreCommunaute = 0;
 	int index;
+	
 	/*Pour des tests*/
 	Communaute ennemie;
 	
@@ -166,7 +167,6 @@ public class Communaute extends Turtle
 					return true;
 				}
 			}
-
 			return false;
 		}
 

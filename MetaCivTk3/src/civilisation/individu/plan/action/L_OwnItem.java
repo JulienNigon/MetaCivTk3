@@ -7,20 +7,20 @@ import javax.swing.ImageIcon;
 import civilisation.Configuration;
 import civilisation.ItemPheromone;
 import civilisation.individu.Humain;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
 
-public class L_ComparePhero extends LAction{
+public class L_OwnItem extends LAction{
 	
-	ItemPheromone phero;
-	Comparator comp;
-	Double d;
+	Objet objet;
+
 	
 	@Override
 	public Action effectuer(Humain h) {
 		
 		if (nextAction != null) h.getEsprit().getActions().push(nextAction);
 		Action a;
-		if (comp.compare(new Double(h.smell(phero.getNom())), d)) {
+		if (h.getInventaire().getListeObjets().containsKey(objet)) {
 			a = listeActions.get(0).effectuer(h);
 		} else {
 			a = listeActions.get(1).effectuer(h);
@@ -41,21 +41,16 @@ public class L_ComparePhero extends LAction{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Compare with the value on pheromones in this patch.<html>";
+		return super.getInfo() + " Play first action if the agent own a specific item,<br> the second otherwise.<html>";
 	}
 	
 	@Override
 	public void parametrerOption(OptionsActions option){
 		super.parametrerOption(option);
 		
-		if (option.getParametres().get(0).getClass().equals(ItemPheromone.class)){
-			phero = (ItemPheromone) option.getParametres().get(0);
-		} else
-		if (option.getParametres().get(0).getClass().equals(Comparator.class)){
-			comp = (Comparator) option.getParametres().get(0);
-		} else
-		if (option.getParametres().get(0).getClass().equals(Double.class)){
-			d = (Double) option.getParametres().get(0);
+		if (option.getParametres().get(0).getClass() == Objet.class) {
+			objet = (Objet) option.getParametres().get(0);
+			System.out.println(objet);
 		}
 	}
 	
@@ -66,13 +61,10 @@ public class L_ComparePhero extends LAction{
 			schemaParametres = new ArrayList<String[]>();
 			
 			
-			String[] phero = {"**Pheromone**" , "pheroToCompare"};
-			String[] comp  = {"**Comparator**" , "comparator"};		
-			String[] val   = {"**Double**" , "n", "-100.0" , "100.0" , "1.0", "100"};
+			String[] cog = {"**Objet**" , "Object"};
 			
-			schemaParametres.add(phero);
-			schemaParametres.add(comp);
-			schemaParametres.add(val);
+			schemaParametres.add(cog);
+
 
 		}
 		return schemaParametres;	

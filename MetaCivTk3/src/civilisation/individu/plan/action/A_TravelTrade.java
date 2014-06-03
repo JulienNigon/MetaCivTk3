@@ -8,8 +8,9 @@ import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
 import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.inventaire.Objet;
+import civilisation.world.World;
 
-public class A_Trade extends Action{
+public class A_TravelTrade extends Action{
 
 	Integer turns;
 	
@@ -25,7 +26,7 @@ public class A_Trade extends Action{
 	
 	public Action effectuer(Humain h) {
 		Esprit m = h.getEsprit();
-		
+
 		//Number of turns
 		if (m.getActionData(this) == null) {
 			h.getEsprit().addTag(myTag);
@@ -75,6 +76,9 @@ public class A_Trade extends Action{
 			return listeActions.get(1);
 		}
 		else {
+			Humain cible = h.getNearestTurtleOf(World.getInstance().getHumansWithTag(compatibleTag));
+			if (cible != null) h.allerVers(cible);
+			h.getPatch().dropPheromone("passage", 20.0f);
 			return this;
 		}
 	}
@@ -156,13 +160,13 @@ public class A_Trade extends Action{
 		return schemaParametres;	
 	}
 	
-	public boolean internActionsAreLinked() {
-		return false;
-	}
 	
 	@Override
 	public String getInfo() {
 		return super.getInfo() + " Change the current value of an attribute.<html>";
 	}
 
+	public boolean internActionsAreLinked() {
+		return false;
+	}
 }

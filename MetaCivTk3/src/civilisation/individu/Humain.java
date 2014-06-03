@@ -419,7 +419,7 @@ public class Humain extends Turtle
 	 * @param tortues
 	 * @return la tortue la plus proche de lui
 	 */
-	public Turtle MinOneOf(ArrayList<Turtle> tortues)
+	public Humain getNearestTurtleOf(ArrayList<Humain> tortues)
 	{
 		double min = 100000000;
 		int imin = 0;

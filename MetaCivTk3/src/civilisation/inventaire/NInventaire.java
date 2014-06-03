@@ -86,5 +86,15 @@ public class NInventaire {
 		}
 		return retour;
 	}
+
+	public HashMap<Objet, Integer> getListeObjets() {
+		return listeObjets;
+	}
+
+	public void setListeObjets(HashMap<Objet, Integer> listeObjets) {
+		this.listeObjets = listeObjets;
+	}
+	
+	
 	
 }

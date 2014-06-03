@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import turtlekit.viewer.AbstractViewer;
+import civilisation.inspecteur.PanelCharts;
 import civilisation.inspecteur.PanelInspecteur;
 import civilisation.inspecteur.PanelOptions;
 import civilisation.inspecteur.PanelPerformances;
@@ -16,7 +17,7 @@ import civilisation.inspecteur.tableauDeBord.PanelInfos;
 
 
 /** 
- * Viewer contenat l'inspecteur
+ * Main viewer
  * @author DTEAM
  * @version 1.0 - 2/2013
 */
@@ -27,6 +28,7 @@ public class ViewerTabbed extends AbstractViewer{
 
 		PanelInspecteur panelInspecteur;
 		PanelPerformances panelPerformances;
+		PanelCharts panelCharts;
 	  
 		@Override
 		protected void render(Graphics arg0) {
@@ -41,13 +43,16 @@ public class ViewerTabbed extends AbstractViewer{
 			
 			panelPerformances = new PanelPerformances();
 			panelInspecteur = new PanelInspecteur();
+			panelCharts = new PanelCharts();
 			
+			//Add the different tab
 		    contentPane = new JTabbedPane();
 		    contentPane.addTab("Simulation", new PanelModificationSimulation());
 		    contentPane.addTab("Agent", panelInspecteur);
 		    contentPane.addTab("Options", new PanelOptions());
 		    contentPane.addTab("Performances", panelPerformances);
 		    contentPane.addTab("Tableau de bord", new PanelInfos());
+		    contentPane.addTab("Charts", panelCharts);
 
 		    frame.setContentPane(contentPane);
 			frame.setLocation(50, 0);
@@ -57,5 +62,6 @@ public class ViewerTabbed extends AbstractViewer{
 		public void observe(){
 			panelPerformances.actualiser();
 			panelInspecteur.actualiser();
+			panelCharts.updateData();
 		}
 }

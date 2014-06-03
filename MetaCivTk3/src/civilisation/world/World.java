@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import turtlekit.kernel.Patch;
 import turtlekit.kernel.TKEnvironment;
+import turtlekit.kernel.Turtle;
 import turtlekit.mle.AbstractMLEAgent;
 import turtlekit.pheromone.Pheromone;
 import civilisation.AddOn;
@@ -14,6 +16,7 @@ import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.Initialiseur;
 import civilisation.TurtleGenerator;
+import civilisation.individu.Humain;
 
 
 
@@ -251,6 +254,16 @@ public class World extends TKEnvironment
 		this.tick = tick;
 	}		
 
+	public ArrayList<Humain> getHumansWithTag(String tag) {
+		List<Turtle> turtles = this.getTurtlesWithRoles("Humain");
+		ArrayList<Humain> humans = new ArrayList<Humain>();
+		for (Turtle turtle : turtles) {
+			if (((Humain)turtle).getEsprit().ownTag(tag))
+			humans.add((Humain)turtle);
+		}
+		
+		return humans;
+	}
 	
 	
 	
