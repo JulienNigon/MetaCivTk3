@@ -913,7 +913,7 @@ public class Humain extends Turtle
 
 					if(getPatchAt( i -Configuration.VisionRadius, j - Configuration.VisionRadius).isMarkPresent("Route"))
 					{
-						map[xcor() + i - Configuration.VisionRadius][ycor()+j - Configuration.VisionRadius] = map[xcor() + i - Configuration.VisionRadius][ycor()+j - Configuration.VisionRadius] / 2;
+						map[xcor() + i - Configuration.VisionRadius][ycor()+j - Configuration.VisionRadius] /= 2;
 					}
 					
 					if(Configuration.couleurs_terrains.get(getPatchAt(i -Configuration.VisionRadius, j - Configuration.VisionRadius).getColor()).getInfranchissable() == true)

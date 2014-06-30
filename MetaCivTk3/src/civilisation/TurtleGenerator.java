@@ -20,7 +20,7 @@ public class TurtleGenerator extends Turtle{
 	
 	public String doNothing(){
 		//this.playRole("Generator");
-		return null;
+		return "doNothing";
 	}
 	
 	public void activate() {

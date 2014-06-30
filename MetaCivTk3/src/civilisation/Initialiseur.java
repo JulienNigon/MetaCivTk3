@@ -470,6 +470,8 @@ public class Initialiseur {
 		    	Civilisation civ = new Civilisation();
 		    	civ.setNom(getChamp("Nom" , file)[0]);
 		    	civ.setAgentsInitiaux(Integer.parseInt(Initialiseur.getChamp("Agents" , file)[0]));
+		    	if (Initialiseur.getChamp("Scattered" , file) != null)
+		    		civ.setScatteredModifier(Integer.parseInt(Initialiseur.getChamp("Scattered" , file)[0]));
 		    	String[] HSB = getChamp("Couleur" , file);
 		    	civ.setCouleur(Color.getHSBColor((float)Double.parseDouble(HSB[0]), (float)Double.parseDouble(HSB[1]), (float)Double.parseDouble(HSB[2])));
 		       

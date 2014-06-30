@@ -12,20 +12,22 @@ import civilisation.world.World;
 
 public class Civilisation {
 
+	static int nombreCiv = 0;
+	static ArrayList<Civilisation> listeCiv = new ArrayList<Civilisation>();
+
 	String nom;
 	Color couleur;
-	static int nombreCiv = 0;
 	int indexCiv;
 	int agentsInitiaux;
+	int scatteredModifier;
 	ArrayList<TypeCogniton> startingCognitons = new ArrayList<TypeCogniton>();
-	static ArrayList<Civilisation> listeCiv = new ArrayList<Civilisation>();
 	boolean mustBeSaved = true;
 	
 	
 	public Civilisation ()
 	{
 		couleur = new Color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-		indexCiv = nombreCiv; //Les civilisations sont index_es _ partir de 0
+		indexCiv = nombreCiv; 
 		nombreCiv ++;
 		listeCiv.add(this);
 	}
@@ -47,6 +49,7 @@ public class Civilisation {
 			out = new PrintWriter(new FileWriter(cible.getPath()+"/"+getNom()+Configuration.getExtension()));
 			out.println("Nom : " + getNom());
 			out.println("Agents : " + agentsInitiaux);
+			out.println("Scattered : " + this.scatteredModifier);
 
 		    float hsb[] = Color.RGBtoHSB( this.getCouleur().getRed(),this.getCouleur().getGreen(),this.getCouleur().getBlue(), null );
 			out.println("Couleur : "+hsb[0]+","+hsb[1]+","+hsb[2]);
@@ -115,6 +118,14 @@ public class Civilisation {
 
 	public void setStartingCognitons(ArrayList<TypeCogniton> startingCognitons) {
 		this.startingCognitons = startingCognitons;
+	}
+
+	public int getScatteredModifier() {
+		return scatteredModifier;
+	}
+
+	public void setScatteredModifier(int scatteredModifier) {
+		this.scatteredModifier = scatteredModifier;
 	}
 	
 	

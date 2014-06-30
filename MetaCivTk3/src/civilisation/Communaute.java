@@ -123,6 +123,10 @@ public class Communaute extends Turtle
 		{
 			Humain h = new Humain(civ,this);
 			this.launchAgent(h);
+			do {
+				h.moveTo(this.getX() + (Math.random()*2*this.civ.scatteredModifier),
+						this.getY() + (Math.random()*2*this.civ.scatteredModifier));
+			} while (Configuration.couleurs_terrains.get(h.getPatchColor()).getInfranchissable());
 		}
 		return "neRienFaire";
 	}

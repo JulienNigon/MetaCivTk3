@@ -77,7 +77,12 @@ public class A_TravelTrade extends Action{
 		}
 		else {
 			Humain cible = h.getNearestTurtleOf(World.getInstance().getHumansWithTag(compatibleTag));
-			if (cible != null) h.allerVers(cible);
+			if (cible != null) {
+				h.allerVers(cible);
+			} else {
+				h.setHeading(Math.random()*360.);
+				h.fd(1);
+			}
 			h.getPatch().dropPheromone("passage", 20.0f);
 			return this;
 		}

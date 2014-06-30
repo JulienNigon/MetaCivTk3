@@ -1,7 +1,11 @@
 package civilisation.world; 
 
 import java.awt.Color;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +39,13 @@ public class World extends TKEnvironment
 	
 	private int tick = 0;
 	int x , y;
+	
+	//For output file
+	PrintWriter outTickSecond;
+	double oldTime;
+	double startTime;
+	int oldAgentNumber;
+	int startTick;
 
 	
 	public World() 
@@ -52,7 +63,7 @@ public class World extends TKEnvironment
 	{	
 		super.activate();
 		
-
+		initExportData();
 
 		new Initialiseur(); //Initialize simulation
 		
@@ -174,6 +185,8 @@ public class World extends TKEnvironment
 	}
 
 	
+
+
 	/*
 	 * Ajoute une pheromone (utile pour le controle de territoire)
 	 */
@@ -235,8 +248,48 @@ public class World extends TKEnvironment
 				}
 			}
 		}
+		
+		exportData();
 	}
 	
+	private void initExportData() {
+		try {
+			this.outTickSecond = new PrintWriter(new FileWriter(System.getProperty("user.dir") + "/" + "tickSecond" + ".csv"));
+			outTickSecond.println("agents,ticks");
+			outTickSecond.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void exportData() {
+		java.lang.System.currentTimeMillis(); 
+		try {
+				FileWriter fstream = new FileWriter(System.getProperty("user.dir") + "/" + "tickSecond" + ".csv", true);
+				BufferedWriter out = new BufferedWriter(fstream);
+				
+				if (oldAgentNumber != this.getTurtlesWithRoles("Humain").size()) {
+					if (oldAgentNumber != 0) {
+						double time;
+						time = (java.lang.System.currentTimeMillis() - startTime) / (tick - startTick); 
+				    	out.write(oldAgentNumber + "," + time + "\n");
+					}
+					oldAgentNumber = this.getTurtlesWithRoles("Humain").size();
+					startTick = tick;
+					startTime = java.lang.System.currentTimeMillis();
+				}
+
+		    	out.close();
+		    } catch (IOException e) 
+		    {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public Patch getPatchAt(int xx, int yy) {
 		return this.getPatch(xx, yy);
 	}
