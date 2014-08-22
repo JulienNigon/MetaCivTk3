@@ -25,7 +25,7 @@ public class A_EmitCogniton extends Action{
 		
 		for (Turtle t : turtles) {
 			if (t instanceof Humain) {
-				((Humain) t).getEsprit().AddWeightToCogniton(cogniton, change);
+				((Humain) t).getEsprit().addWeightToCogniton(cogniton, change);
 			}
 		}
 		

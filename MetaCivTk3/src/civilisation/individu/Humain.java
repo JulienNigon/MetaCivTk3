@@ -1292,6 +1292,17 @@ public class Humain extends Turtle
 		return humans;
 	}
 	
+	public List<Humain> humansHereWithCogniton(TypeCogniton cogni) {
+		List<Turtle> turtles = this.getOtherTurtles(0, true);
+		LinkedList<Humain> humans = new LinkedList<Humain>();
+		for (Turtle t : turtles) {
+			if (t instanceof Humain && ((Humain) t).getEsprit().ownCogniton(cogni)) {
+				humans.add((Humain) t);
+			}
+		}
+		return humans;
+	}
+	
 	//----------------GETTERS/SETTERS-------------------
 	
 	public ArrayList<Batiment> getBatiments() {

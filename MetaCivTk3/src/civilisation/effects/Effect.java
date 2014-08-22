@@ -70,7 +70,7 @@ public class Effect {
 				break;
 				
 			case 1 :	//modify
-				h.getEsprit().AddWeightToCogniton(Configuration.getCognitonByName(Varget), value);
+				h.getEsprit().addWeightToCogniton(Configuration.getCognitonByName(Varget), value);
 				break;
 			
 			case 2 :	//remove
@@ -84,6 +84,7 @@ public class Effect {
 	
 	public void Desactiver(Humain h)
 	{
+
 		if(this.target == "attribut")
 		{
 			if(type == 1)
@@ -96,7 +97,7 @@ public class Effect {
 		{
 			if(type == 1)
 			{
-				h.getEsprit().AddWeightToCogniton(Configuration.getCognitonByName(Varget), -value);
+				h.getEsprit().addWeightToCogniton(Configuration.getCognitonByName(Varget), -value);
 			}
 		}
 	}

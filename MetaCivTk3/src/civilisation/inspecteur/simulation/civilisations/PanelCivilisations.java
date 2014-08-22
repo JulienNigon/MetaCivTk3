@@ -42,6 +42,7 @@ public class PanelCivilisations extends JPanel{
 		startingAgents.setPaintLabels(true);
 		this.add(startingAgents);
 		
+		
 	}
 
 	public void performChange() {

@@ -19,7 +19,7 @@ public class A_ChangeCognitonWeight extends Action{
 	@Override
 	public Action effectuer(Humain h) {
 		
-		h.getEsprit().AddWeightToCogniton(cogniton, change);
+		h.getEsprit().addWeightToCogniton(cogniton, change);
 		
 		return nextAction;
 		

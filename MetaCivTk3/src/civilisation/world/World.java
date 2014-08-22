@@ -21,6 +21,7 @@ import civilisation.Configuration;
 import civilisation.Initialiseur;
 import civilisation.TurtleGenerator;
 import civilisation.individu.Humain;
+import civilisation.individu.cognitons.TypeCogniton;
 
 
 
@@ -226,7 +227,7 @@ public class World extends TKEnvironment
 				{
 					Terrain t = Configuration.couleurs_terrains.get(this.getPatch(xx, yy).getColor());
 					for (int i = 0 ; i < t.getPheroCroissance().size() ; i++) {
-						this.getPatch(xx,yy).dropPheromone(t.getPheromones().get(i).getNom() , t.getPheroInitiales().get(i).floatValue());
+						this.getPatch(xx,yy).dropPheromone(t.getPheromones().get(i).getNom() , t.getPheroCroissance().get(i).floatValue());
 					}
 					
 					Pheromone ph = this.getPheromone("passage");
@@ -318,6 +319,16 @@ public class World extends TKEnvironment
 		return humans;
 	}
 	
+	public ArrayList<Humain> getHumansWithCogniton(TypeCogniton cogni) {
+		List<Turtle> turtles = this.getTurtlesWithRoles("Humain");
+		ArrayList<Humain> humans = new ArrayList<Humain>();
+		for (Turtle turtle : turtles) {
+			if (((Humain)turtle).getEsprit().ownCogniton(cogni))
+			humans.add((Humain)turtle);
+		}
+		
+		return humans;
+	}
 	
 	
 	

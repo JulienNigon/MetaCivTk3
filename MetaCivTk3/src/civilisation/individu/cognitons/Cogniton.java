@@ -47,6 +47,7 @@ public class Cogniton {
 	// Some functions from NCogniton for convenience
 	public void mettreEnPlace(Esprit e){
 		cogniton.mettreEnPlace(e , weigth);
+		
 	}
 	
 	public void appliquerPoids(Esprit e){

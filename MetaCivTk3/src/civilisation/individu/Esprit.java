@@ -273,6 +273,15 @@ public class Esprit {
 		cogni.mettreEnPlace(this , 1.0); //1.0 is the standard weigth for new cogniton
 	}
 
+	
+	private void addCogniton(TypeCogniton cogni, Double d) {
+		//System.out.println("add + " + d);
+		Cogniton c = new Cogniton(cogni);
+		c.setWeigth(d);
+		cognitons.add(c);
+		cogni.mettreEnPlace(this , d);		
+	}
+	
 	public void removeCogniton(TypeCogniton c) {
 		//System.out.println("remove cogniton " + c.getNom());
 		for (int i = 0 ; i < this.cognitons.size(); i++) {
@@ -402,7 +411,14 @@ public class Esprit {
 	{
 		for (int i = 0 ; i < cognitons.size() ; i++) {
 			if (cognitons.get(i).getCogniton().equals(t)) {
-				cognitons.get(i).setWeigth(d);
+				if (d <= 0) {
+					t.modifierPlans(false, this);
+					cognitons.remove(i);
+					this.redefinirPoids();
+				}
+				else {
+					cognitons.get(i).setWeigth(d);
+				}	
 			}
 		}
 		this.redefinirPoids();
@@ -416,7 +432,7 @@ public class Esprit {
 	
 	/**
 	 * Ajoute un cogniton si il n'est pas présent
-	 * Si il est présent change le poid
+	 * Si il est présent change le poids
 	 * 
 	 */
 
@@ -443,7 +459,7 @@ public class Esprit {
 	 * Ajoute un poid au cogniton si il est présent
 	 * 
 	 */
-	public void AddWeightToCogniton(TypeCogniton t, Double d)
+	public void addWeightToCogniton(TypeCogniton t, Double d)
 	{
 		int i = 0;
 		while(i < cognitons.size() && !cognitons.get(i).getCogniton().equals(t))
@@ -452,15 +468,23 @@ public class Esprit {
 		}
 		if(i < cognitons.size())
 		{
-			this.changeWeightOfCognitonOfType(t, d);
+			if (cognitons.get(i).getWeigth() + d >= 0.001) {
+				cognitons.get(i).setWeigth(cognitons.get(i).getWeigth() + d);
+			}
+			else {
+				this.removeCogniton(t);
+			}
+			
+			this.redefinirPoids();
 		}
 		else
 		{
-			this.setCogniton(t, d);
+			this.addCogniton(t,d);
 		}
 	}
 	
-	
+
+
 	/**
 	 * Check if the agent own a specific combination of a group and a role
 	 * @param groupAndRoleToMap

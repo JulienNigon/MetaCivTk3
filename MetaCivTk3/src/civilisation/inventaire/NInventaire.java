@@ -25,11 +25,15 @@ public class NInventaire {
 			int nbObjets = listeObjets.get(o);
 			listeObjets.put(o, nbObjets + i);
 		}
+		//TODO : problem if many item??
 		for(int j = 0; j < o.getEffets().size();++j)
 		{
 			if(o.getEffets().get(j).getActivation() == 0)
 			{
 				o.getEffets().get(j).Activer(h);
+		//		if (listeObjets.get(o) > 1) {
+		//			System.out.println(listeObjets.get(o));
+		//		}
 			}
 		}
 	}
