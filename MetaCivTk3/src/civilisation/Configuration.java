@@ -30,8 +30,8 @@ import civilisation.annotations.*;
 
 public class Configuration {
 
-	public static String versionNumber = "1.01";
-	public static String versionName = "Baba Yetu";
+	public static String versionNumber = "1.60";
+	public static String versionName = "Tuatha";
 	
 	/*Attributes*/
 	public static ArrayList<String> attributesNames;
@@ -109,9 +109,9 @@ public class Configuration {
 	
 	/*Passages minimaux pour une route*/
 	@ParametrisationInteger(min=5, max=500, pas = 5, toolTip = "Nombre de passage d'un agent necessaires pour qu'un chemin soit trace.")
-	public static Integer passagesPourCreerRoute = 99999;
+	public static Integer passagesPourCreerRoute = 1000;
 	@ParametrisationInteger(min=1, max=150, pas = 1)
-	public static Integer EffacementRoute = 9000;
+	public static Integer EffacementRoute = 1;
 	@ParametrisationInteger(min=1, max=200, toolTip = "Nombre de ticks de vision de l'agent.")
 	public static final int VisionRadius = 15;
 	

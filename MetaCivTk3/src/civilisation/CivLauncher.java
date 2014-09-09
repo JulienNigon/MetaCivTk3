@@ -19,6 +19,7 @@ import java.util.Calendar;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import civilisation.inspecteur.viewer.ViewerAgent;
@@ -53,21 +54,21 @@ public class CivLauncher extends TKLauncher {
 		
 		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true"); //TODO : this correct a strange behaviour of Swing. Must be improved.
 
+		//SwingUtilities.invokeLater(new Runnable() {
+		//		public void run() { 
+		
+		//synchronized(Configuration.pathToRessources) {
+			
+		
 		//TODO : Correct the 1/2 crash chance at start
-	/*    JFileChooser chooser = new JFileChooser();
-	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
-	    chooser.setFileFilter(filter);
-	    int returnVal = chooser.showOpenDialog(null);
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			File file = chooser.getSelectedFile();
-			Configuration.pathToRessources = file.getParent();
-			System.out.println("Selected path : " + Configuration.pathToRessources);
-	    } else {
-	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
-			System.out.println("Selected path : " + Configuration.pathToRessources);
 
-	    }*/
-		Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
+		//		}
+	
+		//}
+		//
+		//		);
+
+		//Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
 
 		Initialiseur.readParameters(); //Load minimum informations about the simulation
 		int x = Integer.parseInt(Initialiseur.getChamp("Largeur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
@@ -88,10 +89,34 @@ public class CivLauncher extends TKLauncher {
 		//this.launchAgent(new ViewerPerformances());
 		//this.launchAgent(new ViewerTableauDeBord());
 		this.launchAgent(new ViewerTabbed());
+
 		}
 	
+	public void launchSimulation() {
+		
+
+		
+	}
+	
 	public static void main(String[] args) {
-		executeThisLauncher("--popDensity","0");
+	    JFileChooser chooser = new JFileChooser();
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
+	    chooser.setFileFilter(filter);
+	    int returnVal = chooser.showOpenDialog(null);
+	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = chooser.getSelectedFile();
+			Configuration.pathToRessources = file.getParent();
+			System.out.println("Selected path : " + Configuration.pathToRessources);
+			executeThisLauncher("--popDensity","0");
+
+	    } else {
+	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
+			System.out.println("Selected path : " + Configuration.pathToRessources);
+			executeThisLauncher("--popDensity","0");
+
+
+	    }
+	    
 	}
 	
 	public void printStartMessage() {

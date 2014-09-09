@@ -72,8 +72,10 @@ public class A_Mendicity extends Action{
 		}
 		else {
 			Humain cible = h.getNearestTurtleOf(World.getInstance().getHumansWithCogniton(targetCogniton));
-			if (cible != null) {
-				h.allerVers(cible);
+			if (cible != null && cible != h) {
+				//h.allerVers(cible);
+				h.setHeadingTowards(cible);
+				h.fd(1);
 			} else {
 				h.setHeading(Math.random()*360.);
 				h.fd(1);

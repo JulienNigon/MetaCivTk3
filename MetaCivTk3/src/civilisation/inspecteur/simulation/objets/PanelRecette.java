@@ -33,7 +33,6 @@ public class PanelRecette extends JPanel implements ActionListener{
 	public PanelRecette(PanelObjets objet)
 	{
 		super();
-		System.out.println("boghqoriorgq");
 		sup = objet;
 		recettes = new ArrayList<String>();
 		necessaires = new ArrayList<Integer>();
