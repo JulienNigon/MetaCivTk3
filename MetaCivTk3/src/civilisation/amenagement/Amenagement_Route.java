@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
+import civilisation.world.World;
 import turtlekit.kernel.Patch;
 
 public class Amenagement_Route extends AmenagementPublic {
@@ -20,14 +21,17 @@ public class Amenagement_Route extends AmenagementPublic {
 	public Amenagement_Route(Patch p)
 	{
 		super(p);
+		p.dropMark("Route", this);
 		this.p = p;
 		recomputeLinks(-1);
 		List<Patch> neighbors = p.getNeighbors(1, true);
-		for (int i = 0 ; i < 4 ; i++) {
-			Amenagement_Route mark = (Amenagement_Route) neighbors.get(i*2).getMark("Route");
+		for (int i = 0 ; i < neighbors.size() ; i++) {
+			Amenagement_Route mark = (Amenagement_Route) neighbors.get(i).getMark("Route");
 			if (mark != null) {
+				
+				neighbors.get(i).dropMark("Route", mark);
+				
 				mark.recomputeLinks((i+2)%4);
-				neighbors.get(i*2).dropMark("Route", mark);
 			}
 		}
 	}
@@ -53,33 +57,45 @@ public class Amenagement_Route extends AmenagementPublic {
 			g.drawLine(x+(cellS/2)    , y, x+(cellS/2)    , y+((cellS-1)/2));
 			g.drawLine(x+(cellS/2) + 1, y, x+(cellS/2) + 1, y+((cellS-1)/2));
 		}
+		
+
 
 	}
 	
 	public void recomputeLinks(int forcedNeighbor) {
 
 		synchronized (p) {
-		List<Patch> neighbors = p.getNeighbors(1, false); //TODO There is an order??
-		//System.out.println(neighbors);
-		Amenagement mark;
+		//List<Patch> neighbors = p.getNeighbors(1, false); //TODO There is an order??
+		
+		Amenagement mark = null;
 		//0 -> right 2 -> down
 		
-		for (int i = 0 ; i < 4 ; i++) {
-			mark = (Amenagement) neighbors.get(i*2).getMark("Route");
-			if (mark != null) {
-				roadDirection[i] = true;
-				neighbors.get(i*2).dropMark("Route", mark);
-			} else if (forcedNeighbor == i) {
-				roadDirection[i] = true;
-			} else {
+		for (int i = -1 ; i <= 1 ; i++) {
+			for (int j = -1 ; j <= 1 ; j++) {
+				mark = null;
+				if (i == 0 || j == 0) {
+					//System.out.println(i + " "+j+" "+((i*-1)+Math.abs(i)+(-1*j)+(Math.abs(j)*2)));
+
+					mark = (Amenagement) World.getInstance().getPatchAt(this.p.x + i, this.p.y + j).getMark("Route");
+
+
+					if (mark != null) {
+						roadDirection[(i*-1)+Math.abs(i)+(-1*j)+(Math.abs(j)*2)] = true;
+						World.getInstance().getPatchAt(mark.position.x, mark.position.y).dropMark("Route", mark);
+					}
+					else {
+						roadDirection[(i*-1)+Math.abs(i)+(-1*j)+(Math.abs(j)*2)] = false;
+					}
+					
+					}
+				}
 			
-				roadDirection[i] = false;
+
 			}
-		
 		}
 		}
 
-	}
+	
 	
 	
 	@Override

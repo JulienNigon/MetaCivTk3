@@ -48,7 +48,7 @@ public class A_AllerVers extends Action{
 			{
 				Amenagement_Route troncon = new Amenagement_Route(h.getPatch());
 				//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
-				h.getPatch().dropMark("Route", troncon);
+				//h.getPatch().dropMark("Route", troncon);
 			}
 			return this;
 		}

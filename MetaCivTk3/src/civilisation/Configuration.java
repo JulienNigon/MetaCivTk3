@@ -109,7 +109,7 @@ public class Configuration {
 	
 	/*Passages minimaux pour une route*/
 	@ParametrisationInteger(min=5, max=500, pas = 5, toolTip = "Nombre de passage d'un agent necessaires pour qu'un chemin soit trace.")
-	public static Integer passagesPourCreerRoute = 1000;
+	public static Integer passagesPourCreerRoute = 5;
 	@ParametrisationInteger(min=1, max=150, pas = 1)
 	public static Integer EffacementRoute = 1;
 	@ParametrisationInteger(min=1, max=200, toolTip = "Nombre de ticks de vision de l'agent.")

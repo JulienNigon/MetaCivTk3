@@ -236,7 +236,7 @@ public class Humain extends Turtle
 				if(this.smell("passage") > Configuration.passagesPourCreerRoute && !this.getPatch().isMarkPresent("Route"))
 				{
 					Amenagement_Route troncon = new Amenagement_Route(this.getPatch());
-					this.getPatch().dropMark("Route", troncon);
+					//this.getPatch().dropMark("Route", troncon);
 				}
 		}
 	
@@ -271,7 +271,7 @@ public class Humain extends Turtle
 					{
 						Amenagement_Route troncon = new Amenagement_Route(this.getPatch());
 						//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
-						this.getPatch().dropMark("Route", troncon);
+						//this.getPatch().dropMark("Route", troncon);
 					}		
 					if(!Configuration.couleurs_terrains.get(coul).getInfranchissable())
 					{
@@ -288,7 +288,7 @@ public class Humain extends Turtle
 					{
 						Amenagement_Route troncon = new Amenagement_Route(this.getPatch());
 						//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
-						this.getPatch().dropMark("Route", troncon);
+						//this.getPatch().dropMark("Route", troncon);
 					}						
 				}
 				
@@ -312,7 +312,7 @@ public class Humain extends Turtle
 					{
 						Amenagement_Route troncon = new Amenagement_Route(this.getPatch());
 						//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
-						this.getPatch().dropMark("Route", troncon);
+						//this.getPatch().dropMark("Route", troncon);
 					}	
 					
 				}
