@@ -182,6 +182,17 @@ public abstract class Action {
 		this.options = options;
 	}
 
+	public void showDescription(){
+		System.out.println(toFormatedString());
+		for (int i = 0 ; i < this.listeActions.size(); i++){
+			
+			listeActions.get(i).showDescription();
+		}
+		if (this.getNextAction() != null) {
+			this.getNextAction().showDescription();
+		}
+	}
+	
 	/**
 	 * Supprime les options de cette action.
 	 */
@@ -205,16 +216,18 @@ public abstract class Action {
 		for (int i = 0 ; i < listeActions.size(); i++){
 			if (listeActions.get(i).equals(ref)){
 				//System.out.println("Action ajout_e : " + (i+1));
-				listeActions.add(i+1,action);
-				listeActions.get(i).setNextAction(action);
-				
-				if (i+2 < listeActions.size()){
-					action.setNextAction(listeActions.get(i+2)); /*On reconstruit le chainage avant*/
+				listeActions.add(i+1,action);			
+				if (this.internActionsAreLinked()) {
+					listeActions.get(i).setNextAction(action);			
+					if (i+2 < listeActions.size()){
+						action.setNextAction(listeActions.get(i+2)); /*On reconstruit le chainage avant*/
+					}
+					
 				}
 				break;
 			}
 			if (listeActions.get(i).getListeActions() != null){
-				listeActions.get(i).addActionAfter( action , ref);
+				listeActions.get(i).addActionAfter(action , ref);
 			}
 		}		
 	}
@@ -223,14 +236,16 @@ public abstract class Action {
 		for (int i = 0 ; i < listeActions.size(); i++){
 			if (listeActions.get(i).equals(ref)){
 				listeActions.add(i,action);
-				if (i>0){
-					listeActions.get(i-1).setNextAction(action);
+				if (this.internActionsAreLinked()) {
+					if (i>0){
+						listeActions.get(i-1).setNextAction(action);
+					}
+					action.setNextAction(listeActions.get(i+1)); /*On reconstruit le chainage*/
 				}
-				action.setNextAction(listeActions.get(i+1)); /*On reconstruit le chainage*/
 				break;
 			}
 			if (listeActions.get(i).getListeActions() != null){
-				listeActions.get(i).addActionBefore( action , ref);
+				listeActions.get(i).addActionBefore(action , ref);
 			}
 		}
 	}
@@ -239,7 +254,7 @@ public abstract class Action {
 		for (int i = 0 ; i < listeActions.size(); i++){
 			if (listeActions.get(i).equals(ref)){
 				listeActions.get(i).getListeActions().add(0,action);
-				if (listeActions.get(i).getListeActions().size()>1){
+				if (this.internActionsAreLinked() && listeActions.get(i).getListeActions().size()>1){
 					action.setNextAction(listeActions.get(i).getListeActions().get(1));
 				}
 				break;
@@ -254,10 +269,12 @@ public abstract class Action {
 		for (int i = 0 ; i < listeActions.size(); i++){
 			if (listeActions.get(i).equals(action)){
 				listeActions.remove(i);
-				if (i>0 && i<listeActions.size()){
-					listeActions.get(i-1).setNextAction(listeActions.get(i));
-				} else if (i>0) {
-					listeActions.get(i-1).setNextAction(null);
+				if (this.internActionsAreLinked()) {
+					if (i>0 && i<listeActions.size()){
+						listeActions.get(i-1).setNextAction(listeActions.get(i));
+					} else if (i>0) {
+						listeActions.get(i-1).setNextAction(null);
+					}
 				}
 				break;
 			}

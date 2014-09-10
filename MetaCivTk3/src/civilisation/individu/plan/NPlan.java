@@ -108,7 +108,7 @@ public class NPlan {
 		for (int i = 0 ; i < actions.size(); i++){
 			if (actions.get(i).equals(ref)){
 				actions.get(i).getListeActions().add(0,action);
-				if (actions.get(i).getListeActions().size()>1){
+				if (actions.get(i).getListeActions().size()>1 && actions.get(i).internActionsAreLinked()){
 					action.setNextAction(actions.get(i).getListeActions().get(1));
 				}
 				break;
@@ -208,8 +208,8 @@ public class NPlan {
 	
 	/*A des fins de debuggage___*/
 	public void seDecrire(){
-		for (int i = 0 ; i < actions.size(); i++){
-			System.out.println(actions.get(i).toString());
+		if (!actions.isEmpty()) {
+			actions.get(0).showDescription();
 		}
 	}
 

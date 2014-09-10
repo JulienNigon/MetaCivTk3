@@ -39,7 +39,6 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 		super(f,modal);
 
 		this.setTitle("Editer une action");
-		System.out.println("Chargement du logo");
 
 
 		this.a = a;
@@ -165,7 +164,6 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 
 	@Override
 	public void propertyChange(PropertyChangeEvent e) {
-		System.out.println(optionPane.getValue());
 		if (isVisible() && (optionPane.getValue().equals("OK") || optionPane.getValue().equals("Cancel"))){
 			if (optionPane.getValue().equals("OK")){
 				a.clearOptions(); //Suppression des anciennes options

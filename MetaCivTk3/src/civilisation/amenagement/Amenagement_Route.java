@@ -31,7 +31,7 @@ public class Amenagement_Route extends AmenagementPublic {
 				
 				neighbors.get(i).dropMark("Route", mark);
 				
-				mark.recomputeLinks((i+2)%4);
+				mark.recomputeLinks(-1);
 			}
 		}
 	}
