@@ -3,6 +3,10 @@ package civilisation.individu.decisionMaking;
 import civilisation.individu.Esprit;
 import civilisation.individu.plan.NPlanPondere;
 
+/**
+ * This DecisionMaker always select the plan with the max weight.
+ */
+
 public class MaxWeightDecisionMaker extends DecisionMaker{
 
 	public MaxWeightDecisionMaker(Esprit mind) {

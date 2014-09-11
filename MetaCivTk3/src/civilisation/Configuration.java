@@ -88,16 +88,6 @@ public class Configuration {
 	/*Path to ressources*/
 	public static String pathToRessources = "/civilisation/ressources";
 	
-	/*Modificateurs de l'esprit*/
-	public static Double facteurHereditaireMemes = 1.0;
-	
-	public static Double facteurHereditaireTraits = 1.0;
-	
-	public static Double facteurDecouverteSkills = 1.0;
-	
-	public static Double facteurDecouverteMemes = 1.0;
-	
-	public static Double facteurApparitionDeNouveauxTraits = 1.0;
 	
 
 	
@@ -110,33 +100,10 @@ public class Configuration {
 	/**
 	 * Vitesse de deplacement sur les patchs
 	 */
-	public static Integer VitesseEstimeeParDefaut = 25;
-	
-	public static Integer VitesseSurPlaine = 20;
-	
-	public static Integer VitesseSurRoute = 2;
-	
-	public static Integer VitesseSurForet = 40;
-	
-	public static Integer VitesseSurLittoral = 40;
-	
-	public static Integer VitesseSurBanquise = 40;
-	
-	public static Integer VitesseSurColline = 60;
-	
-	public static Integer VitesseSurMontagne = 80;
-	
-	public static Integer VitesseSurEau = 900;
-	
-	public static Integer VitesseSurDesert = 40;
-	
-	public static Integer VitesseCheval = 10;
-	
-	public static Integer TauxDressageCheval = 25;
+
 	
 	public static Integer maxAgents = 50000;
 
-	public static Double seuilEmergenceForet = -40.;
 
 	public static void addCogniton(TypeCogniton nouveauCogniton) {
 		cognitons.add(nouveauCogniton);

@@ -3,6 +3,10 @@ package civilisation.individu.decisionMaking;
 import civilisation.individu.Esprit;
 import civilisation.individu.plan.NPlanPondere;
 
+/**
+ * A decision maker which select the max weighted plan, but override the played plan if a plan is at least two time more weighted.
+ *
+ */
 public class MaxWeightOx2_DecisionMaker extends DecisionMaker{
 
 	public MaxWeightOx2_DecisionMaker(Esprit mind) {

@@ -4,9 +4,8 @@ import civilisation.group.Group;
 
 
 /**
- * Work in progress...
- * @author juliennigon
- *
+ * Culturons are special cognitons used for group management.
+ * Allow to recreate normative and cultural behavior.
  */
 
 

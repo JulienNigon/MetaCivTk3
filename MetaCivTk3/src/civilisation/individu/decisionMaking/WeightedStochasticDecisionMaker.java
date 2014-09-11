@@ -2,6 +2,9 @@ package civilisation.individu.decisionMaking;
 
 import civilisation.individu.Esprit;
 
+/**
+ * The standard decision maker of MetaCiv, which select plan randomly in respect with their weigth.
+ */
 public class WeightedStochasticDecisionMaker extends DecisionMaker{
 
 	public WeightedStochasticDecisionMaker(Esprit mind) {

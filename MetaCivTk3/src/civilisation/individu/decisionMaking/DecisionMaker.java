@@ -3,6 +3,12 @@ package civilisation.individu.decisionMaking;
 import civilisation.individu.Esprit;
 import civilisation.individu.Humain;
 
+/**
+ * Define the way MetaCiv select plan to use when an agent is thinking.
+ * Each new DecisionMaker must inherit from this class.
+ *
+ */
+
 public abstract class DecisionMaker implements Cloneable {
 
 	Esprit mind;

@@ -145,7 +145,6 @@ public class PanelArbreActions extends JJPanel{
 		}
 		//this.remove(arbreActions);
 		//setupArbreActions();
-		plan.seDecrire();
 	}
 
 	public Action getActionActive() {

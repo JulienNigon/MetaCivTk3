@@ -207,7 +207,7 @@ public class NPlan {
 	}
 	
 	/*A des fins de debuggage___*/
-	public void seDecrire(){
+	public void showDescription(){
 		if (!actions.isEmpty()) {
 			actions.get(0).showDescription();
 		}

@@ -91,12 +91,6 @@ public class CivLauncher extends TKLauncher {
 
 		}
 	
-	public void launchSimulation() {
-		
-
-		
-	}
-	
 	public static void main(String[] args) {
 	    JFileChooser chooser = new JFileChooser();
 	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
