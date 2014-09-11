@@ -18,7 +18,6 @@ import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.action.Action;
 import civilisation.inventaire.Objet;
 import civilisation.world.Terrain;
-import civilisation.annotations.*;
 
 /** 
  * Contain all major data for running the simulation
@@ -90,74 +89,53 @@ public class Configuration {
 	public static String pathToRessources = "/civilisation/ressources";
 	
 	/*Modificateurs de l'esprit*/
-	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1, toolTip = "Une valeur elevee augmente les chances que les memes soient transferes aux enfants.")
 	public static Double facteurHereditaireMemes = 1.0;
 	
-	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1)
 	public static Double facteurHereditaireTraits = 1.0;
 	
-	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1)
 	public static Double facteurDecouverteSkills = 1.0;
 	
-	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1)
 	public static Double facteurDecouverteMemes = 1.0;
 	
-	@ParametrisationDouble(min=0.1, max=3.0, pas = 0.1)
 	public static Double facteurApparitionDeNouveauxTraits = 1.0;
 	
 
 	
 	/*Passages minimaux pour une route*/
-	@ParametrisationInteger(min=5, max=500, pas = 5, toolTip = "Nombre de passage d'un agent necessaires pour qu'un chemin soit trace.")
 	public static Integer passagesPourCreerRoute = 5;
-	@ParametrisationInteger(min=1, max=150, pas = 1)
 	public static Integer EffacementRoute = 1;
-	@ParametrisationInteger(min=1, max=200, toolTip = "Nombre de ticks de vision de l'agent.")
 	public static final int VisionRadius = 15;
 	
 	
 	/**
 	 * Vitesse de deplacement sur les patchs
 	 */
-	@ParametrisationInteger(min=1, max=100, toolTip = "Vitesse estimee par defaut pour un patch que l'agent ne voit pas")
 	public static Integer VitesseEstimeeParDefaut = 25;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurPlaine = 20;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurRoute = 2;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurForet = 40;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurLittoral = 40;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurBanquise = 40;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurColline = 60;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurMontagne = 80;
 	
-	@ParametrisationInteger(min=10, max=1000)
 	public static Integer VitesseSurEau = 900;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseSurDesert = 40;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer VitesseCheval = 10;
 	
-	@ParametrisationInteger(min=1, max=100)
 	public static Integer TauxDressageCheval = 25;
 	
 	public static Integer maxAgents = 50000;
 
-	@ParametrisationDouble(min=-500., max=200., pas = 5., toolTip = "Valeur de passage necessaire a l'apparition d'une foret (generalement negative)")
 	public static Double seuilEmergenceForet = -40.;
 
 	public static void addCogniton(TypeCogniton nouveauCogniton) {

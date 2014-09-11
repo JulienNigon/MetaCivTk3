@@ -15,7 +15,6 @@ import turtlekit.kernel.TKEnvironment;
 import turtlekit.kernel.Turtle;
 import turtlekit.mle.AbstractMLEAgent;
 import turtlekit.pheromone.Pheromone;
-import civilisation.AddOn;
 import civilisation.Communaute;
 import civilisation.Configuration;
 import civilisation.Initialiseur;

@@ -26,7 +26,6 @@ import civilisation.inspecteur.viewer.ViewerAgent;
 import civilisation.inspecteur.viewer.ViewerInspecteur;
 import civilisation.inspecteur.viewer.ViewerModificationSimulation;
 import civilisation.inspecteur.viewer.ViewerOptions;
-import civilisation.inspecteur.viewer.ViewerParametres;
 import civilisation.inspecteur.viewer.ViewerPerformances;
 import civilisation.inspecteur.viewer.ViewerTabbed;
 import civilisation.inspecteur.viewer.ViewerTableauDeBord;
