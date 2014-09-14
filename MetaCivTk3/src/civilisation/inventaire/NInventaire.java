@@ -36,6 +36,43 @@ public class NInventaire {
 		//		}
 			}
 		}
+		
+	}
+	
+	public void useObjets(Objet o,int i)
+	{
+		if(this.listeObjets.containsKey(o))
+		{
+			if(this.listeObjets.get(o) >= i)
+			{
+				for(int j = 0; j < i;j++)
+				{
+					for(int k = 0; k < o.getEffets().size();++k)
+					{
+						if(o.getEffets().get(k).getActivation() == 1)
+						{
+							o.getEffets().get(k).Activer(h);
+						}
+					}
+					
+				}
+			}
+			else
+			{
+				for(int j = 0; j < this.listeObjets.get(o);j++)
+				{
+					for(int k = 0; k < o.getEffets().size();++k)
+					{
+						if(o.getEffets().get(k).getActivation() == 1)
+						{
+							o.getEffets().get(k).Activer(h);
+						}
+					}
+					
+				}
+			}
+			this.deleteObjets(o, i);
+		}
 	}
 	
 	public void deleteObjets(Objet o, int i)
