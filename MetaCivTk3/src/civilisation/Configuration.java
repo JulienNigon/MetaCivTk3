@@ -53,6 +53,9 @@ public class Configuration {
 	/*all effects*/
 	public static ArrayList<Effect> effets;
 	
+	/*Weight limit */
+	public static int weightLimit;
+	
 	/*All plans*/
 	public static ArrayList<NPlan> plans;
 	public static NPlan initiatePlan;
@@ -87,6 +90,7 @@ public class Configuration {
 	
 	/*Path to ressources*/
 	public static String pathToRessources = "/civilisation/ressources";
+	
 	
 	
 

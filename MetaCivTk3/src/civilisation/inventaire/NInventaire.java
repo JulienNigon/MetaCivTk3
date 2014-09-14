@@ -11,10 +11,12 @@ public class NInventaire {
 
 	HashMap<Objet, Integer> listeObjets;
 	Humain h;
+	int weight;
 
 	public NInventaire(Humain h){
 		listeObjets = new HashMap<Objet, Integer>();
 		this.h = h;
+		this.weight = 0;
 	}
 	
 	public void addObjets(Objet o , int i){
@@ -23,19 +25,24 @@ public class NInventaire {
 		}
 		else{
 			int nbObjets = listeObjets.get(o);
+			listeObjets.remove(o);
 			listeObjets.put(o, nbObjets + i);
 		}
 		//TODO : problem if many item??
-		for(int j = 0; j < o.getEffets().size();++j)
+		for(int k = 0; k < i;k++)
 		{
-			if(o.getEffets().get(j).getActivation() == 0)
+			for(int j = 0; j < o.getEffets().size();++j)
 			{
-				o.getEffets().get(j).Activer(h);
-		//		if (listeObjets.get(o) > 1) {
-		//			System.out.println(listeObjets.get(o));
-		//		}
+				if(o.getEffets().get(j).getActivation() == 0)
+				{
+					o.getEffets().get(j).Activer(h);
+			//		if (listeObjets.get(o) > 1) {
+			//			System.out.println(listeObjets.get(o));
+			//		}
+				}
 			}
 		}
+		
 		
 	}
 	
