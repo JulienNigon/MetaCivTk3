@@ -26,6 +26,14 @@ public class Terrain {
 	static final int passabiliteParDefaut = 35;
 	Boolean infranchissable;
 	
+	int altmax;
+	int altmin;
+	int apparition;
+	int tempideale;
+	
+	Terrain[] suivants;
+	int[] poidSuivant;
+	
 	public Terrain(String nom){
 		this.nom = nom;
 		pheromones = new ArrayList<ItemPheromone>();
@@ -34,6 +42,13 @@ public class Terrain {
 		couleur = Color.BLACK;
 		passabilite = passabiliteParDefaut;
 		infranchissable = false;
+		this.suivants = new Terrain[1];
+		this.poidSuivant = new int[1];
+		
+		this.suivants = new Terrain[1];
+		this.poidSuivant = new int[1];
+		this.altmin = 0;
+		this.altmax = 20;
 	}
 
 	public int getPassabilite() {
@@ -67,6 +82,26 @@ public class Terrain {
 	public void setInfranchissable(Boolean infranchissable) {
 		this.infranchissable = infranchissable;
 	}
+	
+	public int getAltMax()
+	{
+		return this.altmax;
+	}
+	
+	public void setAltMax(int max)
+	{
+		this.altmax = max;
+	}
+	
+	public int getAltMin()
+	{
+		return this.altmin;
+	}
+	
+	public void setAltMin(int min)
+	{
+		this.altmin = min;
+	}
 
 	public void addPheromoneLiee(ItemPheromone phero, Double init, Double croissance){
 		pheromones.add(phero);
@@ -80,6 +115,26 @@ public class Terrain {
 		pheroCroissance.clear();
 	}
 	
+	public void addSuivants(Terrain[] suivants)
+	{
+		this.suivants = suivants;
+	}
+	
+	public int[] getPoidsuivant()
+	{
+		return poidSuivant;
+	}
+	
+	public int getApparition()
+	{
+		return this.apparition;
+	}
+	
+	public void addSuivants(int[] poids)
+	{
+		this.poidSuivant = poids;
+	}
+	
 	public void enregistrer(File cible) {
 		PrintWriter out;
 		try {
@@ -91,6 +146,9 @@ public class Terrain {
 			out.println("Couleur : "+hsb[0]+","+hsb[1]+","+hsb[2]);
 			out.println("Passabilite : "+this.getPassabilite());
 			out.println("Infranchissable : " + infranchissable);
+			out.println("AltMin : " + this.getAltMin());
+			out.println("AltMax : " + this.getAltMax());
+			out.println("Apparition : " + this.getApparition());
 
 			for (int i = 0; i < this.pheromones.size();i++){
 				out.println("Pheromone : " + pheromones.get(i).getNom() + "," + pheroInitiales.get(i)  + "," + pheroCroissance.get(i));

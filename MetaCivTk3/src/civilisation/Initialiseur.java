@@ -671,38 +671,42 @@ public class Initialiseur {
 	{
 		System.out.println("Dossier : " + folder.getName());
 		File[] files = folder.listFiles();
-		for (File f : files)
+		if(files != null && files.length > 0)
 		{
-			if (f.isDirectory())
+			for (File f : files)
 			{
-				loadActionsRecursif(loader,f, path+f.getName()+".");
-			}
-			else
-			{
-				try
+				if (f.isDirectory())
 				{
-					Class<?> c = loader.loadClass(path+f.getName().substring(0, f.getName().length()-6)); // TODO peut être a modifier le   "substring(0, f.getName().length()-6)"  qui correspond au .class 
-					if (Action.class.isAssignableFrom(c))
+					loadActionsRecursif(loader,f, path+f.getName()+".");
+				}
+				else
+				{
+					try
 					{
-						Action action = (Action) c.newInstance();
-						Configuration.actions.add(action);
-						System.out.println("\tAction loaded : "+action.getSimpleName());
+						Class<?> c = loader.loadClass(path+f.getName().substring(0, f.getName().length()-6)); // TODO peut être a modifier le   "substring(0, f.getName().length()-6)"  qui correspond au .class 
+						if (Action.class.isAssignableFrom(c))
+						{
+							Action action = (Action) c.newInstance();
+							Configuration.actions.add(action);
+							System.out.println("\tAction loaded : "+action.getSimpleName());
+						}
 					}
-				}
-				catch (ClassNotFoundException e)
-				{
-					e.printStackTrace();
-				}
-				catch (InstantiationException e)
-				{
-					e.printStackTrace();
-				}
-				catch (IllegalAccessException e)
-				{
-					e.printStackTrace();
+					catch (ClassNotFoundException e)
+					{
+						e.printStackTrace();
+					}
+					catch (InstantiationException e)
+					{
+						e.printStackTrace();
+					}
+					catch (IllegalAccessException e)
+					{
+						e.printStackTrace();
+					}
 				}
 			}
 		}
+		
 	}
 
 	
