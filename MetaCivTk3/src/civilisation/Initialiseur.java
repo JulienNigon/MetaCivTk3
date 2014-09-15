@@ -520,12 +520,10 @@ public class Initialiseur {
 		
 		//System.out.println("Reading parameters...");
 		File params = new File(Configuration.pathToRessources + "/parametres"+Configuration.getExtension());
-		System.out.println("teste");
 		if (params.exists()){
 	       	String s = getChamp("Carte", params)[0];
 	       	System.out.println(s);
 	       	if (!s.equals("AUCUNE")){
-	       		System.out.println("test");
 	    		File carte = new File(Configuration.pathToRessources + "/environnements/"+s);
 	    		if (carte.isFile()){
 	    			System.out.println("Loading map : "+s);

@@ -95,6 +95,7 @@ public class CivLauncher extends TKLauncher {
 	
 	public static void main(String[] args) {
 		
+		
 		final Semaphore pathSelected = new Semaphore(1, true);
     	try {
 			pathSelected.acquire();
@@ -103,27 +104,39 @@ public class CivLauncher extends TKLauncher {
 			e.printStackTrace();
 		}
     	
-		 SwingUtilities.invokeLater(new Runnable() {
-             public void run() {
+		System.out.println(Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0]);
 
-				System.out.println("Swing test");
-		
-         	    JFileChooser chooser = new JFileChooser();
-        	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
-        	    chooser.setFileFilter(filter);
-        	    System.out.println("Chooser : " + chooser.isVisible());
-        	    int returnVal = chooser.showOpenDialog(null);
-        	    	    
-        	   // chooser.
-        	    System.out.println("Chooser : " + chooser.isVisible());
-        	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-        			File file = chooser.getSelectedFile();
-        			Configuration.pathToRessources = file.getParent();
-        	    } else {
-        	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
-        	    }
-        	    pathSelected.release();
-		 }});
+		if (new File(System.getProperty("user.dir") + "/bin/config").exists() &&
+				Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0].equals("true") &&
+				new File(Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0]).exists()) {
+			//Config file exist and the user specified to always use latest model
+			Configuration.pathToRessources = Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0];
+			pathSelected.release();
+		}
+		else {
+
+	    	
+			 SwingUtilities.invokeLater(new Runnable() {
+	             public void run() {
+
+					System.out.println("Swing test");
+			
+	         	    JFileChooser chooser = new JFileChooser();
+	        	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
+	        	    chooser.setFileFilter(filter);
+	        	    int returnVal = chooser.showOpenDialog(null);
+	        	    	    
+	        	   // chooser.
+	        	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+	        			File file = chooser.getSelectedFile();
+	        			Configuration.pathToRessources = file.getParent();
+	        	    } else {
+	        	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
+	        	    }
+	        	    pathSelected.release();
+			 }});
+		}
+
 	    
 		 
 		 
