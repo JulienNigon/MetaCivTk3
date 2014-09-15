@@ -15,9 +15,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.concurrent.Semaphore;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -92,24 +94,49 @@ public class CivLauncher extends TKLauncher {
 		}
 	
 	public static void main(String[] args) {
-	    JFileChooser chooser = new JFileChooser();
-	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
-	    chooser.setFileFilter(filter);
-	    int returnVal = chooser.showOpenDialog(null);
-	    if(returnVal == JFileChooser.APPROVE_OPTION) {
-			File file = chooser.getSelectedFile();
-			Configuration.pathToRessources = file.getParent();
-			System.out.println("Selected path : " + Configuration.pathToRessources);
-			executeThisLauncher("--popDensity","0");
+		
+		final Semaphore pathSelected = new Semaphore(1, true);
+    	try {
+			pathSelected.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		 SwingUtilities.invokeLater(new Runnable() {
+             public void run() {
 
-	    } else {
-	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
-			System.out.println("Selected path : " + Configuration.pathToRessources);
-			executeThisLauncher("--popDensity","0");
-
-
-	    }
+				System.out.println("Swing test");
+		
+         	    JFileChooser chooser = new JFileChooser();
+        	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
+        	    chooser.setFileFilter(filter);
+        	    System.out.println("Chooser : " + chooser.isVisible());
+        	    int returnVal = chooser.showOpenDialog(null);
+        	    	    
+        	   // chooser.
+        	    System.out.println("Chooser : " + chooser.isVisible());
+        	    if(returnVal == JFileChooser.APPROVE_OPTION) {
+        			File file = chooser.getSelectedFile();
+        			Configuration.pathToRessources = file.getParent();
+        	    } else {
+        	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
+        	    }
+        	    pathSelected.release();
+		 }});
 	    
+		 
+		 
+		 try {
+			pathSelected.acquire();
+			 System.out.println("Selected path : " + Configuration.pathToRessources);
+			 executeThisLauncher("--popDensity","0");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		 
 	}
 	
 	public void printStartMessage() {

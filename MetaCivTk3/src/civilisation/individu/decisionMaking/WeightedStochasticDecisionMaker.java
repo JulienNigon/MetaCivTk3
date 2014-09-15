@@ -15,12 +15,12 @@ public class WeightedStochasticDecisionMaker extends DecisionMaker{
 	public void selectPlan() {
 		
 		/* Select the new plan if there are no action to do */
-		if ((/*planEnCours == null && */mind.getActionEnCours() == null))
+		if ((mind.getActionEnCours() == null))
 		{
 			mind.computeTotalWeight(); //TODO : remove and re-write dynamic evolution of total weight
 			int alea = (int) (Math.random()*(mind.getPoidsTotalPlan()));
 			int i = 0;
-			while (alea >= mind.getPlans().get(i).getPoids() /*|| plans.get(i).getType() == 1*/)
+			while (alea >= mind.getPlans().get(i).getPoids())
 			{
 				if (mind.getPlans().get(i).getPoids() > 0) {alea -= mind.getPlans().get(i).getPoids();	} /*les poids negatifs ne sont pas pris en compte*/		
 				i++;
