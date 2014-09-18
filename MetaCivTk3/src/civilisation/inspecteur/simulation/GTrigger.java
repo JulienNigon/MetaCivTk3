@@ -7,6 +7,10 @@ import java.awt.Graphics2D;
 import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJPanel;
 
+/**
+ * A graphical trigger for global mind representation.
+ */
+
 public class GTrigger extends GItemCognitif{
 
 	static final int radius = 30;

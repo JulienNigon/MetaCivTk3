@@ -20,6 +20,9 @@ import civilisation.inspecteur.simulation.GTrigger;
 import civilisation.inspecteur.simulation.PanelModificationSimulation;
 import civilisation.inspecteur.simulation.PanelStructureCognitive;
 
+/**
+ * The panel which represent the mind of an agent.
+ */
 @SuppressWarnings("serial")
 public class PanelMind extends PanelStructureCognitive{
 

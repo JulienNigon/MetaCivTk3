@@ -8,9 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 /** 
- * Le JPanel contenant les options pour l'affichage
- * @author DTEAM
- * @version 1.0 - 2/2013
+Give some informations about the running simulation.
 */
 
 
@@ -29,8 +27,6 @@ public class PanelPerformances extends JPanel{
 	
 	public PanelPerformances()
 	{
-
-
 		
         boite = new Box(BoxLayout.PAGE_AXIS);
 
@@ -67,8 +63,8 @@ public class PanelPerformances extends JPanel{
 		osName.setText("OS : " + System.getProperty("os.name"));
 		osVersion.setText("Version : " + System.getProperty("os.version"));
 		osArch.setText("Architecture : " + System.getProperty("os.arch"));
-		totalMem.setText("Memoire totale : " + Runtime.getRuntime().totalMemory());
-		usedMem.setText("Memoire utilis_e : " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+		totalMem.setText("Total memory: " + Runtime.getRuntime().totalMemory());
+		usedMem.setText("Used memory : " + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
 	}
 	
 
