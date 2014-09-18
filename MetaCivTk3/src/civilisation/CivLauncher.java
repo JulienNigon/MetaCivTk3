@@ -13,8 +13,17 @@ import static turtlekit.kernel.TurtleKit.Option.viewers;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 import javax.imageio.ImageIO;
@@ -100,15 +109,15 @@ public class CivLauncher extends TKLauncher {
     	try {
 			pathSelected.acquire();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
 		System.out.println(Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0]);
+		System.out.println(new File(Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0]));
 
 		if (new File(System.getProperty("user.dir") + "/bin/config").exists() &&
 				Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0].equals("true") &&
-				new File(Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0]).exists()) {
+				new File(Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0]).exists()) {
 			//Config file exist and the user specified to always use latest model
 			Configuration.pathToRessources = Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0];
 			pathSelected.release();
@@ -119,7 +128,6 @@ public class CivLauncher extends TKLauncher {
 			 SwingUtilities.invokeLater(new Runnable() {
 	             public void run() {
 
-					System.out.println("Swing test");
 			
 	         	    JFileChooser chooser = new JFileChooser();
 	        	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
@@ -133,6 +141,9 @@ public class CivLauncher extends TKLauncher {
 	        	    } else {
 	        	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
 	        	    }
+	        	    setField("Last_loaded_model_path",Configuration.pathToRessources,
+	        	    		new File(System.getProperty("user.dir") + "/bin/config"),
+	        	    		new File(System.getProperty("user.dir") + "/bin/tempConfig"));
 	        	    pathSelected.release();
 			 }});
 		}
@@ -161,5 +172,38 @@ public class CivLauncher extends TKLauncher {
 				+ Calendar.getInstance().get(Calendar.YEAR) + 
 				"\n\t---------------------------------------\n");
 	}
+	
+	
+	static public void setField(String field, String newValue,  File f, File temp){
+		
+		 Scanner scanner;
+		 PrintWriter out;
+		try {
+			scanner = new Scanner(new FileReader(f));
+			out = new PrintWriter(new FileWriter(temp));
+
+			 String str = null;
+			 while (scanner.hasNextLine()) {
+			     str = scanner.nextLine();
+			     if(str.split(" : ")[0].equals(field)){
+			    	 out.println((field + " : " + newValue));
+			     }
+			     else {
+				     out.println(str);
+			     }
+			 }
+			 out.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}	catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//String name = f.getAbsolutePath();
+		f.delete();
+		temp.renameTo(f);
+	}
+
 
 }
