@@ -473,13 +473,11 @@ public class PanelModificationSimulation extends JPanel{
 	public void changerArbreActions(NPlan plan){
 		System.out.println("change to "+plan.getNom());
 		panelArbreActions.changePlan(plan);
-		/*panelEast.remove(panelArbreActions);
-		panelArbreActions = new PanelArbreActions(plan);
+
 		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), plan.getNom());
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		panelArbreActions.setBorder(bordure);
-		panelEast.add(panelArbreActions, BorderLayout.CENTER);
-		this.validate();*/
+
 	}
 
 	public PanelStructureCognitive getPanelStructureCognitive() {
