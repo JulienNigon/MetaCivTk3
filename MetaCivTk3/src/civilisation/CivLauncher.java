@@ -11,6 +11,8 @@ import static turtlekit.kernel.TurtleKit.Option.startSimu;
 import static turtlekit.kernel.TurtleKit.Option.turtles;
 import static turtlekit.kernel.TurtleKit.Option.viewers;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,9 +29,11 @@ import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -128,10 +132,15 @@ public class CivLauncher extends TKLauncher {
 			 SwingUtilities.invokeLater(new Runnable() {
 	             public void run() {
 
-			
+	            //	JPanel pan = new JPanel();
+	            //	JButton buttonLoadLastModel = new JButton("Load last model");
+	            //	pan.add(buttonLoadLastModel);
+	            	
 	         	    JFileChooser chooser = new JFileChooser();
 	        	    FileNameExtensionFilter filter = new FileNameExtensionFilter("parametres.metaciv","metaciv");
 	        	    chooser.setFileFilter(filter);
+	        	    chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+	        	 //   chooser.add(pan,BorderLayout.SOUTH);
 	        	    int returnVal = chooser.showOpenDialog(null);
 	        	    	    
 	        	   // chooser.
