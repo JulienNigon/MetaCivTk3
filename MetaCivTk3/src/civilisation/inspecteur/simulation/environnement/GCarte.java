@@ -33,7 +33,7 @@ public class GCarte extends JJComponent{
 
 
 	PanelEnvironnement panelEnvironnement;
-	BufferedImage bufferedImage; /*Image en m_moire pour dessin plus rapide*/
+	BufferedImage bufferedImage; /*buffer to keep the map in memory*/
 	int espacementVerticalCarte;
 	int espacementHorizontalCarte;
 	JPopupMenu popup;
@@ -68,13 +68,13 @@ public class GCarte extends JJComponent{
 	public void changerPatch(MouseEvent e) {
     	int taille = panelEnvironnement.getTaillePseudoPatch();
 		Terrain terrain = (Terrain) panelEnvironnement.getPanelPrincipal().getPanelTerrains().getListeTerrains().getSelectedValue();
-		if (terrain != null){ /*On v_rifie qu'un terrain est s_lectionn_*/
+		if (terrain != null){ 
 			int x = (int)(e.getX()/(double)taille);
 			int y = (int)(e.getY()/(double)taille);
 			panelEnvironnement.getCarte().get(y).get(x).setTerrain(terrain);
 		}
 		else{
-			System.out.println("Aucun terrain s_lectionn_!");
+			System.out.println("No terrain selected !");
 		}
 		dessinerBufferImage();
 		
@@ -112,7 +112,7 @@ public class GCarte extends JJComponent{
         	}
         }
         
-        /*Dessin des civilisations*/
+        /*Drawing civs*/
         for (int i = 0; i < Configuration.civilisations.size(); i++){
         	Civilisation civ = Configuration.civilisations.get(i);
         	PseudoPatch pp = startingPositions.get(civ);
@@ -156,7 +156,7 @@ public class GCarte extends JJComponent{
 			}
 		}
 		else{
-			System.out.println("Aucun terrain s_lectionn_!");
+			System.out.println("No terrain selected!");
 		}
 		panelEnvironnement.unmarkAllPatch();
 		dessinerBufferImage();		

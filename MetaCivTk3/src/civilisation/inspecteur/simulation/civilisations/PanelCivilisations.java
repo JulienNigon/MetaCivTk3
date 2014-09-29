@@ -25,7 +25,7 @@ public class PanelCivilisations extends JPanel{
 		this.panelParent = panelParent;
 		this.panelListeCivilisations = panelListeCivilisations;
 		
-		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Edition de civilisations");
+		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Civilization editor");
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		this.setBorder(bordure);
 		

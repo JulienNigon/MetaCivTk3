@@ -80,7 +80,7 @@ public class PanelStructureCognitive extends JJPanel{
 		this.panelPrincipal = panelPrincipal;
 	}
 	public PanelStructureCognitive(boolean b) {
-		//Workaround to allow initialization as we want for chil class
+		//Workaround to allow initialization as we want for child class
 	}
 	
 	protected void initializeArray() {

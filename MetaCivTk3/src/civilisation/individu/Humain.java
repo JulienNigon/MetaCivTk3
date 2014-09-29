@@ -50,9 +50,8 @@ import turtlekit.kernel.Patch;
 
 
 /** 
- * Classe d'agents principale
- * @author DTEAM
- * @version 1.0 - 2/2013
+ * Main simulation agent.
+ * Linked to a mind to select actions to do.
 */
 
 @SuppressWarnings("serial")
@@ -172,7 +171,7 @@ public class Humain extends Turtle
 
 
 	/**
-	 * Fonction qui centralise le choix des actions de l'agent 
+	 * Call to the mind to select action to do.
 	 * @return task to do
 	 */
 	public String penser()
@@ -198,7 +197,7 @@ public class Humain extends Turtle
 	} 
 
 /**
- * L'agent rentre chez lui
+ * The agent go back to his starting community.
  */
 	public void rentrer()
 	{
@@ -239,15 +238,6 @@ public class Humain extends Turtle
 					//this.getPatch().dropMark("Route", troncon);
 				}
 		}
-	
-	/**
-	 * L'agent construit une hutte (pour les tests)
-	 */
-	public void construireHutte()
-	{
-		communaute.construire(new Batiment_Hutte(this, communaute));
-	}
-	
 	
 	/*------------------------------------------------------------------------------*/
 	

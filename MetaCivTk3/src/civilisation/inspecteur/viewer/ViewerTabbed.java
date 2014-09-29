@@ -47,12 +47,12 @@ public class ViewerTabbed extends AbstractViewer{
 			
 			//Add the different tab
 		    contentPane = new JTabbedPane();
-		    contentPane.addTab("Simulation", new PanelModificationSimulation());
-		    contentPane.addTab("Agent", panelInspecteur);
-		    contentPane.addTab("Options", new PanelOptions());
-		    contentPane.addTab("Performances", panelPerformances);
-		    contentPane.addTab("Tableau de bord", new PanelInfos());
-		    contentPane.addTab("Charts", panelCharts);
+		    contentPane.addTab("Simulation", new PanelModificationSimulation());  //simulation editing panel
+		    contentPane.addTab("Agent", panelInspecteur); //Agent viewer
+		    contentPane.addTab("Options", new PanelOptions()); //Some options
+		    contentPane.addTab("Performances", panelPerformances); //Some info about system perf
+		    contentPane.addTab("Tableau de bord", new PanelInfos()); //Information panel (need to be improved)
+		    contentPane.addTab("Charts", panelCharts); //Information panel
 
 		    frame.setContentPane(contentPane);
 			frame.setLocation(50, 0);

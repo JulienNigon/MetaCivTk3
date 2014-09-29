@@ -116,8 +116,8 @@ public class CivLauncher extends TKLauncher {
 			e.printStackTrace();
 		}
     	
-		System.out.println(Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0]);
-		System.out.println(new File(Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0]));
+	//	System.out.println(Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0]);
+	//	System.out.println(new File(Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0]));
 
 		if (new File(System.getProperty("user.dir") + "/bin/config").exists() &&
 				Initialiseur.getChamp("Load_last_model", new File(System.getProperty("user.dir") + "/bin/config"))[0].equals("true") &&
@@ -162,7 +162,7 @@ public class CivLauncher extends TKLauncher {
 		 
 		 try {
 			pathSelected.acquire();
-			 System.out.println("Selected path : " + Configuration.pathToRessources);
+	//		 System.out.println("Selected path : " + Configuration.pathToRessources);
 			 executeThisLauncher("--popDensity","0");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
