@@ -182,11 +182,11 @@ public class PanelStructureCognitive extends JJPanel{
 	public void afficherPopupPlan(MouseEvent e , GPlan p){
 
 		popupGPlans = new JPopupMenu("Plan");
-		JMenuItem editerPlan = new JMenuItem("Editer le Plan");
+		JMenuItem editerPlan = new JMenuItem("Edit Plan");
 		editerPlan.addActionListener(new ActionsMenuGPlan(p,0));
 		editerPlan.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/pencil.png"));
 		popupGPlans.add(editerPlan);
-		JMenuItem supprimerPlan = new JMenuItem("Supprimer");
+		JMenuItem supprimerPlan = new JMenuItem("Remove");
 		supprimerPlan.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/cross.png"));
 		popupGPlans.add(supprimerPlan);
 		
@@ -199,15 +199,15 @@ public class PanelStructureCognitive extends JJPanel{
 		System.out.println(this.getClass().getResource("../icones/arrow-out.png"));
 
 		popupGCognitons = new JPopupMenu("Cogniton");
-		JMenuItem editerCogniton = new JMenuItem("Editer le Cogniton");
+		JMenuItem editerCogniton = new JMenuItem("Edit Cogniton");
 		editerCogniton.addActionListener(new ActionsMenuGCogniton(c,0));
 		editerCogniton.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/pencil.png"));
 		popupGCognitons.add(editerCogniton);
-		JMenuItem editerInfluences = new JMenuItem("Editer les liens d'influence");
+		JMenuItem editerInfluences = new JMenuItem("Edit influence links");
 		editerInfluences.addActionListener(new ActionsMenuGCogniton(c,1));
 		editerInfluences.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/arrow-out.png"));
 		popupGCognitons.add(editerInfluences);
-		JMenuItem editerConditions = new JMenuItem("Editer les liens conditionnels");
+		JMenuItem editerConditions = new JMenuItem("Edit conditional links");
 		editerConditions.addActionListener(new ActionsMenuGCogniton(c,2));
 		editerConditions.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/lock--arrow.png"));
 		popupGCognitons.add(editerConditions);
@@ -215,10 +215,10 @@ public class PanelStructureCognitive extends JJPanel{
 		editTriggeringAttributes.addActionListener(new ActionsMenuGCogniton(c,3));
 		editTriggeringAttributes.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/lock--arrow.png"));
 		popupGCognitons.add(editTriggeringAttributes);
-		JMenuItem editerChaine = new JMenuItem("Editer les liens inter-cognitons");
-		editerChaine.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/arrow-in-out.png"));
-		popupGCognitons.add(editerChaine);
-		JMenuItem supprimerCogniton = new JMenuItem("Supprimer");
+		//JMenuItem editerChaine = new JMenuItem("Edit inter-cogniton links");
+		//editerChaine.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/arrow-in-out.png"));
+		//popupGCognitons.add(editerChaine);
+		JMenuItem supprimerCogniton = new JMenuItem("Remove");
 		supprimerCogniton.setIcon(new ImageIcon(System.getProperty("user.dir") + Configuration.pathToIcon + "/cross.png"));
 		popupGCognitons.add(supprimerCogniton);
 		popupGCognitons.show(this, (int)c.getXx() + e.getX(), (int)c.getYy() + e.getY());
