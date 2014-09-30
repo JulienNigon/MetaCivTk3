@@ -162,7 +162,7 @@ public class A_Trade extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Change the current value of an attribute.<html>";
+		return super.getInfo() + " The agent wait and will trade some item as soon as another agent willing to trade enter the patch.<html>";
 	}
 
 }

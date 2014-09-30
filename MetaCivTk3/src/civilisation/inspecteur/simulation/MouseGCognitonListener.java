@@ -5,9 +5,7 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingUtilities;
 
 /** 
- * G_re l'interaction avec les cognitons graphiques (GCognitons)
- * @author DTEAM
- * @version 1.1 - 2/2013
+ * Manage interaction with graphical cognitons
 */
 
 public class MouseGCognitonListener implements MouseListener{

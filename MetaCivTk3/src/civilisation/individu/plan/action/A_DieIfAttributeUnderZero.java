@@ -33,7 +33,7 @@ public class A_DieIfAttributeUnderZero extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Kill the agent if the specified attribute is under .<html>";
+		return super.getInfo() + " Kill the agent if the specified attribute is under a specific value.<html>";
 	}
 	
 	@Override
