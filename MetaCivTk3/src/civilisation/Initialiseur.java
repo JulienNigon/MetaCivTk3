@@ -509,11 +509,11 @@ public class Initialiseur {
 		File params = new File(Configuration.pathToRessources + "/parametres"+Configuration.getExtension());
 		if (params.exists()){
 	       	String s = getChamp("Carte", params)[0];
-	       	System.out.println(s);
+	    //   	System.out.println(s);
 	       	if (!s.equals("AUCUNE")){
 	    		File carte = new File(Configuration.pathToRessources + "/environnements/"+s);
 	    		if (carte.isFile()){
-	    			System.out.println("Loading map : "+s);
+	//    			System.out.println("Loading map : "+s);
 	    			Configuration.environnementACharger = s.split("\\.")[0];
 	    		}
 	       	}
@@ -631,6 +631,7 @@ public class Initialiseur {
 	private void loadActions()
 	{
 		File folder = new File(Configuration.pathToRessources+"/actions");
+	//	System.out.println(Configuration.pathToRessources+"/actions");
 		Configuration.actions = new ArrayList<Action>();
 		try
 		{
@@ -656,18 +657,23 @@ public class Initialiseur {
 		{
 			if (f.isDirectory())
 			{
+			//	System.out.println("File : " + f.getName());
 				loadActionsRecursif(loader,f, path+f.getName()+".");
 			}
 			else
 			{
 				try
 				{
+					Action a = null;
 					Class<?> c = loader.loadClass(path+f.getName().substring(0, f.getName().length()-6)); // TODO peut être a modifier le   "substring(0, f.getName().length()-6)"  qui correspond au .class 
+					//System.out.println(c.getSuperclass().getName());
 					if (Action.class.isAssignableFrom(c))
 					{
 						Action action = (Action) c.newInstance();
 						Configuration.actions.add(action);
+					//	System.out.println("Action :" + action.getName());
 					}
+
 				}
 				catch (ClassNotFoundException e)
 				{

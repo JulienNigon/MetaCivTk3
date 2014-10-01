@@ -14,7 +14,7 @@ import civilisation.individu.Humain;
 import civilisation.individu.plan.action.Action;
 
 /**
- * Plan are succession of actions, executed by agent. Each kind of plan is instanciated only one time.
+ * Plans are succession of actions, executed by agent. Each kind of plan is instanciated only one time.
  */
 
 public class NPlan {
