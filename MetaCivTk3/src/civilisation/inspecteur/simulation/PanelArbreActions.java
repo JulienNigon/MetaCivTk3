@@ -73,7 +73,7 @@ public class PanelArbreActions extends JJPanel{
 		NodeArbreActions parentNode = ((NodeArbreActions)(((NodeArbreActions) this.getArbreActions().getPathForLocation(e.getX(), e.getY()).getLastPathComponent()).getParent()));
 		
 		popup = new JPopupMenu("Action");
-		JMenuItem editerAction = new JMenuItem("Editer l'action");
+		JMenuItem editerAction = new JMenuItem("Edit");
 		editerAction.addActionListener(new ActionsMenuActions(this,0,a));
 		editerAction.setIcon(Configuration.getIcon("pencil.png"));
 		popup.add(editerAction);
@@ -87,18 +87,18 @@ public class PanelArbreActions extends JJPanel{
 		}
 		
 		if (peutRecevoirAction){
-			JMenuItem ajouterActionApres = new JMenuItem("Ajouter une action apr_s");
+			JMenuItem ajouterActionApres = new JMenuItem("Add after");
 			ajouterActionApres.addActionListener(new ActionsMenuActions(this,1,a));
 			ajouterActionApres.setIcon(Configuration.getIcon("pencil.png"));
 			popup.add(ajouterActionApres);
-			JMenuItem ajouterActionAvant = new JMenuItem("Ajouter une action avant");
+			JMenuItem ajouterActionAvant = new JMenuItem("Add before");
 			ajouterActionAvant.addActionListener(new ActionsMenuActions(this,2,a));
 			ajouterActionAvant.setIcon(Configuration.getIcon("pencil.png"));
 			popup.add(ajouterActionAvant);
 		}
 		
 		if (a.getNumberActionSlot() == -1 || a.getNumberActionSlot() > a.getListeActions().size()){
-			JMenuItem ajouterActionInterne = new JMenuItem("Ajouter une action interne");
+			JMenuItem ajouterActionInterne = new JMenuItem("Add internal");
 			ajouterActionInterne.addActionListener(new ActionsMenuActions(this,3,a));
 			ajouterActionInterne.setIcon(Configuration.getIcon("pencil.png"));
 			popup.add(ajouterActionInterne);

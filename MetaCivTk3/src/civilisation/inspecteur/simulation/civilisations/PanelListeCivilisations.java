@@ -27,7 +27,7 @@ public class PanelListeCivilisations extends JJPanel{
 		
 		this.add(listeCivilisations , BorderLayout.CENTER);
 		
-		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Liste des civilisations");
+		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Civilizations list");
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		this.setBorder(bordure);
 		

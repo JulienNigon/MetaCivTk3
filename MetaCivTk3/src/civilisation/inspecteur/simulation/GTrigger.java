@@ -7,6 +7,10 @@ import java.awt.Graphics2D;
 import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJPanel;
 
+/**
+ * A graphical trigger for global mind representation.
+ */
+
 public class GTrigger extends GItemCognitif{
 
 	static final int radius = 30;
@@ -95,11 +99,11 @@ public class GTrigger extends GItemCognitif{
 		if 		(comparator ==  2) tmp = "> ";
 		else if (comparator ==  1) tmp = ">=";
 		else if (comparator ==  0) tmp = "==";
-		else if (comparator == -1) tmp = "<=";
-		else if (comparator == -2) tmp = "< ";
+		else if (comparator == -1) tmp = "<"+"=";
+		else if (comparator == -2) tmp = "\\< ";
 		
 		
-		this.setToolTipText("<html>"+Configuration.attributesNames.get(attributesIndex)+"<br> Trigger if " + tmp + " "+ value +"</html>");
+		this.setToolTipText("Trigger if " + Configuration.attributesNames.get(attributesIndex) +" " + tmp + " "+ value);
 	}
 	
 	

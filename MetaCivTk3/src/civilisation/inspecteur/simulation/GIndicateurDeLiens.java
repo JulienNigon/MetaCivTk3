@@ -11,6 +11,10 @@ import civilisation.Configuration;
 import civilisation.inspecteur.animations.JJComponent;
 import civilisation.inspecteur.animations.JJPanel;
 
+/**
+ * Green one represent positive influence, red one represent negative influence.
+ */
+
 public class GIndicateurDeLiens extends JJComponent{
 
     Image img;

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -30,15 +31,21 @@ public class DialogueEditerTerrain extends JDialog implements ActionListener, Pr
 	
 	Terrain terrain;
     JOptionPane optionPane;
+    JButton add;
     JTextField nom;
+    JLabel name;
+    JLabel passability;
     JSpinner passabilite;
     JCheckBox infranchissable;
     ArrayList<Object> selectors = new ArrayList<Object>();
     ArrayList<JSpinner> startPh = new ArrayList<JSpinner>();
     ArrayList<JSpinner> growthPh = new ArrayList<JSpinner>();
-
+    Frame f;
+    boolean modal;
 	public DialogueEditerTerrain(Frame f , boolean modal, Terrain terrain){
 		super(f,modal);
+		f = f;
+		modal = modal;
 		this.terrain = terrain;
 		this.setTitle("Editer le terrain");
 		
@@ -54,15 +61,21 @@ public class DialogueEditerTerrain extends JDialog implements ActionListener, Pr
 		                               1, //min
 		                               1000, //max
 		                               5);
-		
+		passability = new JLabel("Passability :");
+		name = new JLabel("Name :");
 		passabilite = new JSpinner(spinModel);
 		infranchissable = new JCheckBox("Impassable?");
 		infranchissable.setSelected(terrain.getInfranchissable());
 		
+		selectors.add(name);
 		selectors.add(nom);
+		selectors.add(passability);
 		selectors.add(passabilite);
 		selectors.add(infranchissable);
 
+		add = new JButton("Add Attribute");
+		add.addActionListener(this);
+		selectors.add(add);
 		
 		for (int i = 0 ; i< Configuration.itemsPheromones.size() ; i++) {
 			int var = terrain.getPheromoneIndexByName(Configuration.itemsPheromones.get(i).getNom());
@@ -144,7 +157,8 @@ public class DialogueEditerTerrain extends JDialog implements ActionListener, Pr
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		DialogCreatePheromon dia = new DialogCreatePheromon(f,modal,terrain);
+		dia.setVisible(true);
 	}
 	
 	

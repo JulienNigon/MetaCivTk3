@@ -32,10 +32,10 @@ import civilisation.individu.plan.action.Action;
 
 public class Esprit {
 	
-	/* Les diff______rentes listes contenants les croyances de l'agent */
+	/* All cognitons of the agent*/
 	ArrayList<Cogniton> cognitons;
 	
-	/* La liste des projets envisageable par l'agent*/
+	/* All plans allowed for the agent*/
 	ArrayList<NPlanPondere> plans;
 	
 	/* Hashmap to keep informations about actions*/
@@ -49,7 +49,6 @@ public class Esprit {
 
 	Map<Object,Object> memory;
 	
-	/*Autres attributs:*/
 	Humain h;
 	NPlanPondere planEnCours;
 	Action actionEnCours;
@@ -58,6 +57,7 @@ public class Esprit {
 	int poidsTotal;
 	float poidsTotalPlan;
 
+	/*DecisionMaker used by the agent*/
 	private DecisionMaker decisionMaker;
 	
 	
@@ -456,8 +456,7 @@ public class Esprit {
 	
 	
 	/**
-	 * Ajoute un poid au cogniton si il est présent
-	 * 
+	 * Add weight to a cogniton, or create it if he doesn't exist.
 	 */
 	public void addWeightToCogniton(TypeCogniton t, Double d)
 	{

@@ -168,7 +168,7 @@ public class A_TravelTrade extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Change the current value of an attribute.<html>";
+		return super.getInfo() + " The agent will travel to find another agent willing to trade some specific items.<html>";
 	}
 
 	public boolean internActionsAreLinked() {

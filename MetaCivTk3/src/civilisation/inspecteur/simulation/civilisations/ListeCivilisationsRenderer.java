@@ -6,6 +6,9 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 import civilisation.Civilisation;
 
+/**
+ * A renderer to show list of civilizations.
+ */
 public class ListeCivilisationsRenderer  extends DefaultListCellRenderer{
 
 

@@ -54,13 +54,11 @@ public class Initialiseur {
 
 
 		
-		//System.out.println("Attributes loading...");
 		File[] filesAttributes = new File(Configuration.pathToRessources + "/attributes").listFiles();
 		ArrayList<String> attributesNames = new ArrayList<String>();
 		ArrayList<Double> attributesStartingValues = new ArrayList<Double>();
 		for (File file : filesAttributes) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-				//System.out.println("Load attribute : " + file.getName());
 			    if (file.isFile()) {
 			    	String name = getChamp("Name" , file)[0];
 			    	attributesNames.add(name);
@@ -73,12 +71,10 @@ public class Initialiseur {
 		Configuration.attributesStartingValues = attributesStartingValues;
 		
 		
-		//System.out.println("Chargement des pheromones");
 		File[] filesPhero = new File(Configuration.pathToRessources + "/itemPheromones").listFiles();
 		ArrayList<ItemPheromone> phero = new ArrayList<ItemPheromone>();
 		for (File file : filesPhero) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-				//System.out.println("Creation de la pheromone : " + file.getName());
 			    if (file.isFile()) {
 			    	nom = getChamp("Nom" , file)[0];
 			    	phero.add(new ItemPheromone(nom));
@@ -87,12 +83,10 @@ public class Initialiseur {
 		}	
 		Configuration.itemsPheromones = phero;
 		
-		//System.out.println("Chargement des terrains");
 		File[] filesTerrains = new File(Configuration.pathToRessources + "/terrains").listFiles();
 		ArrayList<Terrain> terrains = new ArrayList<Terrain>();
 		for (File file : filesTerrains) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			//System.out.println("Creation du terrain : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Terrain t = new Terrain(nom);
@@ -142,11 +136,9 @@ public class Initialiseur {
 		Configuration.couleurs_terrains = couleurs_terrains;		
 		
    		Configuration.attributesTrigerringValues = new HashMap<String , ArrayList<Object[]>>();
-		//System.out.println("Loading cognitons...");
 		File[] files = new File(Configuration.pathToRessources + "/cognitons").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			//System.out.println("\tLoad cogniton : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	listeCognitons.put(nom , new TypeCogniton());
@@ -171,7 +163,6 @@ public class Initialiseur {
 		       		trig[0] = cogni;
 		       		trig[1] = Double.parseDouble(triggers.get(i)[1]);
 		       		trig[2] = Integer.parseInt(triggers.get(i)[2]);
-		       		////System.out.println(trig[0] + " " + trig[1] + " " + trig[2]);
 		       		if(Configuration.attributesTrigerringValues.get(triggers.get(i)[0]) == null) { 
 		       			Configuration.attributesTrigerringValues.put(triggers.get(i)[0] , new ArrayList<Object[]>());
 		       			}
@@ -192,7 +183,6 @@ public class Initialiseur {
 			}
 		}
 		
-		//System.out.println("Loading culturons...");
 		files = new File(Configuration.pathToRessources + "/cloudCognitons").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
@@ -219,7 +209,6 @@ public class Initialiseur {
 		}	
 
 		
-		System.out.println("Chargement des effets");
 		Configuration.effets = new ArrayList<Effect>();
 		files = new File(Configuration.pathToRessources + "/effects").listFiles();
 		if(files != null)
@@ -229,7 +218,6 @@ public class Initialiseur {
 			{
 				if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension()))
 				{
-					System.out.println("Chargement de : " + file.getName());
 				    if (file.isFile()) 
 				    {
 				    	nom = Initialiseur.getChamp("Nom" , file)[0];
@@ -256,12 +244,10 @@ public class Initialiseur {
 			}
 		}
 		
-		System.out.println("Chargement des objets d'inventaire");
 		Configuration.objets = new ArrayList<Objet>();
 		files = new File(Configuration.pathToRessources + "/objets").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	Objet o = new Objet();
@@ -273,7 +259,6 @@ public class Initialiseur {
 				int i = 0;
 				if(eff.size() > 0)
 				{
-					System.out.println("Nombre effets dans l'objet "+eff.get(0).length);
 					while(i < eff.get(0).length && eff.get(0)[i] != null)
 					{
 						Effect ef = Configuration.getEffectByName(eff.get(0)[i]);
@@ -295,12 +280,10 @@ public class Initialiseur {
 		/*Chargement des recettes
 		 * 
 		 */
-		System.out.println("Chargement des recettes d'objets");
 		
 		files = new File(Configuration.pathToRessources + "/objets").listFiles();
 		for (File file : files) {
 			if (!file.isHidden() && file.getName().endsWith(Configuration.getExtension())){
-			System.out.println("Chargement de : " + file.getName());
 		    if (file.isFile()) {
 		    	nom = Initialiseur.getChamp("Nom" , file)[0];
 		    	
@@ -310,7 +293,6 @@ public class Initialiseur {
 				int i = 0;
 				if(rec.size() > 0)
 				{
-					System.out.println("Nombre recettes dans l'objet "+rec.get(0).length);
 					int nb; 
 					while(i < rec.get(0).length && rec.get(0)[i] != null)
 					{
@@ -488,8 +470,13 @@ public class Initialiseur {
 		
 	}
 	
-	/*Retourne la valeur du premier champ passee en parametre rencontr___________________________*/
-	static public String[] getChamp(String champ ,  File f){
+	/**
+	 * Return the value of the first parameter field encountered
+	 * @param field : the field to read
+	 * @param f : the file where the research must be done
+	 * @return An array containing all field value for the first field encountered (with the name "field")
+	 */
+	static public String[] getChamp(String field ,  File f){
 		
 		 Scanner scanner;
 		try {
@@ -497,7 +484,7 @@ public class Initialiseur {
 			 String str = null;
 			 while (scanner.hasNextLine()) {
 			     str = scanner.nextLine();
-			     if(str.split(" : ")[0].equals(champ)){
+			     if(str.split(" : ")[0].equals(field)){
 			    	 return str.split(" : ")[1].split(",");
 			     }
 			 }
@@ -520,15 +507,13 @@ public class Initialiseur {
 		
 		//System.out.println("Reading parameters...");
 		File params = new File(Configuration.pathToRessources + "/parametres"+Configuration.getExtension());
-		System.out.println("teste");
 		if (params.exists()){
 	       	String s = getChamp("Carte", params)[0];
-	       	System.out.println(s);
+	    //   	System.out.println(s);
 	       	if (!s.equals("AUCUNE")){
-	       		System.out.println("test");
 	    		File carte = new File(Configuration.pathToRessources + "/environnements/"+s);
 	    		if (carte.isFile()){
-	    			System.out.println("Loading map : "+s);
+	//    			System.out.println("Loading map : "+s);
 	    			Configuration.environnementACharger = s.split("\\.")[0];
 	    		}
 	       	}
@@ -638,25 +623,21 @@ public class Initialiseur {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}	
-	       /*	for (int i = 0; i < actions.size(); i++){
-   		listePlans.get(nom).addAction(actions.get(i));
-   		if (i > 0){
-   			listePlans.get(nom).getActions().get(i-1).setNextAction(listePlans.get(nom).getActions().get(i));
-   		}
-   	}*/
 	}
 
-	
-	private void loadActions() // charge toutes les actions présente dans le dossier actions
+	/**
+	 * Load every actions in the parameter file
+	 */
+	private void loadActions()
 	{
-		System.out.println("Loading Actions :");
 		File folder = new File(Configuration.pathToRessources+"/actions");
+	//	System.out.println(Configuration.pathToRessources+"/actions");
 		Configuration.actions = new ArrayList<Action>();
 		try
 		{
 			URL fileURL = folder.toURI().toURL();
 			URL urls [] = { fileURL};  
-			URLClassLoader ucl = new URLClassLoader(urls);  // chargeur de classe qui pointe dans dehors du  jar/dossier "bin"
+			URLClassLoader ucl = new URLClassLoader(urls);
 				
 			loadActionsRecursif(ucl, folder, "");
 		}
@@ -666,10 +647,11 @@ public class Initialiseur {
 		}
 	}
 	
-	
-	private void loadActionsRecursif(URLClassLoader loader,File folder,String path) // appel recursif sur tout les dossiers fils
+	/**
+	 * Recursive call to load all actions
+	 */
+	private void loadActionsRecursif(URLClassLoader loader,File folder,String path)
 	{
-		System.out.println("Dossier : " + folder.getName());
 		File[] files = folder.listFiles();
 		if(files != null && files.length > 0)
 		{
@@ -677,18 +659,20 @@ public class Initialiseur {
 			{
 				if (f.isDirectory())
 				{
-					loadActionsRecursif(loader,f, path+f.getName()+".");
+			//	System.out.println("File : " + f.getName());
+				loadActionsRecursif(loader,f, path+f.getName()+".");
 				}
 				else
 				{
 					try
 					{
+						
+						Action a = null;
 						Class<?> c = loader.loadClass(path+f.getName().substring(0, f.getName().length()-6)); // TODO peut être a modifier le   "substring(0, f.getName().length()-6)"  qui correspond au .class 
 						if (Action.class.isAssignableFrom(c))
 						{
 							Action action = (Action) c.newInstance();
 							Configuration.actions.add(action);
-							System.out.println("\tAction loaded : "+action.getSimpleName());
 						}
 					}
 					catch (ClassNotFoundException e)
@@ -703,11 +687,14 @@ public class Initialiseur {
 					{
 						e.printStackTrace();
 					}
+//=======
+
 				}
 			}
 		}
 		
 	}
+	
 
 	
 

@@ -31,19 +31,19 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (index == 0){
-			System.out.println("--Enregistrement de l'environnement--");
+			System.out.println("--Saving environment--");
 			DialogueEnregistrerEnvironnement d = new DialogueEnregistrerEnvironnement((Frame) p.getTopLevelAncestor() , true , p);
 			d.setVisible(true);
 
 		
 		}
 		else if (index == 1){
-			System.out.println("--Chargement d'un environnement--");
+			System.out.println("--Loading environment--");
 			DialogSelectEnvironmentToLoad d = new DialogSelectEnvironmentToLoad((Frame) p.getTopLevelAncestor() , true , p);
 			d.setVisible(true);
 		}
 		else if (index == 2){
-			System.out.println("--Reglage des dimensions --");
+			System.out.println("--Setting dimensions--");
 			DialogEditBounds d = new DialogEditBounds((Frame) p.getTopLevelAncestor() , true , p);
 			d.setVisible(true);
 		}
@@ -56,12 +56,11 @@ public class ActionsToolBarEnvironnement implements ActionListener{
 		    if(returnVal == JFileChooser.APPROVE_OPTION) {
 				File image = chooser.getSelectedFile();
 				try {
-					System.out.println("Chargement de l'image");
+					System.out.println("Loading picture");
 					BufferedImage buffer = ImageIO.read(image);
 					p.generationEnvironnementViaImage(buffer);
 					
 				} catch (IOException e1) {
-					System.out.println("N_cessite une image suivant le lien : /civilisation/ressources/image.png");
 					e1.printStackTrace();
 				}
 		    }

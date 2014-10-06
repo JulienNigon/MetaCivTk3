@@ -61,7 +61,7 @@ public class PanelObjets extends JPanel implements ActionListener{
 		this.panelListeObjets = panelListeObjets;
 		this.effects = new ArrayList<PanelEffect>();
 		
-		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Edition d'objet");
+		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Item editor");
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		this.setBorder(bordure);
 		

@@ -19,9 +19,7 @@ import civilisation.world.World;
 import civilisation.world.WorldViewer;
 
 /** 
- * Le JPanel contenant les options pour l'affichage
- * @author DTEAM
- * @version 1.0 - 2/2013
+ * Present options for vizualisation
 */
 
 

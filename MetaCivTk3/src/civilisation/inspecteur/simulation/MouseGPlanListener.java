@@ -6,9 +6,7 @@ import java.awt.event.MouseListener;
 import javax.swing.SwingUtilities;
 
 /** 
- * G_re l'interaction avec les plans graphiques (GPlan)
- * @author DTEAM
- * @version 1.1 - 2/2013
+ * Manage interaction with graphical plan
 */
 
 public class MouseGPlanListener implements MouseListener{

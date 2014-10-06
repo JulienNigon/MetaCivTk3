@@ -10,6 +10,11 @@ import civilisation.Configuration;
 import civilisation.group.GroupAndRole;
 import civilisation.individu.Humain;
 
+/**
+ * An abstract class for the actions. Every action take one tick to be executed by an agent.
+ * Actions could be standard or logical.
+ */
+
 public abstract class Action {
 
 	protected Action nextAction;

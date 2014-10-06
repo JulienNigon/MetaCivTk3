@@ -31,7 +31,7 @@ public class PanelListeObjets extends JJPanel{
 		this.add(listeObjets , BorderLayout.CENTER);
 		
 		
-		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Liste d'objets");
+		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), "Item list");
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		this.setBorder(bordure);
 		

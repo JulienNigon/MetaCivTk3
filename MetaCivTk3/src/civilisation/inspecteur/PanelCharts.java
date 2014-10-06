@@ -70,7 +70,8 @@ public class PanelCharts extends JPanel{
         final XYDataset data1 = datasetAttributes;
         final XYItemRenderer renderer1 = new StandardXYItemRenderer();
         final NumberAxis rangeAxis1 = new NumberAxis("Range 1");
-        final XYPlot subplot1 = new XYPlot(data1, null, rangeAxis1, renderer1);        subplot1.setRangeAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
+        final XYPlot subplot1 = new XYPlot(data1, null, rangeAxis1, renderer1);
+        subplot1.setRangeAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
 
 
         // parent plot...
@@ -86,11 +87,7 @@ public class PanelCharts extends JPanel{
                               JFreeChart.DEFAULT_TITLE_FONT, plot, true);
 	}
 	
-    /**
-     * Creates a sample dataset.
-     *
-     * @return Series 1.
-     */
+
     private XYSeriesCollection createDatasetAttributes() {
 
         XYSeriesCollection collection = new XYSeriesCollection();
@@ -99,8 +96,6 @@ public class PanelCharts extends JPanel{
     		collection.addSeries(new XYSeries(attr));
     	}
 
-
-  /*      series1.add(10.0, 12353.3);*/
   
         return collection;
 

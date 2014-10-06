@@ -89,7 +89,7 @@ public class Configuration {
 	public static String pathToIcon = "/bin/civilisation/inspecteur/icones";
 	
 	/*Path to ressources*/
-	public static String pathToRessources = "/civilisation/ressources";
+	public static String pathToRessources = null;
 	
 	
 	

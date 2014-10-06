@@ -229,13 +229,13 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeEnregistrerEnvironnement = Configuration.getIcon("disk.png");
 		enregistrerEnvironnement = new JButton(iconeEnregistrerEnvironnement);
 		enregistrerEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,0));
-		enregistrerEnvironnement.setToolTipText("Enregistrer cet environnement");
+		enregistrerEnvironnement.setToolTipText("Save this environment");
 		toolBarEnvironnement.add(enregistrerEnvironnement);
 		
 		ImageIcon iconeChargerEnvironnement = Configuration.getIcon("disk--arrow.png");
 		chargerEnvironnement = new JButton(iconeChargerEnvironnement);
 		chargerEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,1));
-		chargerEnvironnement.setToolTipText("Charger un environnement");
+		chargerEnvironnement.setToolTipText("Load an environment");
 		toolBarEnvironnement.add(chargerEnvironnement);
 		
 		ImageIcon iconeLimitesEnvironnement = Configuration.getIcon("compass.png");
@@ -247,7 +247,7 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeGenererEnvironnement = Configuration.getIcon("picture--arrow.png");
 		genererEnvironnement = new JButton(iconeGenererEnvironnement);
 		genererEnvironnement.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,3));
-		genererEnvironnement.setToolTipText("Generer un environnement ___ partir d'une image existante");
+		genererEnvironnement.setToolTipText("Generate an environment from an existing picture");
 		toolBarEnvironnement.add(genererEnvironnement);
 		
 		toolBarEnvironnement.addSeparator();
@@ -255,13 +255,13 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeCrayon = Configuration.getIcon("pencil.png");
 		crayon = new JButton(iconeCrayon);
 		crayon.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,4));
-		crayon.setToolTipText("Dessiner avec le crayon");
+		crayon.setToolTipText("Pen");
 		toolBarEnvironnement.add(crayon);
 		
 		ImageIcon iconePotPeinture = Configuration.getIcon("paint-can.png");
 		potPeinture = new JButton(iconePotPeinture);
 		potPeinture.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,5));
-		potPeinture.setToolTipText("Dessiner avec le pot de peinture");
+		potPeinture.setToolTipText("Paint bucket");
 		toolBarEnvironnement.add(potPeinture);
 		
 		toolBarEnvironnement.addSeparator();
@@ -269,13 +269,13 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeZoomer = Configuration.getIcon("plus.png");
 		zoomer = new JButton(iconeZoomer);
 		zoomer.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,6));
-		zoomer.setToolTipText("Zoomer");
+		zoomer.setToolTipText("Zoom");
 		toolBarEnvironnement.add(zoomer);
 		
 		ImageIcon iconeDezoomer = Configuration.getIcon("minus.png");
 		dezoomer = new JButton(iconeDezoomer);
 		dezoomer.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,7));
-		dezoomer.setToolTipText("Dezoomer");
+		dezoomer.setToolTipText("Dezoom");
 		toolBarEnvironnement.add(dezoomer);
 		
 		toolBarEnvironnement.addSeparator();
@@ -283,7 +283,7 @@ public class PanelModificationSimulation extends JPanel{
 		ImageIcon iconeChoisirEnv = Configuration.getIcon("ui-color-picker-switch.png");
 		choisirEnvironnementActif = new JButton(iconeChoisirEnv);
 		choisirEnvironnementActif.addActionListener(new ActionsToolBarEnvironnement(panelEnvironnement,8));
-		choisirEnvironnementActif.setToolTipText("Choisir l'environnment ___ utiliser pour la simulation");
+		choisirEnvironnementActif.setToolTipText("Choose environment to use for simulation");
 		toolBarEnvironnement.add(choisirEnvironnementActif);
 
 		ImageIcon iconePheromone = Configuration.getIcon("marker.png");
@@ -473,13 +473,11 @@ public class PanelModificationSimulation extends JPanel{
 	public void changerArbreActions(NPlan plan){
 		System.out.println("change to "+plan.getNom());
 		panelArbreActions.changePlan(plan);
-		/*panelEast.remove(panelArbreActions);
-		panelArbreActions = new PanelArbreActions(plan);
+
 		TitledBorder bordure = BorderFactory.createTitledBorder(BorderFactory.createLoweredBevelBorder(), plan.getNom());
 		bordure.setTitleJustification(TitledBorder.LEFT);
 		panelArbreActions.setBorder(bordure);
-		panelEast.add(panelArbreActions, BorderLayout.CENTER);
-		this.validate();*/
+
 	}
 
 	public PanelStructureCognitive getPanelStructureCognitive() {
