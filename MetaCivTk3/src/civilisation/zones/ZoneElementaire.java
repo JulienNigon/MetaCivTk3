@@ -51,7 +51,7 @@ public class ZoneElementaire extends Zone {
 		}
 		if(j < content.size())
 		{
-			this.centroïde = content.get(j);
+			this.centroide = content.get(j);
 		}
 	}
 	

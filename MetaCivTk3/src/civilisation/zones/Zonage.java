@@ -81,9 +81,9 @@ public class Zonage {
 		switch (touche)
 		{
 			case 1: //ca touche en haut a droite
-				for(int i = b.centroïde.x; i < b.centroïde.x + b.width;++i)
+				for(int i = b.centroide.x; i < b.centroide.x + b.width;++i)
 				{
-					for(int j = b.centroïde.y; j < b.centroïde.y + b.height;++j)
+					for(int j = b.centroide.y; j < b.centroide.y + b.height;++j)
 					{
 						if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 						{
@@ -99,9 +99,9 @@ public class Zonage {
 				break;
 			case 2: //ca touche en haut a gauche
 				
-				for(int i = b.centroïde.x - b.width; i < b.centroïde.x;++i)
+				for(int i = b.centroide.x - b.width; i < b.centroide.x;++i)
 				{
-					for(int j = b.centroïde.y; j < b.centroïde.y + b.height;++j)
+					for(int j = b.centroide.y; j < b.centroide.y + b.height;++j)
 					{
 						if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 						{
@@ -115,9 +115,9 @@ public class Zonage {
 				a.addZone(temp);
 				break;
 			case 3: //ca touche en bas a droite
-				for(int i = b.centroïde.x - b.width; i < b.centroïde.x;++i)
+				for(int i = b.centroide.x - b.width; i < b.centroide.x;++i)
 				{
-					for(int j = b.centroïde.y - b.height; j < b.centroïde.y;++j)
+					for(int j = b.centroide.y - b.height; j < b.centroide.y;++j)
 					{
 						if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 						{
@@ -131,9 +131,9 @@ public class Zonage {
 				a.addZone(temp);
 				break;
 			case 4: //ca touche en bas a gauche
-				for(int i = b.centroïde.x - b.width; i < b.centroïde.x;++i)
+				for(int i = b.centroide.x - b.width; i < b.centroide.x;++i)
 				{
-					for(int j = b.centroïde.y - b.height; j < b.centroïde.y;++j)
+					for(int j = b.centroide.y - b.height; j < b.centroide.y;++j)
 					{
 						if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 						{
@@ -153,17 +153,17 @@ public class Zonage {
 
 	public int touch(ZoneComposite a, ZoneComposite b)
 	{
-		boolean droite = a.centroïde.x + a.width > b.centroïde.x - b.width &&  a.centroïde.x - a.width < b.centroïde.x - b.width;
-		boolean gauche = a.centroïde.x + a.width > b.centroïde.x + b.width &&  a.centroïde.x - a.width < b.centroïde.x + b.width;
-		boolean haut = a.centroïde.y + a.height > b.centroïde.y - b.height &&  a.centroïde.y - a.height < b.centroïde.y - b.height;
-		boolean bas = a.centroïde.y + a.height > b.centroïde.y + b.height &&  a.centroïde.y - a.height < b.centroïde.y + b.height;
+		boolean droite = a.centroide.x + a.width > b.centroide.x - b.width &&  a.centroide.x - a.width < b.centroide.x - b.width;
+		boolean gauche = a.centroide.x + a.width > b.centroide.x + b.width &&  a.centroide.x - a.width < b.centroide.x + b.width;
+		boolean haut = a.centroide.y + a.height > b.centroide.y - b.height &&  a.centroide.y - a.height < b.centroide.y - b.height;
+		boolean bas = a.centroide.y + a.height > b.centroide.y + b.height &&  a.centroide.y - a.height < b.centroide.y + b.height;
 		
 		
 		if(droite && haut)
 		{
-			for(int i = a.centroïde.x; i < a.centroïde.x + a.width;++i)
+			for(int i = a.centroide.x; i < a.centroide.x + a.width;++i)
 			{
-				for(int j = a.centroïde.y; j < a.centroïde.y + a.height;++j)
+				for(int j = a.centroide.y; j < a.centroide.y + a.height;++j)
 				{
 					if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 					{
@@ -177,9 +177,9 @@ public class Zonage {
 		}
 		if(gauche && haut)
 		{
-			for(int i = a.centroïde.x - a.width; i < a.centroïde.x ;++i)
+			for(int i = a.centroide.x - a.width; i < a.centroide.x ;++i)
 			{
-				for(int j = a.centroïde.y; j < a.centroïde.y + a.height;++j)
+				for(int j = a.centroide.y; j < a.centroide.y + a.height;++j)
 				{
 					if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 					{
@@ -193,9 +193,9 @@ public class Zonage {
 		}
 		if(droite && bas)
 		{
-			for(int i = a.centroïde.x; i < a.centroïde.x + a.width;++i)
+			for(int i = a.centroide.x; i < a.centroide.x + a.width;++i)
 			{
-				for(int j = a.centroïde.y - a.height; j < a.centroïde.y;++j)
+				for(int j = a.centroide.y - a.height; j < a.centroide.y;++j)
 				{
 					if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 					{
@@ -209,9 +209,9 @@ public class Zonage {
 		}
 		if(gauche && bas)
 		{
-			for(int i = a.centroïde.x - a.width; i < a.centroïde.x ;++i)
+			for(int i = a.centroide.x - a.width; i < a.centroide.x ;++i)
 			{
-				for(int j = a.centroïde.y - a.height; j < a.centroïde.y;++j)
+				for(int j = a.centroide.y - a.height; j < a.centroide.y;++j)
 				{
 					if(i > 0 && i < World.getInstance().getWidth() && j > 0 && j < World.getInstance().getHeight())
 					{

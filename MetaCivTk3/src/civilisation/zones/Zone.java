@@ -4,23 +4,23 @@ import turtlekit.kernel.Patch;
 
 public class Zone {
 
-	Patch centroïde;
+	Patch centroide;
 	int width;
 	int height;
 
 	public Zone(Patch centroïde)
 	{
-		this.centroïde = centroïde;
+		this.centroide = centroïde;
 	}
 	
 	public Zone()
 	{
-		this.centroïde = null;
+		this.centroide = null;
 	}
 	
 	public Patch getCentroïde()
 	{
-		return centroïde;
+		return centroide;
 	}
 	
 	
