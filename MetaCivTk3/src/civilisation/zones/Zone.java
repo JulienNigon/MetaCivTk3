@@ -8,9 +8,9 @@ public class Zone {
 	int width;
 	int height;
 
-	public Zone(Patch centroïde)
+	public Zone(Patch centroide)
 	{
-		this.centroide = centroïde;
+		this.centroide = centroide;
 	}
 	
 	public Zone()
@@ -18,7 +18,7 @@ public class Zone {
 		this.centroide = null;
 	}
 	
-	public Patch getCentroïde()
+	public Patch getCentroide()
 	{
 		return centroide;
 	}

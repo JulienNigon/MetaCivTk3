@@ -55,19 +55,19 @@ public class ZoneElementaire extends Zone {
 		}
 	}
 	
-	public ZoneElementaire(Patch centroïde, int taille)
+	public ZoneElementaire(Patch centroide, int taille)
 	{
-		super(centroïde);
+		super(centroide);
 		this.width = taille;
 		this.height = taille;
 		int x;
 		int y;
 		for(int i = -taille;i < taille; ++i)
 		{
-			x = centroïde.x + i;
+			x = centroide.x + i;
 			for(int j = -taille; j < taille; ++j)
 			{
-				y = centroïde.y + j;
+				y = centroide.y + j;
 				if(x >= 0 && y > 0 && x < World.getInstance().getWidth() && y < World.getInstance().getHeight())
 				{
 				}
