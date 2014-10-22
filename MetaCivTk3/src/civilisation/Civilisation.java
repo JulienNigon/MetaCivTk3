@@ -109,7 +109,7 @@ public class Civilisation {
 	}
 
 	public void postWorldSetup() {
-		World.getInstance().addFlavor("civ"+indexCiv);		
+		World.getInstance().addFlavor("civ"+indexCiv);	
 	}
 
 	public ArrayList<TypeCogniton> getStartingCognitons() {

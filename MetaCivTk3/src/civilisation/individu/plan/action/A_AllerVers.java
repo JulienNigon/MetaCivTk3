@@ -13,46 +13,54 @@ public class A_AllerVers extends Action{
 
 	public Action effectuer(Humain h) {
 		
-	
+		System.out.println(h.xcor()+"  "+h.ycor());
 		Patch cible = h.getCible();
-		if(h.xcor() != cible.x || h.ycor() != cible.y)
+		if(cible != null)
 		{
-			if(h.getChemin().isEmpty())
+			if(h.xcor() != cible.x || h.ycor() != cible.y)
 			{
-				h.face(cible);
-				h.getChemin().addAll(AStar(h,cible));
 				if(h.getChemin().isEmpty())
 				{
-					h.wiggle();
-				}
-			/*	for(int i = 0; i < h.getChemin().size();i++)
-				{
-					h.getChemin().get(i).color = Color.red;
-				}*/
+					h.face(cible);
+					h.getChemin().addAll(AStar(h,cible));
+					if(h.getChemin().isEmpty())
+					{
+						h.wiggle();
+					}
+				/*	for(int i = 0; i < h.getChemin().size();i++)
+					{
+						h.getChemin().get(i).color = Color.red;
+					}*/
 
+				}
+				
+				if(h.getChemin() != null && !h.getChemin().isEmpty())
+				{
+					Patch pCible = h.getChemin().get(0);
+					h.face(pCible);
+				}
+
+				h.fd(1);
+				if(h.getChemin() != null && !h.getChemin().isEmpty() && h.getChemin().get(0) != null )
+				{
+					h.getChemin().remove(0);
+				}
+				h.getPatch().dropPheromone("passage", 1.0f);
+				if(h.smell("passage") > Configuration.passagesPourCreerRoute && !h.isMarkPresent("Route"))
+				{
+					Amenagement_Route troncon = new Amenagement_Route(h.getPatch());
+					//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
+					//h.getPatch().dropMark("Route", troncon);
+				}
+				return this;
+			}
+			else {
+				return nextAction;
 			}
 			
-			if(h.getChemin() != null && !h.getChemin().isEmpty())
-			{
-				Patch pCible = h.getChemin().get(0);
-				h.face(pCible);
-			}
-
-			h.fd(1);
-			if(h.getChemin() != null && !h.getChemin().isEmpty() && h.getChemin().get(0) != null )
-			{
-				h.getChemin().remove(0);
-			}
-			h.getPatch().dropPheromone("passage", 1.0f);
-			if(h.smell("passage") > Configuration.passagesPourCreerRoute && !h.isMarkPresent("Route"))
-			{
-				Amenagement_Route troncon = new Amenagement_Route(h.getPatch());
-				//this.addAmenagement(troncon);  /*TODO : adapter les amenagements*/
-				//h.getPatch().dropMark("Route", troncon);
-			}
-			return this;
 		}
-		else {
+		else
+		{
 			return nextAction;
 		}
 		

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 import civilisation.Configuration;
 import civilisation.individu.plan.NPlan;
 import civilisation.inspecteur.simulation.GCogniton;
@@ -29,7 +31,6 @@ public class DialogueEditerLiensConditionnels extends JDialog implements ActionL
 		this.gCogniton = gCogniton;
 
 		plansLies = new ArrayList<JComboBox>();
-
 		
 		for (int i = 0; i < gCogniton.getCogniton().getPlansAutorises().size(); i++){
 			JComboBox box = new JComboBox();
@@ -49,6 +50,7 @@ public class DialogueEditerLiensConditionnels extends JDialog implements ActionL
 		
 		/*Proviens du tutorial Java Sun*/
 		array = new ArrayList<Object>();
+		array.add(new JLabel("Conditionned plan :"));
 	    for (int i = 0; i < plansLies.size(); i++){
 	    	array.add(plansLies.get(i));
 	    }

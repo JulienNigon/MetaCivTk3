@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
@@ -34,14 +35,17 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
     JSlider[] hues;
     JSpinner startChance;
     JJIconSelector iconSelector;
-
-
+    JLabel labname;
+    JLabel labtype;
+    JLabel labnumb;
+    JLabel labhues;
     
 	public DialogueEditerCogniton(Frame f , boolean modal, GCogniton gCogniton){
 		super(f,modal);
 		this.gCogniton = gCogniton;
 
 		/*Type of cogniton*/
+		labtype = new JLabel("Cogniton type :");
 		type = new JComboBox();
 		for (int i = 0; i < TypeDeCogniton.values().length; i++){
 			type.addItem(TypeDeCogniton.values()[i]);
@@ -51,6 +55,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		}
 		
 		/*Name of the cogniton*/
+		labname = new JLabel("Cogniton name :");
 		nom = new JTextField(20);
 		nom.setText(gCogniton.getCogniton().getNom());
 		
@@ -63,6 +68,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		}
 		
 		/*Start chances*/
+		labnumb = new JLabel("Starting apparition chance :");
 		SpinnerModel spinModel = new SpinnerNumberModel(gCogniton.getCogniton().getStartChance(), //initial value
                 0, //min
                 100, //max
@@ -76,6 +82,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		//this.add(iconSelector = new JJIconSelector());
 		
 		/* hues selection*/
+		labhues = new JLabel("Cogniton hues : ");
 		hues = new JSlider[TypeCogniton.nHues];
 		for (int i = 0; i < TypeCogniton.nHues; i++){
 			int temp = gCogniton.getCogniton().getHues()[i];
@@ -94,7 +101,7 @@ public class DialogueEditerCogniton extends JDialog implements ActionListener, P
 		
 		
 		/*Proviens du tutorial Java Sun*/
-	    Object[] array = {nom, type , recuAuDemarrage, startChance , hues};
+	    Object[] array = {labname, nom, labtype, type , recuAuDemarrage, labnumb, startChance , labhues, hues};
 	       
 	    //Create an array specifying the number of dialog buttons
 	    //and their text.

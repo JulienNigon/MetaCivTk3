@@ -631,7 +631,7 @@ public class Initialiseur {
 	private void loadActions()
 	{
 		File folder = new File(Configuration.pathToRessources+"/actions");
-	//	System.out.println(Configuration.pathToRessources+"/actions");
+		System.out.println(Configuration.pathToRessources+"/actions");
 		Configuration.actions = new ArrayList<Action>();
 		try
 		{

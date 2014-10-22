@@ -118,6 +118,7 @@ public class Communaute extends Turtle
 	 */
 	public String start2()
 	{
+		System.out.println(civ);
 		System.out.println("AGENTS : " + civ.getAgentsInitiaux());
 		for (int i = 0; i < civ.getAgentsInitiaux(); i++)
 		{

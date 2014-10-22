@@ -46,7 +46,8 @@ public class World extends TKEnvironment
 	double startTime;
 	int oldAgentNumber;
 	int startTick;
-
+	ArrayList<EvoluPatch> evolution = new ArrayList<EvoluPatch>();
+	EvoluPatch[][] patchs;
 	
 	public World() 
 	{
@@ -71,8 +72,10 @@ public class World extends TKEnvironment
        	y = Integer.parseInt(Initialiseur.getChamp("Hauteur", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()))[0]);
 
 		
+       
 		/*Reglages sur les civilisations*/
 		for (int i = 0; i < Configuration.civilisations.size(); i++){
+			
 			Configuration.civilisations.get(i).postWorldSetup();
 		}
 		
@@ -204,6 +207,39 @@ public class World extends TKEnvironment
 		if (tick == 1) {
 		       /*Install starting civilizations*/
 		       ArrayList<String[]> listeCivs = Initialiseur.getListeChamp("Civilisation", new File(Configuration.pathToRessources + "/environnements/"+Configuration.environnementACharger+Configuration.getExtension()));
+		   	boolean test = false;
+	       	for(int j = 0; j < Configuration.terrains.size(); ++j)
+			{
+				for(int k = 0; k < Configuration.terrains.get(j).getPheromones().size();++k)
+				{
+					if(Configuration.terrains.get(j).getPheromones().get(k).getNom().equals("fertilite"))
+					{
+						test = true;
+					}
+				}
+			}
+	       	
+	       	Double max = 0.0;
+	       	if(test)
+	       	{
+	       		for(int j = 0; j < this.x;++j)
+		       	{
+	 			   for(int k = 0; k < this.y;++k)
+	 			   {
+	 				  for(int l = 0;l < Configuration.couleurs_terrains.get(this.getPatch(j, k).getColor()).getPheromones().size();++l)
+	 				  {
+		 					if(Configuration.couleurs_terrains.get(this.getPatch(j, k).getColor()).getPheromones().get(l).equals("fertilite"))
+		 					{
+		 						if(Configuration.couleurs_terrains.get(this.getPatch(j, k).getColor()).pheroInitiales.get(l) > max)
+		 						{
+		 							max = Configuration.couleurs_terrains.get(this.getPatch(j, k).getColor()).pheroInitiales.get(l);
+		 						}
+		 					}
+	 				  }
+	 			   }
+		       	}
+	       	}
+	       	
 		       for (int i = 0; i < listeCivs.size(); i++){
 		    	   
 		    	   int u = Integer.parseInt(listeCivs.get(i)[1]);
@@ -212,6 +248,33 @@ public class World extends TKEnvironment
 		    	   Communaute c = new Communaute(Configuration.getCivilisationByName(listeCivs.get(i)[0]));
 		    	   TurtleGenerator.getInstance().createTurtle(c);
 		    	   c.moveTo(u, -v);
+		    	   if(test)
+		    	   {
+		    		   int tempo = 0;
+		    		   for(int j = 0; j < x;++j)
+		    		   {
+		    			   for(int k = 0; k < y; ++k)
+		    			   {
+		    				   for(int l = 0;l < Configuration.couleurs_terrains.get(this.getPatch(j, k).getColor()).getPheromones().size();++l)
+		 	 				  {
+		 		 					if(Configuration.couleurs_terrains.get(this.getPatch(j, k).getColor()).getPheromones().get(l).equals("fertilite"))
+		 		 					{
+		 		 						if(Configuration.couleurs_terrains.get(this.getPatch(j, k).getColor()).pheroInitiales.get(l) == max)
+		 		 						{
+		 		 							if(tempo == i)
+		 		 							{
+		 		 								c.moveTo(j, k);
+		 		 							}
+		 		 							else
+		 		 							{
+		 		 								tempo++;
+		 		 							}
+		 		 						}
+		 		 					}
+		 	 				  }
+		    			   }
+		    		   }
+		    	   }
 
 		       }
 		}
@@ -329,6 +392,51 @@ public class World extends TKEnvironment
 		return humans;
 	}
 	
+	
+	private void calculerEvolutionPatch() {
+		
+		for(int i = 0; i < this.x ; i++)
+		{
+			for(int j = 0; j < this.y; j++)
+			{
+				EvoluPatch evo = new EvoluPatch(i,j,this.getPatch(i, j));
+				this.patchs[i][j] = evo;
+			}
+		}
+		for(int i = 0; i < this.x ; i++)
+		{
+			for(int j = 0; j < this.y; j++)
+			{
+				List<Patch> liste = this.getPatch(i, j).getNeighbors(1, false);
+				ArrayList<Patch> list = new ArrayList<Patch>();
+				for(int k = 0; k < liste.size();k++)
+				{
+					list.add(liste.get(k));
+				}
+				this.patchs[i][j].calculEquations(list);
+				this.InsererEvo(this.patchs[i][j]);
+			}
+		}
+	}
+	
+	public void InsererEvo(EvoluPatch patch)
+	{
+		int i = 0;
+		if(this.evolution.size() == 0)
+		{
+			this.evolution.add(patch);
+		}
+		else
+		{
+			while(i < this.evolution.size() && this.evolution.get(i).getLimite() < patch.getLimite())
+			{
+				++i;
+			}
+			this.evolution.add(i, patch);
+		}
+		
+		
+	}
 	
 	
 }

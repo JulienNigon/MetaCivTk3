@@ -29,7 +29,7 @@ import civilisation.world.Terrain;
 
 public class Configuration {
 
-	public static String versionNumber = "1.60";
+	public static String versionNumber = "1.70";
 	public static String versionName = "Tuatha";
 	
 	/*Attributes*/
