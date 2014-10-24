@@ -19,6 +19,18 @@ public class NInventaire {
 		this.weight = 0;
 	}
 	
+	public int possede(Objet o)
+	{
+		if(listeObjets.containsKey(o))
+		{
+			return listeObjets.get(o);
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
 	public void addObjets(Objet o , int i){
 		if (!listeObjets.containsKey(o)){
 			listeObjets.put(o, i);

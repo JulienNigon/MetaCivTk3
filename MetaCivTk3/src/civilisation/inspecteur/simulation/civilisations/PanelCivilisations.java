@@ -35,8 +35,9 @@ public class PanelCivilisations extends JPanel{
 		this.add(nameField);
 		
 		/* number of starting agents selection*/
-		startingAgents = new JSlider(0,500,0);
-		startingAgents.setMajorTickSpacing(50);
+		this.add(new JLabel("Number of agent in this civilisation : "));
+		startingAgents = new JSlider(0,500,1);
+		startingAgents.setMajorTickSpacing(100);
 		startingAgents.setMinorTickSpacing(10);
 		startingAgents.setPaintTicks(true);
 		startingAgents.setPaintLabels(true);

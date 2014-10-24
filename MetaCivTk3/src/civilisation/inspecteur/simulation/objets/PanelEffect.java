@@ -49,6 +49,9 @@ public class PanelEffect extends JPanel implements ActionListener{
 	JRadioButton choix3A;
 	JButton SaveEffect;
 	Effect effet;
+	JButton RemoveEffect;
+	Box b8 = Box.createVerticalBox();
+	
 	public PanelEffect(PanelObjets panelParent)
 	{
 		super();
@@ -60,7 +63,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choix2T = new JRadioButton("Cognitons");
 		choix3T = new JRadioButton("Actions");
 		choix1T.addActionListener(this);
-		choix1T.setActionCommand("Attributs");
+		choix1T.setActionCommand("Attributes");
 		choix1T.setSelected(true);
 		choix2T.addActionListener(this);
 		choix2T.setActionCommand("Cognitons");
@@ -88,17 +91,19 @@ public class PanelEffect extends JPanel implements ActionListener{
 		
 		nomType = new JLabel("Effect Type : ");
 		choixType = new ButtonGroup();
-		choix1Ty = new JRadioButton("Add");
-		choix2Ty = new JRadioButton("Modify");
+		choix1Ty = new JRadioButton("Set");
+		choix2Ty = new JRadioButton("Add");
 		choix3Ty = new JRadioButton("Remove");
 		choix1Ty.addActionListener(this);
 		choix2Ty.addActionListener(this);
 		choix3Ty.addActionListener(this);
+		choix1Ty.setSelected(true);
 		choixType.add(choix1Ty);
 		choixType.add(choix2Ty);
 		choixType.add(choix3Ty);
 		modifValue = new JLabel("Value : ");
 		modifValueText = new JTextField(5);
+		modifValueText.setText("0");
 		nomActive = new JLabel("Activation : ");
 		choixActive = new ButtonGroup();
 		choix1A = new JRadioButton("Possession");
@@ -107,15 +112,21 @@ public class PanelEffect extends JPanel implements ActionListener{
 		choixActive.add(choix1A);
 		choixActive.add(choix2A);
 		choixActive.add(choix3A);
+		choix1A.setSelected(true);
 		permanent = new JLabel("Permanent ? : ");
 		choixPermanent = new ButtonGroup();
 		choix1P = new JRadioButton("Yes");
 		choix2P = new JRadioButton("No");
 		choixPermanent.add(choix1P);
 		choixPermanent.add(choix2P);
+		choix1P.setSelected(true);
 		SaveEffect = new JButton("Save Effect");
 		SaveEffect.addActionListener(this);
 		SaveEffect.setActionCommand("SaveEffect");
+		
+		RemoveEffect = new JButton("Remove Effect");
+		RemoveEffect.addActionListener(this);
+		RemoveEffect.setActionCommand("RemoveEffect");
 		
 		Box b1 =  Box.createHorizontalBox();
 		b1.setAlignmentX(LEFT_ALIGNMENT);
@@ -173,7 +184,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b7.add(choix2A);
 		b7.add(choix3A);
 		
-		Box b8 = Box.createVerticalBox();
+		
 		b8.add(b1);
 		b8.add(b2);
 		b8.add(b3);
@@ -182,6 +193,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b8.add(b4);
 		b8.add(b7);
 		b8.add(SaveEffect);
+		b8.add(RemoveEffect);
 		this.add(b8);
 	}
 	
@@ -314,6 +326,11 @@ public class PanelEffect extends JPanel implements ActionListener{
 		SaveEffect = new JButton("Save Effect");
 		SaveEffect.addActionListener(this);
 		SaveEffect.setActionCommand("SaveEffect");
+		
+		RemoveEffect = new JButton("Remove Effect");
+		RemoveEffect.addActionListener(this);
+		RemoveEffect.setActionCommand("RemoveEffect");
+		
 		Box b1 =  Box.createHorizontalBox();
 		b1.setAlignmentX(LEFT_ALIGNMENT);
 		b1.setAlignmentY(LEFT_ALIGNMENT);
@@ -370,7 +387,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b7.add(choix2A);
 		b7.add(choix3A);
 		
-		Box b8 = Box.createVerticalBox();
+
 		b8.add(b1);
 		b8.add(b2);
 		b8.add(b3);
@@ -379,6 +396,7 @@ public class PanelEffect extends JPanel implements ActionListener{
 		b8.add(b4);
 		b8.add(b7);
 		b8.add(SaveEffect);
+		b8.add(RemoveEffect);
 		this.add(b8);
 		this.RendreVisible();
 	}
@@ -519,6 +537,29 @@ public class PanelEffect extends JPanel implements ActionListener{
 				}
 			}
 			
+		}
+		else
+		{
+			if(this.nomEffetText.getText() != null || !this.nomEffetText.getText().equals(""))
+			{
+				if(Configuration.getEffectByName(this.nomEffetText.getText()) != null)
+				{
+					int k = 0;
+					while(  k < Configuration.effets.size() && !Configuration.effets.get(k).getName().equals(this.nomEffetText.getText()))
+					{
+						k++;
+					}
+					if(k < Configuration.effets.size())
+					{
+						Configuration.effets.remove(k);
+					}
+				}
+				this.remove(b8);
+			}
+			else
+			{
+				this.remove(b8);
+			}
 		}
 		
 	}

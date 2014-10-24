@@ -669,13 +669,18 @@ public class Initialiseur {
 						
 						Action a = null;
 					//	System.out.println(path);
-					//	System.out.println(f.getName().substring(0, f.getName().length()-5));
-						Class<?> c = loader.loadClass(path+f.getName().substring(0, f.getName().length()-6)); // TODO peut être a modifier le   "substring(0, f.getName().length()-6)"  qui correspond au .class 
-						if (Action.class.isAssignableFrom(c))
+					//	System.out.println("Recherche du .DS "+f.getName().substring( f.getName().length() - 6, f.getName().length()));
+						if(f.getName().substring( f.getName().length() - 6, f.getName().length()).equals(".class"))
 						{
-							Action action = (Action) c.newInstance();
-							Configuration.actions.add(action);
+							System.out.println(path+f.getName().substring(0, f.getName().length()-6));
+							Class<?> c = loader.loadClass(path+f.getName().substring(0, f.getName().length()-6)); // TODO peut être a modifier le   "substring(0, f.getName().length()-6)"  qui correspond au .class 
+							if (Action.class.isAssignableFrom(c))
+							{
+								Action action = (Action) c.newInstance();
+								Configuration.actions.add(action);
+							}
 						}
+						
 					}
 					catch (ClassNotFoundException e)
 					{

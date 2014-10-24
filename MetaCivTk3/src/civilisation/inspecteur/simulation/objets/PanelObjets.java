@@ -243,6 +243,10 @@ public class PanelObjets extends JPanel implements ActionListener{
 					o.setNom(nameField.getText());
 					o.setDescription(descriptionField.getText());
 			//		System.out.println("Nombre d'effets dans l'objet "+this.effects.size());
+					for(int i = 0; i < o.getEffets().size();++i)
+					{
+						o.getEffets().remove(i);
+					}
 					for(int i = 0; i < this.effects.size();++i)
 					{
 					//	System.out.println("hey "+i);
@@ -251,10 +255,14 @@ public class PanelObjets extends JPanel implements ActionListener{
 						o.addEffect(temp);
 						Configuration.addEffectUnique(temp);
 					}
-					for(int i = 0; i < this.recettes.size();++i)
+					if(this.recettes != null && this.recettes.size() > 0)
 					{
-						o.addItemRecipe(this.recettes.get(i), this.necessaires.get(i));
+						for(int i = 0; i < this.recettes.size();++i)
+						{
+							o.addItemRecipe(this.recettes.get(i), this.necessaires.get(i));
+						}
 					}
+					
 
 					Configuration.addObjetUnique(o);
 				}

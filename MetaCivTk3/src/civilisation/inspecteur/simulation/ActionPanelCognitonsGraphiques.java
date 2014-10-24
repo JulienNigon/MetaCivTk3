@@ -44,7 +44,7 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			
 			System.out.println("---Enregistrement des param_tres de la simulation---");
 			File cible = new File(Configuration.pathToRessources + "");
-			
+			File test = cible;
 			/*
 			 * Save the old environment and actions
 			 */
@@ -68,11 +68,25 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 			System.out.println("--_ Suppression de l'ancienne version");
 			supprimerDossier(cible);
 			
-			cible.mkdir();
-			
-			PrintWriter out;
+			if(cible != null)
+			{
+				cible.mkdir();
+			}
+			else if(test != null)
+			{
+				test.mkdir();
+			}
+			else
+			{
+				System.out.println("null");
+			}
+			PrintWriter out = null;
 			try {
-				out = new PrintWriter(cible.getPath()+"/"+"parametres"+Configuration.getExtension());
+				while(out == null)
+				{
+					out = new PrintWriter(cible.getPath()+"/"+"parametres"+Configuration.getExtension());
+				}
+				
 				if (Configuration.environnementACharger == null){
 					out.println("Carte : " + "AUCUNE");
 				}
@@ -83,6 +97,7 @@ public class ActionPanelCognitonsGraphiques implements ActionListener{
 				out.close();
 			} catch (IOException e1) {
 				e1.printStackTrace();
+				
 			}
 
 			System.out.println("--_ Enregistrement des attributs");

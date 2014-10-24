@@ -153,6 +153,7 @@ public class CivLauncher extends TKLauncher {
 	        	    setField("Last_loaded_model_path",Configuration.pathToRessources,
 	        	    		new File(System.getProperty("user.dir") + "/bin/config"),
 	        	    		new File(System.getProperty("user.dir") + "/bin/tempConfig"));
+
 	        	    pathSelected.release();
 			 }});
 		}

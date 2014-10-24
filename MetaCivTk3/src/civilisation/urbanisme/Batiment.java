@@ -52,10 +52,10 @@ public class Batiment {
 		}
 		for (int i = 0; i < c.getBatiments().size(); i++)
 		{
-			if (c.getBatiments().get(i) == this)
+		/*	if (c.getBatiments().get(i) == this)
 			{
 				c.getBatiments().remove(i);
-			}
+			}*/
 		}	
 	}
 	

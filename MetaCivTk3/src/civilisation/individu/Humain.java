@@ -45,6 +45,8 @@ import civilisation.pathfinder.Noeud;
 import civilisation.urbanisme.Batiment;
 import civilisation.urbanisme.Batiment_Hutte;
 import civilisation.world.World;
+import civilisation.zones.ZoneComposite;
+import civilisation.zones.ZoneElementaire;
 import turtlekit.kernel.Turtle;
 import turtlekit.kernel.Patch;
 
@@ -86,6 +88,8 @@ public class Humain extends Turtle
 		
 	ArrayList<Patch> chemin;
 	int tempsPatch;
+	ZoneElementaire champs;
+	ZoneElementaire bois;
 
 	public Humain(Civilisation civ , Communaute communaute)
 	{
@@ -95,6 +99,8 @@ public class Humain extends Turtle
 		initialisation(civ, communaute);
 		chemin = new ArrayList<Patch>();
 		tempsPatch = 2;
+		bois = new ZoneElementaire();
+		champs = new ZoneElementaire();
 	}
 	
 	/**
@@ -108,6 +114,8 @@ public class Humain extends Turtle
 		initialisation(civ, communaute);
 		chemin = new ArrayList<Patch>();
 		tempsPatch = 2;
+		bois = new ZoneElementaire();
+		champs = new ZoneElementaire();
 	}
 	
 	public void die()
@@ -205,7 +213,6 @@ public class Humain extends Turtle
 		this.allerVers(this.communaute);
 		
 	}
-	
 	
 		public void allerVers(Turtle but)
 		{

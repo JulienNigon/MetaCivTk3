@@ -39,6 +39,7 @@ public abstract class Action {
 		Action action;
 		try
 		{
+			System.out.println(s);
 			c = Configuration.getActionByName(s).getClass();
 			Constructor constructor  = null;
 			
@@ -160,7 +161,19 @@ public abstract class Action {
 	
 	@Override
 	public String toString(){
-		return this.getClass().getSimpleName();
+		String message = this.getClass().getSimpleName();
+	/*	for(int i = 0; i < this.options.size();++i)
+		{
+			for(int j = 0; j< this.options.get(i).parametres.size();++j)
+			{
+				message += this.options.get(i).parametres.get(j).toString()+" ";
+			}
+			if(i > 0)
+			{
+				message += " AND ";
+			}
+		}*/
+		return message ;
 	}
 	
 	public ImageIcon getIcon(){

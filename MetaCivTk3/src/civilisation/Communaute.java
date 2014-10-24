@@ -20,12 +20,13 @@ package civilisation;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import civilisation.individu.Humain;
 import civilisation.urbanisme.Batiment;
 import civilisation.urbanisme.Batiment_Grenier;
 import civilisation.world.World;
-
+import civilisation.amenagement.*;
 import turtlekit.kernel.Turtle;
 
 /** 
@@ -42,7 +43,7 @@ public class Communaute extends Turtle
 
 	int visionRadius;
 	Civilisation civ;
-	ArrayList<Batiment> batiments;
+	HashMap<String,ArrayList<Amenagement>> batiments;
 	static int nombreCommunaute = 0;
 	int index;
 	
@@ -53,10 +54,8 @@ public class Communaute extends Turtle
 	public Communaute()
 	{
 		super("start");
-		batiments = new ArrayList<Batiment>();
 		//Pour tester :
-		batiments.add(new Batiment_Grenier(null,this));
-		batiments.get(0).setTermine(true);
+		batiments = new HashMap<String,ArrayList<Amenagement>>();
 		index = nombreCommunaute;
 		nombreCommunaute++;
 		this.playRole("communaute");
@@ -65,8 +64,8 @@ public class Communaute extends Turtle
 	public Communaute(Civilisation civ)
 	{
 		super("start2");
-		batiments = new ArrayList<Batiment>();
 		//Pour tester :
+		batiments = new HashMap<String,ArrayList<Amenagement>>();
 		index = nombreCommunaute;
 		nombreCommunaute++;
 		this.civ = civ;
@@ -137,9 +136,19 @@ public class Communaute extends Turtle
 		return "neRienFaire";
 	}
 
-	public void construire(Batiment b)
+	public void construire(Amenagement b)
 	{
-		batiments.add(b);
+
+		if(this.batiments.containsKey(b.getClass().getName()))
+		{
+			this.batiments.get(b.getClass().getName()).add(b);
+		}
+		else
+		{
+			ArrayList<Amenagement> init = new ArrayList<Amenagement>();
+			init.add(b);
+			this.batiments.put(b.getNom(), init);
+		}
 	}
 	
 	public void retirerBatiment(Batiment b)
@@ -155,7 +164,7 @@ public class Communaute extends Turtle
 	}
 	
 	//----------------GETTERS/SETTERS------------------
-		public ArrayList<Batiment> getBatiments() {
+		public HashMap<String, ArrayList<Amenagement>> getBatiments() {
 		return batiments;
 	}
 	
@@ -165,11 +174,14 @@ public class Communaute extends Turtle
 
 		public boolean possedeHutte(Humain h) {
 
-			for (int i = 0; i < batiments.size();i++)
+			if(this.batiments.containsKey("Hutte"))
 			{
-				if (batiments.get(i).getPossesseur() == h)
+				for(int i = 0; i < this.batiments.get("Hutte").size();++i)
 				{
-					return true;
+					if(this.batiments.get("Hutte").get(i).getPossesseur().equals(h))
+					{
+						return true;
+					}
 				}
 			}
 			return false;

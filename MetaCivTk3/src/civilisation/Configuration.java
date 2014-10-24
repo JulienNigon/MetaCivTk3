@@ -96,7 +96,7 @@ public class Configuration {
 
 	
 	/*Passages minimaux pour une route*/
-	public static Integer passagesPourCreerRoute = 5;
+	public static Integer passagesPourCreerRoute = 20;
 	public static Integer EffacementRoute = 1;
 	public static final int VisionRadius = 15;
 	

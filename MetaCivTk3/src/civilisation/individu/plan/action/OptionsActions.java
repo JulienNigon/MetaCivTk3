@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import civilisation.ItemPheromone;
+import civilisation.amenagement.Amenagement;
 import civilisation.group.GroupAndRole;
 import civilisation.group.GroupModel;
 import civilisation.individu.cognitons.TypeCogniton;
@@ -124,6 +125,13 @@ public class OptionsActions {
 				else if (parametres.get(i).getClass().equals(Comparator.class)){
 					s += "Comparator ";
 					s += ((Comparator) parametres.get(i)).toSymbol();
+					if (i < parametres.size() - 1){
+						s += ";";
+					}
+				}
+				else if (parametres.get(i).getClass().equals(Amenagement.class)){
+					s += "Amenagement ";
+					s += ((Amenagement) parametres.get(i)).getNom();
 					if (i < parametres.size() - 1){
 						s += ";";
 					}

@@ -19,11 +19,15 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import civilisation.Configuration;
+import civilisation.ItemPheromone;
+import civilisation.group.Group;
 import civilisation.group.GroupAndRole;
+import civilisation.individu.cognitons.TypeCogniton;
 import civilisation.individu.plan.action.Action;
 import civilisation.individu.plan.action.Comparator;
 import civilisation.individu.plan.action.OptionsActions;
 import civilisation.inspecteur.simulation.PanelArbreActions;
+import civilisation.inventaire.Objet;
 
 public class DialogueEditerAction extends JDialog implements ActionListener, PropertyChangeListener{
 	
@@ -54,37 +58,57 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 					for (int j = 0; j < Configuration.objets.size(); j++){
 						box.addItem(Configuration.objets.get(j).getNom());
 					}
+					if(a != null && a.getOptions().get(i) != null)
+					{
+						box.setSelectedItem(((Objet)a.getOptions().get(i).getParametres().get(0)).getNom());
+					}
 				}
 				else if (schema.get(i)[0].equals("**Cogniton**")){
 					for (int j = 0; j < Configuration.cognitons.size(); j++){
 						box.addItem(Configuration.cognitons.get(j).getNom());
+					}
+					if(a != null )
+					{
+						box.setSelectedItem(((TypeCogniton)a.getOptions().get(i).getParametres().get(0)).getNom());
 					}
 				}
 				else if (schema.get(i)[0].equals("**Pheromone**")){
 					for (int j = 0; j < Configuration.itemsPheromones.size(); j++){
 						box.addItem(Configuration.itemsPheromones.get(j).getNom());
 					}
+					if(a != null )
+					{
+						box.setSelectedItem(((ItemPheromone)a.getOptions().get(i).getParametres().get(0)).getNom());
+					}
 				}
 				else if (schema.get(i)[0].equals("**Integer**")){
 					for (int j = Integer.parseInt(schema.get(i)[2]); j < Integer.parseInt(schema.get(i)[3]); j++){
 						box.addItem(j);
 					}
-					box.setSelectedIndex(Integer.parseInt(schema.get(i)[4]));
+					box.setSelectedItem(Integer.parseInt((String) a.getOptions().get(i).getParametres().get(0)));
 				}
 				else if (schema.get(i)[0].equals("**Double**")){
 					for (double j = Double.parseDouble(schema.get(i)[2]); j < Double.parseDouble(schema.get(i)[3]); j+=Double.parseDouble(schema.get(i)[4])){
 						box.addItem(j);
 					}
-					box.setSelectedIndex(Integer.parseInt(schema.get(i)[5]));
+					box.setSelectedItem(Double.parseDouble((String) a.getOptions().get(i).getParametres().get(0).toString()));
 				}
 				else if (schema.get(i)[0].equals("**Attribute**")){
 					for (int j = 0; j < Configuration.attributesNames.size() ; j++){
 						box.addItem(Configuration.attributesNames.get(j));
 					}
+					if(a != null )
+					{
+						box.setSelectedItem(((String)a.getOptions().get(i).getParametres().get(0)));
+					}
 				}
 				else if (schema.get(i)[0].equals("**Group**")){
 					for (int j = 0; j < Configuration.groups.size(); j++){
 						box.addItem(Configuration.groups.get(j).getName());
+					}
+					if(a != null )
+					{
+						box.setSelectedItem(((Group)a.getOptions().get(i).getParametres().get(0)).getName());
 					}
 				}
 				else if (schema.get(i)[0].equals("**GroupAndRole**")){
@@ -95,16 +119,21 @@ public class DialogueEditerAction extends JDialog implements ActionListener, Pro
 							box.addItem(Configuration.groups.get(j).getName()+":"+(String)keys[k]);	
 						}
 					}
+
 				}
 				else if (schema.get(i)[0].equals("**Comparator**")){
 					for (int j = 0; j < Comparator.values().length ; j++){
 						box.addItem(Comparator.values()[j].toSymbol());
 					}
+					if(a != null )
+					{
+						box.setSelectedItem(((Comparator)a.getOptions().get(i).getParametres().get(0)));
+					}
 				}
 				else if (schema.get(i)[0].equals("**String**")){
 					
 					
-					boxs.add(new JTextField());
+					boxs.add(new JTextField(a.getOptions().get(i).getParametres().get(0).toString()));
 					isComboBox = false;
 				}
 				else{
