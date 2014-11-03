@@ -64,6 +64,8 @@ public class PanelCharts extends JPanel{
         this.add(chartPanelAttributes);
 	}
 	
+	
+	
 	private JFreeChart createChartAttributes() {
 
         // create subplot 1...

@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import civilisation.individu.cognitons.Cogniton;
 import civilisation.individu.plan.NPlan;
 import civilisation.individu.plan.NPlanPondere;
 import civilisation.inspecteur.animations.JJComponent;
@@ -21,13 +22,16 @@ import civilisation.inspecteur.animations.JJPanel;
 
 public class GPlan extends GItemCognitif{
 
-	NPlan plan;
+	NPlan typePlan;
 	static float margeEcriture = 2;
+	
+	/*For individual agent view*/
 	NPlanPondere concretePlan = null;
+	
 	
 	public GPlan(JJPanel parent , double xx, double yy, double w, double h, NPlan plan) {
 		super(parent, xx, yy, w, h);
-		this.plan = plan;
+		this.typePlan = plan;
 		this.setToolTipText(plan.toString());
 		this.addMouseListener(new MouseGPlanListener(this));
 
@@ -41,7 +45,10 @@ public class GPlan extends GItemCognitif{
         Color backgroundColor = Color.GRAY;
     	g2d.setColor(Color.BLACK);
     	int weightedBorder = 0;
+    	String displayedString = typePlan.getNom();
+    	
     	if (concretePlan != null) {
+    		displayedString += " [" + concretePlan.getPoids() + "]";
     		if (concretePlan.getH().getEsprit().getPlanEnCours() == concretePlan) {
         		g2d.setColor(new Color (135, 38, 87));
     		}
@@ -49,22 +56,22 @@ public class GPlan extends GItemCognitif{
     	}
 
     	FontMetrics fm = g2d.getFontMetrics();
-    	this.setBounds(   (int)(this.getXx()+margeEcriture),(int)this.getYy()+2,(int) (fm.stringWidth(plan.getNom()) + (2*margeEcriture)),2*fm.getHeight());
+    	this.setBounds(   (int)(this.getXx()+margeEcriture),(int)this.getYy()+2,(int) (fm.stringWidth(displayedString) + (2*margeEcriture)),2*fm.getHeight());
 
-    	g2d.fill(new Rectangle2D.Double(0,0,fm.stringWidth(plan.getNom()) + (2*margeEcriture),2*fm.getHeight()));
-    	this.setW(fm.stringWidth(plan.getNom()) + (2*margeEcriture));
+    	g2d.fill(new Rectangle2D.Double(0,0,fm.stringWidth(displayedString) + (2*margeEcriture),2*fm.getHeight()));
+    	this.setW(fm.stringWidth(displayedString) + (2*margeEcriture));
     	this.setH(2*fm.getHeight());
     	g2d.setColor(backgroundColor);
-    	g2d.fill(new Rectangle2D.Double(margeEcriture,2,fm.stringWidth(plan.getNom()),2*fm.getHeight()-4));
+    	g2d.fill(new Rectangle2D.Double(margeEcriture,2,fm.stringWidth(displayedString),2*fm.getHeight()-4));
     	
-    	if (plan.getIsSelfPlan()) {
+    	if (typePlan.getIsSelfPlan()) {
         	g2d.setColor(Color.BLUE);
-    	} else if (plan.getIsBirthPlan()) {
+    	} else if (typePlan.getIsBirthPlan()) {
         	g2d.setColor(Color.RED);
     	} else {
         	g2d.setColor(Color.BLACK);
     	}
-    	g2d.drawString(plan.getNom(), margeEcriture, (float) (fm.getHeight()*1.3));
+    	g2d.drawString(displayedString, margeEcriture, (float) (fm.getHeight()*1.3));
 
     	
     	//System.out.println("dessin du composant");
@@ -72,12 +79,12 @@ public class GPlan extends GItemCognitif{
     }
 
 	public void selectionnerPlan(){
-		((PanelStructureCognitive) this.getParent()).selectionnerPlan(plan);
+		((PanelStructureCognitive) this.getParent()).selectionnerPlan(typePlan);
 	}
 
 
 	public NPlan getPlan() {
-		return plan;
+		return typePlan;
 	}
 
 	public void afficherPopup(MouseEvent e){
@@ -92,6 +99,7 @@ public class GPlan extends GItemCognitif{
 	public void setConcretePlan(NPlanPondere concretePlan) {
 		this.concretePlan = concretePlan;
 	}
+
 
 	
 	

@@ -1,0 +1,5 @@
+Nom : Bouger
+Birth : false
+Self : false
+Action : L_Repeat,n(Integer 250)
+	Action : A_AvanceAleatoirement

@@ -85,7 +85,7 @@ public class PanelMind extends PanelStructureCognitive{
 		//Add cognitons
 		for (Cogniton cog : h.getEsprit().getCognitons()) {
 			if (!this.cognitonIsDrawn(cog.getCogniton())) {
-				this.afficherCogniton(cog.getCogniton(), Math.random()*400, Math.random()*400);
+				this.afficherCogniton(cog.getCogniton(), Math.random()*400, Math.random()*400,cog);
 				
 				this.gCognitons.get(gCognitons.size()-1).setOpacite(0.0);
 				this.gCognitons.get(gCognitons.size()-1).addAnimation(new JJAnimationOpacite(50, gCognitons.get(gCognitons.size()-1), 0.02, false));
@@ -232,6 +232,21 @@ public class PanelMind extends PanelStructureCognitive{
 		super.animate();
 		semaphore.release();
 	}
+	
+	/**
+	 * Initialize a new graphical cogniton linked to a Cogniton and not only to a TypeCogniton.
+	 */
+	public void afficherCogniton(TypeCogniton c , double posX , double posY, Cogniton cog){
+		System.out.println("New GCogniton");
+		super.afficherCogniton(c, posX, posY);
+		this.gCognitons.get(gCognitons.size()-1).setCogniton(cog);
+	}
+	
+	public void afficherCogniton(TypeCogniton c , double posX , double posY){
+		super.afficherCogniton(c, posX, posY);
+		this.gCognitons.get(gCognitons.size()-1).setCogniton(ownedCognitons.get(gCognitons.size()-1));
+	}
+	
 	
 	//This panel doesn't show trigger links
 	public void createTriggerLink(){}
