@@ -1,0 +1,8 @@
+Nom : Terres viticoles
+Couleur : 0.33333334,1.0,0.8
+Passabilite : 35
+Infranchissable : false
+AltMin : 0
+AltMax : 20
+Apparition : 0
+Pheromone : Vin,10.0,0.0

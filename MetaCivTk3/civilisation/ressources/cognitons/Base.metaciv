@@ -1,0 +1,16 @@
+Nom : Base
+Description : Un nouveau cogniton
+Type : BELIEF
+StartChance : 100
+Initial : 1
+Permet : Bouger
+Permet : Se_multiplier
+Influence : Bouger,10
+Influence : Se_multiplier,2
+Hue0 : 0
+Hue1 : 0
+Hue2 : 0
+Hue3 : 0
+Hue4 : 0
+Hue5 : 0
+Hue6 : 0

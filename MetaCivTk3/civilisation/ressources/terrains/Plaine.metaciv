@@ -1,0 +1,9 @@
+Nom : Plaine
+Couleur : 0.2777778,1.0,0.6
+Passabilite : 35
+Infranchissable : false
+AltMin : 0
+AltMax : 20
+Apparition : 0
+Pheromone : Baies,15.0,0.08
+Pheromone : Gibier,25.0,0.1

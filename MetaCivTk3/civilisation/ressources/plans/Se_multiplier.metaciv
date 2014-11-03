@@ -1,0 +1,6 @@
+Nom : Se_multiplier
+Birth : false
+Self : false
+Action : A_Birth
+Action : L_Repeat,n(Integer 249)
+	Action : A_AvanceAleatoirement

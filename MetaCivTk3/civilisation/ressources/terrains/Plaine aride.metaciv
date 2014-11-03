@@ -1,0 +1,11 @@
+Nom : Plaine aride
+Couleur : 0.33333334,1.0,0.6
+Passabilite : 30
+Infranchissable : false
+AltMin : 0
+AltMax : 20
+Apparition : 0
+Pheromone : Baies,20.0,0.6
+Pheromone : Bois,30.0,0.1
+Pheromone : Gibier,10.0,0.7
+Pheromone : Metal,50.0,0.0

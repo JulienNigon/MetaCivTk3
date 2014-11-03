@@ -148,8 +148,14 @@ public class CivLauncher extends TKLauncher {
 	        			File file = chooser.getSelectedFile();
 	        			Configuration.pathToRessources = file.getParent();
 	        	    } else {
-	        	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
+	        			if (new File(System.getProperty("user.dir") + "/bin/config").exists() &&
+	        					new File(Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0]).exists()) {
+	        				Configuration.pathToRessources = Initialiseur.getChamp("Last_loaded_model_path", new File(System.getProperty("user.dir") + "/bin/config"))[0];
+	        			} else {
+		        	    	Configuration.pathToRessources = System.getProperty("user.dir") + "/civilisation/ressources";
+	        			}
 	        	    }
+	        	    System.out.println(Configuration.pathToRessources);
 	        	    setField("Last_loaded_model_path",Configuration.pathToRessources,
 	        	    		new File(System.getProperty("user.dir") + "/bin/config"),
 	        	    		new File(System.getProperty("user.dir") + "/bin/tempConfig"));

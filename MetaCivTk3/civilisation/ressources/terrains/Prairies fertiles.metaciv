@@ -1,0 +1,9 @@
+Nom : Prairies fertiles
+Couleur : 0.33333334,1.0,0.6
+Passabilite : 35
+Infranchissable : false
+AltMin : 0
+AltMax : 20
+Apparition : 0
+Pheromone : Gibier,2.0,0.0
+Pheromone : Metal,10.0,0.0

@@ -1,0 +1,8 @@
+Nom : Terres agricoles
+Couleur : 0.125,0.8,1.0
+Passabilite : 30
+Infranchissable : false
+AltMin : 0
+AltMax : 20
+Apparition : 0
+Pheromone : Cereales,10.0,0.0
