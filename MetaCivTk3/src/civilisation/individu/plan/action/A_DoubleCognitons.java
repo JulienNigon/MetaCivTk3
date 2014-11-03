@@ -31,7 +31,7 @@ public class A_DoubleCognitons extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Add a new cogniton to the agent.<html>";
+		return super.getInfo() + " Add two new cognitons to the agent.<html>";
 	}
 	
 	@Override

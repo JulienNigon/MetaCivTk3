@@ -12,7 +12,10 @@ public class A_AvanceAleatoirement extends Action{
 		return nextAction;
 	}
 
-	
+	@Override
+	public String getInfo() {
+		return super.getInfo() + " The agent move in a random direction.<html>";
+	}
 	
 	
 }

@@ -173,7 +173,7 @@ public class A_Mendicity extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " Change the current value of an attribute.<html>";
+		return super.getInfo() + " Seek an agent willing to give some specific items.<html>";
 	}
 
 }

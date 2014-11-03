@@ -35,7 +35,7 @@ public class L_Instant extends LAction{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + " All actions includes in this logical controller will be played in one tick.<html>";
+		return super.getInfo() + "*****NYI***** All actions includes in this logical controller will be played in one tick.<html>";
 	}
 	
 }

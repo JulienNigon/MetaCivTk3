@@ -1,6 +1,7 @@
 package civilisation.inspecteur.simulation.dialogues;
 
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -12,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
+
 import civilisation.Configuration;
 import civilisation.individu.plan.action.Action;
 import civilisation.inspecteur.simulation.PanelArbreActions;
@@ -27,6 +29,7 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 	public DialogueAjouterAction(Frame f , boolean modal , PanelArbreActions p, Option_BeforeAfter option){
 		super(f,modal);
 
+		
 		this.p = p;
 		this.option = option;
 		infos = new JTextPane();
@@ -45,7 +48,7 @@ public class DialogueAjouterAction extends JDialog implements ActionListener, Pr
 		this.setTitle("Add new action");
 		
 		
-	    Object[] array = {listeActions , infos};
+	    Object[] array = {infos,listeActions};
 	       
 
 	    Object[] options = {"OK" , "Cancel"};

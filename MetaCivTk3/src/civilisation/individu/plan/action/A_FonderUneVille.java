@@ -45,7 +45,11 @@ public class A_FonderUneVille extends Action{
 		
 	}
 
-	
+
+	@Override
+	public String getInfo() {
+		return super.getInfo() + " An ad hoc action to build new cities.<br>Not generic.<html>";
+	}
 	
 	
 }

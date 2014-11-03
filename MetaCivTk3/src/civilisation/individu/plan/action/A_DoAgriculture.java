@@ -121,7 +121,7 @@ public class A_DoAgriculture extends Action{
 	
 	@Override
 	public String getInfo() {
-		return super.getInfo() + "Create a new agent.<html>";
+		return super.getInfo() + "Ad hoc action for a specific model.<html>";
 	}
 
 	
